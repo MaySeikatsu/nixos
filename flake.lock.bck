@@ -1,0 +1,80 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739470101,
+        "narHash": "sha256-NxNe32VB4XI/xIXrsKmIfrcgtEx5r/5s52pL3CpEcA4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5031c6d2978109336637977c165f82aa49fa16a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1739214665,
+        "narHash": "sha256-26L8VAu3/1YRxS8MHgBOyOM8xALdo6N0I04PgorE7UM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "64e75cd44acf21c7933d61d7721e812eac1b5a0a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1739580444,
+        "narHash": "sha256-+/bSz4EAVbqz8/HsIGLroF8aNaO8bLRL7WfACN+24g4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8bb37161a0488b89830168b81c48aed11569cb93",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "zen-browser": "zen-browser"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-SqHuEFIMn+OUxP1aR4waZ4/+ZfLUqBmAoY8yvEoqDTA=",
+        "path": "/nix/store/5nm36x1ybbywjbb70jdi02bhxdkw68di-source/packages/home-manager/zen-browser",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/5nm36x1ybbywjbb70jdi02bhxdkw68di-source/packages/home-manager/zen-browser",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
