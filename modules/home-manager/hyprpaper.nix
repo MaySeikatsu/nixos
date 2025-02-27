@@ -8,9 +8,9 @@
         splash_offset = 2.0;
 
           #Defining Variables
-          "$image1" = "~/Pictures/1340957.jpeg" ;
-          "$image2" = "~/Pictures/f.png";
-          "$image3" = "~/Pictures/1354850.png";
+          "$image1" = "~/Pictures/wallpaper/1343335.png" ;
+          "$image2" = "~/Pictures/wallpaper/1313942.png";
+          "$image3" = "~/Pictures/wallpaper/1317094.png";
 
           "$monitor1" = "DP-2";
           "$monitor2" = "HDMI-A-2";

@@ -9,8 +9,8 @@
     ./monitor.nix
     ./nvidia.nix
     ./programs.nix
-    ./theme.nix
-    ./windowrules.nix
+    ./theme-loader.nix
+    # ./windowrules.nix #now under theme
     ./keyboard.nix
   ];
 }

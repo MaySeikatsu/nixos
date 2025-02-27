@@ -4,13 +4,15 @@
 
   imports = [
     ./../../modules/home-manager/hyprland/default.nix
-    ./../../modules/home-manager/hyprpaper.nix
+    # ./../../modules/home-manager/hyprpaper.nix
+    # ./../../modules/home-manager/hyprpanel.nix
     ./../../modules/home-manager/hyprlock.nix
     ./../../modules/home-manager/hypridle.nix
     ./../../modules/home-manager/waybar.nix
     ./../../modules/home-manager/zsh.nix
     ./../../modules/home-manager/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
+    ./../../modules/home-manager/swww.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
@@ -26,7 +28,11 @@ programs = {
 			window-decoration = false;
 			confirm-close-surface = false;
 			font-feature = ["-liga" "-dlig" "-calt"];
-			theme = "rose-pine-moon";
+			theme = "Adventure";
+			# theme = "rose-pine-moon";
+      # background =000000;
+      background-opacity = 0.8;
+      background-blur = 4;
 		};
 	};
 };

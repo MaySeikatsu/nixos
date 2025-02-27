@@ -6,7 +6,7 @@
       "$file" = "dolphin";
       "$browser1" = ''microsoft-edge-dev --profile-directory="Default"'';
       "$browser1-work" = ''microsoft-edge-dev --profile-directory="Profile 3"'';
-      "$browser2" = "zen-browser";#io.github.zen_browser.zen
+      "$browser2" = "zen";#io.github.zen_browser.zen
       "$teams" = "teams";
       "$discord" = "discord";
       "$vscode" = "code";

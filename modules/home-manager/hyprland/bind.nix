@@ -38,8 +38,8 @@
       # Alt, Space, exec, pkill -x rofi #|| $scrPath/rofilaunch.sh d # launch application launcher
       "$mainMod, Tab, exec, pkill -x rofi || $scrPath/rofilaunch.sh w"
       "$mainMod+Shift, E, exec, pkill -x rofi || $scrPath/rofilaunch.sh f"
-      "$mainMod CTRL , H, changegroupactive, b" 
-      "$mainMod CTRL , L, changegroupactive, f" 
+      # "$mainMod CTRL , H, changegroupactive, b" 
+      # "$mainMod CTRL , L, changegroupactive, f" 
 
       # Screenshot/Screencapture
       "$mainMod, P, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture       
@@ -85,10 +85,12 @@
       "$mainMod+Ctrl, h, workspace, r-1"
 
       # Move to the first empty workspace
-      "$mainMod+Ctrl, Right, workspace, empty" 
+      # "$mainMod+Ctrl, Right, workspace, empty" 
+      
       # Scroll through existing workspaces
       "$mainMod, mouse_down, workspace, e+1"
       "$mainMod, mouse_up, workspace, e-1"   
+
       # Move/Switch to special workspace (scratchpad)
       "$mainMod+Alt, S, movetoworkspacesilent, special"
       "$mainMod, S, togglespecialworkspace,"
@@ -122,11 +124,18 @@
       "$mainMod+Shift, 0, movetoworkspace, 10"
 
       # Move focused window to a relative workspace
-      "$mainMod+Ctrl+Alt, Down, movetoworkspace, r+1"
+      # "$mainMod+Ctrl+Alt, Down, movetoworkspace, r+1"
+      "$mainMod+Ctrl+Alt, j, movetoworkspace, r+1"
       "$mainMod+Ctrl+Alt, l, movetoworkspace, r+1"
-      "$mainMod+Ctrl+Alt, Up, movetoworkspace, r-1"
+      # "$mainMod+Ctrl+Alt, Up, movetoworkspace, r-1"
       "$mainMod+Ctrl+Alt, k, movetoworkspace, r-1"
+      "$mainMod+Ctrl+Alt, h, movetoworkspace, r-1"
 
+      # Move focused window to a relative workspace
+      "$mainMod+Ctrl+Shift, j, movewindow, d"
+      "$mainMod+Ctrl+Shift, l, movewindow, r"
+      "$mainMod+Ctrl+Shift, k, movewindow, u"
+      "$mainMod+Ctrl+Shift, h, movewindow, l"
       # Custom scripts
       # $mainMod+Alt, G, exec, $scrPath/gamemode.sh # disable hypr effects for gamemode
       # $mainMod+Alt, Right, exec, $scrPath/swwwallpaper.sh -n # next wallpaper

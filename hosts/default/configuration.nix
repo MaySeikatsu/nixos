@@ -166,13 +166,16 @@
     fzf
     lsd
     zoxide
-    fzf
     btop
     nvtopPackages.full
     tealdeer
     mc #midnight-commander
     fastfetch
     lazygit
+    rustup
+    rustfmt
+    cargo
+    rust-analyzer
 
     hyprland
     hyprpaper
@@ -180,10 +183,14 @@
     hypridle
     hyprlock
     hyprshot
-    # hyprpanel
+    hyprpanel
     rofi
     waybar
     playerctl #allows for video/audio playback control
+    # swww #flake imported seperately
+    waypaper #wallpaper frontend gui for hyprpaper and swww
+    matugen #theme engine to create color palets for the system (like pywall)
+    cava
 
     spotify
     discord
@@ -196,7 +203,7 @@
     krita
     godot_4
     blender
-    # inputs.zen-browser.packages."${system}".twilight
+    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
     goxel
     # kicad #pcb and electronics design
     obs-studio
@@ -214,6 +221,7 @@
     bluez
     bluez-tools
     yazi #terminal file manager
+    ranger
     pavucontrol #audio volume and device control
     # firefoxpwa
     
@@ -223,8 +231,8 @@
     wacomtablet
     # roccat-tools
 
-    # teams
-    teams-for-linux
+    teams
+    #teams-for-linux
     google-cloud-sdk
     terraform
     # citrix_workspace

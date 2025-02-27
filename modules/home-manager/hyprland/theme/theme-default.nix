@@ -32,18 +32,20 @@
 
       blur = {
         enabled = true;
-        size = 3;
-        passes = 1;
-        # vibrancy = 0.1696;
         new_optimizations = true;
-        ignore_opacity = true;
-        xray = false;
+        size = 2;
+        passes = 4;
+        # passes = 3;
+        vibrancy = 0.1696;
+
+        # ignore_opacity = true;
+        # xray = false;
       };
 
       shadow = {
         enabled = true;
-        # range = 4;
-        # render_power = 3;
+        range = 12;
+        render_power = 5;
         # color = rgba(1a1a1aee);
       };
 

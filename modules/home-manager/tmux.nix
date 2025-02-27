@@ -30,28 +30,32 @@
         set -ga update-environment TERM
         set -ga update-environment TERM_PROGRAM
 
+        bind -n M-Left select-pane -L
+        bind -n M-Right select-pane -R
+        bind -n M-Up select-pane -U
+        bind -n M-Down select-pane -D
       '';
       plugins = with pkgs;
       [
-        # {
-        #   plugin = tmuxPlugins.rose-pine;
-        #   extraConfig = 
-        #   ''
-        #     set -g @rose_pine_variant 'moon'
-        #
-        #     set -g @rose_pine_host 'on'
-        #     set -g @rose_pine_date_time 'on'
-        #     set -g @rose_pine_date_user 'on'
-        #     set -g @rose_pine_date_directory 'on'
-        #   '';
-        # }
         {
-          plugin = tmuxPlugins.gruvbox;
+          plugin = tmuxPlugins.rose-pine;
           extraConfig = 
           ''
-            set -g @tmux-gruvbox 'dark'
+            set -g @rose_pine_variant 'moon'
+
+            set -g @rose_pine_host 'on'
+            set -g @rose_pine_date_time 'on'
+            set -g @rose_pine_date_user 'on'
+            set -g @rose_pine_date_directory 'on'
           '';
         }
+        # {
+        #   plugin = tmuxPlugins.gruvbox;
+        #   extraConfig = 
+        #   ''
+        #     set -g @tmux-gruvbox 'dark'
+        #   '';
+        # }
         {
           plugin = tmuxPlugins.resurrect;
           extraConfig = 

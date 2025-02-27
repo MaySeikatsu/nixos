@@ -6,6 +6,7 @@
       kb_layout = "us, de";
       kb_variant = "altgr-intl,";
       kb_options = "grp:win_space_toggle";
+      numlock_by_default = true;
 
       follow_mouse = 1;
 
