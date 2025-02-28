@@ -10,7 +10,7 @@
       };
       listener = [
         {
-        timeout = 150;
+        timeout = 300;
         on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
         on-resume = "brightnessctl -sd rgb:kbd_backlight";
         }

@@ -11,6 +11,7 @@
       # ./sddm-theme.nix
       # ./modules/monado.nix
       # ./modules/kanata.nix
+      ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
     ];
   environment.variables = {
@@ -156,7 +157,8 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty
     ghostty
-    warp-terminal
+    alacritty
+    # warp-terminal
     wget
     git
     zsh
@@ -174,7 +176,6 @@
     lazygit
     rustup
     rustfmt
-    cargo
     rust-analyzer
 
     hyprland
@@ -231,8 +232,8 @@
     wacomtablet
     # roccat-tools
 
-    teams
-    #teams-for-linux
+    #teams
+    teams-for-linux
     google-cloud-sdk
     terraform
     # citrix_workspace
