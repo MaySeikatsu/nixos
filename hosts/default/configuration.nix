@@ -11,7 +11,7 @@
       # ./sddm-theme.nix
       # ./modules/monado.nix
       # ./modules/kanata.nix
-      ./../../modules/system/displaymanager.nix
+      # ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
     ];
   environment.variables = {
@@ -82,20 +82,22 @@
   # ];
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = false; #default true sddm
 
-# Enable Custom SDDM Theme in sddm-theme config
-  # services.xserver.displayManager = {
+  # Enable Custom SDDM Theme in sddm-theme config
+  # Trying to get astronaut sddm theme working
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager = {
   #     sddm.enable = true;
-  #     sddm.theme = "${import ./sddm-theme.nix { inherit pkgs; }}";
+  #     sddm.theme = "${import ../../pkgs/sddm-astronaut-theme.nix { inherit pkgs; }}";
   #   };
+  # };
+
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
   # services.displayManager.defaultSession = "hyprland"; #if not working write lower case  
-  services.displayManager.sddm.wayland.enable = true; #not sure if needed
-  services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
   programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
@@ -225,6 +227,8 @@
     ranger
     pavucontrol #audio volume and device control
     # firefoxpwa
+    vial
+    via
     
     feh
     vital
@@ -237,6 +241,22 @@
     google-cloud-sdk
     terraform
     # citrix_workspace
+
+    # Install kde packages for sddm to work first three are dependencies
+    kdePackages.sddm
+    kdePackages.qtsvg
+    kdePackages.qtvirtualkeyboard
+    kdePackages.qtmultimedia
+    (pkgs.callPackage ../../pkgs/sddm-astronaut-theme.nix {
+      theme = "hyprland_kath";
+      themeConfig={
+	      General = {
+	        HeaderText ="Hi";
+          Background="/home/user/Desktop/wp.png";
+          FontSize="10.0";
+	      };	
+	    };
+    })
   ];
   
   # Install firefox.
@@ -452,6 +472,16 @@
     enable = true;
     lfs.enable = true;
   };
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    package = pkgs.kdePackages.sddm;
+    theme = "sddm-astronaut-theme";
+  };
+  
+  # Enabling qmk vial 
+  services.udev.packages = with pkgs; [ vial via ];
   # Install FireFoxPWA Addon
   # programs.firefox = {
   #   package = pkgs.firefox;

@@ -1,69 +1,55 @@
 {
-  lib,
   stdenvNoCC,
+  qt6,
+  lib,
   fetchFromGitHub,
-  kdePackages,
+  formats,
   theme ? "astronaut",
- }:
-stdenvNoCC.mkDerivation rec {
-  pname = "sddm-astronaut-theme";
-  version = "1.0";
+  themeConfig ? null,
+}: 
+let
+  overwriteConfig = (formats.ini {}).generate "${theme}.conf.user" themeConfig;
+in
+  stdenvNoCC.mkDerivation rec {
+    name = "sddm-astronaut-theme";
 
-  src = fetchFromGitHub {
-    owner = "Keyitdev";
-    repo = "sddm-astronaut-theme";
-    rev = "11c0bf6147bbea466ce2e2b0559e9a9abdbcc7c3";
-    hash = "sha256-gBSz+k/qgEaIWh1Txdgwlou/Lfrfv3ABzyxYwlrLjDk=";
-  };
+    src = fetchFromGitHub {
+      owner = "Keyitdev";
+      repo = "sddm-astronaut-theme";
+      rev = "11c0bf6147bbea466ce2e2b0559e9a9abdbcc7c3";
+      hash = "sha256-gBSz+k/qgEaIWh1Txdgwlou/Lfrfv3ABzyxYwlrLjDk=";
+    };
 
-  # Avoid wrapping Qt binaries
-  dontWrapQtApps = true;
+    propagatedUserEnvPkgs = with qt6; [qtsvg qtvirtualkeyboard qtmultimedia];
 
-  # Required Qt6 libraries for SDDM >= 0.21
-  propagatedBuildInputs = [
-    kdePackages.qtsvg
-    kdePackages.qtmultimedia
-    kdePackages.qtvirtualkeyboard
-  ];
+    dontBuild = true;
 
-  buildPhase = ''
-    runHook preBuild
-    echo "No build required."
-    runHook postBuild
-  '';
+    dontWrapQtApps = true;
 
-  installPhase = ''
-    runHook preInstall
+    installPhase = ''
+      themeDir="$out/share/sddm/themes/${name}"
 
-    # Install theme to a single directory
-    install -dm755 "$out/share/sddm/themes/sddm-astronaut-theme"
-    cp -r ./* "$out/share/sddm/themes/sddm-astronaut-theme"
+      mkdir -p $themeDir
+      cp -r $src/* $themeDir
 
-    # Copy fonts system-wide
-    install -dm755 "$out/share/fonts"
-    cp -r "$out/share/sddm/themes/sddm-astronaut-theme/Fonts/." "$out/share/fonts"
+      install -dm755 "$out/share/fonts"
+      cp -r $themeDir/Fonts/* $out/share/fonts/
 
-    # Update metadata.desktop to load the chosen subtheme
-    metaFile="$out/share/sddm/themes/sddm-astronaut-theme/metadata.desktop"
-    if [ -f "$metaFile" ]; then
-      substituteInPlace "$metaFile" \
-        --replace "ConfigFile=Themes/astronaut.conf" "ConfigFile=Themes/${theme}.conf" 
-    fi
-     runHook postInstall
-  '';
+      # Update metadata.desktop to load the chosen theme.
+      substituteInPlace "$themeDir/metadata.desktop" \
+        --replace-fail "ConfigFile=Themes/astronaut.conf" "ConfigFile=Themes/${theme}.conf"
 
-  # Propagate Qt6 libraries to user environment
-  postFixup = ''
-    mkdir -p $out/nix-support
-    echo ${kdePackages.qtsvg} >> $out/nix-support/propagated-user-env-packages
-    echo ${kdePackages.qtmultimedia} >> $out/nix-support/propagated-user-env-packages
-    echo ${kdePackages.qtvirtualkeyboard} >> $out/nix-support/propagated-user-env-packages
-  '';
+      # Create theme.conf.user of the selected theme. To overwrite its configuration.
+      ${lib.optionalString (lib.isAttrs themeConfig) ''
+        install -dm755 "$themeDir/Themes"
+        cp ${overwriteConfig} $themeDir/Themes/${theme}.conf.user
+        ''}
+    '';
 
-  meta = with lib; {
-    description = "Series of modern looking themes for SDDM.";
-    homepage = "https://github.com/Keyitdev/sddm-astronaut-theme";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
-  };
-}
+    meta = with lib; {
+      description = "Series of modern looking themes for SDDM";
+      homepage = "https://github.com/Keyitdev/sddm-astronaut-theme";
+      license = licenses.gpl3;
+      platforms = platforms.linux;
+    };
+  }
