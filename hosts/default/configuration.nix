@@ -1,7 +1,6 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, lib, ... }:
 
 {
@@ -37,7 +36,6 @@
     AllowSuspend = yes
     AllowHibernation = yes
   '';
-
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -95,9 +93,9 @@
 
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   # services.displayManager.defaultSession = "hyprland"; #if not working write lower case  
-  # services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
   programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
@@ -212,6 +210,8 @@
     obs-studio
     davinci-resolve
     poppler
+    base16-schemes
+
 
     ollama
     # lmstudio
@@ -229,6 +229,9 @@
     # firefoxpwa
     vial
     via
+    pass-wayland
+    qtpass
+    gnupg
     
     feh
     vital
@@ -241,9 +244,9 @@
     google-cloud-sdk
     terraform
     # citrix_workspace
+    vscode
 
-    # Install kde packages for sddm to work first three are dependencies
-    kdePackages.sddm
+    # Install kde packages for sddm to work first three are dependencies - currently unused
     kdePackages.qtsvg
     kdePackages.qtvirtualkeyboard
     kdePackages.qtmultimedia
@@ -473,12 +476,14 @@
     lfs.enable = true;
   };
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-    package = pkgs.kdePackages.sddm;
-    theme = "sddm-astronaut-theme";
-  };
+  # stylix.base16Scheme = "{pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+  # stylix.image = /home/maike/Pictures/wallpaper/1013625.png;
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  #   package = pkgs.kdePackages.sddm;
+  #   theme = "sddm-astronaut-theme";
+  # };
   
   # Enabling qmk vial 
   services.udev.packages = with pkgs; [ vial via ];

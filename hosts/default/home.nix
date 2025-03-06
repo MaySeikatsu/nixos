@@ -13,6 +13,7 @@
     ./../../modules/home-manager/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
     ./../../modules/home-manager/swww.nix
+    # ./../../modules/home-manager/stylix.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
