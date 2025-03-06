@@ -230,6 +230,7 @@
     vial
     via
     pass-wayland
+    pinentry
     qtpass
     gnupg
     revolt-desktop
