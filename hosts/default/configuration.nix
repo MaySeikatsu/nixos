@@ -232,6 +232,8 @@
     pass-wayland
     qtpass
     gnupg
+    revolt-desktop
+    element-desktop
     
     feh
     vital
