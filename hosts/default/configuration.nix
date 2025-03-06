@@ -231,12 +231,13 @@
     via
     pass-wayland
     qtpass
-    pinentry
+    # pinentry
     gnupg
     revolt-desktop
     element-desktop
     localsend
-    
+    spicetify-cli
+
     feh
     vital
     opentabletdriver #not working yet
