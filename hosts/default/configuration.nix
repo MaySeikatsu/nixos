@@ -234,6 +234,7 @@
     gnupg
     revolt-desktop
     element-desktop
+    localsend
     
     feh
     vital
