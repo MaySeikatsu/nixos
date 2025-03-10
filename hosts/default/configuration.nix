@@ -229,14 +229,15 @@
     # firefoxpwa
     vial
     via
-    pass-wayland
-    qtpass
-    # pinentry
-    gnupg
     revolt-desktop
     element-desktop
     localsend
     spicetify-cli
+    pass-wayland
+    qtpass
+    gopass
+    # pinentry
+    gnupg
 
     feh
     vital

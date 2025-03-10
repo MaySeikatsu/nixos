@@ -4,16 +4,18 @@
 
   imports = [
     ./../../modules/home-manager/hyprland/default.nix
-    # ./../../modules/home-manager/hyprpaper.nix
-    # ./../../modules/home-manager/hyprpanel.nix
-    ./../../modules/home-manager/hyprlock.nix
-    ./../../modules/home-manager/hypridle.nix
-    ./../../modules/home-manager/waybar.nix
-    ./../../modules/home-manager/zsh.nix
-    ./../../modules/home-manager/tmux.nix
+    ./../../modules/home-manager/hyprland_utils/default.nix
+    # ./../../modules/home-manager/hyprland_utils/hyprlock.nix
+    # ./../../modules/home-manager/hyprland_utils/hypridle.nix
+    # ./../../modules/home-manager/hyprland_utils/waybar.nix
+    # ./../../modules/home-manager/hyprland_utils/swww.nix
+    #
+    # ./../../modules/home-manager/hyprland_utils/hyprpaper.nix
+    # ./../../modules/home-manager/hyprland_utils/hyprpanel.nix
+    # ./../../modules/home-manager/hyprland_utils/stylix.nix
+    ./../../modules/home-manager/terminal/zsh.nix
+    ./../../modules/home-manager/terminal/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
-    ./../../modules/home-manager/swww.nix
-    # ./../../modules/home-manager/stylix.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
