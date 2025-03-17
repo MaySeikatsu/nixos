@@ -29,6 +29,10 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+ # boot.loader.grub = {
+  #   enable = true;
+  #   efiSupport = true;
+  # };
 
   #Enable Hibernate
   systemd.sleep.extraConfig =
@@ -103,6 +107,9 @@
     layout = "us";
     variant = "altgr-intl";
   };
+  
+  # Enable/Install Floorp
+  # programs.floorp.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -192,10 +199,18 @@
     waypaper #wallpaper frontend gui for hyprpaper and swww
     matugen #theme engine to create color palets for the system (like pywall)
     cava
+    floorp
+    catppuccin-grub
+
+    protonup
+    lutris
+    heroic
+    bottles
+    mangohud
 
     spotify
     discord
-    steam
+    # steam
     osu-lazer
     microsoft-edge
     obsidian
@@ -204,6 +219,8 @@
     krita
     godot_4
     blender
+    libresprite
+    aseprite
     # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
     goxel
     # kicad #pcb and electronics design
@@ -294,6 +311,15 @@
     gamescopeSession = {
       enable = true;
     };
+  };
+  # Enabling optional optimisations for gaming / game-mode
+  programs.gamemode.enable = true;
+
+  # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
+  # could also be done via home-manager - view vimjoyer gaming video
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+      "~/.steam/root/compatibilitytools.d/";
   };
 
   home-manager = {
@@ -424,23 +450,22 @@
     };
   };
 
+
+  # hardware.steam-hardware {
+  #   enable = true;
+  # };
+
+  # Load AMDGPU drivers for xorg
+  # services.xserver.videoDrivers = ["amdgpu"];
+
   # INSTALL NVIDIA DRIVERS
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
   };
-
-  # hardware.steam-hardware {
-  #   enable = true;
-  # };
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
-  
-  # Load AMDGPU drivers for xorg
-  # services.xserver.videoDrivers = ["amdgpu"];
-
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
 
@@ -475,13 +500,26 @@
     enable = true;
     defaultRuntime = true; # Register as default OpenXR runtime
   };
-
+  systemd.user.services.monado.environment = {
+    STEAMVR_LH_ENABLE = "1";
+    XRT_COMPOSITOR_COMPUTE = "1";
+  };
   # Enable git-lfs to use hand trackers in VR
   programs.git = {
     enable = true;
     lfs.enable = true;
   };
-
+  # STEAMVR kernel cap_sys_nice patch for amd gpus - not needed on this system
+  boot.kernelPatches = [
+    {
+      name = "amdgpu-ignore-ctx-privileges";
+      patch = pkgs.fetchpatch {
+        name = "cap_sys_nice_begone.patch";
+        url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+        hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
+      };
+    }
+  ];
   # stylix.base16Scheme = "{pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   # stylix.image = /home/maike/Pictures/wallpaper/1013625.png;
   # services.displayManager.sddm = {
@@ -507,6 +545,16 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+# Making Gaming Optimisations according to vimjoyer
+  # Enabling OpenGL - not needed when steam is also installed on the system
+  hardware.opengl = {
+    enable = true; #has been renamed to hardware.graphics.enable
+    # driSupport = true; #no longer supported
+    driSupport32Bit = true;
+  };
+
+
 
   # List services that you want to enable:
 
