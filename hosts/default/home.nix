@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
 
@@ -16,6 +16,7 @@
     ./../../modules/home-manager/terminal/zsh.nix
     ./../../modules/home-manager/terminal/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
+    # ./../../modules/home-manager/spicetify.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
@@ -23,22 +24,32 @@
     # ./../../modules/home-manager/tidal.nix
   ];
 
-programs = {
-	ghostty = {
-		enable = true;
-		settings = {
-			font-size = 11;
-			window-decoration = false;
-			confirm-close-surface = false;
-			font-feature = ["-liga" "-dlig" "-calt"];
-			theme = "Adventure";
-			# theme = "rose-pine-moon";
-      # background =000000;
-      background-opacity = 0.8;
-      background-blur = 4;
-		};
-	};
-};
+  programs = {
+    ghostty = {
+      enable = true;
+      settings = {
+        font-size = 11;
+        window-decoration = false;
+        confirm-close-surface = false;
+        font-feature = ["-liga" "-dlig" "-calt"];
+        theme = "Adventure";
+        # theme = "rose-pine-moon";
+        # background =000000;
+        background-opacity = 0.8;
+        background-blur = 4;
+      };
+    };
+  };
+
+  # programs.spicetify = 
+  # let
+  #   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+  # in
+  # {
+  #   enable = true;
+  #   theme = spicePkgs.themes.catppuccin;
+  # };
+  #
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "maike";

@@ -7,6 +7,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./../../modules/nixos/pkgs/terminal/rice.nix
+      ./../../modules/nixos/pkgs/terminal/essentials.nix
       # ./sddm-theme.nix
       # ./modules/monado.nix
       # ./modules/kanata.nix
@@ -162,25 +164,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    kitty
-    ghostty
     alacritty
     # warp-terminal
     wget
     git
-    zsh
     kanata
     gcc
-    tmux
-    fzf
-    lsd
-    zoxide
-    btop
-    nvtopPackages.full
     tealdeer
-    mc #midnight-commander
-    fastfetch
-    lazygit
     rustup
     rustfmt
     rust-analyzer
@@ -198,9 +188,8 @@
     # swww #flake imported seperately
     waypaper #wallpaper frontend gui for hyprpaper and swww
     matugen #theme engine to create color palets for the system (like pywall)
-    cava
     floorp
-    catppuccin-grub
+    # catppuccin-grub
 
     protonup
     lutris
@@ -229,7 +218,6 @@
     poppler
     base16-schemes
 
-
     ollama
     # lmstudio
     docker
@@ -240,8 +228,6 @@
     overskride 
     bluez
     bluez-tools
-    yazi #terminal file manager
-    ranger
     pavucontrol #audio volume and device control
     # firefoxpwa
     vial
@@ -249,10 +235,8 @@
     revolt-desktop
     element-desktop
     localsend
-    spicetify-cli
-    pass-wayland
+    # spicetify-cli
     qtpass
-    gopass
     # pinentry
     gnupg
 
@@ -459,10 +443,6 @@
   # services.xserver.videoDrivers = ["amdgpu"];
 
   # INSTALL NVIDIA DRIVERS
-  # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
@@ -545,15 +525,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-# Making Gaming Optimisations according to vimjoyer
-  # Enabling OpenGL - not needed when steam is also installed on the system
-  hardware.opengl = {
-    enable = true; #has been renamed to hardware.graphics.enable
-    # driSupport = true; #no longer supported
-    driSupport32Bit = true;
-  };
-
 
 
   # List services that you want to enable:
