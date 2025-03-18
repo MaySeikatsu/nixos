@@ -175,19 +175,6 @@
     rustfmt
     rust-analyzer
 
-    hyprland
-    hyprpaper
-    hyprpicker
-    hypridle
-    hyprlock
-    hyprshot
-    hyprpanel
-    rofi
-    waybar
-    playerctl #allows for video/audio playback control
-    # swww #flake imported seperately
-    waypaper #wallpaper frontend gui for hyprpaper and swww
-    matugen #theme engine to create color palets for the system (like pywall)
     floorp
     # catppuccin-grub
 
@@ -223,8 +210,6 @@
     docker
     ffmpeg
     p7zip
-    wl-clipboard #clipboard manager
-    clipse #clipboard manager
     overskride 
     bluez
     bluez-tools
@@ -240,7 +225,7 @@
     # pinentry
     gnupg
 
-    feh
+    # feh
     vital
     opentabletdriver #not working yet
     wacomtablet
