@@ -9,6 +9,7 @@
       ./hardware-configuration.nix
       ./../../modules/nixos/pkgs/terminal/rice.nix
       ./../../modules/nixos/pkgs/terminal/essentials.nix
+      ./../../modules/nixos/pkgs/hyprland.nix
       # ./sddm-theme.nix
       # ./modules/monado.nix
       # ./modules/kanata.nix
