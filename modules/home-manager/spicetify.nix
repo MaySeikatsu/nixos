@@ -7,6 +7,14 @@
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.catppuccin;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+      hidePodcasts
+      shuffle
+      keyboardShortcut
+      popupLyrics
+      newRelease
+    ];
     colorScheme = "mocha";
   };
 }
