@@ -10,6 +10,7 @@
       ./../../modules/nixos/pkgs/terminal/rice.nix
       ./../../modules/nixos/pkgs/terminal/essentials.nix
       ./../../modules/nixos/pkgs/hyprland.nix
+      ./../../modules/home-manager/spicetify.nix
       # ./sddm-theme.nix
       # ./modules/monado.nix
       # ./modules/kanata.nix

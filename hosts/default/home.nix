@@ -5,18 +5,10 @@
   imports = [
     ./../../modules/home-manager/hyprland/default.nix
     ./../../modules/home-manager/hyprland_utils/default.nix
-    # ./../../modules/home-manager/hyprland_utils/hyprlock.nix
-    # ./../../modules/home-manager/hyprland_utils/hypridle.nix
-    # ./../../modules/home-manager/hyprland_utils/waybar.nix
-    # ./../../modules/home-manager/hyprland_utils/swww.nix
-    #
-    # ./../../modules/home-manager/hyprland_utils/hyprpaper.nix
-    # ./../../modules/home-manager/hyprland_utils/hyprpanel.nix
-    # ./../../modules/home-manager/hyprland_utils/stylix.nix
+
     ./../../modules/home-manager/terminal/zsh.nix
     ./../../modules/home-manager/terminal/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
-    # ./../../modules/home-manager/spicetify.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
@@ -41,15 +33,7 @@
     };
   };
 
-  # programs.spicetify = 
-  # let
-  #   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  # in
-  # {
-  #   enable = true;
-  #   theme = spicePkgs.themes.catppuccin;
-  # };
-  #
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "maike";

@@ -12,8 +12,8 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     swww.url = "github:LGFae/swww";
     # stylix.url = "github:danth/stylix";
-    # spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    # spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -23,7 +23,7 @@
     home-manager,
     hyprpanel,
     swww,
-    # spicetify-nix,
+    spicetify-nix,
     # stylix,
     ...
     }@ inputs: {
@@ -31,7 +31,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
-        # inputs.spicetify-nix.nixosModules.default
+        inputs.spicetify-nix.nixosModules.default
         # inputs.stylix.nixosModules.stylix
         # stylix.homeManagerModules.stylix
         
