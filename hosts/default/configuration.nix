@@ -196,7 +196,10 @@
 
 
     spotify
-    # discord
+    # discord #managed via nixcord flake 
+    # vesktop #vencord desktop client without overwriting the official discord binary
+    revolt-desktop
+    element-desktop
     osu-lazer
     microsoft-edge
     obsidian
@@ -228,9 +231,6 @@
     vial
     via
 
-    # vesktop #vencord desktop client without overwriting the official discord binary
-    revolt-desktop
-    element-desktop
     localsend
     # spicetify-cli
     qtpass

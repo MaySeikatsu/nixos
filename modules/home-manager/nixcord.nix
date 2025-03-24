@@ -8,13 +8,13 @@
     programs.nixcord = {
     enable = true;
     discord = {
-      enable = false;
-    #   package = pkgs.discord;
-    #   # package = pkgs.vesktop;
-    #   vencord = {
-    #     enable = true;
-    #     unstable = true;
-    #   };
+      enable = true;
+      package = pkgs.discord;
+      # package = pkgs.vesktop;
+      vencord = {
+        enable = true;
+        unstable = true;
+      };
     };
       vesktop = {
         enable = true;
