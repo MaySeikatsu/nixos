@@ -1,26 +1,25 @@
-
 {pkgs, inputs, ...}:
   let
-    system = "x86_64-linux";
+    # system = "x86_64-linux";
+    home.packages = inputs.nixcord.homeManagerModules.nixcord."x86_64-linux";
   in
 {
-  home.packages = [
-    inputs.nixcord.homeManagerModules.nixcord
-  ];
-
- programs.nixcord = {
-    # discord = {
-    #   enable = false;
+  # programs.nixcord.enable = true;
+    programs.nixcord = {
+    enable = true;
+    discord = {
+      enable = false;
     #   package = pkgs.discord;
+    #   # package = pkgs.vesktop;
     #   vencord = {
     #     enable = true;
     #     unstable = true;
     #   };
-    # };
-    vesktop = {
-      enable = true;
-    };   
-  
+    };
+      vesktop = {
+        enable = true;
+      };   
+
   #   enable = true;  # enable Nixcord. Also installs discord package
   #
   #   quickCss = "some CSS";  # quickCSS file
@@ -44,6 +43,5 @@
   #     # Some extra JSON config here
   #     # ...
   #   };
-  };
+    };
 }
-

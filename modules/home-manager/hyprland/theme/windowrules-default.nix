@@ -12,6 +12,7 @@
     windowrulev2 = [
       "opacity 0.9 0.9,class:^(steam)$"
       "opacity 0.9 0.9,class:^(discord)$"
+      "opacity 0.9 0.9,class:^(vesktop)$"
       "opacity 0.9 0.9,class:^(dolphin)$"
       "opacity 0.9 0.9,class:^(spotify)$"
       "opacity 0.9 0.9,class:^(hyprpanel)$"

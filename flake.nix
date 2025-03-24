@@ -12,10 +12,11 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     swww.url = "github:LGFae/swww";
-    # stylix.url = "github:danth/stylix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-    nixcord.url = "github:kaylorben/nixcord";
+
+    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
+    # stylix.url = "github:danth/stylix";
   };
 
   outputs = {
@@ -35,19 +36,21 @@
       modules = [
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
-        # inputs.stylix.nixosModules.stylix
-        # stylix.homeManagerModules.stylix
         # inputs.nixcord.homeManagerModules.nixcord
 
-        # home-manager.nixosModules.home-manager {
-        #     home-manager.useGlobalPkgs = true;
-        #     home-manager.useUserPackages = true;
-        #     home-manager.users.maike = import ./home.nix;
-        #
-        #     home-manager.sharedModules = [
-        #       inputs.nixcored.homeManagerModules.nixcord
-        #     ];
-        #   }
+        # inputs.stylix.nixosModules.stylix
+        # stylix.homeManagerModules.stylix
+
+        #nixcord config
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.maike = import ./hosts/default/home.nix;
+
+          home-manager.sharedModules = [
+            inputs.nixcord.homeManagerModules.nixcord
+          ];
+        }
         
         ./hosts/default/configuration.nix
       ];
