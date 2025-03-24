@@ -2,6 +2,7 @@
   description = "Nixos config flake";
 
   inputs = {
+    # Essentials (nixpkgs-channel and home-manager)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -14,6 +15,7 @@
     # stylix.url = "github:danth/stylix";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {
@@ -24,6 +26,7 @@
     hyprpanel,
     swww,
     spicetify-nix,
+    nixcord,
     # stylix,
     ...
     }@ inputs: {
@@ -34,6 +37,17 @@
         inputs.spicetify-nix.nixosModules.default
         # inputs.stylix.nixosModules.stylix
         # stylix.homeManagerModules.stylix
+        # inputs.nixcord.homeManagerModules.nixcord
+
+        # home-manager.nixosModules.home-manager {
+        #     home-manager.useGlobalPkgs = true;
+        #     home-manager.useUserPackages = true;
+        #     home-manager.users.maike = import ./home.nix;
+        #
+        #     home-manager.sharedModules = [
+        #       inputs.nixcored.homeManagerModules.nixcord
+        #     ];
+        #   }
         
         ./hosts/default/configuration.nix
       ];
