@@ -9,6 +9,7 @@
     ./../../modules/home-manager/terminal/zsh.nix
     ./../../modules/home-manager/terminal/tmux.nix
     ./../../modules/home-manager/zen-browser.nix
+    ./../../modules/home-manager/nixcord.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
