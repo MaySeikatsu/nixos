@@ -112,6 +112,11 @@
     variant = "altgr-intl";
   };
   
+  # Enable Bluetooth for Wacom Tablet by booting already
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  # Enable Bluetooth Driver for Multiple Tablets
+  # services.xserver.digimend.enable = true;
   # Enable/Install Floorp
   # programs.floorp.enable = true;
 
@@ -191,10 +196,7 @@
     # procps
     # usbutils
 
-
-
-
-
+    wayfire
     spotify
     # discord #managed via nixcord flake 
     # vesktop #vencord desktop client without overwriting the official discord binary
@@ -240,11 +242,15 @@
     # feh
     vital
     opentabletdriver #not working yet
-    wacomtablet
+    p7zip
+    # wacomtablet
+    evemu
+    # linuxKernel.packages.linux_zen.digimend
     # roccat-tools
 
     #teams
     teams-for-linux
+    onlyoffice-bin
     google-cloud-sdk
     terraform
     # citrix_workspace
