@@ -13,7 +13,8 @@
           "$image3" = "~/Pictures/wallpaper/1317094.png";
 
           "$monitor1" = "DP-2";
-          "$monitor2" = "HDMI-A-2";
+          # "$monitor2" = "HDMI-A-2";
+          "$monitor2" = "HDMI-A-1";
           "$monitor3" = "DVI-D-1";
 
 #Preloading Images

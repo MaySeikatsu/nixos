@@ -11,7 +11,7 @@
         path = "$HOME/.zsh_history;";
       };
 
-      initExtra = 
+      initContent = 
       ''
         alias v=nvim
         bindkey '^p' history-search-backward

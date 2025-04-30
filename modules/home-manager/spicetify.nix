@@ -35,6 +35,6 @@
     # colorScheme = "TokyoNight";
     # colorScheme = "Storm";
     # Theme for dynamic
-    colorScheme = "base";
+    colorScheme = "Base";
   };
 }
