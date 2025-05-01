@@ -244,7 +244,7 @@
 
     # feh
     vital
-    opentabletdriver #not working yet
+    # opentabletdriver #not working yet
     p7zip
     # wacomtablet
     evemu
@@ -284,8 +284,8 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
  
   # Enable opentabletdriver
-  hardware.opentabletdriver.enable = true;
-  hardware.opentabletdriver.daemon.enable = true;
+  # hardware.opentabletdriver.enable = true;
+  # hardware.opentabletdriver.daemon.enable = true;
 
   # Enable Wacom Tablet
   services.xserver.wacom.enable = true;

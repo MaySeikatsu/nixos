@@ -7,7 +7,18 @@
 
       # "HDMI-A-1, 3840x2160@highrr, auto-left, 1.25"
       # "HDMI-A-1, 3840x2160@60, 0x0, 1, bitdepth, 10, cm, hdr"
+
+      # 4k Screen
       "HDMI-A-1, 3840x2160@60, 0x0, 1"
+      "DP-2, 3840x2160@143.85, 0x0, 1"
+      # HDR
+      # "DP-2, 3840x2160@143.85, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 0.98"
+      
+      # 390Hz Screen
+      "HDMI-A-2,1920x1080@239.96, auto-left, 1, transform, 1"
+      # HDR
+      # "HDMI-A-2,1920x1080@239.96, auto-left, 1, transform, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 0.98"
+
       # "DP-2, 3840x2160@60, 0x0, 1.25"
       # "DVI-D-1, 1440x900@75, 1920x590, 1"
       # "DP-2,1920x1080@360, 0x0, 1"

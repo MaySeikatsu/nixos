@@ -17,6 +17,23 @@
         bindkey '^p' history-search-backward
         bindkey '^n' history-search-backward
 
+        # Enable STRG to delete words
+        bindkey '^H' backward-kill-word
+        bindkey '^[[3;5~' kill-word
+
+        # Enable Ctrl+arrow key bindings for word jumping
+        bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
+        bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
+
+        bindkey  "^[[H"   beginning-of-line # Pos1
+        bindkey  "^[[F"   end-of-line       # End
+
+        alias n='nvim'
+
+        # export ANDROID_HOME=/opt/android-sdk/
+        # export PATH=$PATH:$ANDROID_HOME/emulator
+        # export PATH=$PATH:$ANDROID_HOME/platform-tools
+
         eval "$(fzf --zsh)"
         eval "$(zoxide init zsh)"
       '';

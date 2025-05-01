@@ -29,9 +29,11 @@
       rounding = 10;
       active_opacity = 1.0;
       inactive_opacity = 1.0;
+      dim_special = 0.15;
 
       blur = {
         enabled = true;
+        special = true; # Blurs spexial workspace
         new_optimizations = true;
         size = 2;
         passes = 4;
