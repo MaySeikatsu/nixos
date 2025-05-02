@@ -205,7 +205,7 @@
     # vesktop #vencord desktop client without overwriting the official discord binary
     revolt-desktop
     element-desktop
-    osu-lazer
+    osu-lazer-bin
     microsoft-edge
     obsidian
     ticktick

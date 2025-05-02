@@ -10,7 +10,7 @@
 
       # 4k Screen
       "HDMI-A-1, 3840x2160@60, 0x0, 1"
-      "DP-2, 3840x2160@143.85, 0x0, 1"
+      "DP-2, 3840x2160@143.85, 0x0, 1.25"
       # HDR
       # "DP-2, 3840x2160@143.85, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 0.98"
       
