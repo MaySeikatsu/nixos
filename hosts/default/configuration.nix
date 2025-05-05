@@ -61,11 +61,6 @@
     };
   };
 
-  # Troubleshooting for steamvr not detecting hardware
-  hardware.steam-hardware = {
-    enable = true;
-  };
-
   # Load AMDGPU drivers for xorg
   # services.xserver.videoDrivers = ["amdgpu"];
 

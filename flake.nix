@@ -34,6 +34,8 @@
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
+        ./hosts/default/configuration.nix
+
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
         # inputs.nixcord.homeManagerModules.nixcord
@@ -52,13 +54,13 @@
           ];
         }
         
-        #./hosts/default/configuration.nix
-	./hosts/default/configuration.nix
       ];
     };
     nixosConfigurations.nixos-legion = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
+        ./hosts/nixos-legion/configuration.nix
+
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
         # inputs.nixcord.homeManagerModules.nixcord
@@ -76,9 +78,7 @@
             inputs.nixcord.homeManagerModules.nixcord
           ];
         }
-        
-        #./hosts/default/configuration.nix
-	./hosts/nixos-legion/configuration.nix
+
       ];
     };
   };

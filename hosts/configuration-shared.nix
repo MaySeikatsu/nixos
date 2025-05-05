@@ -7,9 +7,8 @@
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix
       ./../modules/home-manager/spicetify.nix
-      ./../modules/nixos/kanata.nix
+      ./../modules/nixos/pkgs/kanata.nix
       # ./sddm-theme.nix
-      # ./modules/monado.nix
       # ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -163,10 +162,15 @@
     bluetooth.enable = true;
     # pulseaudio.enable = false;
 
+    steam-hardware = {   # Troubleshooting for steamvr not detecting hardware
+      enable = true;
+    };
+
     # Enable opentabletdriver
     # opentabletdriver.enable = true;
     # opentabletdriver.daemon.enable = true;
   };
+
 
   environment = {
     sessionVariables = {
