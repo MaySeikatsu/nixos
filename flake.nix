@@ -52,7 +52,33 @@
           ];
         }
         
-        ./hosts/default/configuration.nix
+        #./hosts/default/configuration.nix
+	./hosts/default/configuration.nix
+      ];
+    };
+    nixosConfigurations.nixos-legion = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
+        inputs.spicetify-nix.nixosModules.default
+        # inputs.nixcord.homeManagerModules.nixcord
+
+        # inputs.stylix.nixosModules.stylix
+        # stylix.homeManagerModules.stylix
+
+        #nixcord config
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.maike = import ./hosts/nixos-legion/home.nix;
+
+          home-manager.sharedModules = [
+            inputs.nixcord.homeManagerModules.nixcord
+          ];
+        }
+        
+        #./hosts/default/configuration.nix
+	./hosts/nixos-legion/configuration.nix
       ];
     };
   };
