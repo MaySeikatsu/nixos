@@ -15,18 +15,57 @@
     ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
- 
   nixpkgs.config = {
       allowUnfree = true;               # Allow unfree packages
       allowUnsupportedSystem = true;    # Allow unsupported SystemPackages
     };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.maike = {
+    isNormalUser = true;
+    description = "maike";
+    extraGroups = [ 
+    "networkmanager"
+    "wheel" 
+    "input" #for Kanata
+    "uinput" #for Kanata
+    ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      kdePackages.kate
+      # pipes
+    #  thunderbird
+    ];
+  };
 
-  environment.variables = {
-    EDITOR = "nvim";
-    SUDO_EDITOR = "nvim";
+  # Set your time zone.
+  time.timeZone = "Europe/Berlin";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "de_DE.UTF-8";
+    LC_IDENTIFICATION = "de_DE.UTF-8";
+    LC_MEASUREMENT = "de_DE.UTF-8";
+    LC_MONETARY = "de_DE.UTF-8";
+    LC_NAME = "de_DE.UTF-8";
+    LC_NUMERIC = "de_DE.UTF-8";
+    LC_PAPER = "de_DE.UTF-8";
+    LC_TELEPHONE = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+  };
+
+  fonts.packages = with pkgs; [ 
+    nerd-fonts.jetbrains-mono
+    roboto
+    source-sans
+    font-awesome
+    openmoji-color
+  ];
+
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = true;   #Request password for sudo actions as user
   };
 
   services = {
@@ -39,7 +78,6 @@
     printing.enable = true;             # Enable CUPS to print documents.
 
     udev.packages = with pkgs; [ vial via ];     # Enabling qmk vial 
-
 
     # Enable sound with pipewire.
     pulseaudio.enable = false;
@@ -72,17 +110,8 @@
       defaultRuntime = true; # Register as default OpenXR runtime
     };
   };
-  
-  hardware = {
-    bluetooth.enable = true;
 
-    # pulseaudio.enable = false;
-
-    # Enable opentabletdriver
-    # opentabletdriver.enable = true;
-    # opentabletdriver.daemon.enable = true;
-  };
-  
+  # Shared Programs should be defined here
   programs = {
     git = {
       enable = true;
@@ -93,9 +122,16 @@
     hyprland.enable = true;
     hyprland.withUWSM = true;
 
-    kdeconnect.enable = true;
-    firefox.enable = true;     # Install firefox.
     zsh.enable = true;    # Enable ZSH
+    firefox.enable = true;     # Install firefox.
+    kdeconnect.enable = true;
+
+    wayfire = {
+      enable = true;  
+      # plugins = [
+      #   pkgs.wcm
+      # ];
+    };
 
     gamemode.enable = true;     # Enabling optional optimisations for gaming / game-mode
     # floorp.enable = true;     # Enable/Install Floorp
@@ -104,6 +140,9 @@
     steam = {
       enable = true;
       extraCompatPackages = [
+        # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
+        # Install proton-ge
+        # could also be done via home-manager - view vimjoyer gaming video
         pkgs.proton-ge-bin
       ];
       gamescopeSession = { # allows to boot directly into the steamdeck / big picture mode
@@ -112,8 +151,6 @@
     };
     # Enable git-lfs to use hand trackers in VR
     
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
     # mtr.enable = true;
     gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
       enable = true;
@@ -121,46 +158,34 @@
     };
   };
 
- 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+# Shared hardware configuration should be defined here
+  hardware = {
+    bluetooth.enable = true;
 
 
-  
+    # pulseaudio.enable = false;
 
-  
-  security.rtkit.enable = true;
-
-  #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
-
-  #Request password for sudo actions as user
-  security.sudo.wheelNeedsPassword = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    # Enable opentabletdriver
+    # opentabletdriver.enable = true;
+    # opentabletdriver.daemon.enable = true;
   };
 
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.jetbrains-mono
-    roboto
-    source-sans
-    font-awesome
-    openmoji-color
-  ];
+  environment = {
+    sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+        "~/.steam/root/compatibilitytools.d/";
+    };
 
+    variables = {
+      EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
+    };
+  };
+  
+  networking.networkmanager.enable = true;   # Enable networking
+  #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
+  
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
 
@@ -168,23 +193,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.maike = {
-    isNormalUser = true;
-    description = "maike";
-    extraGroups = [ 
-    "networkmanager"
-    "wheel" 
-    "input" #for Kanata
-    "uinput" #for Kanata
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-      # pipes
-    #  thunderbird
-    ];
-  };
   
   # Enable VR with Monado / OpenXR and SteamVR
   systemd.user.services.monado.environment = {
@@ -192,22 +200,13 @@
     XRT_COMPOSITOR_COMPUTE = "1";
   };
 
-  # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
-  # Install proton-ge
-  # could also be done via home-manager - view vimjoyer gaming video
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-      "~/.steam/root/compatibilitytools.d/";
-  };
-
-
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     alacritty
     # warp-terminal
     wget
-    git
-    kanata
+    # git
+    # kanata
     gcc
     tealdeer
     rustup
@@ -223,12 +222,10 @@
     bottles
     mangohud
     steam-tui
-    # steam
     # For Steam VR (troubleshooting):
     # procps
     # usbutils
 
-    wayfire
     spotify
     # discord #managed via nixcord flake 
     # vesktop #vencord desktop client without overwriting the official discord binary
@@ -281,6 +278,7 @@
 
     #teams
     teams-for-linux
+    # steam
     onlyoffice-bin
     google-cloud-sdk
     terraform
