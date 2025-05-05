@@ -45,7 +45,7 @@
     AllowHibernation = yes
   '';
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixos-maike-pc"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

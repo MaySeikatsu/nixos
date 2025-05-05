@@ -8,6 +8,9 @@
       # "HDMI-A-1, 3840x2160@highrr, auto-left, 1.25"
       # "HDMI-A-1, 3840x2160@60, 0x0, 1, bitdepth, 10, cm, hdr"
 
+      # # Autodetect Laptop
+      ", preferred, auto, 1"
+
       # 4k Screen
       "HDMI-A-1, 3840x2160@60, 0x0, 1"
       "DP-2, 3840x2160@143.85, 0x0, 1"

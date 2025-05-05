@@ -3,29 +3,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./../configuration-shared.nix
       ./hardware-configuration.nix
-      ./../../modules/nixos/pkgs/terminal/essentials.nix
-      ./../../modules/nixos/pkgs/terminal/rice.nix
-      ./../../modules/nixos/pkgs/hyprland.nix
-      ./../../modules/home-manager/spicetify.nix
-      # ./sddm-theme.nix
-      # ./modules/monado.nix
-      # ./../../modules/nixos/kanata.nix
-      # ./../../modules/system/displaymanager.nix
-      inputs.home-manager.nixosModules.default
     ];
-  environment.variables = {
-    EDITOR = "nvim";
-    SUDO_EDITOR = "nvim";
-  };
-
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # Update to the latest unstable channel
-  # command set: nix-channel --add https://channels.nixos.org/nixos-unstable nixos
-
-  #Use the latest Linux Kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -48,41 +28,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
- 
-  # Allow unsupported SystemPackages
-  nixpkgs.config.allowUnsupportedSystem = true;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.jetbrains-mono
-    roboto
-    source-sans
-    font-awesome
-  ];
-  # fonts.packages = with pkgs; [
-  #   nerd-fonts.jetbrains-mono
-  #   openmoji-color
-  # ];
 
   # Enable the X11 windowing system.
 
@@ -96,225 +41,18 @@
   #   };
   # };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  # services.displayManager.defaultSession = "hyprland"; #if not working write lower case  
-  services.desktopManager.plasma6.enable = true;
-  programs.kdeconnect.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl";
-  };
-  
-  # Enable Bluetooth for Wacom Tablet by booting already
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  # Enable Bluetooth Driver for Multiple Tablets
-  # services.xserver.digimend.enable = true;
-  # Enable/Install Floorp
-  # programs.floorp.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  #Request password for sudo actions as user
-  security.sudo.wheelNeedsPassword = false;
-
-  # Enable sound with pipewire.
-  # hardware.pulseaudio.enable = false;
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.maike = {
-    isNormalUser = true;
-    description = "maike";
-    extraGroups = [ 
-    "networkmanager"
-    "wheel" 
-    "input" #for Kanata
-    "uinput" #for Kanata
-    ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-      # pipes
-    #  thunderbird
-    ];
-  };
-
   # For Kanata enable uinput
   boot.kernelModules = ["uinput"];
   hardware.uinput.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  # to search for pkgs do nix search nixpkgs $name
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    alacritty
-    # warp-terminal
-    wget
-    git
-    kanata
-    gcc
-    tealdeer
-    rustup
-    rustfmt
-    rust-analyzer
 
-    floorp
-    # catppuccin-grub
-
-    protonup
-    lutris
-    heroic
-    bottles
-    mangohud
-    steam-tui
-    # steam
-    # For Steam VR (troubleshooting):
-    # procps
-    # usbutils
-
-    wayfire
-    spotify
-    # discord #managed via nixcord flake 
-    # vesktop #vencord desktop client without overwriting the official discord binary
-    revolt-desktop
-    element-desktop
-    osu-lazer-bin
-    microsoft-edge
-    obsidian
-    ticktick
-    gimp-with-plugins
-    krita
-    godot_4
-    blender
-    libresprite
-    aseprite
-    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
-    goxel
-    # kicad #pcb and electronics design
-    obs-studio
-    davinci-resolve
-    poppler
-    base16-schemes
-    darktable
-
-    ollama
-    # lmstudio
-    docker
-    ffmpeg
-    p7zip
-    overskride 
-    bluez
-    bluez-tools
-    pavucontrol #audio volume and device control
-    # firefoxpwa
-    vial
-    via
-
-    localsend
-    # spicetify-cli
-    qtpass
-    # pinentry
-    gnupg
-
-    # feh
-    vital
-    # opentabletdriver #not working yet
-    p7zip
-    # wacomtablet
-    evemu
-    # linuxKernel.packages.linux_zen.digimend
-    # roccat-tools
-
-    #teams
-    teams-for-linux
-    onlyoffice-bin
-    google-cloud-sdk
-    terraform
-    # citrix_workspace
-    vscode
-
-    # Install kde packages for sddm to work first three are dependencies - currently unused
-    kdePackages.qtsvg
-    kdePackages.qtvirtualkeyboard
-    kdePackages.qtmultimedia
-    (pkgs.callPackage ../../pkgs/sddm-astronaut-theme.nix {
-      theme = "hyprland_kath";
-      themeConfig={
-	      General = {
-	        HeaderText ="Hi";
-          Background="/home/user/Desktop/wp.png";
-          FontSize="10.0";
-	      };	
-	    };
-    })
   ];
   
-  # Install firefox.
-  programs.firefox.enable = true;
-  
-  # Enable Hyprland
-  programs.hyprland.enable = true;
-  programs.hyprland.withUWSM = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
- 
-  # Enable opentabletdriver
-  # hardware.opentabletdriver.enable = true;
-  # hardware.opentabletdriver.daemon.enable = true;
-
-  # Enable Wacom Tablet
-  services.xserver.wacom.enable = true;
-  # Enable ZSH
-  programs.zsh.enable = true;
-
-  # Steam
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
-    gamescopeSession = { # allows to boot directly into the steamdeck / big picture mode
-      enable = true;
-    };
-  };
-  # Enabling optional optimisations for gaming / game-mode
-  programs.gamemode.enable = true;
-
-  # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
-  # Install proton-ge
-  # could also be done via home-manager - view vimjoyer gaming video
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
-      "~/.steam/root/compatibilitytools.d/";
-  };
-
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "bak";
@@ -453,20 +191,20 @@ config = ''
 
   # INSTALL NVIDIA DRIVERS
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
+  # services.xserver.videoDrivers = ["nvidia"];
+  # hardware.nvidia = {
+  #   # Modesetting is required.
+  #   modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-      powerManagement.enable = true;
+      # powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    # powerManagement.finegrained = false;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
@@ -474,41 +212,28 @@ config = ''
     # supported GPUs is at: 
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
-    open = false;
+    # open = false;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.
-    nvidiaSettings = true;
+    # nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  # Enable VR with Monado / OpenXR and SteamVR
-  services.monado = {
-    enable = true;
-    defaultRuntime = true; # Register as default OpenXR runtime
-  };
-  systemd.user.services.monado.environment = {
-    STEAMVR_LH_ENABLE = "1";
-    XRT_COMPOSITOR_COMPUTE = "1";
-  };
-  # Enable git-lfs to use hand trackers in VR
-  programs.git = {
-    enable = true;
-    lfs.enable = true;
-  };
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # };
+  
   # STEAMVR kernel cap_sys_nice patch for amd gpus - not needed on this system
-  boot.kernelPatches = [
-    {
-      name = "amdgpu-ignore-ctx-privileges";
-      patch = pkgs.fetchpatch {
-        name = "cap_sys_nice_begone.patch";
-        url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-        hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
-      };
-    }
-  ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "amdgpu-ignore-ctx-privileges";
+  #     patch = pkgs.fetchpatch {
+  #       name = "cap_sys_nice_begone.patch";
+  #       url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+  #       hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
+  #     };
+  #   }
+  # ];
+  
   # stylix.base16Scheme = "{pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   # stylix.image = /home/maike/Pictures/wallpaper/1013625.png;
   # services.displayManager.sddm = {
@@ -518,22 +243,11 @@ config = ''
   #   theme = "sddm-astronaut-theme";
   # };
   
-  # Enabling qmk vial 
-  services.udev.packages = with pkgs; [ vial via ];
   # Install FireFoxPWA Addon
   # programs.firefox = {
   #   package = pkgs.firefox;
   #   nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
   # };
-
-  #
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
 
   # List services that you want to enable:
@@ -554,7 +268,4 @@ config = ''
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-  
-
-
 }

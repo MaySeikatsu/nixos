@@ -1,0 +1,306 @@
+{ config, pkgs, inputs, lib, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./../modules/nixos/pkgs/terminal/essentials.nix
+      ./../modules/nixos/pkgs/terminal/rice.nix
+      ./../modules/nixos/pkgs/hyprland.nix
+      ./../modules/home-manager/spicetify.nix
+      # ./sddm-theme.nix
+      # ./modules/monado.nix
+      # ./../../modules/nixos/kanata.nix
+      # ./../../modules/system/displaymanager.nix
+      inputs.home-manager.nixosModules.default
+    ];
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+ 
+  nixpkgs.config = {
+      allowUnfree = true;               # Allow unfree packages
+      allowUnsupportedSystem = true;    # Allow unsupported SystemPackages
+    };
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  environment.variables = {
+    EDITOR = "nvim";
+    SUDO_EDITOR = "nvim";
+  };
+
+  services = {
+    # Enable the KDE Plasma Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    # displayManager.defaultSession = "hyprland"; #if not working write lower case  was a try to set hyprland as default option after logging in
+
+    blueman.enable = true;                       # Enable Bluetooth (originally done for wacomtablet)
+    printing.enable = true;             # Enable CUPS to print documents.
+
+    udev.packages = with pkgs; [ vial via ];     # Enabling qmk vial 
+
+
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+      };
+
+    xserver = {
+      # Enable the GNOME Desktop Environment.
+      displayManager.gdm.enable = false;
+      desktopManager.gnome.enable = true;
+
+      wacom.enable = true;         # Enable Wacom Tablet
+
+      # Configure keymap in X11
+      xkb = {
+        layout = "us";
+        variant = "altgr-intl";
+      };
+    };
+
+    # Enable VR with Monado / OpenXR and SteamVR
+    monado = {
+      enable = true;
+      defaultRuntime = true; # Register as default OpenXR runtime
+    };
+  };
+  
+  hardware = {
+    bluetooth.enable = true;
+
+    # pulseaudio.enable = false;
+
+    # Enable opentabletdriver
+    # opentabletdriver.enable = true;
+    # opentabletdriver.daemon.enable = true;
+  };
+  
+  programs = {
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
+    # Enable Hyprland
+    hyprland.enable = true;
+    hyprland.withUWSM = true;
+
+    kdeconnect.enable = true;
+    firefox.enable = true;     # Install firefox.
+    zsh.enable = true;    # Enable ZSH
+
+    gamemode.enable = true;     # Enabling optional optimisations for gaming / game-mode
+    # floorp.enable = true;     # Enable/Install Floorp
+
+    # Steam
+    steam = {
+      enable = true;
+      extraCompatPackages = [
+        pkgs.proton-ge-bin
+      ];
+      gamescopeSession = { # allows to boot directly into the steamdeck / big picture mode
+        enable = true;
+      };
+    };
+    # Enable git-lfs to use hand trackers in VR
+    
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # mtr.enable = true;
+    gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+ 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+
+  
+
+  
+  security.rtkit.enable = true;
+
+  #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
+
+  #Request password for sudo actions as user
+  security.sudo.wheelNeedsPassword = true;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Berlin";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_GB.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "de_DE.UTF-8";
+    LC_IDENTIFICATION = "de_DE.UTF-8";
+    LC_MEASUREMENT = "de_DE.UTF-8";
+    LC_MONETARY = "de_DE.UTF-8";
+    LC_NAME = "de_DE.UTF-8";
+    LC_NUMERIC = "de_DE.UTF-8";
+    LC_PAPER = "de_DE.UTF-8";
+    LC_TELEPHONE = "de_DE.UTF-8";
+    LC_TIME = "de_DE.UTF-8";
+  };
+
+  fonts.packages = with pkgs; [ 
+    nerd-fonts.jetbrains-mono
+    roboto
+    source-sans
+    font-awesome
+    openmoji-color
+  ];
+
+  # Enable Bluetooth Driver for Multiple Tablets
+  # services.xserver.digimend.enable = true;
+
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.maike = {
+    isNormalUser = true;
+    description = "maike";
+    extraGroups = [ 
+    "networkmanager"
+    "wheel" 
+    "input" #for Kanata
+    "uinput" #for Kanata
+    ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      kdePackages.kate
+      # pipes
+    #  thunderbird
+    ];
+  };
+  
+  # Enable VR with Monado / OpenXR and SteamVR
+  systemd.user.services.monado.environment = {
+    STEAMVR_LH_ENABLE = "1";
+    XRT_COMPOSITOR_COMPUTE = "1";
+  };
+
+  # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
+  # Install proton-ge
+  # could also be done via home-manager - view vimjoyer gaming video
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS =
+      "~/.steam/root/compatibilitytools.d/";
+  };
+
+
+  environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    alacritty
+    # warp-terminal
+    wget
+    git
+    kanata
+    gcc
+    tealdeer
+    rustup
+    rustfmt
+    rust-analyzer
+
+    floorp
+    # catppuccin-grub
+
+    protonup
+    lutris
+    heroic
+    bottles
+    mangohud
+    steam-tui
+    # steam
+    # For Steam VR (troubleshooting):
+    # procps
+    # usbutils
+
+    wayfire
+    spotify
+    # discord #managed via nixcord flake 
+    # vesktop #vencord desktop client without overwriting the official discord binary
+    revolt-desktop
+    element-desktop
+    osu-lazer-bin
+    microsoft-edge
+    obsidian ticktick gimp-with-plugins
+    krita
+    godot_4
+    blender
+    libresprite
+    aseprite
+    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
+    goxel
+    # kicad #pcb and electronics design
+    obs-studio
+    davinci-resolve
+    poppler
+    base16-schemes
+    darktable
+
+    ollama
+    # lmstudio
+    docker
+    ffmpeg
+    p7zip
+    overskride 
+    bluez
+    bluez-tools
+    pavucontrol #audio volume and device control
+    # firefoxpwa
+    vial
+    via
+
+    localsend
+    # spicetify-cli
+    qtpass
+    # pinentry
+    gnupg
+
+    # feh
+    vital
+    # opentabletdriver #not working yet
+    p7zip
+    # wacomtablet
+    evemu
+    # linuxKernel.packages.linux_zen.digimend
+    # roccat-tools
+
+    #teams
+    teams-for-linux
+    onlyoffice-bin
+    google-cloud-sdk
+    terraform
+    # citrix_workspace
+    vscode
+
+    # Install kde packages for sddm to work first three are dependencies - currently unused
+    kdePackages.qtsvg
+    kdePackages.qtvirtualkeyboard
+    kdePackages.qtmultimedia
+    # (pkgs.callPackage ../../pkgs/sddm-astronaut-theme.nix {
+    #   theme = "hyprland_kath";
+    #   themeConfig={
+    #    General = {
+    #      HeaderText ="Hi";
+    #       Background="/home/user/Desktop/wp.png";
+    #       FontSize="10.0";
+    #    };	
+    #  };
+    # })
+  ];
+
+}
