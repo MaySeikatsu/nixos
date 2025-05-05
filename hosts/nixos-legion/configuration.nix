@@ -41,10 +41,6 @@
   #   };
   # };
 
-  # For Kanata enable uinput
-  boot.kernelModules = ["uinput"];
-  hardware.uinput.enable = true;
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -66,120 +62,6 @@
   #   programs.zoxide.enable = true;
   # };
 
- # Enable Kanata (with config directly in nix file)
-services.kanata = {
-  enable = true;
-  keyboards = {
-    internalKeyboard = {
-      # devices = [
-# 	# replace with own devices
-#         #   "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-#         #   "/dev/input/by-id/usb-Framework_Laptop_16_Keyboard_Module_-_ANSI_FRAKDKEN0100000000-event-kbd"
-#         #   "/dev/input/by-id/usb-Framework_Laptop_16_Keyboard_Module_-_ANSI_FRAKDKEN0100000000-if02-event-kbd"
-# ];
-extraDefCfg = "process-unmapped-keys yes";
-config = ''
-  (defsrc
- 	    esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt slck pause
-   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
-   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
-   caps a    s    d    f    g    h    j    k    l    ;    '    ret                        kp4  kp5  kp6
-   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
-  )
- 	   (defvar
-   tap-time 300
-   hold-time 200
-
-   ;; Set tap/hold time for layer tap-hold
-   ;;layer-tap-time 200
-   ;;layer-hold-time 160
-
-   ;; Set tap/hold time for space tap-hold
-   spc-tap-time 400
-   spc-hold-time 400
-
-   ;; Set tap/hold time for homerow mods
-   ctl-tap 200
-   alt-tap 200
-   ;;sft-tap 200
-   ;;met-tap 200
-
-   ctl-hold 150
-   alt-hold 170
-   ;;sft-hold 125
-   ;;met-hold 200
- )
-  (defalias
-   caps (tap-hold 100 100 esc lctl)
-   a (multi f24 (tap-hold $tap-time $hold-time a lmet))
-   s (multi f24 (tap-hold $tap-time $hold-time s lalt))
-   d (multi f24 (tap-hold $tap-time $hold-time d lsft))
-   f (multi f24 (tap-hold $tap-time $hold-time f lctl))
-   j (multi f24 (tap-hold $tap-time $hold-time j rctl))
-   k (multi f24 (tap-hold $tap-time $hold-time k rsft))
-   l (multi f24 (tap-hold $tap-time $hold-time l ralt))
-   ; (multi f24 (tap-hold $tap-time $hold-time ; rmet))
-  )
-
- ;; ---Base Layer for Kanata---
- (deflayer base
-   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        prnt slck pause
-   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
-   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
-  @lesc @am  @sa  @ds  @fc  g    h    @jc  @ks  @la  @;m  '    ret                        kp4  kp5  kp6
-   lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-  @chom lmet @aend          spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
- )
- 	(deflayer nav1 
-   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-   _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
-   _ A-left up A-rght  _    _    _    C-v  C-c  C-x  _   RA-y  _    _     _    _    _     _    _    _    _
-   _  left down rght   _    _    left down up  rght RA-p RA-q  _                          _    _    _
-   _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
-   _    _    _              _              _    _    _    _               _    _    _     _    _
- )
-
- (defalias
-
- ;;Define Layer-Alias
-   nav1 (layer-toggle nav1)
-
- ;;Define Key-Alias and functions
-   lesc (tap-hold-press $tap-time $hold-time esc @nav1) 
-   lspc (tap-hold-press $spc-tap-time $spc-hold-time spc @nav1)
-
-   chj (chord jkesc j)
-   chk (chord jkesc k)
-
-   chom (tap-hold $ctl-tap $ctl-hold home lctrl)
-   aend (tap-hold $alt-tap $alt-hold end lalt)
-
- ;;Homerow Mods
-   am (tap-hold $tap-time $hold-time a lmet)
-   sa (tap-hold $tap-time $hold-time s lalt)
-   ds (tap-hold $tap-time $hold-time d lsft)
-   fc (tap-hold $tap-time $hold-time f lctl)
-
-   jc (tap-hold $tap-time $hold-time @chj rctl)
-   ks (tap-hold $tap-time $hold-time @chk rsft)
-   la (tap-hold $tap-time $hold-time l ralt)
-   ;m (tap-hold $tap-time $hold-time ; rmet)
-
- ;;Alt Keys (figure out syntax to use alias for multiple key presses)
- ;;  @bck (A-left)
- ;;  @fwd (A-right)
- )
-
- (defchords jkesc 100
-   (j    ) j
-   (   k ) k
-   (j  k ) esc
- )
-'';
-       };
-     };
-   };
 
   # Troubleshooting for steamvr not detecting hardware
   hardware.steam-hardware = {

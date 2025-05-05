@@ -7,9 +7,9 @@
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix
       ./../modules/home-manager/spicetify.nix
+      ./../modules/nixos/kanata.nix
       # ./sddm-theme.nix
       # ./modules/monado.nix
-      # ./../../modules/nixos/kanata.nix
       # ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -161,8 +161,6 @@
 # Shared hardware configuration should be defined here
   hardware = {
     bluetooth.enable = true;
-
-
     # pulseaudio.enable = false;
 
     # Enable opentabletdriver
