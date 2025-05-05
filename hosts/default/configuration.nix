@@ -222,6 +222,7 @@
     davinci-resolve
     poppler
     base16-schemes
+    darktable
 
     ollama
     # lmstudio
