@@ -214,6 +214,12 @@
     rustup
     rustfmt
     rust-analyzer
+    deskflow
+    lan-mouse
+    remmina #rdp client
+    ncdu    #storage scanning and cleanup tool
+    # waypaper
+    waytrogen #rust based wallpaper changer
 
     floorp
     # catppuccin-grub
