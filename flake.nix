@@ -34,9 +34,17 @@
     nixcord,
     # stylix,
     ...
-    }@ inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+    }@ inputs: let
+      system = "x86_64-linux";
+      host = "default";
+      host2 = "nixos-legion";
+      username = "maike";
+    in {
+    nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+          inherit inputs;
+          inherit host;
+        };
       modules = [
         ./hosts/default/configuration.nix
 
@@ -60,8 +68,11 @@
         
       ];
     };
-    nixosConfigurations.nixos-legion = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+    nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+          inherit inputs;
+          inherit host2;
+        };
       modules = [
         ./hosts/nixos-legion/configuration.nix
 

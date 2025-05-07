@@ -9,7 +9,6 @@
     ./../modules/home-manager/zen-browser.nix
     ./../modules/home-manager/nixcord.nix
     ./../modules/home-manager/ghostty.nix
-    # ./../modules/home-manager/hyprland_utils/hyprpanel.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
@@ -40,7 +39,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    pkgs.hyprpanel
+    # pkgs.hyprpanel
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
