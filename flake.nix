@@ -12,8 +12,12 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     swww.url = "github:LGFae/swww";
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 
     nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
     # stylix.url = "github:danth/stylix";
