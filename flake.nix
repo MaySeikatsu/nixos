@@ -96,6 +96,16 @@
 
       ];
     };
+    # homeConfigurations."username@host" = home-manager.lib.homeMangerConfiguration {
+    #   pkgs = import nixpkgs {
+    #     inherit system;
+    #     overlays = [
+    #       inputs.hyprpanel.overlay
+    #       ];
+    #     };
+    #     extraSpecialArgs = {
+    #     };
+    # };
   };
 }
 

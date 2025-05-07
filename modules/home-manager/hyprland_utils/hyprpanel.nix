@@ -4,24 +4,25 @@
   pkgs,
   inputs,
   ...
-}: {
+}: 
+{
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 
   programs.hyprpanel = {
     enable = true;
     systemd.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
     overwrite.enable = true;
-    theme = "catppuccin_mocha";
-    layout = {
-      "bar.layouts" = {
-        "0" = {
-          left = ["dashboard" "windowtitle" "systray" "ram" "netstat"];
-          middle = ["workspaces"];
-          right = ["cava" "media" "clock" "hypridle" "power"];
-        };
-      };
-    };
+    # theme = "catppuccin_mocha";
+    # layout = {
+    #   "bar.layouts" = {
+    #     "0" = {
+    #       left = ["dashboard" "windowtitle" "systray" "ram" "netstat"];
+    #       middle = ["workspaces"];
+    #       right = ["cava" "media" "clock" "hypridle" "power"];
+    #     };
+    #   };
+    # };
     override = {
       "theme.bar.buttons.workspaces.hover" = "#7f849c";
       "theme.bar.buttons.workspaces.active" = "#f5c2e7";

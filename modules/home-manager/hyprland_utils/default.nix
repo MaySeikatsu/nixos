@@ -6,7 +6,7 @@
     ./swww.nix
     
     # ./hyprpaper.nix
-    # ./hyprpanel.nix
+    ./hyprpanel.nix
     # ./stylix.nix
   ];
 }
