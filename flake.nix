@@ -10,9 +10,12 @@
     };
     # Flake imports:
     zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     swww.url = "github:LGFae/swww";
 
+    hyprpanel = {
+      url = "github:jas-singhfsu/hyprpanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +37,22 @@
     nixcord,
     # stylix,
     ...
-    }@ inputs: {
+    }@ inputs:      let
+      system = "x86_64-linux";
+      in {
+      homeConfigurations.default = home-manager.lib.homeMangerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.hyprpanel.overlay
+          ];
+        };
+        extraSpecialArgs = {
+          inherit system;
+          inherit inputs;
+        };
+      };
+        }
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
@@ -60,6 +78,18 @@
         
       ];
     };
+      homeConfigurations.nixos-legion = home-manager.lib.homeMangerConfiguration {
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [
+            inputs.hyprpanel.overlay
+          ];
+        };
+        extraSpecialArgs = {
+          inherit system;
+          inherit inputs;
+        };
+      };
     nixosConfigurations.nixos-legion = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
