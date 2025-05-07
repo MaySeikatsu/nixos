@@ -7,7 +7,7 @@
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix
       ./../modules/home-manager/spicetify.nix
-      ./../modules/nixos/pkgs/kanata.nix
+      ./../modules/nixos/config/kanata.nix
       # ./sddm-theme.nix
       # ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
