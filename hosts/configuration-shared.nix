@@ -230,6 +230,7 @@
     bottles
     mangohud
     steam-tui
+    steamcmd
     # For Steam VR (troubleshooting):
     # procps
     # usbutils
