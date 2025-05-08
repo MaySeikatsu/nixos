@@ -57,6 +57,22 @@
     };
   };
 
+  fileSystems."/mnt/archlinux" = {
+    device = "/dev/disk/by-uuid/60fefd51-a584-45fe-9b84-0288cf747160";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/2tb-drive" = {
+    device = "/dev/disk/by-uuid/925EFF8B5EFF667F";
+    fsType = "ntfs";
+  };
+
+  # fileSystems."/mnt/2tb-drive" = {
+  #   device = "/dev/disk/by-uuid/925EFF8B5EFF667F";
+  #   fsType = "ntfs";
+  #   options = ["defaults" "user" "rw" "utf8" "noauto" "umask=000" ];
+  # };
+
   # Load AMDGPU drivers for xorg
   # services.xserver.videoDrivers = ["amdgpu"];
 
