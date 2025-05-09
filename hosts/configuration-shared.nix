@@ -231,6 +231,8 @@
     mangohud
     steam-tui
     steamcmd
+    ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
+    ledfx
     # For Steam VR (troubleshooting):
     # procps
     # usbutils

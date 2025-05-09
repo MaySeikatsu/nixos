@@ -64,7 +64,8 @@
 
   fileSystems."/mnt/2tb-drive" = {
     device = "/dev/disk/by-uuid/925EFF8B5EFF667F";
-    fsType = "ntfs";
+    fsType = "ntfs-3g"; #usually ntfs but it does not support steam games and writing as it seems
+    options = ["rw" "uid=1000"]; # also needed for steam games to run on ntfs uid = id of current user
   };
 
   # fileSystems."/mnt/2tb-drive" = {
