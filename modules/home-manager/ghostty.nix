@@ -8,10 +8,10 @@
         window-decoration = false;
         confirm-close-surface = false;
         font-feature = ["-liga" "-dlig" "-calt"];
-        theme = "Adventure";
-        # theme = "rose-pine-moon";
+        # theme = "Adventure";
+        theme = "rose-pine-moon";
         # background =000000;
-        background-opacity = 0.8;
+        background-opacity = 0.85;
         background-blur = 4;
       };
     };

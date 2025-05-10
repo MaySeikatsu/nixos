@@ -38,8 +38,8 @@
       # Alt, Space, exec, pkill -x rofi #|| $scrPath/rofilaunch.sh d # launch application launcher
       "$mainMod, Tab, exec, pkill -x rofi || $scrPath/rofilaunch.sh w"
       "$mainMod+Shift, E, exec, pkill -x rofi || $scrPath/rofilaunch.sh f"
-      # "$mainMod CTRL , H, changegroupactive, b" 
-      # "$mainMod CTRL , L, changegroupactive, f" 
+      "$mainMod CTRL , S, changegroupactive, b" 
+      "$mainMod CTRL , D, changegroupactive, f" 
 
       # Screenshot/Screencapture
       "$mainMod, P, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture       

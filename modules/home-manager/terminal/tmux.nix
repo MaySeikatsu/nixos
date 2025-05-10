@@ -20,10 +20,24 @@
         bind j select-pane -D
         bind k select-pane -U
 
+        ## Start windows and panes at 1, not 0
+        #set -g base-index 1
+        #set -g pane-base-index 1
+        #set-window-option -g pane-base-index 1
+        #set-option -g renumber-windows on
+        
         set -g base-index 1
         set -g pane-base-index 1
         set-window-option -g pane-base-index 1
         set-option -g renumber-windows on
+
+        # Shift arrow to switch windows
+        bind -n S-Left  previous-window
+        bind -n S-Right next-window
+
+        # Shift Alt vim keys to switch windows
+        bind -n M-H previous-window
+        bind -n M-L next-window
 
         set -g default-terminal "tmux-256color"
         set -g allow-passthrough on
@@ -34,6 +48,16 @@
         bind -n M-Right select-pane -R
         bind -n M-Up select-pane -U
         bind -n M-Down select-pane -D
+
+        ## set vi-mode
+        ##set-window-option -g mode-keys vi
+        ## keybindings
+        ##bind-key -T copy-mode-vi v send-keys -X begin-selection
+        ##bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        ##bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        #
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
       '';
       plugins = with pkgs;
       [
