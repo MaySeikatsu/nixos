@@ -26,6 +26,25 @@
   '';
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
+
+  fileSystems."/mnt/seagate-hdd-2tb" = {
+    device = "/dev/disk/by-uuid/B686BA9786BA5817";
+    fsType = "ntfs-3g"; #usually ntfs but it does not support steam games and writing as it seems
+    options = ["rw" "uid=1000"]; # also needed for steam games to run on ntfs uid = id of current user
+  };
+  
+  fileSystems."/mnt/programs" = {
+    device = "/dev/disk/by-uuid/CA5E85815E856753";
+    fsType = "ntfs-3g"; #usually ntfs but it does not support steam games and writing as it seems
+    options = ["rw" "uid=1000"]; # also needed for steam games to run on ntfs uid = id of current user
+  };
+
+  fileSystems."/mnt/win10-32bit" = {
+    device = "/dev/disk/by-uuid/1666A92766A90897";
+    fsType = "ntfs-3g"; #usually ntfs but it does not support steam games and writing as it seems
+    options = ["rw" "uid=1000"]; # also needed for steam games to run on ntfs uid = id of current user
+  };
+  
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
