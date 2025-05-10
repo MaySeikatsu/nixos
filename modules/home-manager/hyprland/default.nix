@@ -12,5 +12,6 @@
     ./theme-loader.nix
     # ./windowrules.nix #now under theme
     ./keyboard.nix
+    ./workspace.nix
   ];
 }
