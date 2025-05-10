@@ -21,6 +21,7 @@
       
       # 390Hz Screen
       "HDMI-A-2,1920x1080@239.96, auto-left, 1, transform, 1"
+      "HDMI-A-1,1920x1080@239.96, auto-left, 1, transform, 1"
       # HDR
       # "HDMI-A-2,1920x1080@239.96, auto-left, 1, transform, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 0.98"
 
@@ -32,6 +33,7 @@
       ];
 
       workspace = [
+        # "name:0,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
         "name:1,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
       ];
     #not working properly yet i think
