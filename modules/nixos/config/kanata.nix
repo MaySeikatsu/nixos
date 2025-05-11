@@ -96,7 +96,7 @@ services.kanata = {
 
     jc (tap-hold $tap-time $hold-time @chj rctl)
     ks (tap-hold $tap-time $hold-time @chk rsft)
-    la (tap-hold $tap-time $hold-time l ralt)
+    la (tap-hold $tap-time $hold-time l lalt)
     ;m (tap-hold $tap-time $hold-time ; rmet)
 
     ;;alt keys (figure out syntax to use alias for multiple key presses)
