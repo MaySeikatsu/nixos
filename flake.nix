@@ -17,6 +17,12 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen = {
+      url = "github:/InioX/Matugen";
+      # If you need a specific version:
+      # ref = "refs/tags/matugen-v0.10.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
 
     nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
@@ -32,6 +38,7 @@
     swww,
     spicetify-nix,
     nixcord,
+    matugen,
     # stylix,
     ...
     }@ inputs: let
@@ -51,7 +58,7 @@
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
         # inputs.nixcord.homeManagerModules.nixcord
-
+        # inputs.matugen.packages.${system}.default
         # inputs.stylix.nixosModules.stylix
         # stylix.homeManagerModules.stylix
 
@@ -63,6 +70,7 @@
 
           home-manager.sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
+            # inputs.matugen.packages.${system}.default
           ];
         }
         
@@ -79,7 +87,7 @@
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
         # inputs.nixcord.homeManagerModules.nixcord
-
+          # inputs.matugen.packages.${system}.default
         # inputs.stylix.nixosModules.stylix
         # stylix.homeManagerModules.stylix
 
@@ -91,6 +99,7 @@
 
           home-manager.sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
+            # inputs.matugen.packages.${system}.default
           ];
         }
 

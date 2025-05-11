@@ -1,14 +1,14 @@
-{ config, inputs, pkgs, ... }:
+{ nfig, inputs, pkgs, ... }:
 {
   home.sessionVariables = {
-    HOSTNAME = "${config.networking.hostName}";
+    # HOSTNAME = "${config.networking.hostName}";
   };
   
   programs = {
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "${HOSTNAME}";
+      # userName = "${HOSTNAME}";
       userEmail = "maynoshinseikatsu@gmail.com";
     };
   };

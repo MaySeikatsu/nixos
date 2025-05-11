@@ -225,6 +225,8 @@
     ncdu    #storage scanning and cleanup tool
     # waypaper
     waytrogen #rust based wallpaper changer
+    # matugen
+    # inputs.matugen.packages.${system}.default
 
     floorp
     # catppuccin-grub
@@ -286,7 +288,6 @@
     # feh
     vital
     # opentabletdriver #not working yet
-    p7zip
     # wacomtablet
     evemu
     # linuxKernel.packages.linux_zen.digimend

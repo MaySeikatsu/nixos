@@ -7,7 +7,7 @@
     hyprpicker
     hypridle
       hyprlock
-      swaylock
+      # swaylock
     hyprshot
     hyprpanel
     rofi

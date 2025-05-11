@@ -19,7 +19,7 @@
     #     "0" = {
     #       left = ["dashboard" "windowtitle" "systray" "ram" "netstat"];
     #       middle = ["workspaces"];
-    #       right = ["cava" "media" "clock" "hypridle" "power"];
+    #       r
     #     };
     #   };
     # };
