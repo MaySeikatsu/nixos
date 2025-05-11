@@ -9,6 +9,7 @@
     ./../modules/home-manager/zen-browser.nix
     ./../modules/home-manager/nixcord.nix
     ./../modules/home-manager/ghostty.nix
+    ./../modules/home-manager/terminal/git.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
@@ -31,7 +32,6 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [

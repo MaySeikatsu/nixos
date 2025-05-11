@@ -6,6 +6,8 @@
       ./../configuration-shared.nix
       ./hardware-configuration.nix
     ];
+  
+  # Variables that can be called from nix script 
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

@@ -1,5 +1,4 @@
 { config, pkgs, inputs, lib, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -112,11 +111,6 @@
 
   # Shared Programs should be defined here
   programs = {
-    git = {
-      enable = true;
-      lfs.enable = true;
-    };
-
     # Nixos Helper for cleanup and commands
     nh = {
       enable = true;
@@ -190,9 +184,12 @@
     variables = {
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
+  
+  terminal = "ghostty";
+  browser = "zen-twilight";
     };
   };
-  
+
   networking.networkmanager.enable = true;   # Enable networking
   #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
   
@@ -213,9 +210,9 @@
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     alacritty
+    git
     # warp-terminal
     wget
-    # git
     # kanata
     gcc
     tealdeer
