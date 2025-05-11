@@ -7,6 +7,7 @@
       ./../modules/nixos/pkgs/hyprland.nix
       ./../modules/home-manager/spicetify.nix
       ./../modules/nixos/config/kanata.nix
+      ./../modules/nixos/config/matugen.nix
       # ./sddm-theme.nix
       # ./../../modules/system/displaymanager.nix
       inputs.home-manager.nixosModules.default
@@ -226,7 +227,7 @@
     # waypaper
     waytrogen #rust based wallpaper changer
     # matugen
-    # inputs.matugen.packages.${system}.default
+    inputs.matugen.packages.${system}.default
 
     floorp
     # catppuccin-grub

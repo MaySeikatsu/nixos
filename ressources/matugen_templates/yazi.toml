@@ -1,0 +1,8 @@
+[colors]
+background = "@{background}"
+foreground = "@{on_background}"
+primary = "@{primary}"
+secondary = "@{secondary}"
+success = "@{success}"
+warning = "@{warning}"
+error = "@{error}"

@@ -1,0 +1,24 @@
+palette = 0=@{surface}
+palette = 1=@{error}
+palette = 2=@{success}
+palette = 3=@{warning}
+palette = 4=@{primary}
+palette = 5=@{secondary}
+palette = 6=@{tertiary}
+palette = 7=@{outline}
+palette = 8=@{surface_variant}
+palette = 9=@{error_container}
+palette = 10=@{success_container}
+palette = 11=@{warning_container}
+palette = 12=@{primary_container}
+palette = 13=@{secondary_container}
+palette = 14=@{tertiary_container}
+palette = 15=@{outline_variant}
+
+background = @{background}
+foreground = @{on_background}
+cursor-color = @{primary}
+cursor-text = @{on_primary}
+selection-background = @{surface}
+selection-foreground = @{on_surface}
+

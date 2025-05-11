@@ -11,7 +11,7 @@
     ./../modules/home-manager/ghostty.nix
     ./../modules/home-manager/terminal/git.nix
     ./../modules/home-manager/terminal/yazi.nix
-    ./../modules/home-manager/matugen.nix
+    # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix

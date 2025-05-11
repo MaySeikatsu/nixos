@@ -9,8 +9,8 @@
         confirm-close-surface = false;
         font-feature = ["-liga" "-dlig" "-calt"];
         # theme = "Adventure";
-        # theme = "rose-pine-moon";
-        theme = "/home/maike/.config/ghostty/themes/matugen.theme"; #theme path and folder needs to be created first ls -l /home/maike/.config/ghostty/themes/matugen.theme
+        theme = "rose-pine-moon";
+        # theme = "/home/maike/.config/ghostty/matugen.theme"; #theme path and folder needs to be created first ls -l /home/maike/.config/ghostty/themes/matugen.theme
         # background =000000;
         background-opacity = 0.85;
         background-blur = 4;
