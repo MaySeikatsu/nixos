@@ -12,7 +12,7 @@
       "$mainMod, G, togglegroup,"
       "Alt, Return, fullscreen,"
       # $mainMod, Escape, exec, swaylock # launch lock screen
-      "$mainMod, Escape, exec, swaylock"
+      "$mainMod, Escape, exec, hyprlock"
       "$mainMod+Shift, F, exec, $scrPath/windowpin.sh"
       "$mainMod, Backspace, exec, $scrPath/logoutlaunch.sh"
       "Ctrl+Alt, W, exec, killall waybar || waybar"
