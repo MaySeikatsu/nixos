@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:{
   imports = [
-    ./hyprlock.nix
+    # ./hyprlock.nix
+    ./swaylock.nix
+
     ./hypridle.nix
     ./waybar.nix
     ./swww.nix

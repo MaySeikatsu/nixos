@@ -6,7 +6,8 @@
     hyprpaper
     hyprpicker
     hypridle
-    hyprlock
+      hyprlock
+      swaylock
     hyprshot
     hyprpanel
     rofi
