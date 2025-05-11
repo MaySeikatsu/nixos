@@ -117,6 +117,14 @@
       lfs.enable = true;
     };
 
+    # Nixos Helper for cleanup and commands
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 14d --keep 12";
+      flake = "/home/maike/.config/nixos/"; # might need adjustment to different hosts
+    };
+
     # Enable Hyprland
     hyprland.enable = true;
     hyprland.withUWSM = true;
