@@ -48,6 +48,7 @@
   # $ nix search wget
   # to search for pkgs do nix search nixpkgs $name
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
+    lenovo-legion
 
   ];
   
@@ -80,20 +81,28 @@
   # services.xserver.videoDrivers = ["amdgpu"];
 
   # INSTALL NVIDIA DRIVERS
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+  };
+
   # Load nvidia driver for Xorg and Wayland
-  # services.xserver.videoDrivers = ["nvidia"];
-  # hardware.nvidia = {
-  #   # Modesetting is required.
-  #   modesetting.enable = true;
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-      # powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = true;
     # powerManagement.finegrained = false;
 
     # Use the NVidia open source kernel module (not to be confused with the
@@ -102,16 +111,40 @@
     # supported GPUs is at: 
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
-    # open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.
-    # nvidiaSettings = true;
+    nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  # };
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+
+    # GPU Power Management with Optimus PRIME on Multi GPU Setups:
+    prime = {
+      #CHOSE ONE!
+      # 01. PRIME Sync and Offload Mode cannot be enabled at the same time
+      # keeps nvidia card active even when not in use, except if called for via cli to put it to sleep
+      # sync.enable = true; 
+
+      # 02. Offload to Nvidia GPU must be done via cli manually!
+      offload = {
+        enable = true;
+        enableOffloadCmd = true; 
+      };
+
+      # 03. Experimental - resverse Prime output sink - uses iGPU for output and dGPU for rendering
+      # reverseSync.enable = true;
+      # Enable if using an external GPU
+      # allowExternalGpu = false;
+
+      # Use the correct BusID here, can be found with lshw -c display and needs to be written into this format
+      amdgpuBusId = "PCI:35:0:0";
+      nvidiaBusId = "PCI:01:0:0";
+    };
+  };
   
+
   # STEAMVR kernel cap_sys_nice patch for amd gpus - not needed on this system
   # boot.kernelPatches = [
   #   {

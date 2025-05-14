@@ -244,6 +244,7 @@
     # For Steam VR (troubleshooting):
     # procps
     # usbutils
+    lshw #to show hardware info(needed for nvidia config)
 
     spotify
     # discord #managed via nixcord flake 
