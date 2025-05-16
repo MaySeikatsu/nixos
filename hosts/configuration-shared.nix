@@ -65,6 +65,9 @@
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true;   #Request password for sudo actions as user
+
+    # autoUpgrade.enable = true;
+    # autoUpgrade.allowReboot = true; 
   };
 
   services = {

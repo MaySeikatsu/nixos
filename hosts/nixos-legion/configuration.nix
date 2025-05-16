@@ -49,9 +49,10 @@
   # to search for pkgs do nix search nixpkgs $name
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     lenovo-legion
+    # inputs.legionrgb
 
   ];
-  
+
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "bak";
@@ -79,6 +80,10 @@
 
   # Load AMDGPU drivers for xorg
   # services.xserver.videoDrivers = ["amdgpu"];
+  
+  
+  # Fix issue with brightness
+  # boot.kernelParams = [ "amdgpu.backlight=0" ];
 
   # INSTALL NVIDIA DRIVERS
   # Enable OpenGL
@@ -93,6 +98,8 @@
 
     # Modesetting is required.
     modesetting.enable = true;
+    # videoAccerleration = true;
+    # dynamicBoost.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking

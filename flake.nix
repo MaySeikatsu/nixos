@@ -23,6 +23,10 @@
       # ref = "refs/tags/matugen-v0.10.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # legionrgb = {
+    #   url = "github:/4JX/L5P-Keyboard-RGB";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
 
     nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
@@ -40,6 +44,7 @@
     nixcord,
     matugen,
     # stylix,
+    # legionrgb
     ...
     }@ inputs: let
       system = "x86_64-linux";

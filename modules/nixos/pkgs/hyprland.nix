@@ -17,6 +17,7 @@
 
     wl-clipboard #clipboard manager
     clipse #clipboard manager
+    brightnessctl # allows to control brightness
     playerctl #allows for video/audio playback control
     # swww #flake imported seperately
   ];
