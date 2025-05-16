@@ -5,7 +5,7 @@
       ./../modules/nixos/pkgs/terminal/essentials.nix
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix
-      ./../modules/home-manager/spicetify.nix
+      # ./../modules/home-manager/spicetify.nix
       ./../modules/nixos/config/kanata.nix
       ./../modules/nixos/config/matugen.nix
       # ./sddm-theme.nix

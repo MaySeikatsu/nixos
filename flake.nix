@@ -58,27 +58,24 @@
           inherit host;
         };
       modules = [
-        ./hosts/default/configuration.nix
+        ./hosts/nixos-maike-pc/configuration.nix
 
+        # Nix Modules
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
-        # inputs.nixcord.homeManagerModules.nixcord
-        # inputs.matugen.packages.${system}.default
-        # inputs.stylix.nixosModules.stylix
-        # stylix.homeManagerModules.stylix
-
-        #nixcord config
+        
+          # Home Manager Modules
         home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.maike = import ./hosts/default/home.nix;
-
-          home-manager.sharedModules = [
+          home-manager = {
+            users.maike = import ./hosts/nixos-legion/home.nix;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             # inputs.matugen.packages.${system}.default
-          ];
+            ];
+          };
         }
-        
       ];
     };
     nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
@@ -89,23 +86,22 @@
       modules = [
         ./hosts/nixos-legion/configuration.nix
 
+        # Nix Modules
         {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
-        # inputs.nixcord.homeManagerModules.nixcord
-          # inputs.matugen.packages.${system}.default
-        # inputs.stylix.nixosModules.stylix
-        # stylix.homeManagerModules.stylix
 
-        #nixcord config
+        # Home Manager as a NIXOS Module
         home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.maike = import ./hosts/nixos-legion/home.nix;
-
-          home-manager.sharedModules = [
+          home-manager = {
+            users.maike = import ./hosts/nixos-legion/home.nix;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+          # Home-Manager Modules 
+            sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             # inputs.matugen.packages.${system}.default
-          ];
+            ];
+          };
         }
 
       ];
