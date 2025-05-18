@@ -11,12 +11,16 @@
     ./../modules/home-manager/ghostty.nix
     ./../modules/home-manager/terminal/git.nix
     ./../modules/home-manager/terminal/yazi.nix
+    ../modules/home-manager/hyprland_utils/stylix.nix
+    ../modules/home-manager/cava.nix
+    ../modules/home-manager/gtk.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
     # ./../../modules/home-manager/neovim.nix
     # ./../../modules/home-manager/starship.nix
     # ./../../modules/home-manager/tidal.nix
+    # inputs.stylix.homeModules.stylix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -24,7 +28,20 @@
   home.username = "maike";
   home.homeDirectory = "/home/maike";
 
-  
+
+  # stylix = {
+  #   enable = true;
+  #
+  #   image = ./../../../ressources/wallpapers/1312197.jpg;
+  #
+  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
+  #
+  #   targets = {
+  #     hyprland.enable = true;
+  #     kitty.enable = true;
+  #     waybar.enable = false;
+  #   };
+  # };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -37,6 +54,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    pkgs.hyprpanel
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

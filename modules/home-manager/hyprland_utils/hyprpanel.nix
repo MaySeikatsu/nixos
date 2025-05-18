@@ -10,19 +10,10 @@
 
   programs.hyprpanel = {
     enable = true;
-    systemd.enable = true;
+    # systemd.enable = true;
     # hyprland.enable = true;
     overwrite.enable = true;
-    # theme = "catppuccin_mocha";
-    # layout = {
-    #   "bar.layouts" = {
-    #     "0" = {
-    #       left = ["dashboard" "windowtitle" "systray" "ram" "netstat"];
-    #       middle = ["workspaces"];
-    #       r
-    #     };
-    #   };
-    # };
+
     override = {
       "theme.bar.buttons.workspaces.hover" = "#7f849c";
       "theme.bar.buttons.workspaces.active" = "#f5c2e7";
@@ -35,14 +26,84 @@
       "theme.osd.location" = "right";
       "bar.windowtitle.leftClick" = "pkill rofi || /nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview";
       "bar.workspaces.spacing" = "1.5";
-      "bar.customModules.cava.showIcon"= false;
+      "bar.customModules.cava.showIcon"= true;
       "theme.font.name" = "JetBrainsMono Nerd Font";
+      # "theme" = "catppuccin_mocha_split";
+      # "wallpaper.enable" = true;
+      # "wallpaper.image" = "~/.config/nixos/ressources/wallpapers/1359465.png";
+      # "theme.matugen" = true;
+      # "theme.matugen_settings.mode" = "dark";
+      # "theme.matugen_settings.scheme_type" = "tonal-spot";
+      "bar.workspaces.workspaceIconMap.1.icon" = "一";
+        #           "二": "<U+F269>",
+        #           "三": "<U+EAC4>",
+        #           "四": "<U+EC1B>",
+        #           "五": "<U+F02B4>",
+        #           "六": "<U+F1FF> ",
+        #           "七": "<U+EB1C>"        
+        #           "八": "<U+EB1C>"        
+        #           "九": "<U+EB1C>"        
+        #           '';
+        # };
     };
     settings = {
+      layout = {
+        "bar.layouts" = {
+          "0" = {
+            left = ["dashboard" "windowtitle" "systray" "cava" "media"];
+            middle = ["workspaces"];
+            right = ["volume" "network" "bluetooth" "clock" "battery" "notifications" "hypridle" "power"];
+          };
+        };
+      };
+      bar.customModules.cava.showIcon = true;
+      bar.customModules.cava.icon = "";
+      bar.customModules.cava.spaceCharacter = " ";
+      bar.customModules.cava.barCharacters = [
+              "▁"
+              "▂"
+              "▃"
+              "▄"
+              "▅"
+              "▆"
+              "▇"
+              "█"
+          ];
+      bar.customModules.cava.showActiveOnly = true;
+      bar.customModules.cava.bars =  10;
+      bar.customModules.cava.channels = 2;
+      bar.customModules.cava.framerate = 90;
+      bar.customModules.cava.samplerate = 44100;
+      bar.customModules.cava.autoSensitivity = true;
+      bar.customModules.cava.lowCutoff = 50;
+      bar.customModules.cava.highCutoff = 10000;
+      bar.customModules.cava.noiseReduction = 0.77;
+      bar.customModules.cava.stereo = true;
+      bar.customModules.cava.leftClick = "";
+      bar.customModules.cava.rightClick = "";
+      bar.customModules.cava.middleClick = "";
+      bar.customModules.cava.scrollUp = "";
+      bar.customModules.cava.scrollDown = "";
+      bar.workspaces.showWsIcons = false;
+      bar.workspaces.show_icons = true;
+      bar.workspaces.workspaceIconMap = {
+        example = ''
+                  "一": "<U+EEFE>",
+                  "二": "<U+F269>",
+                  "三": "<U+EAC4>",
+                  "四": "<U+EC1B>",
+                  "五": "<U+F02B4>",
+                  "六": "<U+F1FF> ",
+                  "七": "<U+EB1C>"        
+                  "八": "<U+EB1C>"        
+                  "九": "<U+EB1C>"        
+                  '';
+        };
+
       bar.autoHide = "fullscreen";
       notifications.position = "top";
       #bar.windowtitle.leftClick = "'pkill rofi||/nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview'";
-      theme.bar.buttons.workspaces.spacing = "0.5";
+      theme.bar.buttons.workspaces.spacing = "0.4";
       theme.bar.buttons.background_hover_opacity = 80;
       theme.bar.buttons.innerRadiusMultiplier = "0.4";
       theme.bar.buttons.radius = "1.0em";
@@ -55,10 +116,10 @@
       theme.bar.buttons.modules.power.enableBorder = true;
       theme.bar.buttons.dashboard.enableBorder = true;
       theme.bar.border.width = "0.1em";
-      theme.bar.outer_spacing = "1.0em";
+      theme.bar.outer_spacing = "0.25em";
       theme.bar.label_spacing = "0.5em";
-      theme.bar.border_radius = "0.6em";
-      theme.bar.margin_sides = "2.5em";
+      theme.bar.border_radius = "0.4em";
+      theme.bar.margin_sides = "1.5em";
       theme.bar.margin_bottom = "0em";
       theme.bar.margin_top = "0.5em";
       theme.bar.layer = "overlay";
@@ -95,7 +156,9 @@
       menus.dashboard.directories.right.directory3.command = "bash -c \"xdg-open $HOME/\"";
       menus.dashboard.directories.right.directory3.label = "󱂵 Home";
       bar.customModules.updates.pollingInterval = 1440000;
-      bar.launcher.icon = "❄️";
+      bar.launcher.autoDetectIcon = false;
+      bar.launcher.icon = "󱄅_󱄅";
+      # bar.launcher.icon = "󰣇_󰣇";
       theme.bar.floating = true;
       theme.bar.buttons.enableBorders = true;
       bar.clock.format = "%y/%m/%d  %H:%M";
@@ -115,13 +178,13 @@
       bar.volume.rightClick = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
       bar.volume.middleClick = "pavucontrol";
       bar.media.format = "{title}";
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = false;
+      # bar.workspaces.show_icons = true;
+      bar.workspaces.show_numbered = false;
       bar.workspaces.ignored = "[-99]";
       theme.font.name = "JetBrainsMono Nerd Font";
       theme.font.size = "1.1rem";
-      bar.workspaces.monitorSpecific = false;
-      bar.workspaces.workspaces = 5;
+      bar.workspaces.monitorSpecific = true;
+      bar.workspaces.workspaces = 3;
       menus.clock = {
         time = {
           military = true;
@@ -132,6 +195,20 @@
       menus.dashboard.directories.enabled = true;
       menus.dashboard.stats.enable_gpu = false;
       theme.bar.transparent = false;
+      # theme.bar.transparent = true;
+
+      wallpaper.enable = true;
+      # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
+      wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
+
+      # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
+      menus.dashboard.powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";      
+      wallpaper.pywal = true;
+      theme.matugen = true;
+      theme.matugen_settings.mode = "dark";
+      theme.matugen_settings.scheme_type = "tonal-spot";
+      # theme.matugen_settings.contrast = 0;
+      # theme.matugen_settings.variation = "standard_1";
     };
   };
 }

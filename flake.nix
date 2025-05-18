@@ -10,27 +10,36 @@
     };
     # Flake imports:
     zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     swww.url = "github:LGFae/swww";
-
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     matugen = {
-      url = "github:/InioX/Matugen";
-      # If you need a specific version:
-      # ref = "refs/tags/matugen-v0.10.0";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:InioX/Matugen";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
     # legionrgb = {
     #   url = "github:/4JX/L5P-Keyboard-RGB";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-
-    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
-    # stylix.url = "github:danth/stylix";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # hyprscroller = {
+    #     url = "github:maotseantonio/hyprscroller-flake";
+    #     inputs.hyprland.follows = "hyprland";
+    # };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
   };
 
   outputs = {
@@ -43,7 +52,9 @@
     spicetify-nix,
     nixcord,
     matugen,
-    # stylix,
+    stylix,
+    # hyprscroller,
+    # hyprland-plugins,
     # legionrgb
     ...
     }@ inputs: let
@@ -61,21 +72,32 @@
         ./hosts/nixos-maike-pc/configuration.nix
 
         # Nix Modules
-        {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
-        
-          # Home Manager Modules
+        inputs.stylix.nixosModules.stylix
+        matugen.nixosModules.default
+
+        #Overlays (?)
+        {
+          nixpkgs.overlays = [
+              inputs.hyprpanel.overlay
+          ];
+        }
+
+        # Home Manager as a NIXOS Module
         home-manager.nixosModules.home-manager {
           home-manager = {
-            users.maike = import ./hosts/nixos-legion/home.nix;
+            users.maike = import ./hosts/nixos-maike-pc/home.nix;
             useGlobalPkgs = true;
             useUserPackages = true;
+          # Home-Manager Modules 
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             # inputs.matugen.packages.${system}.default
+              # inputs.stylix.homeModules.stylix
             ];
           };
         }
+
       ];
     };
     nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
@@ -87,8 +109,16 @@
         ./hosts/nixos-legion/configuration.nix
 
         # Nix Modules
-        {nixpkgs.overlays = [inputs.hyprpanel.overlay];}
         inputs.spicetify-nix.nixosModules.default
+        inputs.stylix.nixosModules.stylix
+        matugen.nixosModules.default
+
+        #Overlays (?)
+        {
+          nixpkgs.overlays = [
+              inputs.hyprpanel.overlay
+          ];
+        }
 
         # Home Manager as a NIXOS Module
         home-manager.nixosModules.home-manager {
@@ -100,6 +130,7 @@
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             # inputs.matugen.packages.${system}.default
+              # inputs.stylix.homeModules.stylix
             ];
           };
         }

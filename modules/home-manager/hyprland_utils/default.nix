@@ -7,8 +7,7 @@
     ./waybar.nix
     ./swww.nix
     
-    # ./hyprpaper.nix
+    ./hyprpaper.nix
     ./hyprpanel.nix
-    # ./stylix.nix
   ];
 }

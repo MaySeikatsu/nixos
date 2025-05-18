@@ -2,15 +2,16 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      inputs.home-manager.nixosModules.default
       ./../modules/nixos/pkgs/terminal/essentials.nix
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix
       # ./../modules/home-manager/spicetify.nix
       ./../modules/nixos/config/kanata.nix
       ./../modules/nixos/config/matugen.nix
+      ./../modules/nixos/config/stylix.nix
       # ./sddm-theme.nix
       # ./../../modules/system/displaymanager.nix
-      inputs.home-manager.nixosModules.default
     ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -229,8 +230,11 @@
     ncdu    #storage scanning and cleanup tool
     # waypaper
     waytrogen #rust based wallpaper changer
-    # matugen
+    matugen
     inputs.matugen.packages.${system}.default
+    pywal
+    power-profiles-daemon
+    # hyprpanel #imported flake
 
     floorp
     # catppuccin-grub
@@ -306,6 +310,8 @@
     terraform
     # citrix_workspace
     vscode
+
+
 
     # Install kde packages for sddm to work first three are dependencies - currently unused
     kdePackages.qtsvg

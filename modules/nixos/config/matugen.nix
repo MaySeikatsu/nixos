@@ -21,7 +21,7 @@
             output_path = "/home/maike/.config/yazi/theme.toml";
           };
       palette = "default";
-      
+
       settings = {
           config = {
             reload_apps = true;
