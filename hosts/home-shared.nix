@@ -28,20 +28,12 @@
   home.username = "maike";
   home.homeDirectory = "/home/maike";
 
-
-  # stylix = {
-  #   enable = true;
-  #
-  #   image = ./../../../ressources/wallpapers/1312197.jpg;
-  #
-  #   base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
-  #
-  #   targets = {
-  #     hyprland.enable = true;
-  #     kitty.enable = true;
-  #     waybar.enable = false;
-  #   };
-  # };
+  programs.rofi = {
+    enable = true;
+    theme = {
+      
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

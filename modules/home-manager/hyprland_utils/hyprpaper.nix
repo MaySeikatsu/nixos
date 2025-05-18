@@ -9,7 +9,7 @@
 
           #Defining Variables
           # "$image1" = "~/Pictures/wallpaper/1343335.png" ;
-          "$image1" =  "~/.config/nixos/ressources/wallpapers/1359465.png";
+          "$image1" =  "~/.config/nixos/ressources/wallpapers/1359465.png"; #now controlled by stylix (so no use anymore)
           # "$image2" = "~/Pictures/wallpaper/1313942.png";
           "$image2" = "~/Pictures/wallpaper/Anime/YuumeiArt/the+passing+post+2.jpg";
           "$image3" = "~/Pictures/wallpaper/1317094.png";

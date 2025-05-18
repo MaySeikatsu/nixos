@@ -1,8 +1,11 @@
 { config, pkgs, inputs, lib, ... }:
+# let
+#   wallpaper = "~/.config/nixos/ressources/wallpapers/1359465.png";
+# in  
 {
   imports =
     [ # Include the results of the hardware scan.
-      inputs.home-manager.nixosModules.default
+      inputs.home-manager.nixosModules.default 
       ./../modules/nixos/pkgs/terminal/essentials.nix
       ./../modules/nixos/pkgs/terminal/rice.nix
       ./../modules/nixos/pkgs/hyprland.nix

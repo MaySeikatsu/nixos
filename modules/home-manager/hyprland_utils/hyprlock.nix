@@ -26,8 +26,8 @@
           monitor = "";
           dots_center = true;
           fade_on_empty = false;
-          font_color = "rgba(202, 211, 245, 1.0)";
-          inner_color = "rgba(91, 96, 120, 0.5)";
+          # font_color = "rgba(202, 211, 245, 1.0)";
+          # inner_color = "rgba(91, 96, 120, 0.5)";
           #outer_color = "rgba(24, 25, 38, 0.5)";
           outline_thickness = 2;
           # shadow_passes = 1;

@@ -9,18 +9,18 @@
     yazi.enable = true;
     neovim.enable = true;
     btop.enable = true;
-    cava.enable = true;
+    # cava.enable = true;
     cava.rainbow.enable = true;
     nixcord.enable = true;
     vencord.enable = true;
     vesktop.enable = true;
     fzf.enable = true;
-    # gnome.enable = true;
+    gnome.enable = true;
     hyprland.enable = true;
     # hyprland.hyprpaper.enable = true;
     # hyprlock.enable = true;
     hyprpaper.enable = true;
-    # kde.enable = true;
+    kde.enable = true;
     lazygit.enable = true;
     # neovim.transparentBackground.main = true;
     neovim.transparentBackground.numberLine = true;
@@ -30,5 +30,6 @@
     starship.enable = false;
     tmux.enable = true;
     wayfire.enable = false;
+    # grub.enable = false;
   };
 }

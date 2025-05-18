@@ -25,8 +25,15 @@
           #wezterm.enable = true;
       };
   };
-  stylix.image = ../../../ressources/wallpapers/1359465.png;
+  stylix.image = ../../../ressources/wallpapers/Anime/1359466.png;
+  # stylix.wallpaper = ../../../ressources/wallpapers/1313919.jpg;
   stylix.polarity = "dark";
+  stylix.opacity = {
+    applications = 1.0;
+    terminal = 0.85;
+    desktop = 1.0;
+    popups = 1.0;
+  };
   stylix = {
     # fonts = {
     #   sizes = {
