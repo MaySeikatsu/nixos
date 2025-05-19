@@ -29,14 +29,14 @@
     neovim.transparentBackground.numberLine = true;
     neovim.transparentBackground.signColumn= true;
     rofi.enable = true;
-    spicetify.enable = true;
+    spicetify.enable = true; #not working as imported via nixos
     starship.enable = false;
     tmux.enable = true;
     wayfire.enable = false;
     # grub.enable = false;
     # grub.useWallpaper = true;
     gtk.enable = true;
-    # qt.enable = true;
+    qt.enable = true;
     # chromium.enable = true;
     # feh.enable = true;
     zellij.enable = true;

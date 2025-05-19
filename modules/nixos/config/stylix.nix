@@ -42,8 +42,8 @@
     stylix = { 
       enable = true;
       autoEnable = false;
-      image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
-      polarity = "either"; # options: light, dark, either (selects closest)
+      image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
+      polarity = "dark"; # options: light, dark, either (selects closest)
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     # homeManagerIntegration.followSystem = true;
