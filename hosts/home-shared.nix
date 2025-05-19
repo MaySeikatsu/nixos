@@ -15,6 +15,12 @@
     ../modules/home-manager/cava.nix
     ../modules/home-manager/gtk.nix
     ../modules/home-manager/kitty.nix
+    ../modules/home-manager/alacritty.nix
+    ../modules/home-manager/btop.nix
+    ../modules/home-manager/fzf.nix
+    ../modules/home-manager/lazygit.nix
+    ../modules/home-manager/rofi.nix
+    ../modules/home-manager/wezterm.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
@@ -28,13 +34,6 @@
   # manage.
   home.username = "maike";
   home.homeDirectory = "/home/maike";
-
-  programs.rofi = {
-    enable = true;
-    theme = {
-      
-    };
-  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
