@@ -1,0 +1,6 @@
+{pkgs, ...}:
+{
+  qt = {
+    enable = true;
+  };
+}

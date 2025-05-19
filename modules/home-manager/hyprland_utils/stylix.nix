@@ -32,5 +32,7 @@
     tmux.enable = true;
     wayfire.enable = false;
     # grub.enable = false;
+    gtk.enable = true;
+    qt.enable = true;
   };
 }

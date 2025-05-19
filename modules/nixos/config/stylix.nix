@@ -17,8 +17,8 @@
   # stylix.homeManagerIntegration.followSystem = true;
   stylix = {
       targets = {
-          gtk.enable = true;
-          qt.enable = true;
+          # gtk.enable = true;
+          # qt.enable = true;
           nixos-icons.enable = true;
           #kitty.enable = true;
           # ghostty.enable = true;
