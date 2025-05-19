@@ -1,5 +1,7 @@
-{pkgs, inputs, ...}:
+{pkgs, inputs, lib, config, ...}:
 {
+  # needs to be enabled as a homemanager module to work (look at imported files in this folder)
+
   # stylix.image = ../../../ressources/wallpapers/1309758.jpg;
   # stylix.image = "/home/maike/.config/nixos/ressources/wallpapers/1235167.jpg";
   stylix.targets = {
@@ -19,7 +21,7 @@
     gnome.enable = true;
     hyprland.enable = true;
     # hyprland.hyprpaper.enable = true;
-    # hyprlock.enable = true;
+    hyprlock.enable = true;
     hyprpaper.enable = true;
     kde.enable = true;
     lazygit.enable = true;
@@ -32,7 +34,32 @@
     tmux.enable = true;
     wayfire.enable = false;
     # grub.enable = false;
+    # grub.useWallpaper = true;
     gtk.enable = true;
     qt.enable = true;
+    # chromium.enable = true;
+    # feh.enable = true;
+    zellij.enable = true;
+    zathura.enable = true;
+    waybar = {
+      enable = true;
+      enableCenterBackColors = false;
+      enableLeftBackColors = false;
+      enableRightBackColors = false;
+      # font = "JetBrainsMono";
+    };
+    # firefox = {
+    #   enable = true;
+    #   profileNames = []; #necessary
+    #   colorTheme.enable = true;
+    #   firefoxGnomeTheme.enable = false;
+    # };
+    floorp = {
+      enable = true;
+      profileNames = [ "default" ]; #necessary
+      colorTheme.enable = true;
+      firefoxGnomeTheme.enable = false;
+    };
+
   };
 }
