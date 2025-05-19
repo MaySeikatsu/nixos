@@ -58,6 +58,7 @@
       targets = {
           # gtk.enable = true;
           # qt.enable = true;
+          spicetify.enable = true; #not working as imported via nixos
           nixos-icons.enable = true;
           # spicetify.enable = true;
       };

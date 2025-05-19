@@ -29,7 +29,7 @@
     neovim.transparentBackground.numberLine = true;
     neovim.transparentBackground.signColumn= true;
     rofi.enable = true;
-    spicetify.enable = true; #not working as imported via nixos
+    # spicetify.enable = true; #not working as imported via nixos
     starship.enable = false;
     tmux.enable = true;
     wayfire.enable = false;

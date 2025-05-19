@@ -1,8 +1,39 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
   programs.hyprlock = {
     enable = true;
     settings.background.blur_passes = 3;
+    settings.background.blur_size = 2;
+    # settings.label.text = "$TIME";
+    settings = {
+    label = [
+      {
+        monitor = "";
+        text = "$TIME";
+        # text_align = "center";
+        font_family = "JetBrainsMono Nerd Font";
+        font_size = 96;
+        font_color = config.lib.stylix.colors.base05;
+        position = "0,-100";
+        halign = "center";
+        valign = "top";
+  # accent = "#${colors.base0D}";
+  # colors = config.lib.stylix.colors;
+  # fg = "#${colors.base05}";
+  # bg = "#${colors.base00}";
+      }
+      {
+        monitor = "";
+        text = "Hi  Bitch <br/>";
+        # text_align = "center";
+        font_family = "JetBrainsMono Nerd Font";
+        font_color = config.lib.stylix.colors.base00;
+        font_size = 36;
+        position = "0,50";
+        halign = "center";
+        valign = "bottom";
+      }   
+    ];
     # settings = {
     #   general = {
     #       disable_loading_bar = true;
@@ -46,6 +77,6 @@
     #       valign = "center";
     #     }
     #   ];
-    # };
+    };
   };
 }
