@@ -111,10 +111,10 @@
     };
 
     # Enable VR with Monado / OpenXR and SteamVR
-    monado = {
-      enable = true;
-      defaultRuntime = true; # Register as default OpenXR runtime
-    };
+    # monado = {
+    #   enable = true;
+    #   defaultRuntime = true; # Register as default OpenXR runtime
+    # };
   };
 
   # Shared Programs should be defined here
@@ -172,9 +172,9 @@
     bluetooth.enable = true;
     # pulseaudio.enable = false;
 
-    steam-hardware = {   # Troubleshooting for steamvr not detecting hardware
-      enable = true;
-    };
+    # steam-hardware = {   # Troubleshooting for steamvr not detecting hardware
+    #   enable = true;
+    # };
 
     # Enable opentabletdriver
     # opentabletdriver.enable = true;
@@ -210,10 +210,10 @@
 
   
   # Enable VR with Monado / OpenXR and SteamVR
-  systemd.user.services.monado.environment = {
-    STEAMVR_LH_ENABLE = "1";
-    XRT_COMPOSITOR_COMPUTE = "1";
-  };
+  # systemd.user.services.monado.environment = {
+  #   STEAMVR_LH_ENABLE = "1";
+  #   XRT_COMPOSITOR_COMPUTE = "1";
+  # };
 
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
