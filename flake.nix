@@ -31,8 +31,10 @@
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.home-manager.follows = "home-manager";
     };
     hyprddm.url = "github:maotseantonio/hyprddm";
+    textfox.url = "github:adriankarlen/textfox";
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -55,13 +57,14 @@
     matugen,
     stylix,
     hyprddm,
+    textfox,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
     ...
     }@ inputs: let
       system = "x86_64-linux";
-      host = "default";
+      host = "nixos-maike-pc";
       host2 = "nixos-legion";
       username = "maike";
     in {
@@ -92,8 +95,12 @@
             useGlobalPkgs = true;
             useUserPackages = true;
           # Home-Manager Modules 
+            extraSpecialArgs = {
+              inherit inputs; # apperently needed for textfox?
+            };
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
+            textfox.homeManagerModules.default
             # inputs.matugen.packages.${system}.default
               # inputs.stylix.homeModules.stylix
             ];
@@ -129,8 +136,12 @@
             useGlobalPkgs = true;
             useUserPackages = true;
           # Home-Manager Modules 
+            extraSpecialArgs = {
+              inherit inputs; # apperently needed for textfox?
+            };
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
+            textfox.homeManagerModules.default
             # inputs.matugen.packages.${system}.default
               # inputs.stylix.homeModules.stylix
             ];

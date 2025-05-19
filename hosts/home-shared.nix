@@ -22,6 +22,7 @@
     ../modules/home-manager/wezterm.nix
     ../modules/home-manager/gtk.nix
     ../modules/home-manager/qt.nix
+    # ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
