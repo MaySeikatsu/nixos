@@ -1,32 +1,7 @@
 # *.nix
 { config, inputs, pkgs, lib, ...}: 
 let
-  #DOES NOT WORK - put hard values in instead
-  #This part is used for hyprpanel configuration with stylix - stolen from: https://github.com/anotherhadi/nixy/blob/main/themes/nixy.nix
-  #   options.theme = lib.mkOption {
-  #   type = lib.types.attrs;
-  #   default = {
-  #     rounding = 20;
-  #     gaps-in = 10;
-  #     gaps-out = 10 * 2;
-  #     active-opacity = 0.96;
-  #     inactive-opacity = 0.92;
-  #     blur = true;
-  #     border-size = 3;
-  #     animation-speed = "fast"; # "fast" | "medium" | "slow"
-  #     fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
-  #     textColorOnWallpaper =
-  #       config.lib.stylix.colors.base01; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
-  #
-  #     bar = { # Hyprpanel
-  #       position = "top"; # "top" | "bottom"
-  #       transparent = true;
-  #       transparentButtons = false;
-  #       floating = true;
-  #     };
-  #   };
-  #   description = "Theme configuration options";
-  # };
+
 
   # transparent = false;
   # transparentButtons = false;
@@ -51,13 +26,13 @@ let
   # notificationOpacity = 90;
 
   # location = config.var.location;
-  colors = config.lib.stylix.colors;
-
-  fg = "#${colors.base05}";
-  bg = "#${colors.base00}";
-  accent = "#${colors.base0D}";
-  warning = "#${colors.base08}";
-  hover = "#${colors.base02}";
+  # colors = config.lib.stylix.colors;
+  #
+  # fg = "#${colors.base05}";
+  # bg = "#${colors.base00}";
+  # accent = "#${colors.base0D}";
+  # warning = "#${colors.base08}";
+  # hover = "#${colors.base02}";
 in 
 {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
@@ -403,7 +378,8 @@ in
 
       wallpaper.enable = true;
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
-      wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
+      # wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
+      wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
 
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       menus.dashboard.powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";      
@@ -411,8 +387,10 @@ in
       theme.matugen = true;
       theme.matugen_settings.mode = "dark";
       theme.matugen_settings.scheme_type = "tonal-spot";
-      # theme.matugen_settings.contrast = 0;
+      theme.matugen_settings.contrast = 0; # -1 -> 1
       # theme.matugen_settings.variation = "standard_1";
+      theme.matugen_settings.variation = "standard_2";
+      # theme.matugen_settings.variation = "vivid_1";
     };
   };
 }

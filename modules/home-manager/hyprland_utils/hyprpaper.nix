@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
     services.hyprpaper = {
       enable = true;
@@ -9,9 +9,11 @@
 
           #Defining Variables
           # "$image1" = "~/Pictures/wallpaper/1343335.png" ;
-          "$image1" =  "~/.config/nixos/ressources/wallpapers/1359465.png"; #now controlled by stylix (so no use anymore)
+          # "$image1" =  "~/.config/nixos/ressources/wallpapers/1359465.png"; #now controlled by stylix (so no use anymore)
+          "$image1" = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
+          "$image2" = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
           # "$image2" = "~/Pictures/wallpaper/1313942.png";
-          "$image2" = "~/Pictures/wallpaper/Anime/cute-anime-girl-under-tree-epic-desktop-wallpaper.jpg";
+          # "$image2" = "~/Pictures/wallpaper/Anime/cute-anime-girl-under-tree-epic-desktop-wallpaper.jpg";
           "$image3" = "~/Pictures/wallpaper/1317094.png";
 
           # "$monitor1" = "DP-2";

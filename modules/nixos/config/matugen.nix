@@ -8,7 +8,8 @@
     matugen = {
       enable = true;
       variant = "dark";
-      wallpaper = "./../../../ressources/wallpapers/1359084.png";
+      # wallpaper = "./../../../ressources/wallpapers/1359084.png";
+      wallpaper = config.stylix.image;
 
       templates = {
         ghostty = {
