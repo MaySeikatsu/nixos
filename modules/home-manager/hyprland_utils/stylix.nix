@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}:
+{pkgs, inputs, lib, config, ...}:
 {
   # stylix.image = ../../../ressources/wallpapers/1309758.jpg;
   # stylix.image = "/home/maike/.config/nixos/ressources/wallpapers/1235167.jpg";

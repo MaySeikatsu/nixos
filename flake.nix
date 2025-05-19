@@ -61,7 +61,7 @@
     ...
     }@ inputs: let
       system = "x86_64-linux";
-      host = "default";
+      host = "nixos-maike-pc";
       host2 = "nixos-legion";
       username = "maike";
     in {
