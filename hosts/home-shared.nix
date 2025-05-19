@@ -13,7 +13,6 @@
     ./../modules/home-manager/terminal/yazi.nix
     ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
-    ../modules/home-manager/gtk.nix
     ../modules/home-manager/kitty.nix
     ../modules/home-manager/alacritty.nix
     ../modules/home-manager/btop.nix
@@ -21,6 +20,7 @@
     ../modules/home-manager/lazygit.nix
     ../modules/home-manager/rofi.nix
     ../modules/home-manager/wezterm.nix
+    ../modules/home-manager/gtk.nix
     ../modules/home-manager/qt.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix

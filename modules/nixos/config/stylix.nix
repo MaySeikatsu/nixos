@@ -12,6 +12,16 @@
 {
   stylix.enable = true;
   stylix.autoEnable = false; #set false to manually declare applications in hm module.
+  stylix.image = ../../../ressources/wallpapers/Anime/anime-girl-on-tree-green-desktop-wallpaper.jpg;
+  # stylix.wallpaper = ../../../ressources/wallpapers/1313919.jpg;
+  # stylix.polarity = "light";
+  stylix.polarity = "dark";
+  stylix.opacity = {
+    applications = 1.0;
+    terminal = 0.80;
+    desktop = 1.0;
+    popups = 1.0;
+  };
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
   # stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
   # stylix.homeManagerIntegration.followSystem = true;
@@ -20,21 +30,8 @@
           # gtk.enable = true;
           # qt.enable = true;
           nixos-icons.enable = true;
-          #kitty.enable = true;
-          # ghostty.enable = true;
-          #wezterm.enable = true;
+          # spicetify.enable = true;
       };
-  };
-  stylix.image = ../../../ressources/wallpapers/Anime/1359466.png;
-  # stylix.wallpaper = ../../../ressources/wallpapers/1313919.jpg;
-  stylix.polarity = "dark";
-  stylix.opacity = {
-    applications = 1.0;
-    terminal = 0.85;
-    desktop = 1.0;
-    popups = 1.0;
-  };
-  stylix = {
     # fonts = {
     #   sizes = {
     #     terminal = 11;
@@ -63,4 +60,5 @@
     #   };
     # };
   };
+
 }
