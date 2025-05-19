@@ -17,7 +17,7 @@
   #   enable = true;
   #   efiSupport = true;
   # };
-
+  
   #Enable Hibernate
   systemd.sleep.extraConfig =
   ''
@@ -74,7 +74,7 @@
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    backupFileExtension = "bak";
+    # backupFileExtension = "bak";
     users = {
       "maike" = import ./home.nix;
     };

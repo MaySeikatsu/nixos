@@ -12,7 +12,7 @@
     yazi.enable = true;
     neovim.enable = true;
     btop.enable = true;
-    # cava.enable = true;
+    cava.enable = true;
     cava.rainbow.enable = true;
     nixcord.enable = true;
     vencord.enable = true;
@@ -23,7 +23,7 @@
     # hyprland.hyprpaper.enable = true;
     hyprlock.enable = true;
     hyprpaper.enable = true;
-    kde.enable = true;
+    # kde.enable = true;
     lazygit.enable = true;
     # neovim.transparentBackground.main = true;
     neovim.transparentBackground.numberLine = true;
@@ -36,18 +36,18 @@
     # grub.enable = false;
     # grub.useWallpaper = true;
     gtk.enable = true;
-    qt.enable = true;
+    # qt.enable = true;
     # chromium.enable = true;
     # feh.enable = true;
     zellij.enable = true;
     zathura.enable = true;
-    waybar = {
-      enable = true;
-      enableCenterBackColors = false;
-      enableLeftBackColors = false;
-      enableRightBackColors = false;
-      # font = "JetBrainsMono";
-    };
+    # waybar = {
+    #   enable = true;
+    #   enableCenterBackColors = false;
+    #   enableLeftBackColors = false;
+    #   enableRightBackColors = false;
+    #   # font = "JetBrainsMono";
+    # };
     # firefox = {
     #   enable = true;
     #   profileNames = []; #necessary

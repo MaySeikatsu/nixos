@@ -94,6 +94,7 @@
             users.maike = import ./hosts/nixos-maike-pc/home.nix;
             useGlobalPkgs = true;
             useUserPackages = true;
+            backupFileExtension = "backup";
           # Home-Manager Modules 
             extraSpecialArgs = {
               inherit inputs; # apperently needed for textfox?
@@ -135,6 +136,7 @@
             users.maike = import ./hosts/nixos-legion/home.nix;
             useGlobalPkgs = true;
             useUserPackages = true;
+            backupFileExtension = "backup";
           # Home-Manager Modules 
             extraSpecialArgs = {
               inherit inputs; # apperently needed for textfox?
