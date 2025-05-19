@@ -32,6 +32,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprddm.url = "github:maotseantonio/hyprddm";
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -53,6 +54,7 @@
     nixcord,
     matugen,
     stylix,
+    hyprddm,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb

@@ -3,7 +3,8 @@
   # stylix.image = ../../../ressources/wallpapers/1309758.jpg;
   # stylix.image = "/home/maike/.config/nixos/ressources/wallpapers/1235167.jpg";
   stylix.targets = {
-    # wezterm.enable = true;
+    wezterm.enable = true;
+    alacritty.enable = true;
     kitty.enable = true;
     ghostty.enable = true;
     yazi.enable = true;

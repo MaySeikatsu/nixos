@@ -14,6 +14,7 @@
     ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
     ../modules/home-manager/gtk.nix
+    ../modules/home-manager/kitty.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix

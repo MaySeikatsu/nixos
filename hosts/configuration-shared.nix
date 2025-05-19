@@ -238,6 +238,7 @@
     pywal
     power-profiles-daemon
     # hyprpanel #imported flake
+    # inputs.hyprddm.packages.${pkgs.system}.default
 
     floorp
     # catppuccin-grub
