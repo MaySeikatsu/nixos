@@ -1,4 +1,4 @@
-# 🍁 MaySeikatsu bloated NixOS Config with Hyprland and Matugen
+# 🍁 Bloated NixOS Config with Hyprland and Stylix 🍁
 
 Welcome!  
 This repo contains my personal NixOS system configuration, focused on a fully riced Hyprland desktop with dynamic theming and a modular, flake-based structure. It’s a living setup—always evolving as I learn more about NixOS and the world of ricing.
