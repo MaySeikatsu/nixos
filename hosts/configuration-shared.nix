@@ -41,6 +41,14 @@
     ];
   };
 
+  xdg.portal = { # for discord and vesktop (didn't help though)
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-hyprland 
+      pkgs.xdg-desktop-portal-gtk 
+    ];
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 

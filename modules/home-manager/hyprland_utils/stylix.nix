@@ -14,8 +14,8 @@
     btop.enable = true;
     cava.enable = true;
     cava.rainbow.enable = true;
-    nixcord.enable = true;
-    vencord.enable = true;
+    # nixcord.enable = true;
+    # vencord.enable = true;
     vesktop.enable = true;
     fzf.enable = true;
     gnome.enable = true;
@@ -25,7 +25,7 @@
     hyprpaper.enable = true;
     # kde.enable = true;
     lazygit.enable = true;
-    # neovim.transparentBackground.main = true;
+    neovim.transparentBackground.main = true;
     neovim.transparentBackground.numberLine = true;
     neovim.transparentBackground.signColumn= true;
     rofi.enable = true;
@@ -36,7 +36,7 @@
     # grub.enable = false;
     # grub.useWallpaper = true;
     gtk.enable = true;
-    qt.enable = true;
+    # qt.enable = true;
     # chromium.enable = true;
     # feh.enable = true;
     zellij.enable = true;

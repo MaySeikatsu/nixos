@@ -12,8 +12,9 @@
         text = "$TIME";
         # text_align = "center";
         font_family = "JetBrainsMono Nerd Font";
+        font_color = config.lib.stylix.colors.base00;
         font_size = 96;
-        font_color = config.lib.stylix.colors.base05;
+        # font_color = "rgb(${config.lib.stylix.colors.base05})";
         position = "0,-100";
         halign = "center";
         valign = "top";
@@ -28,12 +29,20 @@
         # text_align = "center";
         font_family = "JetBrainsMono Nerd Font";
         font_color = config.lib.stylix.colors.base00;
+        # font_color = "rgb(${config.lib.stylix.colors.base05})";
         font_size = 36;
         position = "0,50";
         halign = "center";
         valign = "bottom";
       }   
     ];
+    general = {
+      disable_loading_bar = true;
+      grace = 600;
+      hide_cursor = true;
+      no_fade_in = false;
+    };
+
     # settings = {
     #   general = {
     #       disable_loading_bar = true;
