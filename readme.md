@@ -1,4 +1,4 @@
-# 🍁 MaySeikatsu’s NixOS & Hyprland Config
+# 🍁 MaySeikatsu bloated NixOS Config with Hyprland and Matugen
 
 Welcome!  
 This repo contains my personal NixOS system configuration, focused on a fully riced Hyprland desktop with dynamic theming and a modular, flake-based structure. It’s a living setup—always evolving as I learn more about NixOS and the world of ricing.
@@ -9,7 +9,7 @@ This repo contains my personal NixOS system configuration, focused on a fully ri
 
 ### Hyprland Desktop with Custom Rice
 
-![First Rice Screenshot](screenshot1.png)
+![First Rice Screenshot](https://github.com/user-attachments/assets/3f7015cf-800c-48c0-8f1d-bd3f7431ee3f)
 
 A look at my Hyprland setup, featuring a custom status bar, themed terminal, and a dark, minimal aesthetic.
 
@@ -17,7 +17,7 @@ A look at my Hyprland setup, featuring a custom status bar, themed terminal, and
 
 ### Autumn Themed Desktop with Stylix & Hyprpanel
 
-![Autumn Theme Screenshot](screenshot2.png)
+![Autumn Theme with Stylix](https://github.com/user-attachments/assets/fe25b266-b54e-421a-aa6a-4b1cfb4c22c8)
 
 Here’s my autumn-inspired rice! The wallpaper and system colors are managed by [Stylix](https://github.com/danth/stylix), and the panel is powered by [Hyprpanel](https://github.com/hyprwm/hyprpanel). The goal: everything matches the current wallpaper, for a cozy, unified look.
 
