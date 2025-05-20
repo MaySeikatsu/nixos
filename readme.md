@@ -6,15 +6,6 @@ This repo contains my personal NixOS system configuration, focused on a fully ri
 ---
 
 ## ✨ Screenshots
-
-### Hyprland Desktop with Custom Rice
-
-![First Rice Screenshot](https://github.com/user-attachments/assets/3f7015cf-800c-48c0-8f1d-bd3f7431ee3f)
-
-A look at my Hyprland setup, featuring a custom status bar, themed terminal, and a dark, minimal aesthetic.
-
----
-
 ### Autumn Themed Desktop with Stylix & Hyprpanel
 
 ![Autumn Theme with Stylix](https://github.com/user-attachments/assets/fe25b266-b54e-421a-aa6a-4b1cfb4c22c8)
