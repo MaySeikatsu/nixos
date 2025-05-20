@@ -1,64 +1,99 @@
-<<<<<<< HEAD
+# 🍁 MaySeikatsu’s NixOS & Hyprland Config
 
-=======
-# [Hyprland] My NixOS Rice Journey 🍁
-
-Hey there!  
-Just wanted to share my personal NixOS config that I’ve been having a ton of fun ricing lately. I’m still pretty new to NixOS, so this setup is far from perfect and honestly a bit messy, but it’s the first time I feel comfortable enough to show off my rice. Maybe it’ll inspire someone else to give it a try! <3
+Welcome!  
+This repo contains my personal NixOS system configuration, focused on a fully riced Hyprland desktop with dynamic theming and a modular, flake-based structure. It’s a living setup—always evolving as I learn more about NixOS and the world of ricing.
 
 ---
 
-## Screenshots
+## ✨ Screenshots
 
-### First Rice on Freshly Installed NixOS
+### Hyprland Desktop with Custom Rice
 
 ![First Rice Screenshot](screenshot1.png)
 
-Just moved to NixOS and spent way too much time tweaking Hyprland.  
-Some configs are still missing, but I finally have a setup I actually enjoy using!  
-Still a work in progress, but it’s a start :)
+A look at my Hyprland setup, featuring a custom status bar, themed terminal, and a dark, minimal aesthetic.
 
 ---
 
-### Autumn Themed NixOS with Stylix & Hyprpanel
+### Autumn Themed Desktop with Stylix & Hyprpanel
 
 ![Autumn Theme Screenshot](screenshot2.png)
 
-I got pretty addicted to ricing my NixOS config so that everything automatically themes itself to match my wallpaper.  
-Stylix and Hyprpanel are doing most of the heavy lifting here, and I’m loving the cozy autumn vibes.
-
-I’m still figuring out how to get automatic wallpaper and theme switching working (something like hyprdots/HyDE, but more “nixy”). Matugen and pywal are on my radar, but I haven’t quite wrapped my head around getting them to play nice with NixOS yet. If you have tips, let me know!
+Here’s my autumn-inspired rice! The wallpaper and system colors are managed by [Stylix](https://github.com/danth/stylix), and the panel is powered by [Hyprpanel](https://github.com/hyprwm/hyprpanel). The goal: everything matches the current wallpaper, for a cozy, unified look.
 
 ---
 
-## About This Repo
+## 🗂️ Repo Structure
 
-- **hosts/** – Host-specific configs (I switch between a few machines)
-- **modules/** – Custom modules for things like Hyprland, theming, etc.
-- **pkgs/** – My own package overrides and tweaks
-- **ressources/** – Wallpapers, icons, and other stuff
-- **scripts-unused/** – Old scripts I’m not using right now but might revisit
+- **hosts/**  
+  Per-machine configurations. Each host (laptop, desktop, etc.) has its own entrypoint, making it easy to manage multiple systems with shared and unique settings.
 
-All of this is managed with flakes, so it should be pretty reproducible (in theory… if you don’t mind a bit of chaos).
+- **modules/**  
+  Custom NixOS modules for things like Hyprland, theming, and extra services. This is where most of my desktop and ricing logic lives.
+
+- **pkgs/**  
+  Custom or overridden Nix packages. If I need to patch or tweak something from nixpkgs, it goes here.
+
+- **ressources/**  
+  Wallpapers, icons, and other static assets that make the rice shine.
+
+- **scripts-unused/**  
+  Scripts I’m not currently using but might revisit later.
+
+- **flake.nix / flake.lock**  
+  The main entry point for the configuration, using Nix flakes for reproducibility and modularity.
 
 ---
 
-## Plans & Wishlist
+## 🖥️ What’s in the Config?
 
-- [ ] Automatic wallpaper + theme switching (matugen/pywal style)
-- [ ] Clean up my configs and modularize more stuff
-- [ ] Try out new ricing tools and maybe contribute back to the community
+- **Hyprland** as the main Wayland compositor, with custom settings for window management, keybinds, and effects.
+- **Stylix** for dynamic theming—automatically updates GTK, Qt, terminal, and other app colors to match the wallpaper.
+- **Hyprpanel** as the status bar, themed to match the system.
+- **Anime & Nature Wallpapers** with a focus on seasonal vibes.
+- **Declarative Home Manager** config for user-level dotfiles and app settings.
+- **Modular NixOS Setup**—split into reusable modules for easy tweaking and expansion.
+- **Custom scripts** (planned) for future features like automatic wallpaper and theme switching (think pywal/matugen, but “the Nix way”).
 
 ---
 
-## Final Thoughts
+## 🚀 Getting Started
 
-I’m still learning and my config is definitely a work in progress, but I’m having a blast with it.  
-If you’re also new to NixOS or just love ricing, feel free to poke around, steal ideas, or even send tips my way!
+> **Note:** This config is tailored to my hardware and preferences.  
+> If you want to use it, review and adapt the configuration to fit your needs.
 
-Hope you enjoy my config <3
+1. **Clone the repo**
+
+2. **Pick or create your host config** in `hosts/`.
+
+3. **Build and switch:**
+`sudo nixos-rebuild switch --flake .#your-hostname`
+
+4. **Enjoy!** (And tweak as needed.)
+
+---
+
+## 📝 Roadmap / Wishlist
+
+- [ ] Automatic wallpaper and theme switching (matugen/pywal style, but fully declarative)
+- [ ] More modularization and cleanup of configs
+- [ ] Improved documentation and onboarding for others
+
+---
+
+## 💬 Why NixOS & Hyprland?
+
+I chose NixOS for its reproducibility and modularity—no more “it worked on my machine” headaches.  
+Hyprland gives me a fast, modern Wayland environment with great ricing potential.  
+Stylix and Home Manager tie it all together for a seamless, auto-themed desktop.
+
+---
+
+## 🤝 Contributing / Feedback
+
+If you have suggestions, questions, or want to share your own rice, feel free to contact me!  
+I’m always learning and happy to chat about NixOS, Hyprland, and ricing.
 
 ---
 
 **MaySeikatsu**
->>>>>>> 9a68424 (feat: added markdown)
