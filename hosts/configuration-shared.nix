@@ -282,7 +282,7 @@
     goxel
     # kicad #pcb and electronics design
     obs-studio
-    davinci-resolve
+    # davinci-resolve
     poppler
     base16-schemes
     darktable

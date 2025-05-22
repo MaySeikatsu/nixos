@@ -17,7 +17,7 @@
   #   enable = true;
   #   efiSupport = true;
   # };
-  
+
   #Enable Hibernate
   systemd.sleep.extraConfig =
   ''
@@ -117,14 +117,14 @@
   };
 
   # Enable VR with Monado / OpenXR and SteamVR
-  services.monado = {
-    enable = true;
-    defaultRuntime = true; # Register as default OpenXR runtime
-  };
-  systemd.user.services.monado.environment = {
-    STEAMVR_LH_ENABLE = "1";
-    XRT_COMPOSITOR_COMPUTE = "1";
-  };
+  # services.monado = {
+  #   enable = true;
+  #   defaultRuntime = true; # Register as default OpenXR runtime
+  # };
+  # systemd.user.services.monado.environment = {
+  #   STEAMVR_LH_ENABLE = "1";
+  #   XRT_COMPOSITOR_COMPUTE = "1";
+  # };
   # Enable git-lfs to use hand trackers in VR
   programs.git = {
     enable = true;
