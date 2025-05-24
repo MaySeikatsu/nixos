@@ -1,0 +1,7 @@
+{...}:
+{
+  programs.neovim = {
+    enable = true; 
+  };
+}
+

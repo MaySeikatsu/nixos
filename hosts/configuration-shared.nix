@@ -13,6 +13,7 @@
       ./../modules/nixos/config/kanata.nix
       ./../modules/nixos/config/matugen.nix
       ./../modules/nixos/config/stylix.nix
+      ../modules/nixos/config/niri.nix
       # ./sddm-theme.nix
       # ./../../modules/system/displaymanager.nix
     ];

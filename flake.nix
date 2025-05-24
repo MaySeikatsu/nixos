@@ -35,6 +35,11 @@
     };
     hyprddm.url = "github:maotseantonio/hyprddm";
     textfox.url = "github:adriankarlen/textfox";
+
+    niri = {
+     url = "github:sodiboo/niri-flake";
+     inputs.nixpkgs.follows = "nixpkgs";
+    };   
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -58,6 +63,7 @@
     stylix,
     hyprddm,
     textfox,
+    niri,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
