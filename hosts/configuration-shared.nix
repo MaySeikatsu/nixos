@@ -271,7 +271,7 @@
     revolt-desktop
     element-desktop
     osu-lazer-bin
-    microsoft-edge
+    # microsoft-edge
     obsidian ticktick gimp-with-plugins
     krita
     godot_4

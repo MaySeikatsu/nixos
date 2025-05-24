@@ -94,7 +94,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-      powerManagement.enable = false;
+      powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -113,7 +113,28 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # prime = {
+      #CHOSE ONE!
+      # 01. PRIME Sync and Offload Mode cannot be enabled at the same time
+      # keeps nvidia card active even when not in use, except if called for via cli to put it to sleep
+      # sync.enable = true; 
+
+      # 02. Offload to Nvidia GPU must be done via cli manually!
+      # offload = {
+      #   enable = true;
+      #   enableOffloadCmd = true; 
+      # };
+
+      # 03. Experimental - resverse Prime output sink - uses iGPU for output and dGPU for rendering
+      # reverseSync.enable = true;
+      # Enable if using an external GPU
+      # allowExternalGpu = false;
+
+      # Use the correct BusID here, can be found with lshw -c display and needs to be written into this format
+      # amdgpuBusId = "PCI:35:0:0"; #This value is bullshit, so please delete if not working
+    #   nvidiaBusId = "PCI:29:0:0";
+    # };
   };
 
   # Enable VR with Monado / OpenXR and SteamVR
