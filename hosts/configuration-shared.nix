@@ -14,6 +14,7 @@
       ./../modules/nixos/config/matugen.nix
       ./../modules/nixos/config/stylix.nix
       ../modules/nixos/config/niri.nix
+      # ../modules/nixos/pkgs/sddm-astronaut-theme.nix
       # ./sddm-theme.nix
       # ./../../modules/system/displaymanager.nix
     ];
@@ -22,6 +23,23 @@
   nixpkgs.config = {
       allowUnfree = true;               # Allow unfree packages
       allowUnsupportedSystem = true;    # Allow unsupported SystemPackages
+    };
+  
+  # sddm-astronaut-theme
+    services.displayManager.sddm = {
+      enable = true;
+      theme = "sddm-astronaut-theme"; # Must match package name
+      # settings = {
+      #   General = {
+      #     HeaderText = "Hi";
+      #     Background = "/etc/nixos/ressources/wallpapers/1359465.png";
+      #   };
+      # };
+      extraPackages = with pkgs; [
+        kdePackages.qtmultimedia
+        kdePackages.qtsvg
+        kdePackages.qtvirtualkeyboard
+      ];
     };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -85,7 +103,7 @@
 
   services = {
     # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm.enable = true;
+    # displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
     # displayManager.defaultSession = "hyprland"; #if not working write lower case  was a try to set hyprland as default option after logging in
 
@@ -225,6 +243,19 @@
   # };
 
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
+      (pkgs.callPackage ../ressources/sddm-astronaut-theme {
+        # theme = "hyprland_kath";
+        # theme = "black_hole";
+        # theme = "japanese_aesthetic";
+        theme = "purple_leaves";
+        # theme = "pixel_sakura(-static)";
+        themeConfig = {
+          General = {
+            HeaderText = "Hi Bitch!";
+            Background = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
+          };
+        };
+      })
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     alacritty
     git

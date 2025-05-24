@@ -40,6 +40,9 @@
      url = "github:sodiboo/niri-flake";
      inputs.nixpkgs.follows = "nixpkgs";
     };   
+    sddm-astronaut-theme = {
+      url = "./ressources/sddm-astronaut-theme";
+    };
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -64,6 +67,7 @@
     hyprddm,
     textfox,
     niri,
+    # sddm-astronaut-theme,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb

@@ -1,7 +1,6 @@
 {
   stdenvNoCC,
   qt6,
-  kdePackages,
   lib,
   fetchFromGitHub,
   formats,
@@ -21,8 +20,7 @@ in
       hash = "sha256-gBSz+k/qgEaIWh1Txdgwlou/Lfrfv3ABzyxYwlrLjDk=";
     };
 
-    # propagatedUserEnvPkgs = with qt6; [qtsvg qtvirtualkeyboard qtmultimedia];
-    propagatedUserEnvPkgs = with kdePackages; [qtsvg qtvirtualkeyboard qtmultimedia];
+    propagatedUserEnvPkgs = with qt6; [qtsvg qtvirtualkeyboard qtmultimedia];
 
     dontBuild = true;
 
