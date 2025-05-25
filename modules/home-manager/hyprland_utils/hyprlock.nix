@@ -13,6 +13,7 @@
         # text_align = "center";
         font_family = "JetBrainsMono Nerd Font";
         font_color = config.lib.stylix.colors.base00;
+        # font_color = "${config.stylix.colors.base00}";
         font_size = 96;
         # font_color = "rgb(${config.lib.stylix.colors.base05})";
         position = "0,-100";
