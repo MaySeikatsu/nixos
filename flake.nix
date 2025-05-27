@@ -42,6 +42,7 @@
     };   
     sddm-astronaut-theme = {
       url = "./ressources/sddm-astronaut-theme";
+      # url = "github:MaySeikatsu/sddm-astronaut-theme";
     };
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";

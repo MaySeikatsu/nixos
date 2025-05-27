@@ -41,13 +41,13 @@ in
     ];
   };
 
-  xdg.portal = { # for discord and vesktop (didn't help though)
-    enable = true;
-    extraPortals = [ 
-      pkgs.xdg-desktop-portal-hyprland 
-      pkgs.xdg-desktop-portal-gtk 
-    ];
-  };
+  # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though) 
+  #   enable = true;
+  #   extraPortals = [ 
+  #     pkgs.xdg-desktop-portal-hyprland 
+  #     pkgs.xdg-desktop-portal-gtk 
+  #   ];
+  # };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -84,7 +84,7 @@ in
 
   services = {
     # Enable the KDE Plasma Desktop Environment.
-    # displayManager.sddm.enable = true;
+    # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
     # displayManager.defaultSession = "hyprland"; #if not working write lower case  was a try to set hyprland as default option after logging in
 
@@ -272,7 +272,9 @@ in
     element-desktop
     osu-lazer-bin
     # microsoft-edge
-    obsidian ticktick gimp-with-plugins
+    obsidian 
+    ticktick
+    gimp-with-plugins
     krita
     godot_4
     blender
@@ -280,7 +282,7 @@ in
     aseprite
     # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
     goxel
-    # kicad #pcb and electronics design
+    kicad #pcb and electronics design
     obs-studio
     # davinci-resolve
     poppler
@@ -316,7 +318,6 @@ in
 
     #teams
     teams-for-linux
-    # steam
     onlyoffice-bin
     google-cloud-sdk
     terraform
