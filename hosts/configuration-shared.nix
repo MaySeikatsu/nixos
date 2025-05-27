@@ -15,6 +15,7 @@ in
       ./../modules/nixos/config/stylix.nix
       ../modules/nixos/config/niri.nix
       ../modules/nixos/config/sddm-astronaut-theme.nix
+      # ../modules/nixos/config/sddm-sugar-candy.nix
     ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -323,23 +324,6 @@ in
     terraform
     # citrix_workspace
     vscode
-
-
-
-    # Install kde packages for sddm to work first three are dependencies - currently unused
-    kdePackages.qtsvg
-    kdePackages.qtvirtualkeyboard
-    kdePackages.qtmultimedia
-    # (pkgs.callPackage ../../pkgs/sddm-astronaut-theme.nix {
-    #   theme = "hyprland_kath";
-    #   themeConfig={
-    #    General = {
-    #      HeaderText ="Hi";
-    #       Background="/home/user/Desktop/wp.png";
-    #       FontSize="10.0";
-    #    };	
-    #  };
-    # })
   ];
 
 }

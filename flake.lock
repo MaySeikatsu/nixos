@@ -683,6 +683,7 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_5",
         "sddm-astronaut-theme": "sddm-astronaut-theme",
+        "sddm-sugar-candy-nix": "sddm-sugar-candy-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "swww": "swww",
@@ -703,6 +704,26 @@
         "type": "path"
       },
       "parent": []
+    },
+    "sddm-sugar-candy-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748261441,
+        "narHash": "sha256-xZym8Aze8Ejd9e3IJVPrzpTOHor66alggxZCHxiPbJE=",
+        "owner": "Zhaith-Izaliel",
+        "repo": "sddm-sugar-candy-nix",
+        "rev": "a6aa623ba0f9a583d0fae8911beab99247d4e059",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "Zhaith-Izaliel",
+        "repo": "sddm-sugar-candy-nix",
+        "type": "gitlab"
+      }
     },
     "spicetify-nix": {
       "inputs": {

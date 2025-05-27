@@ -44,6 +44,11 @@
       url = "./ressources/sddm-astronaut-theme";
       # url = "github:MaySeikatsu/sddm-astronaut-theme";
     };
+    sddm-sugar-candy-nix = {
+      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
+      # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -69,6 +74,7 @@
     textfox,
     niri,
     # sddm-astronaut-theme,
+    sddm-sugar-candy-nix,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
@@ -83,6 +89,7 @@
       specialArgs = {
           inherit inputs;
           inherit host;
+          inherit system;
         };
       modules = [
         ./hosts/nixos-maike-pc/configuration.nix
@@ -91,11 +98,13 @@
         inputs.spicetify-nix.nixosModules.default
         inputs.stylix.nixosModules.stylix
         matugen.nixosModules.default
+        sddm-sugar-candy-nix.nixosModules.default
 
         #Overlays (?)
         {
           nixpkgs.overlays = [
               inputs.hyprpanel.overlay
+              sddm-sugar-candy-nix.overlays.default
           ];
         }
 
@@ -125,6 +134,7 @@
       specialArgs = {
           inherit inputs;
           inherit host2;
+          inherit system;
         };
       modules = [
         ./hosts/nixos-legion/configuration.nix
@@ -133,11 +143,13 @@
         inputs.spicetify-nix.nixosModules.default
         inputs.stylix.nixosModules.stylix
         matugen.nixosModules.default
+        sddm-sugar-candy-nix.nixosModules.default
 
         #Overlays (?)
         {
           nixpkgs.overlays = [
               inputs.hyprpanel.overlay
+              sddm-sugar-candy-nix.overlays.default
           ];
         }
 
