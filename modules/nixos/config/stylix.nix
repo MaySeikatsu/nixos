@@ -64,21 +64,25 @@
           # spicetify.enable = true;
       };
       fonts = {
-      #   sizes = {
-      #     terminal = 11;
-      #     applications = 11;
-      #     popups = 11;
-      #   };
+      sizes = {
+      terminal = 11;
+      applications = 11;
+      popups = 11;
+      };
       #
-      #   serif = {
+      serif = {
       #     name = "CaskaydiaCove Nerd Font";
       #     package = pkgs.nerd-fonts.caskaydia-cove;
-      #   };
+            package = pkgs.nerd-fonts.jetbrains-mono;
+            name = "JetBrains Mono Nerd Font";
+      };
       #
-      #   sansSerif = {
+      sansSerif = {
       #     name = "CaskaydiaCove Nerd Font";
       #     package = pkgs. nerd-fonts.caskaydia-cove;
-      #   };
+            package = pkgs.nerd-fonts.jetbrains-mono;
+            name = "JetBrains Mono Nerd Font";
+      };
       #
       monospace = {
       #     package = pkgs. nerd-fonts.caskaydia-cove;
