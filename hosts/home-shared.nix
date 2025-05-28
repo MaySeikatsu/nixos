@@ -19,6 +19,7 @@
     ../modules/home-manager/fzf.nix
     ../modules/home-manager/lazygit.nix
     ../modules/home-manager/rofi.nix
+    ../modules/home-manager/wofi.nix
     ../modules/home-manager/wezterm.nix
     ../modules/home-manager/gtk.nix
     ../modules/home-manager/qt.nix

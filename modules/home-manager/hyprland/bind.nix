@@ -33,8 +33,9 @@
 
       "Ctrl+Shift, Escape, exec, $scrPath/sysmonlaunch.sh"
       # Rofi menus
-      "$mainMod, A, exec, rofi -show drun"
-      "Alt, Space, exec, rofi -show drun"
+      # "$mainMod, A, exec, rofi -show drun"
+      "$mainMod, A, exec, wofi --show drun"
+      "Alt, Space, exec, wofi --show drun"
       # Alt, Space, exec, pkill -x rofi #|| $scrPath/rofilaunch.sh d # launch application launcher
       "$mainMod, Tab, exec, pkill -x rofi || $scrPath/rofilaunch.sh w"
       "$mainMod+Shift, E, exec, pkill -x rofi || $scrPath/rofilaunch.sh f"

@@ -12,7 +12,7 @@
         text = "$TIME";
         # text_align = "center";
         font_family = "JetBrainsMono Nerd Font";
-        font_color = config.lib.stylix.colors.base00;
+        font_color = "#${config.lib.stylix.colors.base00}";
         # font_color = "${config.stylix.colors.base00}";
         font_size = 96;
         # font_color = "rgb(${config.lib.stylix.colors.base05})";
@@ -29,7 +29,8 @@
         text = "Hi  Bitch <br/>";
         # text_align = "center";
         font_family = "JetBrainsMono Nerd Font";
-        font_color = config.lib.stylix.colors.base00;
+        font_color = "#${config.lib.stylix.colors.base05}";
+        # font_color = config.lib.stylix.colors.base00;
         # font_color = "rgb(${config.lib.stylix.colors.base05})";
         font_size = 36;
         position = "0,50";

@@ -1,86 +1,340 @@
-# {
-#   config,
-#   inputs,
-#   pkgs,
-#   ...
-# }: {
-#   programs.niri.settings.binds = with config.lib.niri.actions; let
-#     set-volume = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@";
-#     brillo = spawn "${pkgs.brillo}/bin/brillo" "-q" "-u" "300000";
-#     playerctl = spawn "${pkgs.playerctl}/bin/playerctl";
-#     control-center = spawn "env" "XDG_CURRENT_DESKTOP=gnome" "gnome-control-center";
-#     clipboard = spawn "sh" "-c" "~/.config/hypr/scripts/ClipManager.sh";
-#     walker-clip = spawn "walker" "-m" "clipboard";
-#   in {
-#     "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-#     "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-#
-#     "XF86AudioPlay".action = playerctl "play-pause";
-#     "XF86AudioStop".action = playerctl "pause";
-#     "XF86AudioPrev".action = playerctl "previous";
-#     "XF86AudioNext".action = playerctl "next";
-#
-#     "XF86AudioRaiseVolume".action = set-volume "5%+";
-#     "XF86AudioLowerVolume".action = set-volume "5%-";
-#
-#     "XF86MonBrightnessUp".action = brillo "-A" "5";
-#     "XF86MonBrightnessDown".action = brillo "-U" "5";
-#
-#     "Print".action.screenshot-screen = {write-to-disk = true;};
-#     "Mod+Shift+Alt+S".action = screenshot-window;
-#     "Mod+Shift+S".action = screenshot;
-#     "Mod+D".action = spawn "${inputs.walker.packages.${pkgs.system}.default}/bin/walker";
-#     "Mod+Shift+Return".action = spawn "${
-#       inputs.ghostty.packages.${pkgs.system}.default
-#     }/bin/ghostty";
-#     "Alt+Space".action = spawn "${pkgs.anyrun}/bin/anyrun";
-#     "Mod+Return".action = spawn "${pkgs.kitty}/bin/kitty";
-#     "Ctrl+Alt+L".action = spawn "hyprlock";
-#     "Mod+T".action = spawn "thunar";
-#     "Mod+U".action = control-center;
-#     "Mod+Backspace".action = spawn "wlogout-new";
-#     "Mod+Q".action = close-window;
-#     "Mod+S".action = switch-preset-column-width;
-#     "Mod+F".action = maximize-column;
-#     # "Mod+Shift+F".action = fullscreen-window;
-#     "Mod+Shift+F".action = expand-column-to-available-width;
-#     "Mod+Space".action = toggle-window-floating;
-#     "Mod+W".action = toggle-column-tabbed-display;
-#     "Mod+V".action = spawn "walker" "-m" "clipboard";
-#     "Mod+Comma".action = consume-window-into-column;
-#     "Mod+Period".action = expel-window-from-column;
-#     "Mod+C".action = center-window;
-#     "Mod+Tab".action = switch-focus-between-floating-and-tiling;
-#
-#     "Mod+1".action = focus-workspace 1;
-#     "Mod+2".action = focus-workspace 2;
-#     "Mod+3".action = focus-workspace 3;
-#     "Mod+4".action = focus-workspace 4;
-#     "Mod+5".action = focus-workspace 5;
-#     "Mod+6".action = focus-workspace 6;
-#     "Mod+7".action = focus-workspace 7;
-#     "Mod+8".action = focus-workspace 8;
-#     "Mod+9".action = focus-workspace 9;
-#     "Mod+Minus".action = set-column-width "-10%";
-#     "Mod+Equal".action = set-column-width "+10%";
-#     "Mod+Shift+Minus".action = set-window-height "-10%";
-#     "Mod+Shift+Equal".action = set-window-height "+10%";
-#
-#     "Mod+H".action = focus-column-left;
-#     "Mod+L".action = focus-column-right;
-#     "Mod+J".action = focus-window-or-workspace-down;
-#     "Mod+K".action = focus-window-or-workspace-up;
-#     "Mod+Left".action = focus-column-left;
-#     "Mod+Right".action = focus-column-right;
-#     "Mod+Down".action = focus-workspace-down;
-#     "Mod+Up".action = focus-workspace-up;
-#
-#     "Mod+Shift+H".action = move-column-left;
-#     "Mod+Shift+L".action = move-column-right;
-#     "Mod+Shift+K".action = move-column-to-workspace-up;
-#     "Mod+Shift+J".action = move-column-to-workspace-down;
-#
-#     "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
-#     "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
-#   };
-# }
+{
+  pkgs,
+  inputs,
+  username,
+  config,
+  ...
+}:
+{
+  # services = {
+  #   blueman.enable = true;
+  #   gnome.gnome-keyring.enable = true;
+  #   logind.powerKey = "ignore";
+  # };
+
+  # systemd = {
+  #   user.services = {
+  #     # Polkit
+  #     polkit-gnome-authentication-agent-1 = {
+  #       description = "polkit-gnome-authentication-agent-1";
+  #       wantedBy = [ "graphical-session.target" ];
+  #       wants = [ "graphical-session.target" ];
+  #       after = [ "graphical-session.target" ];
+  #       serviceConfig = {
+  #         Type = "simple";
+  #         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #         Restart = "on-failure";
+  #         RestartSec = 1;
+  #         TimeoutStopSec = 10;
+  #       };
+  #     };
+  #     niri-flake-polkit.enable = false;
+  #
+  #     cliphist = {
+  #       description = "wl-paste + cliphist service";
+  #       serviceConfig = {
+  #         Type = "simple";
+  #         ExecStart = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";
+  #         Restart = "on-failure";
+  #       };
+  #     };
+  #
+  #     swaybg = {
+  #       description = "swaybg service";
+  #       serviceConfig = {
+  #         Type = "simple";
+  #         ExecStart = "${pkgs.swaybg}/bin/.swaybg-wrapped -m fill -i ${
+  #           pkgs.graphite-gtk-theme.override { wallpapers = true; }
+  #         }/share/backgrounds/wave-Dark.png";
+  #         Restart = "on-failure";
+  #       };
+  #     };
+  #   };
+  # };
+  #
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #     xdg-desktop-portal-gnome
+  #   ];
+  #   config = {
+  #     common = {
+  #       default = [
+  #         "gnome"
+  #         "gtk"
+  #       ];
+  #       "org.freedesktop.impl.portal.Access" = [ "gtk" ];
+  #       "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
+  #       "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+  #       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+  #     };
+  #   };
+  # };
+
+  # nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+  # niri-flake.cache.enable = false;
+
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #
+  # environment.systemPackages = with pkgs; [
+  #   cliphist
+  #   hypridle
+  #   hyprlock
+  #   kitty
+  #   networkmanagerapplet
+  #   playerctl
+  #   qalculate-gtk
+  #   swaynotificationcenter
+  #   swayosd
+  #   syncthingtray
+  #   wl-clipboard
+  #   wl-clip-persist
+  #   wl-color-picker
+  #   wofi-power-menu
+  #   xwayland-satellite
+  # ];
+
+  # programs = {
+  #   niri = {
+  #     enable = true;
+  #     package = pkgs.niri;
+  #   };
+  #
+  #   dconf.enable = true;
+  #   ssh.askPassword = "";
+  #   xwayland.enable = true;
+  # };
+      programs = {
+
+        niri = {
+          settings = {
+            prefer-no-csd = true;
+            hotkey-overlay.skip-at-startup = true;
+            screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
+
+            environment = {
+              DISPLAY = ":1";
+              ELM_DISPLAY = "wl";
+              GDK_BACKEND = "wayland,x11";
+              QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+              SDL_VIDEODRIVER = "wayland";
+              CLUTTER_BACKEND = "wayland";
+            };
+
+            spawn-at-startup =
+              let
+                sh = [
+                  "sh"
+                  "-c"
+                ];
+              in
+              [
+                { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
+                { command = sh ++ [ "cliphist wipe" ]; }
+                { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
+                { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
+                { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+                { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
+                { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
+                { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+                { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
+                { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
+                { command = sh ++ [ "id=0" ]; }
+                { command = [ "swayosd-server" ]; }
+                { command = [ "nm-applet" ]; }
+              ];
+
+            input = {
+              power-key-handling.enable = false;
+              warp-mouse-to-focus = true;
+
+              mouse = {
+                accel-speed = 0.5;
+              };
+
+              touchpad = {
+                accel-speed = 0.5;
+              };
+
+              keyboard.xkb.layout = "de";
+
+              focus-follows-mouse = {
+                enable = true;
+                max-scroll-amount = "25%";
+              };
+            };
+
+            binds =
+              with config.lib.niri.actions;
+              let
+                sh = spawn "sh" "-c";
+              in
+              {
+                "Alt+X".action = close-window;
+                "Alt+F".action = toggle-window-floating;
+                "Super+F".action = fullscreen-window;
+
+                "Alt+Right".action = focus-column-or-monitor-right;
+                "Alt+Left".action = focus-column-or-monitor-left;
+                "Alt+Up".action = focus-window-or-monitor-up;
+                "Alt+Down".action = focus-window-or-monitor-down;
+
+                "Ctrl+Alt+Right".action = consume-or-expel-window-right;
+                "Ctrl+Alt+Left".action = consume-or-expel-window-left;
+                "Ctrl+Alt+Up".action = move-window-up-or-to-workspace-up;
+                "Ctrl+Alt+Down".action = move-window-down-or-to-workspace-down;
+                "Ctrl+Alt+Return".action = move-window-to-monitor-next;
+
+                "Ctrl+Alt+Q".action = switch-preset-column-width;
+                "Ctrl+Alt+A".action = switch-preset-window-height;
+                "Ctrl+Alt+W".action = maximize-column;
+                "Ctrl+Alt+Tab".action = toggle-column-tabbed-display;
+
+                "Super+Q".action = toggle-overview;
+
+                "Alt+Super+Up".action = focus-workspace-up;
+                "Alt+Super+Down".action = focus-workspace-down;
+                "Alt+1".action = focus-workspace 1;
+                "Alt+2".action = focus-workspace 2;
+                "Alt+3".action = focus-workspace 3;
+                "Alt+4".action = focus-workspace 4;
+                "Alt+5".action = focus-workspace 5;
+                "Alt+6".action = focus-workspace 6;
+                "Alt+7".action = focus-workspace 7;
+                "Alt+8".action = focus-workspace 8;
+                "Alt+9".action = focus-workspace 9;
+                "Alt+0".action = focus-workspace 10;
+
+                "Print".action = screenshot;
+
+                "Super+V".action = sh "cliphist list | wofi -S dmenu | cliphist decode | wl-copy";
+                "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
+                "Super+C".action = spawn "qalculate-gtk";
+                "Ctrl+Alt+T".action = spawn "kitty";
+                "Super+A".action = sh "pidof wofi || wofi";
+                "Super+S".action = sh "swaync-client -t";
+                "Super+Alt+L".action = sh "loginctl lock-session";
+                "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
+                "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
+                "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
+                "XF86AudioPlay".action = sh "playerctl play-pause";
+                "XF86AudioPrev".action = sh "playerctl previous";
+                "XF86AudioNext".action = sh "playerctl next";
+                "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
+                "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
+                "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
+                "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
+              };
+
+            gestures.hot-corners.enable = false;
+
+            layout = {
+              gaps = 8;
+              default-column-width.proportion = 0.5;
+              insert-hint.display = {
+                color = "rgba(224, 224, 224, 30%)";
+              };
+
+              preset-column-widths = [
+                { proportion = 1.0 / 3.0; }
+                { proportion = 0.5; }
+                { proportion = 2.0 / 3.0; }
+              ];
+
+              preset-window-heights = [
+                { proportion = 1.0 / 3.0; }
+                { proportion = 0.5; }
+                { proportion = 2.0 / 3.0; }
+                { proportion = 1.0; }
+              ];
+
+              border.enable = false;
+
+              focus-ring = {
+                enable = true;
+                width = 2;
+                active = {
+                  color = "#e0e0e0ff";
+                };
+                inactive = {
+                  color = "#00000000";
+                };
+              };
+
+              tab-indicator = {
+                enable = true;
+                place-within-column = true;
+                width = 8;
+                corner-radius = 8;
+                gap = 8;
+                gaps-between-tabs = 8;
+                position = "top";
+                active = {
+                  color = "rgba(224, 224, 224, 100%)";
+                };
+                inactive = {
+                  color = "rgba(224, 224, 224, 30%)";
+                };
+                length.total-proportion = 1.0;
+              };
+            };
+
+            overview.backdrop-color = "#0f0f0f";
+
+            window-rules = [
+              {
+                geometry-corner-radius =
+                  let
+                    radius = 8.0;
+                  in
+                  {
+                    bottom-left = radius;
+                    bottom-right = radius;
+                    top-left = radius;
+                    top-right = radius;
+                  };
+                clip-to-geometry = true;
+                draw-border-with-background = false;
+              }
+              {
+                matches = [
+                  { app-id = ".blueman-manager-wrapped"; }
+                  { app-id = "nm-connection-editor"; }
+                  { app-id = "com.saivert.pwvucontrol"; }
+                  { app-id = "org.pipewire.Helvum"; }
+                  { app-id = "wdisplays"; }
+                  { app-id = "qalculate-gtk"; }
+                  { title = "Syncthing Tray"; }
+                ];
+                open-floating = true;
+              }
+              {
+                matches = [
+                  { is-window-cast-target = true; }
+                ];
+
+                focus-ring = {
+                  active = {
+                    color = "rgba(224, 53, 53, 100%)";
+                  };
+                  inactive = {
+                    color = "rgba(224, 53, 53, 30%)";
+                  };
+                };
+
+                tab-indicator = {
+                  active = {
+                    color = "rgba(224, 53, 53, 100%)";
+                  };
+                  inactive = {
+                    color = "rgba(224, 53, 53, 30%)";
+                  };
+                };
+              }
+            ];
+          };
+        };
+      };
+}
+

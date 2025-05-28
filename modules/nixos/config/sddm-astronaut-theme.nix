@@ -33,7 +33,7 @@
             FullBlur = "false";
           };
           Colors = {
-            HeaderTextColor = config.lib.stylix.colors.base05;
+            HeaderTextColor = "#${config.lib.stylix.colors.base05}";
             # DateTextColor = config.lib.stylix.colors.base0A;
             # TimeTextColor = config.lib.stylix.colors.base0B;
             #

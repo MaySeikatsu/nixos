@@ -42,7 +42,8 @@
     stylix = { 
       enable = true;
       autoEnable = false;
-      image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
+      # image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
+      image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
       polarity = "dark"; # options: light, dark, either (selects closest)
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
@@ -62,7 +63,7 @@
           nixos-icons.enable = true;
           # spicetify.enable = true;
       };
-      # fonts = {
+      fonts = {
       #   sizes = {
       #     terminal = 11;
       #     applications = 11;
@@ -79,15 +80,18 @@
       #     package = pkgs. nerd-fonts.caskaydia-cove;
       #   };
       #
-      #   monospace = {
+      monospace = {
       #     package = pkgs. nerd-fonts.caskaydia-cove;
       #     name = "CaskaydiaCove Nerd Font";
-      #   };
-      #
-      #   emoji = {
-      #     package = pkgs.noto-fonts-emoji;
-      #     name = "Noto Color Emoji";
-      #   };
+            package = pkgs.nerd-fonts.jetbrains-mono;
+            name = "JetBrains Mono Nerd Font";
+
+         # emoji = {
+         #   package = pkgs.noto-fonts-emoji;
+         #   name = "Noto Color Emoji";
+         # };
+      };
+    };
     
       # making your own theme
       # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
