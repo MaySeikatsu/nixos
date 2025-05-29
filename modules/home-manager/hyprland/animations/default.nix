@@ -9,6 +9,7 @@
 
     animations = {
       enabled = true;
+      workspace_wraparound = true;
 
       bezier = [
         "easeOutQuint,0.23,1,0.32,1"

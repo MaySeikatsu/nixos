@@ -8,14 +8,17 @@
     ];
 
     general = {
-      gaps_in = 5;
-      gaps_out = 10;
-      border_size = 2;
+      gaps_in = 8;
+      gaps_out = 16;
+      border_size = 1;
       # "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
       # "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
       layout = "dwindle";
       resize_on_border = true;
       # allow_tearing = true;
+      snap = {
+        enabled = true;
+      };
     };
 
     # Colors are commented out for stylix theming
@@ -27,30 +30,33 @@
     # };
 
     decoration = {
-      rounding = 10;
+      rounding = 12;
       active_opacity = 1.0;
-      inactive_opacity = 1.0;
-      dim_special = 0.15;
+      inactive_opacity = 0.94;
+      dim_special = 0.20;
 
       blur = {
         enabled = true;
         special = true; # Blurs spexial workspace
         new_optimizations = true;
-        # Good settings, but zen is not readable when fully transparent
         size = 2;
-        passes = 4;
-        # passes = 3;
-        vibrancy = 0.1696;
+        passes = 6;
+        xray = false;
 
+        noise = 0.0117;
+        vibrancy = 0.7696;
+        # vibrancy_darkness = 0.9;
+        contrast = 0.97;
+        brightness = 1;
+        popups = true;
         # ignore_opacity = true;
-        # xray = false;
       };
 
       shadow = {
         enabled = true;
-        range = 12;
-        render_power = 5;
-        # color = rgba(1a1a1aee);
+        range = 18;
+        render_power = 3;
+        # color = rgba(00000034);
       };
 
     };

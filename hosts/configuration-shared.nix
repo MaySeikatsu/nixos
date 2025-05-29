@@ -304,6 +304,7 @@ in
     vial
     via
     intiface-central
+    protontricks
 
     localsend
     # spicetify-cli
