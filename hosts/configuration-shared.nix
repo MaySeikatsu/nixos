@@ -272,6 +272,7 @@ in
     revolt-desktop
     element-desktop
     osu-lazer-bin
+    hellwal
     # microsoft-edge
     obsidian 
     ticktick

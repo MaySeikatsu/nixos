@@ -43,7 +43,21 @@
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
-  #
+
+# systemd.user.services.hellwal-update = {
+#   Unit = {
+#     Description = "Update Ghostty color scheme with hellwal";
+#     After = [ "graphical-session.target" ];
+#   };
+#   Service = {
+#     Type = "oneshot";
+#     ExecStart = "${pkgs.hellwal}/bin/hellwal --wallpaper "${config.stylix.image}";
+#   };
+#   Install = {
+#     WantedBy = [ "default.target" ];
+#   };
+# };
+#
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
@@ -52,6 +66,8 @@
   # environment.
   home.packages = [
     pkgs.hyprpanel
+    pkgs.hellwal
+
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
