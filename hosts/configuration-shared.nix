@@ -303,6 +303,7 @@ in
     # firefoxpwa
     vial
     via
+    intiface-central
 
     localsend
     # spicetify-cli
