@@ -37,7 +37,7 @@
     # grub.enable = false;
     # grub.useWallpaper = true;
     gtk.enable = true;
-    # qt.enable = true;
+    qt.enable = true;
     # chromium.enable = true;
     # feh.enable = true;
     zellij.enable = true;
