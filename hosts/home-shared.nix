@@ -67,6 +67,9 @@
   home.packages = [
     pkgs.hyprpanel
     pkgs.hellwal
+    
+    #csharp dev env
+    # pkgs.jetbrains.rider
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

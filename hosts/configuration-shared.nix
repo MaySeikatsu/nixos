@@ -327,6 +327,7 @@ in
     terraform
     # citrix_workspace
     vscode
+    dotnet-sdk_8
   ];
 
 }
