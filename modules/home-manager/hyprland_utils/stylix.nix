@@ -10,7 +10,7 @@
     kitty.enable = true;
     ghostty.enable = true;
     yazi.enable = true;
-    neovim.enable = true;
+    # neovim.enable = true;
     btop.enable = true;
     cava.enable = true;
     cava.rainbow.enable = true;

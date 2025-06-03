@@ -41,6 +41,12 @@ in
     #  thunderbird
     ];
   };
+  
+  nixCats = {
+    enable = true;
+    luaPath = "~/.config/nixCats-nvim/";
+
+  };
 
   # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though) 
   #   enable = true;
@@ -265,6 +271,7 @@ in
     # procps
     # usbutils
     lshw #to show hardware info(needed for nvidia config)
+    inputs.nvix.packages.${pkgs.system}.full
 
     spotify
     # discord #managed via nixcord flake 
