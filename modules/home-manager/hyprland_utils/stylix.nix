@@ -7,7 +7,7 @@
   stylix.targets = {
     wezterm.enable = true;
     alacritty.enable = true;
-    kitty.enable = true;
+    # kitty.enable = true;
     ghostty.enable = true;
     yazi.enable = true;
     # neovim.enable = true;

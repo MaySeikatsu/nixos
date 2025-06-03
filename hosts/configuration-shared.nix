@@ -251,6 +251,7 @@ in
     matugen
     inputs.matugen.packages.${system}.default
     pywal
+    wallust
     power-profiles-daemon
     # hyprpanel #imported flake
     # inputs.hyprddm.packages.${pkgs.system}.default
