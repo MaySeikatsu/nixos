@@ -42,11 +42,11 @@ in
     ];
   };
   
-  nixCats = {
-    enable = true;
-    luaPath = "~/.config/nixCats-nvim/";
-
-  };
+  # nixCats = {
+  #   enable = true;
+  #   luaPath = "~/.config/nixCats-nvim/";
+  #
+  # };
 
   # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though) 
   #   enable = true;

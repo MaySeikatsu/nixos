@@ -49,7 +49,7 @@
       # Optional, by default this flake follows nixpkgs-unstable.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
+    # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
     nvix.url = "github:niksingh710/nvix";
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
@@ -75,7 +75,7 @@
     hyprddm,
     textfox,
     niri,
-    nixCats-nvim,
+    # nixCats-nvim,
     nvix,
     # sddm-astronaut-theme,
     sddm-sugar-candy-nix,
@@ -103,7 +103,7 @@
         inputs.stylix.nixosModules.stylix
         matugen.nixosModules.default
         sddm-sugar-candy-nix.nixosModules.default
-        nixCats-nvim.nixosModules.default
+        # nixCats-nvim.nixosModules.default
 
         #Overlays (?)
         {
@@ -127,7 +127,7 @@
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             textfox.homeManagerModules.default
-            inputs.nixCats-nvim.homeModule
+            # inputs.nixCats-nvim.homeModule
             # inputs.matugen.packages.${system}.default
               # inputs.stylix.homeModules.stylix
             ];
@@ -150,7 +150,7 @@
         inputs.stylix.nixosModules.stylix
         matugen.nixosModules.default
         sddm-sugar-candy-nix.nixosModules.default
-        nixCats-nvim.nixosModules.default
+        # nixCats-nvim.nixosModules.default
 
         #Overlays (?)
         {
@@ -174,7 +174,7 @@
             sharedModules = [
             inputs.nixcord.homeManagerModules.nixcord
             textfox.homeManagerModules.default
-            inputs.nixCats-nvim.homeModule
+            # inputs.nixCats-nvim.homeModule
             # inputs.matugen.packages.${system}.default
               # inputs.stylix.homeModules.stylix
             ];
