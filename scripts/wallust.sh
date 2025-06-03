@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# Source: https://gitlab.com/fazzi/dotfiles
 
 staticwall="$HOME/Pictures/1359465.png"
 
