@@ -298,6 +298,7 @@ in
     poppler
     base16-schemes
     darktable
+    tidal-hifi
 
     ollama
     # lmstudio
