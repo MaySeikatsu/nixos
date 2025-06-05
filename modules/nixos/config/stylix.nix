@@ -51,7 +51,7 @@
 
       opacity = {
         applications = 1.0;
-        terminal = 0.25;
+        terminal = 0.30;
         desktop = 1.0;
         popups = 1.0;
       };
@@ -59,9 +59,8 @@
       targets = {
           # gtk.enable = true;
           # qt.enable = true;
-          spicetify.enable = true; #not working as imported via nixos
           nixos-icons.enable = true;
-          # spicetify.enable = true;
+          spicetify.enable = true;
       };
       fonts = {
       sizes = {

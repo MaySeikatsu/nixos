@@ -6,8 +6,8 @@
       #"waybar &"
       # "hyprpaper"
       # "swww-daemon & swww img ~/Pictures/"
-      "swww init & swww ~/Pictures/" 
-      # "swww-daemon"
+      # "swww init & swww ~/Pictures/" 
+      "swww-daemon &"
 
       #"nm-applet &"
       # "[workspace 1 silent] obsidian"

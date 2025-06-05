@@ -25,4 +25,4 @@ if [ -z "$bgfile" ]; then
 fi
 
 # apply selected wallpaper
-./wallust.sh "$bgdir/$bgfile"
+~/.config/nixos/scripts/wallust.sh "$WALLPAPER"

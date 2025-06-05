@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
-# Source: https://gitlab.com/fazzi/dotfiles
 
-staticwall="$HOME/Pictures/1359465.png"
+staticwall="$HOME/Pictures/wallpaper.png"
 
 if [ -z "$1" ]; then
   echo "add wallpaper as arg"
@@ -10,17 +9,12 @@ fi
 
 wallust run "$1" &
 
-ln -sf "$1" "$staticwall"
 # hyprctl hyprpaper reload ,"$1"
-swww-daemon &
-# swww img $1
+ln -sf "$1" "$staticwall" #creates a symlinks thebetween static wall and 1, sf forces overwrite
+# swww-daemon &
 swww img $1 --transition-fps 240 --transition-step 170 --transition-duration 1 --transition-type any --transition-bezier .54,0,.34,.99 --transition-wave 200,200
 
 # while wallust is still running, wait
 while pgrep -x wallust >/dev/null; do
-  sleep 0.2
+  sleep 0.1
 done
-
-# Restart dunst and update pywalfox
-# pkill dunst &
-# pywalfox --browser librewolf update

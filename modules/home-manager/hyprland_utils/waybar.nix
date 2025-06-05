@@ -309,6 +309,8 @@ mainBar = {
     };
 
     style = ''
+    @import url("colors.css"); 
+    
     * {
       border: none;
       border-radius: 0px;

@@ -3,7 +3,12 @@
   wayland.windowManager.hyprland.settings = {
 
     "$mainMod" = "Super";
+
     bind = [
+      # Wallust Commands:
+      "$mainMod+Shift, m, exec, ~/.config/nixos/scripts/wall_cycle.sh"
+      "$mainMod+Shift, n, exec, ~/config/nixos/scripts/wall_random.sh"
+
       # Window/Session actions
       "$mainMod, Q, killactive,"
       "Alt, F4, killactive,"
