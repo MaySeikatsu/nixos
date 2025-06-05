@@ -18,6 +18,7 @@
       "opacity 0.9 0.9,class:^(hyprpanel)$"
       "opacity 0.9 0.9,class:^(obsidian)$"
       "opacity 0.9 0.9,class:^(ticktick)$"
+      "opacity 0.9 0.9,class:^(tidal-hifi)$"
 
       # "noborder, class:^(zen-twilight)$" #nett aber not working
       "noborder, floating:1, class:^(zen-twilight)$"
@@ -32,6 +33,7 @@
       "blur, spotify"
       "blur, obsidian"
       "blur, ticktick"
+      "blur, tidal-hifi"
     ];
   };
 }
