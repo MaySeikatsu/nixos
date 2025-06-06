@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
+      "~/.config/nixos/scripts/swww/swww_wallpapersync.sh" #to create hyprland colors file the remove the source error
       "hyprpanel"
       #"waybar &"
       # "hyprpaper"

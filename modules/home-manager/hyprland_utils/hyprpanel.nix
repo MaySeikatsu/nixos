@@ -379,8 +379,7 @@ in
       wallpaper.enable = true;
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       # wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
-      # wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
-      wallpaper.image = "~/.current-wallpaper";
+      wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
 
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       menus.dashboard.powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";      

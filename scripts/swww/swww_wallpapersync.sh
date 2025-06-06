@@ -12,6 +12,7 @@
 #
 # export WP_PATH
 # echo $WP_PATH
+mkdir "~/.config/hypr/colors-hyprland.conf"
 
 # Get all connected monitor names using hyprctl's JSON output
 for monitor in $(hyprctl -j monitors | jq -r '.[].name'); do
@@ -24,3 +25,7 @@ for monitor in $(hyprctl -j monitors | jq -r '.[].name'); do
     echo "Set wallpaper for $monitor: $WP_PATH"
   fi
 done
+
+wallust run ~/.current-wallpaper
+
+# SCRIPTS MIGHT NEED: sudo chmod +x ./swww-find-wallpaper.sh     to run the scripts

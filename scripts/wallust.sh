@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 # Source: https://gitlab.com/fazzi/dotfiles
 
-staticwall="$HOME/Pictures/1359465.png"
+# staticwall="$HOME/Pictures/1359465.png"
+staticwall="$HOME/.current-wallpaper"
 
 if [ -z "$1" ]; then
   echo "add wallpaper as arg"

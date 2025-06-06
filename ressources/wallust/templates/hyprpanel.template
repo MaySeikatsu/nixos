@@ -1,0 +1,11 @@
+{
+  "theme": {
+    "bar": {
+      "background": "{{ .colors.background }}",
+      "foreground": "{{ .colors.foreground }}",
+      "accent": "{{ index .colors 1 }}"
+      // Add more as needed
+    }
+  }
+}
+

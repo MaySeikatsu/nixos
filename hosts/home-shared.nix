@@ -25,6 +25,8 @@
     ../modules/home-manager/qt.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
+    # ../modules/home-manager/hyprland_utils/wallust.nix
+    
     # ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
