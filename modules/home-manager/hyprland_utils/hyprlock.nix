@@ -46,7 +46,7 @@
     };
 
     background = {
-      path = "~/.current-wallpaper-eDP2";
+      path = "~/.current-wallpaper";
     };
 
     input-field =

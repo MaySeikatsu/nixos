@@ -20,7 +20,7 @@ for monitor in $(hyprctl -j monitors | jq -r '.[].name'); do
 
   # Do something with $WP_PATH, e.g., update symlink for each monitor
   if [ -n "$WP_PATH" ]; then
-    ln -sf "$WP_PATH" "/home/maike/.current-wallpaper-$monitor"
+    ln -sf "$WP_PATH" "/home/maike/.current-wallpaper"
     echo "Set wallpaper for $monitor: $WP_PATH"
   fi
 done
