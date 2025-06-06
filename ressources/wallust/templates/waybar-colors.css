@@ -27,3 +27,12 @@ waybar = { src = "waybar-colors.css", dst = "~/.config/waybar/colors.css" }
 @define-color color13 {{color13}};
 @define-color color14 {{color14}};
 @define-color color15 {{color15}};
+
+@define-color bar-bg rgba(0, 0, 0, 0.25);
+@define-color main-bg {{background}};
+@define-color main-fg {{foreground}};
+@define-color wb-act-bg {{color2}};
+@define-color wb-act-fg {{color1}};
+/* @define-color wb-hvr-bg #f5c2e7; */
+/* @define-color wb-hvr-fg #313244; */
+

@@ -11,7 +11,7 @@
     ./../modules/home-manager/ghostty.nix
     ./../modules/home-manager/terminal/git.nix
     ./../modules/home-manager/terminal/yazi.nix
-    # ../modules/home-manager/hyprland_utils/stylix.nix
+    ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
     ../modules/home-manager/kitty.nix
     ../modules/home-manager/alacritty.nix
@@ -25,7 +25,7 @@
     ../modules/home-manager/qt.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
-    # ../modules/home-manager/hyprland_utils/wallust.nix
+    ../modules/home-manager/hyprland_utils/wallust.nix
     
     # ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix

@@ -309,7 +309,6 @@ mainBar = {
     };
 
     style = ''
-    @import url("colors.css"); 
     
     * {
       border: none;
@@ -330,6 +329,8 @@ mainBar = {
 
     @define-color wb-hvr-bg #f5c2e7;
     @define-color wb-hvr-fg #313244;
+
+    @import url("colors.css"); 
 
     window#waybar {
       background: @bar-bg;

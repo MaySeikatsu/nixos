@@ -24,7 +24,7 @@ color_space = "lch" # lab - labmixed - lch - lchmixed
 # harddark - harddark16 - harddarkcomp - harddarkcomp16
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
-palette = "dark"
+palette = "harddark"
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
@@ -53,10 +53,10 @@ yazi.template = 'home/maike/.config/nixos/ressources/wallust/templates/yazi-them
 yazi.target = '/home/maike/.config/yazi/yazi-theme.toml'
 
 ghostty.template = '/home/maike/.config/nixos/ressources/wallust/templates/ghostty.theme'
-ghostty.target = '/home/maike/.config/ghostty/config'
+ghostty.target = '/home/maike/.config/ghostty/colors-config'
 
 wezterm.template = '/home/maike/.config/nixos/ressources/wallust/templates/wezterm.toml'
-wezterm.target = '/home/maike/.config/wezterm/wezterm.toml'
+wezterm.target = '/home/maike/.config/wezterm/colors-wezterm.toml'
 
 hyprland.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-hyprland.conf'
 hyprland.target = '/home/maike/.config/hypr/colors-hyprland.conf'
@@ -64,13 +64,12 @@ hyprland.target = '/home/maike/.config/hypr/colors-hyprland.conf'
 spicetify.template = '~/templates/colors-spicetify.ini'
 spicetify.target = '~/.config/spotify/Themes/wallust/color.ini'
 
-hyprpanel.template = "~/.config/nixos/ressources/wallust/templates/hyprpanel.json"
+hyprpanel.template = "/home/maike/.config/nixos/ressources/wallust/templates/hyprpanel.json"
 # hyprpanel.target = "~/.config/config.hm.json"
-hyprpanel.target = "~/.config/config.json"
+hyprpanel.target = "/home/maike/.config/hyprpanel/config.json"
 
-# waybar.template = './templates/waybar-colors.css'
-# waybar.target = '/home/maike/.config/waybar/colors.css'
-waybar = { src = "./templates/waybar-colors.css", dst = "~/.config/waybar/colors.css" }
-# css = { src = './templates/colors.css', dst = '/home/maike/.config/colors.css' }
+waybar = { src = "/home/maike/.config/nixos/ressources/wallust/templates/waybar-colors.css", dst = "/home/maike/.config/waybar/colors.css" }
 
+neovim.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-neovim.vim'
+neovim.target = '/home/maike/.config/nvim/colors/wallust.vim'
 

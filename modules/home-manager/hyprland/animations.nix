@@ -7,6 +7,7 @@
     ];
   };
   imports = [
-    ./animations/default.nix
+    # ./animations/default.nix
+    ./animations/flowy.nix
   ];
 }
