@@ -51,9 +51,11 @@
 
       opacity = {
         applications = 1.0;
-        terminal = 0.30;
-        desktop = 1.0;
-        popups = 1.0;
+        # terminal = 0.30;
+        # terminal = 0.50;
+        terminal = 0.70;
+        desktop = 0.99;
+        popups = 0.95;
       };
 
       targets = {

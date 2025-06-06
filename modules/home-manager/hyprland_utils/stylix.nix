@@ -19,10 +19,10 @@
     # vesktop.enable = true;
     fzf.enable = true;
     gnome.enable = true;
-    hyprland.enable = true;
+    # hyprland.enable = true;
     # hyprland.hyprpaper.enable = true;
     # hyprlock.enable = true;
-    hyprpaper.enable = true;
+    # hyprpaper.enable = true;
     # kde.enable = true;
     lazygit.enable = true;
     neovim.transparentBackground.main = true;
