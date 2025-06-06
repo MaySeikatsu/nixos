@@ -1,7 +1,7 @@
 {...}:
 {
   wayland.windowManager.hyprland.settings = {
-      source = "~/.config/hypr/colors-hyprland.conf";
+      # source = "~/.config/hypr/colors-hyprland.conf";
       "$term" = "ghostty"; 
       "$editor" = "nvim";
       "$file" = "dolphin";

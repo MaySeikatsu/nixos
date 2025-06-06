@@ -299,6 +299,7 @@ in
     base16-schemes
     darktable
     tidal-hifi
+    jq
 
     ollama
     # lmstudio

@@ -45,6 +45,24 @@
       no_fade_in = false;
     };
 
+    background = {
+      path = "~/.current-wallpaper-eDP2";
+    };
+
+    input-field =
+      {
+        # size = "180, 40";
+        position = "0, 0";
+        # monitor = "";
+        dots_center = true;
+        fade_on_empty = true;
+        # font_color = "rgba(202, 211, 245, 1.0)";
+        # inner_color = "rgba(91, 96, 120, 0.5)";
+        #outer_color = "rgba(24, 25, 38, 0.5)";
+        outline_thickness = 2;
+        # shadow_passes = 1;
+      };
+
     # settings = {
     #   general = {
     #       disable_loading_bar = true;

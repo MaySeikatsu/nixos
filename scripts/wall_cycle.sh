@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 INDEX_FILE="/tmp/wallust-index"
-WALLPAPER_DIR="$HOME/.config/nixos/ressources/wallpapers/gifs/"
+WALLPAPER_DIR="$HOME/.config/nixos/ressources/wallpapers/Anime/"
 
 # Create index file if it doesn't exist, defaulting to -1
 [ ! -f "$INDEX_FILE" ] && echo -1 >"$INDEX_FILE"
@@ -27,3 +27,4 @@ echo "$NEXT_INDEX" >"$INDEX_FILE"
 
 # Apply the new wallpaper
 ~/.config/nixos/scripts/wallust.sh "$WALLPAPER"
+~/.config/nixos/scripts/swww/swww_wallpapersync.sh
