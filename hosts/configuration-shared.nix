@@ -83,7 +83,7 @@ in
 
   security = {
     rtkit.enable = true;
-    sudo.wheelNeedsPassword = true;   #Request password for sudo actions as user
+    sudo.wheelNeedsPassword = false;   #Request password for sudo actions as user
 
     # autoUpgrade.enable = true;
     # autoUpgrade.allowReboot = true; 
@@ -273,7 +273,7 @@ in
     # usbutils
     lshw #to show hardware info(needed for nvidia config)
     inputs.nvix.packages.${pkgs.system}.full
-
+    ripgrep
     spotify
     # discord #managed via nixcord flake 
     # vesktop #vencord desktop client without overwriting the official discord binary
@@ -337,7 +337,10 @@ in
     terraform
     # citrix_workspace
     vscode
-    dotnet-sdk_8
+    # dotnet-sdk_8
+    omnisharp-roslyn
+    unzip
+    dotnetCorePackages.sdk_8_0_1xx
   ];
 
 }

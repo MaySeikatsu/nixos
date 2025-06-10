@@ -376,12 +376,12 @@ in
       theme.bar.transparent = false;
       # theme.bar.transparent = true;
 
-      wallpaper.enable = true;
+      # wallpaper.enable = false;
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       # wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
-      wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
+      # wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
 
-      # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
+      wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       menus.dashboard.powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";      
       wallpaper.pywal = true;
       theme.matugen = true;
