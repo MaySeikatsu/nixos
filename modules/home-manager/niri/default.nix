@@ -2,7 +2,7 @@
   imports = [
     inputs.niri.homeModules.niri
     # ./settings.nix
-    # ./binds.nix
+    ./binds.nix
     # ./rules.nix
   ];
 
@@ -11,10 +11,11 @@
       # seatd
       # jaq
       # brillo
-      # qt6.qtwayland
+      qt6.qtwayland
+      walker
       # wl-clip-persist
       # cliphist
-      # xwayland-satellite
+      xwayland-satellite
       # wl-clipboard
       # gnome-control-center
       # catppuccin-cursors.mochaGreen
