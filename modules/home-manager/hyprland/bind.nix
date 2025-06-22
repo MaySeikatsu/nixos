@@ -8,7 +8,6 @@
       # Wallust Commands:
       "$mainMod+Shift, m, exec, ~/.config/nixos/scripts/wall_cycle.sh"
       "$mainMod+Shift, n, exec, ~/config/nixos/scripts/wall_random.sh"
-      "$mainMod+Shift, r, exec, ~/config/nixos/scripts/wallust_refresh_current_wp.sh"
 
       # Window/Session actions
       "$mainMod, Q, killactive,"

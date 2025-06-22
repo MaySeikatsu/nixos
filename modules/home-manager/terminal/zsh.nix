@@ -34,6 +34,9 @@
         # export PATH=$PATH:$ANDROID_HOME/emulator
         # export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+        # wallust run ~/.current-wallpaper
+        cat ~/.cache/wallust/sequences
+
         eval "$(fzf --zsh)"
         eval "$(zoxide init zsh)"
       '';
