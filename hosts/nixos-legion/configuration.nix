@@ -200,53 +200,105 @@ specialisation = {
       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
     '';
     boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+
+
+
+  # # Seems to affect the eDP-2 to be inactive even if it would be enabled in normal nvidia profile
+    # USE THIS INSTEAD OF THE BOTTOM SETTINGS TO SEPERATE THE eDP-X Profiles (USE THIS TO LET THE NON NVIDIA PROFILE BE JUST INTEGRATED AND THE NORMAL PROFILE BE ALWAYS NVIDIA OFFLOAD MODE - COMMENT OUT BOTTOM SECTION) 
+  #   services.power-profiles-daemon.enable = false;
+  #   services.tlp = {
+  #     enable = true;
+  #     settings = {
+  #       CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+  #       CPU_ENERGY_PERF_POLICY_ON_BAT = "balance";
+  #       CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+  #       CPU_DRIVER_OPMODE_ON_AC = "active";
+  #       CPU_DRIVER_OPMODE_ON_BAT = "active";
+  #
+  #       WIFI_PWR_ON_AC = "on";
+  #       WIFI_PWR_ON_BAT = "on";
+  #       RUNTIME_PM_ON_AC = "auto";
+  #       RUNTIME_PM_ON_BAT = "auto";
+  #
+  #       CPU_MIN_PERF_ON_AC = 10;
+  #       CPU_MAX_PERF_ON_AC = 100;
+  #       CPU_MIN_PERF_ON_BAT = 10;
+  #       CPU_MAX_PERF_ON_BAT = 50;
+  #
+  #       CPU_BOOST_ON_AC = 1;
+  #       CPU_BOOST_ON_BAT = 0;
+  #       CPU_HWP_DYN_BOOST_ON_AC = 1;
+  #       CPU_HWP_DYN_BOOST_ON_BAT = 0;
+  #
+  #       START_CHARGE_THRESH_BAT0 = 85;
+  #       STOP_CHARGE_THRESH_BAT0 = 90;
+  #
+  #       MEM_SLEEP_ON_AC = "deep";
+  #       MEM_SLEEP_ON_BAT = "deep";
+  #
+  #       PLATFORM_PROFILE_ON_AC = "performance";
+  #       PLATFORM_PROFILE_ON_BAT = "low-power";
+  #
+  #       RADEON_DPM_STATE_ON_AC = "performance";
+  #       RADEON_DPM_STATE_ON_BAT = "battery";
+  #       RADEON_POWER_PROFILE_ON_AC = "high";
+  #       RADEON_POWER_PROFILE_ON_BAT = "low";
+  #
+  #       # INTEL_GPU_MIN_FREQ_ON_AC = 600;
+  #       # INTEL_GPU_MIN_FREQ_ON_BAT = 600;
+  #     };
+  #   };
   };
 };
 
-  # services.power-profiles-daemon.enable = false;
-  # services.tlp = {
-  #   enable = true;
-  #   settings = {
-  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
-  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "balance";
-  #     CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-  #     CPU_DRIVER_OPMODE_ON_AC = "active";
-  #     CPU_DRIVER_OPMODE_ON_BAT = "active";
-  #
-  #     WIFI_PWR_ON_AC = "on";
-  #     WIFI_PWR_ON_BAT = "on";
-  #     RUNTIME_PM_ON_AC = "auto";
-  #     RUNTIME_PM_ON_BAT = "auto";
-  #
-  #     CPU_MIN_PERF_ON_AC = 10;
-  #     CPU_MAX_PERF_ON_AC = 100;
-  #     CPU_MIN_PERF_ON_BAT = 10;
-  #     CPU_MAX_PERF_ON_BAT = 50;
-  #
-  #     CPU_BOOST_ON_AC = 1;
-  #     CPU_BOOST_ON_BAT = 0;
-  #     CPU_HWP_DYN_BOOST_ON_AC = 1;
-  #     CPU_HWP_DYN_BOOST_ON_BAT = 0;
-  #
-  #     START_CHARGE_THRESH_BAT0 = 75;
-  #     STOP_CHARGE_THRESH_BAT0 = 90;
-  #
-  #     MEM_SLEEP_ON_AC = "deep";
-  #     MEM_SLEEP_ON_BAT = "deep";
-  #
-  #     PLATFORM_PROFILE_ON_AC = "performance";
-  #     PLATFORM_PROFILE_ON_BAT = "low-power";
-  #
-  #     RADEON_DPM_STATE_ON_AC = "performance";
-  #     RADEON_DPM_STATE_ON_BAT = "battery";
-  #     RADEON_POWER_PROFILE_ON_AC = "high";
-  #     RADEON_POWER_PROFILE_ON_BAT = "low";
-  #
-  #     # INTEL_GPU_MIN_FREQ_ON_AC = 600;
-  #     # INTEL_GPU_MIN_FREQ_ON_BAT = 600;
-  #   };
-  # };
+    # Seems to affect the eDP-2 to be inactive even if it would be enabled in normal nvidia profile
+    # If PowerCable is connected on boot it enables nvidia card, and eDP-2 in hyprland if PowerCable is disconnected it automatically chooses to deactivate hyprland on boot 
+    services.power-profiles-daemon.enable = false;
+    services.tlp = {
+      enable = true;
+      settings = {
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+        CPU_DRIVER_OPMODE_ON_AC = "active";
+        CPU_DRIVER_OPMODE_ON_BAT = "active";
+
+        WIFI_PWR_ON_AC = "on";
+        WIFI_PWR_ON_BAT = "on";
+        RUNTIME_PM_ON_AC = "auto";
+        RUNTIME_PM_ON_BAT = "auto";
+
+        CPU_MIN_PERF_ON_AC = 10;
+        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MIN_PERF_ON_BAT = 10;
+        CPU_MAX_PERF_ON_BAT = 50;
+
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 0;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 0;
+
+        START_CHARGE_THRESH_BAT0 = 85;
+        STOP_CHARGE_THRESH_BAT0 = 90;
+
+        MEM_SLEEP_ON_AC = "deep";
+        MEM_SLEEP_ON_BAT = "deep";
+
+        PLATFORM_PROFILE_ON_AC = "performance";
+        PLATFORM_PROFILE_ON_BAT = "low-power";
+
+        RADEON_DPM_STATE_ON_AC = "performance";
+        RADEON_DPM_STATE_ON_BAT = "battery";
+        RADEON_POWER_PROFILE_ON_AC = "high";
+        RADEON_POWER_PROFILE_ON_BAT = "low";
+
+        # INTEL_GPU_MIN_FREQ_ON_AC = 600;
+        # INTEL_GPU_MIN_FREQ_ON_BAT = 600;
+      };
+    };
+
 
 
   # STEAMVR kernel cap_sys_nice patch for amd gpus - not needed on this system
