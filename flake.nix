@@ -51,6 +51,10 @@
     };
     # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
     nvix.url = "github:niksingh710/nvix";
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";

@@ -273,6 +273,7 @@ in
     # usbutils
     lshw #to show hardware info(needed for nvidia config)
     inputs.nvix.packages.${pkgs.system}.full
+    inputs.quickshell.packages.${system}.default
     ripgrep
     spotify
     # discord #managed via nixcord flake 
