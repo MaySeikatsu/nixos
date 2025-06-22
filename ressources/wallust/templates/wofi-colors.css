@@ -1,0 +1,64 @@
+/* Wofi wallust template - save as ~/.config/wallust/templates/wofi.css */
+
+window {
+    margin: 0px;
+    border: 2px solid {{color1}};
+    background-color: {{background}};
+    border-radius: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+}
+
+#input {
+    margin: 5px;
+    border: 1px solid {{color8}};
+    color: {{foreground}};
+    background-color: {{color0}};
+    border-radius: 4px;
+    padding: 8px;
+}
+
+#input:focus {
+    border-color: {{color4}};
+    outline: none;
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: {{background}};
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: {{background}};
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: {{foreground}};
+}
+
+#entry {
+    border: none;
+    border-radius: 4px;
+    margin: 2px;
+    padding: 8px;
+}
+
+#entry:selected {
+    background-color: {{color1}};
+    color: {{background}};
+}
+
+#entry:hover {
+    background-color: {{color8}};
+    color: {{foreground}};
+}

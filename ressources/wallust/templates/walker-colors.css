@@ -1,0 +1,73 @@
+/* Walker wallust template - save as ~/.config/wallust/templates/walker.css */
+
+* {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+}
+
+#window {
+    background-color: {{background}};
+    border: 2px solid {{color1}};
+    border-radius: 8px;
+}
+
+#box {
+    background-color: transparent;
+    padding: 12px;
+}
+
+#input {
+    background-color: {{color0}};
+    color: {{foreground}};
+    border-color: 1px solid {{color8}};
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+}
+
+#input:focus {
+    border-color: {{color4}};
+    outline: none;
+}
+
+#list {
+    background-color: transparent;
+}
+
+.item {
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: {{foreground}};
+    background-color: transparent;
+    margin: 2px 0;
+}
+
+.item:hover {
+    background-color: {{color8}};
+    color: {{foreground}};
+}
+
+.item:selected {
+    background-color: {{color1}};
+    color: {{background}};
+}
+
+.item .text {
+    color: inherit;
+}
+
+.item .sub {
+    color: {{color8}};
+    font-size: 12px;
+}
+
+.item:selected .sub {
+    color: {{background}};
+    opacity: 0.8;
+}
+
+.item .icon {
+    margin-right: 8px;
+    min-width: 24px;
+    min-height: 24px;
+}

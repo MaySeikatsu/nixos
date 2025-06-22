@@ -1,0 +1,96 @@
+/* Rofi wallust template - save as ~/.config/wallust/templates/rofi.rasi */
+
+configuration {
+    display-drun: "Applications";
+    display-window: "Windows";
+    drun-display-format: "{name}";
+    font: "JetBrains Mono 12";
+    modi: "window,run,drun";
+    show-icons: true;
+    icon-theme: "Papirus";
+}
+
+* {
+    bg: {{background}};
+    bg-alt: {{color0}};
+    fg: {{foreground}};
+    fg-alt: {{color8}};
+    
+    background-color: @bg;
+    
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 30%;
+    border: 2px;
+    border-color: {{color1}};
+    border-radius: 8px;
+}
+
+element {
+    padding: 8 12;
+    text-color: @fg-alt;
+}
+
+element selected {
+    text-color: @bg;
+    background-color: {{color1}};
+    border-radius: 4px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 24;
+    background-color: inherit;
+    padding: 0 6 0 0;
+}
+
+entry {
+    background-color: @bg-alt;
+    padding: 12;
+    text-color: @fg;
+    border-radius: 4px;
+    margin: 0 0 8 0;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg;
+    padding: 12;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    cycle: false;
+    dynamic: true;
+    scrollbar: false;
+}
+
+mainbox {
+    background-color: @bg;
+    children: [inputbar, listview];
+}
+
+prompt {
+    background-color: {{color4}};
+    enabled: true;
+    padding: 12 16;
+    text-color: @bg;
+    border-radius: 4px;
+    margin: 0 8 0 0;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}

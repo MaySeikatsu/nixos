@@ -24,7 +24,7 @@ color_space = "lch" # lab - labmixed - lch - lchmixed
 # harddark - harddark16 - harddarkcomp - harddarkcomp16
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
-palette = "harddark"
+palette = "dark"
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
@@ -73,3 +73,11 @@ waybar = { src = "/home/maike/.config/nixos/ressources/wallust/templates/waybar-
 neovim.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-neovim.vim'
 neovim.target = '/home/maike/.config/nvim/colors/wallust.vim'
 
+wofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/wofi-colors.css'
+wofi.target = '/home/maike/.config/wofi/style.css'
+
+rofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/rofi-colors.rasi'
+rofi.target = '/home/maike/.config/rofi/colors.rasi'
+
+walker.template = '/home/maike/.config/nixos/ressources/wallust/templates/walker-colors.css'
+walker.target = '/home/maike/.config/walker/themes/default.css'

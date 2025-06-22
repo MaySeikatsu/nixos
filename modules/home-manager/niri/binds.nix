@@ -236,7 +236,7 @@
               # "Super+T".action = spawn "kitty";
               "Super+T".action = spawn "ghostty";
               # "Super+A".action = sh "wofi  -drun || wofi";
-              "Super+A".action = sh "walker";
+              "Super+A".action = sh "walker"; #walker -C
               # "Super+S".action = sh "swaync-client -t";
               # "Super+Escape".action = sh "loginctl lock-session";
               "Super+Escape".action = sh "hyprlock";
@@ -393,6 +393,8 @@
                   color = "rgba(224, 53, 53, 30%)";
                 };
               };
+              
+            opacity = 0.96;
             }
           ];
         };
