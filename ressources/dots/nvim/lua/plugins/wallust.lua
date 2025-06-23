@@ -38,10 +38,11 @@ return
     --
       },
     },
-    -- {
-      -- "LazyVim/LazyVim", 
-      -- opts = {
-      --   colorscheme = "neopywal"
-      -- }
-    -- }
+    -- comment out if you don't want to set it as the default colorscheme
+    {
+      "LazyVim/LazyVim", 
+      opts = {
+        colorscheme = "neopywal"
+      }
+    }
 }

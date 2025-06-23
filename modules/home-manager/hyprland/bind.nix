@@ -7,7 +7,8 @@
     bind = [
       # Wallust Commands:
       "$mainMod+Shift, m, exec, ~/.config/nixos/scripts/wall_cycle.sh"
-      "$mainMod+Shift, n, exec, ~/config/nixos/scripts/wall_random.sh"
+      "$mainMod+Shift, n, exec, ~/.config/nixos/scripts/wall_cycle_back.sh"
+      # "$mainMod+Shift, n, exec, ~/config/nixos/scripts/wall_random.sh"
 
       # Window/Session actions
       "$mainMod, Q, killactive,"
