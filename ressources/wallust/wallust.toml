@@ -1,4 +1,5 @@
 # this file is linked via wallust.nix file and will recreate the wallust.toml from ressources
+# REBUILD MUST BE RUN TO UPDATE THE SYMLINK
 
 # wallust v3.3
 #
@@ -81,3 +82,7 @@ rofi.target = '/home/maike/.config/rofi/colors.rasi'
 
 walker.template = '/home/maike/.config/nixos/ressources/wallust/templates/walker-colors.css'
 walker.target = '/home/maike/.config/walker/themes/default.css'
+
+neopywal.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_neopywal.vim'
+# neopywal.target = '/home/maike/.cache/wallust/colors_neopywal.vim'
+neopywal.target = '/home/maike/.cache/wal/colors-wal.vim'
