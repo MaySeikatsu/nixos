@@ -299,7 +299,7 @@ in
     element-desktop
     osu-lazer-bin
     zed-editor
-    cursor
+    code-cursor
     hellwal
     # microsoft-edge
     obsidian 
