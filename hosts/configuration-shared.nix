@@ -298,6 +298,7 @@ in
     revolt-desktop
     element-desktop
     osu-lazer-bin
+    zed-editor
     hellwal
     # microsoft-edge
     obsidian 
