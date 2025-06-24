@@ -55,6 +55,24 @@ in
   #     pkgs.xdg-desktop-portal-gtk 
   #   ];
   # };
+#
+#   xdg.portal = {
+#   enable = true;
+#   xdgOpenUsePortal = true;
+#   config = {
+#     common.default = [ "gtk" ];
+#     hyprland.default = [ "gtk" "hyprland" ];
+#     gnome.default = [ "gtk" "gnome" ];
+#     kde.default = [ "gtk" "kde" ];
+#   };
+#   extraPortals = [
+#     pkgs.xdg-desktop-portal-gtk
+#     pkgs.xdg-desktop-portal-hyprland
+#     pkgs.xdg-desktop-portal-gnome
+#     pkgs.kdePackages.xdg-desktop-portal-kde
+#   ];
+# };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -196,10 +214,9 @@ in
     # opentabletdriver.daemon.enable = true;
   };
 
-
   environment = {
     sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = 1;
       STEAM_EXTRA_COMPAT_TOOLS_PATHS =
         "~/.steam/root/compatibilitytools.d/";
     };
