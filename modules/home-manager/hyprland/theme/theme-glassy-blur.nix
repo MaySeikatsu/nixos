@@ -53,11 +53,12 @@
       };
 
       shadow = {
-        enabled = false;
-        # enabled = true;
+        enabled = true;
         # range = 18;
+        range = 12;
         # range = 8;
-        render_power = 3;
+        # render_power = 3;
+        render_power = 1;
         # color = rgba(00000034);
       };
 
