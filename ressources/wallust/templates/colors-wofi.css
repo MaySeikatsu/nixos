@@ -1,0 +1,43 @@
+window {
+  margin: 0px;
+  border: 1px solid {{ color15 }};
+  /* background-color: {{ background }}; */
+  /* background: rgba(30,30,46,0.6); */
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: {{ color7 }};
+  background-color: {{ color0 }};
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+  /* background-color: {{ color1 }}; */
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  /* background-color: {{ color2 }}; */
+  background-color: {{ background }};
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+  color: {{ foreground }};
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: {{ foreground }};
+}
+
+#entry:selected {
+  color: {{ color9 }};
+  background-color: {{ color4 }};
+}

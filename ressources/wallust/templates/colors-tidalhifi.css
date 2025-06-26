@@ -1,0 +1,28 @@
+/* Wallust Tidal-hifi Theme */
+body, .main, .background, .Root__main-view {
+  background: {{ background }} !important;
+  color: {{ foreground }} !important;
+}
+
+a, .Button, .active, .selected, .highlight {
+  color: {{ color4 }} !important;
+  background: {{ color0 }} !important;
+}
+
+.Button--primary, .playButton, .nowPlayingBar {
+  background: {{ color4 }} !important;
+  color: {{ color15 }} !important;
+}
+
+input, textarea, select {
+  background: {{ color1 }} !important;
+  color: {{ foreground }} !important;
+  border-color: {{ color4 }} !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: {{ color2 }} !important;
+}
+::-webkit-scrollbar-track {
+  background: {{ background }} !important;
+}
