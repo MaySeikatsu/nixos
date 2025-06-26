@@ -298,6 +298,7 @@ in
     revolt-desktop
     element-desktop
     osu-lazer-bin
+    easyeffects
     zed-editor
     code-cursor
     hellwal

@@ -74,8 +74,12 @@ waybar = { src = "/home/maike/.config/nixos/ressources/wallust/templates/waybar-
 neovim.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-neovim.vim'
 neovim.target = '/home/maike/.config/nvim/colors/wallust.vim'
 
-wofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/wofi-colors.css'
+wofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-wofi.css'
 wofi.target = '/home/maike/.config/wofi/style.css'
+
+#currently overwrites the whole tidal config
+# tidal.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-tidalhifi.css'
+# tidal.target = '/home/maike/.config/tidal-hifi/config.json'
 
 rofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/rofi-colors.rasi'
 rofi.target = '/home/maike/.config/rofi/colors.rasi'

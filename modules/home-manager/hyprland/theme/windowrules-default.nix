@@ -24,6 +24,7 @@
       "opacity 0.9 0.9,class:^(obsidian)$"
       "opacity 0.9 0.9,class:^(ticktick)$"
       "opacity 0.8 0.8,class:^(tidal-hifi)$"
+      "opacity 0.8 0.8,class:^(wofi)$"
 
       # "noborder, class:^(zen-twilight)$" #nett aber not working
       "noborder, floating:1, class:^(zen-twilight)$"
@@ -40,6 +41,7 @@
       "blur, obsidian"
       "blur, ticktick"
       "blur, tidal-hifi"
+      "blur, wofi"
     ];
   };
 }
