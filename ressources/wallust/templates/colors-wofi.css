@@ -1,41 +1,48 @@
+/* Wofi wallust template - save as ~/.config/wallust/templates/wofi.css */
+
 window {
   margin: 0px;
-  border: 1px solid {{ color15 }};
-  /* background-color: {{ background }}; */
-  /* background: rgba(30,30,46,0.6); */
+  border: 1px solid {{ color1 }};
+  /* background-color: {{ color3 }}; */
+  background-color: {{ color1 | lighten(0.0)}};
 }
 
 #input {
   margin: 5px;
   border: none;
-  color: {{ color7 }};
-  background-color: {{ color0 }};
+  color: {{ color7 | darken(0.8) }};
+  /* background-color: {{ color0 }}; */
+  background-color: {{ color1 | lighten(0.5) }};
 }
 
 #inner-box {
   margin: 5px;
   border: none;
-  /* background-color: {{ color1 }}; */
+  background-color: {{ color1 | lighten(0.0)}};
 }
 
 #outer-box {
   margin: 5px;
   border: none;
-  /* background-color: {{ color2 }}; */
-  background-color: {{ background }};
+  background-color: {{ color1 | lighten(0.1)}};
 }
 
 #scroll {
   margin: 0px;
   border: none;
-  color: {{ foreground }};
 }
 
 #text {
   margin: 5px;
   border: none;
-  color: {{ foreground }};
+  color: {{ color15 }};
 }
+
+.entry:selected {
+  color: {{ color9 }};
+  background-color: {{ color4 }};
+}
+
 
 #entry:selected {
   color: {{ color9 }};
