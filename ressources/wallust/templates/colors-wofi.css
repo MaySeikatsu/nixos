@@ -4,6 +4,7 @@ window {
   margin: 0px;
   border: 1px solid {{ color1 }};
   /* background-color: {{ color3 }}; */
+  /* background-color: {{ color3.rgba*(o.3) }}; */
   background-color: {{ color1 | lighten(0.0)}};
 }
 
@@ -12,7 +13,7 @@ window {
   border: none;
   color: {{ color7 | darken(0.8) }};
   /* background-color: {{ color0 }}; */
-  background-color: {{ color1 | lighten(0.5) }};
+  background-color: {{ color1 | lighten(0.35) }};
 }
 
 #inner-box {
