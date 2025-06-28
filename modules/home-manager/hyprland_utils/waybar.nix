@@ -196,39 +196,39 @@ mainBar = {
         "interval"= 2;
     };
 
-    "pulseaudio"= {
-        "format"= "{icon} {volume}";
-        "rotate"= 0;
-        "format-muted"= "婢";
-        "on-click"= "pavucontrol -t 3";
-        "on-click-middle"= "volumecontrol.sh -o m";
-        "on-scroll-up"= "volumecontrol.sh -o i";
-        "on-scroll-down"= "volumecontrol.sh -o d";
-        "tooltip-format"= "{icon} {desc} // {volume}%";
-        "scroll-step"= 5;
-        "format-icons"= {
-            "headphone"= "";
-            "hands-free"= "";
-            "headset"= "";
-            "phone"= "";
-            "portable"= "";
-            "car"= "";
-            "default"= ["" "" ""];
-        };
-    };
+    # "pulseaudio"= {
+    #     "format"= "{icon} {volume}";
+    #     "rotate"= 0;
+    #     "format-muted"= "婢";
+    #     "on-click"= "pavucontrol -t 3";
+    #     "on-click-middle"= "volumecontrol.sh -o m";
+    #     "on-scroll-up"= "volumecontrol.sh -o i";
+    #     "on-scroll-down"= "volumecontrol.sh -o d";
+    #     "tooltip-format"= "{icon} {desc} // {volume}%";
+    #     "scroll-step"= 5;
+    #     "format-icons"= {
+    #         "headphone"= "";
+    #         "hands-free"= "";
+    #         "headset"= "";
+    #         "phone"= "";
+    #         "portable"= "";
+    #         "car"= "";
+    #         "default"= ["" "" ""];
+    #     };
+    # };
 
-    "pulseaudio#microphone"= {
-        "format"= "{format_source}";
-        "rotate"= 0;
-        "format-source"= "";
-        "format-source-muted"= "";
-        "on-click"= "pavucontrol -t 4";
-        "on-click-middle"= "volumecontrol.sh -i m";
-        "on-scroll-up"= "volumecontrol.sh -i i";
-        "on-scroll-down"= "volumecontrol.sh -i d";
-        "tooltip-format"= "{format_source} {source_desc} // {source_volume}%";
-        "scroll-step"= 5;
-    };
+    # "pulseaudio#microphone"= {
+    #     "format"= "{format_source}";
+    #     "rotate"= 0;
+    #     "format-source"= "";
+    #     "format-source-muted"= "";
+    #     "on-click"= "pavucontrol -t 4";
+    #     "on-click-middle"= "volumecontrol.sh -i m";
+    #     "on-scroll-up"= "volumecontrol.sh -i i";
+    #     "on-scroll-down"= "volumecontrol.sh -i d";
+    #     "tooltip-format"= "{format_source} {source_desc} // {source_volume}%";
+    #     "scroll-step"= 5;
+    # };
 
     "custom/notifications"= {
         "format"= "{icon} {}";
@@ -433,7 +433,7 @@ mainBar = {
 #network,
 #custom-notifications,
 #custom-power,
-#pulseaudio,
+# pulseaudio,
 #custom-spotify,
 #taskbar,
 #custom-theme,
