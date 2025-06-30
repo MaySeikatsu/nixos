@@ -249,20 +249,20 @@ in
               "█"
           ];
       bar.customModules.cava.showActiveOnly = true;
-      bar.customModules.cava.bars =  10;
-      bar.customModules.cava.channels = 2;
+      bar.customModules.cava.bars =  12;
+      # bar.customModules.cava.channels = 2;
       bar.customModules.cava.framerate = 90;
-      bar.customModules.cava.samplerate = 44100;
-      bar.customModules.cava.autoSensitivity = true;
-      bar.customModules.cava.lowCutoff = 50;
-      bar.customModules.cava.highCutoff = 10000;
-      bar.customModules.cava.noiseReduction = 0.77;
-      bar.customModules.cava.stereo = true;
-      bar.customModules.cava.leftClick = "";
-      bar.customModules.cava.rightClick = "";
-      bar.customModules.cava.middleClick = "";
-      bar.customModules.cava.scrollUp = "";
-      bar.customModules.cava.scrollDown = "";
+      # bar.customModules.cava.samplerate = 44100;
+      # bar.customModules.cava.autoSensitivity = true;
+      # bar.customModules.cava.lowCutoff = 50;
+      # bar.customModules.cava.highCutoff = 10000;
+      # bar.customModules.cava.noiseReduction = 0.77;
+      # bar.customModules.cava.stereo = true;
+      # bar.customModules.cava.leftClick = "";
+      # bar.customModules.cava.rightClick = "";
+      # bar.customModules.cava.middleClick = "";
+      # bar.customModules.cava.scrollUp = "";
+      # bar.customModules.cava.scrollDown = "";
       bar.workspaces.showWsIcons = false;
       bar.workspaces.show_icons = true;
       bar.workspaces.workspaceIconMap = {
