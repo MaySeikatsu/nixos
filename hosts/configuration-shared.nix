@@ -133,6 +133,8 @@ in
       # Enable the GNOME Desktop Environment.
       displayManager.gdm.enable = false;
       desktopManager.gnome.enable = true;
+      desktopManager.kodi.enable = true;
+      # desktopManager.plasma5.bigscreen.enable = true;
 
       wacom.enable = true;         # Enable Wacom Tablet
 
@@ -321,6 +323,13 @@ in
     darktable
     tidal-hifi
     jq
+    # For quickshell config
+    libsForQt5.qt5.qtgraphicaleffects
+    kdePackages.qt5compat
+    kdePackages.syntax-highlighting
+    material-symbols
+    kodi-wayland
+    libsForQt5.plasma-bigscreen
 
     ollama
     # lmstudio

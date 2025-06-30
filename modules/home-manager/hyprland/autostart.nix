@@ -4,6 +4,9 @@
     exec-once = [
       "~/.config/nixos/scripts/swww/swww_wallpapersync.sh" #to create hyprland colors file the remove the source error
       "hyprpanel"
+      # "quickshell -p ~/.config/quickshell/zaphkiel/Zaphkiel/users/dots/quickshell/kurukurubar/"
+      # "nix run github:Rexcrazy804/Zaphkiel#quickshell"
+      # "nix shell github:Rexcrazy804/Zaphkiel#quickshell"
       #"waybar &"
       # "hyprpaper"
       # "swww-daemon & swww img ~/Pictures/"
