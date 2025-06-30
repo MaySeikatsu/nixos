@@ -376,7 +376,7 @@ in
       theme.bar.transparent = false;
       # theme.bar.transparent = true;
 
-      # wallpaper.enable = false;
+      wallpaper.enable = false;
       # wallpaper.image = "~/.config/nixos/ressources/wallpapers/1359465.png";
       # wallpaper.image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
       # wallpaper.image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
