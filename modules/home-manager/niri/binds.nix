@@ -140,7 +140,7 @@
 
           input = {
             power-key-handling.enable = false;
-            warp-mouse-to-focus = true;
+            warp-mouse-to-focus.enable = true;
 
             mouse = {
               accel-speed = 0.5;
@@ -170,7 +170,7 @@
               sh = spawn "sh" "-c";
             in
             {
-              "Super+Shift+M" = sh "~/.config/nixos/scripts/wall_cycle.sh";
+              # "Super+Shift+M" = sh "~/.config/nixos/scripts/wall_cycle.sh";
               "Super+Q".action = close-window;
               "Super+W".action = toggle-window-floating;
               "Alt+Return".action = fullscreen-window;

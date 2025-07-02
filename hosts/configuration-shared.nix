@@ -129,10 +129,10 @@ in
       #jack.enable = true;
       };
 
+    displayManager.gdm.enable = false;
+    desktopManager.gnome.enable = true;
     xserver = {
       # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = false;
-      desktopManager.gnome.enable = true;
       desktopManager.kodi.enable = true;
       # desktopManager.plasma5.bigscreen.enable = true;
 
