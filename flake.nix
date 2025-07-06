@@ -8,9 +8,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # Flake imports:
     zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
+    textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
+    nvix.url = "github:niksingh710/nvix";
+    ashell.url = "github:MalpenZibo/ashell";
+    eww.url = "github:elkowar/eww";
     hyprpanel = {
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,19 +29,11 @@
       url = "github:InioX/Matugen";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
-    # legionrgb = {
-    #   url = "github:/4JX/L5P-Keyboard-RGB";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.home-manager.follows = "home-manager";
     };
-    hyprddm.url = "github:maotseantonio/hyprddm";
-    textfox.url = "github:adriankarlen/textfox";
-
     niri = {
      url = "github:sodiboo/niri-flake";
      inputs.nixpkgs.follows = "nixpkgs";
@@ -46,16 +44,16 @@
     };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      # Optional, by default this flake follows nixpkgs-unstable.
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";       # Optional, by default this flake follows nixpkgs-unstable.
     };
-    # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
-    nvix.url = "github:niksingh710/nvix";
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ashell.url = "github:MalpenZibo/ashell";
+
+  # CURRENTLY UNUSED FLAKE IMPORTS
+    # hyprddm.url = "github:maotseantonio/hyprddm";
+    # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -63,6 +61,10 @@
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
+    # };
+    # legionrgb = {
+    #   url = "github:/4JX/L5P-Keyboard-RGB";
+    #   inputs.nixpkgs.follows = "nixpkgs";
     # };
   };
 
@@ -77,10 +79,11 @@
     nixcord,
     matugen,
     stylix,
-    hyprddm,
+    # hyprddm,
     textfox,
     niri,
     ashell,
+    eww,
     # nixCats-nvim,
     nvix,
     # sddm-astronaut-theme,

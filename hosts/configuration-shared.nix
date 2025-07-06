@@ -294,6 +294,8 @@ in
     inputs.nvix.packages.${pkgs.system}.full
     inputs.quickshell.packages.${system}.default
     inputs.ashell.defaultPackage.${pkgs.system}
+    # inputs.eww.packages.${system}.default #should work both
+    inputs.eww.packages.${system}.eww-wayland
     ripgrep
     spotify
     # discord #managed via nixcord flake 
