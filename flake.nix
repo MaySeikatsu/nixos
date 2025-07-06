@@ -55,6 +55,7 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ashell.url = "github:MalpenZibo/ashell";
     # hyprscroller = {
     #     url = "github:maotseantonio/hyprscroller-flake";
     #     inputs.hyprland.follows = "hyprland";
@@ -79,6 +80,7 @@
     hyprddm,
     textfox,
     niri,
+    ashell,
     # nixCats-nvim,
     nvix,
     # sddm-astronaut-theme,

@@ -293,6 +293,7 @@ in
     lshw #to show hardware info(needed for nvidia config)
     inputs.nvix.packages.${pkgs.system}.full
     inputs.quickshell.packages.${system}.default
+    inputs.ashell.defaultPackage.${pkgs.system}
     ripgrep
     spotify
     # discord #managed via nixcord flake 

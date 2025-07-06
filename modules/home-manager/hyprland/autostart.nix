@@ -8,6 +8,7 @@
       # "nix run github:Rexcrazy804/Zaphkiel#quickshell"
       # "nix shell github:Rexcrazy804/Zaphkiel#quickshell"
       #"waybar &"
+      #"ashell &"
       # "hyprpaper"
       # "swww-daemon & swww img ~/Pictures/"
       # "swww init & swww ~/Pictures/" 
