@@ -42,6 +42,9 @@ in
     ];
   };
   
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
+
   # nixCats = {
   #   enable = true;
   #   luaPath = "~/.config/nixCats-nvim/";
@@ -273,6 +276,7 @@ in
     pywal
     wallust
     power-profiles-daemon
+    powertop
     # hyprpanel #imported flawith the repo which can be used with Home Manager.
 # Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default
