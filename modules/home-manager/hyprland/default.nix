@@ -13,5 +13,6 @@
     # ./windowrules.nix #now under theme
     ./keyboard.nix
     ./workspace.nix
+    ./misc.nix
   ];
 }
