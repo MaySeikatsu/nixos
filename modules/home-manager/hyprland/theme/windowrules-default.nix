@@ -26,6 +26,7 @@
       "opacity 0.8 0.8,class:^(tidal-hifi)$"
       "opacity 0.8 0.8,class:^(wofi)$"
 
+      "idleinhibit always,class:^(teams-for-linux)$"
       # "noborder, class:^(zen-twilight)$" #nett aber not working
       "noborder, floating:1, class:^(zen-twilight)$"
       # "bordercolor rgb(00FF00), !floating:1, class:^(zen-twilight)$"
