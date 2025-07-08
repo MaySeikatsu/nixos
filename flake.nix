@@ -66,6 +66,10 @@
     #   url = "github:/4JX/L5P-Keyboard-RGB";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    ironbar = {
+      url = "github:JakeStanger/ironbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -86,6 +90,7 @@
     eww,
     # nixCats-nvim,
     nvix,
+    ironbar,
     # sddm-astronaut-theme,
     sddm-sugar-candy-nix,
     # hyprscroller,

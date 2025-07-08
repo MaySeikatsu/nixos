@@ -272,7 +272,8 @@ in
     pywal
     wallust
     power-profiles-daemon
-    # hyprpanel #imported flake
+    # hyprpanel #imported flawith the repo which can be used with Home Manager.
+# Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default
 
     floorp
@@ -295,7 +296,10 @@ in
     inputs.quickshell.packages.${system}.default
     inputs.ashell.defaultPackage.${pkgs.system}
     # inputs.eww.packages.${system}.default #should work both
-    inputs.eww.packages.${system}.eww-wayland
+    inputs.eww.packages.${system}.default #eww-wayland
+    inputs.ironbar.packages.${system}.default
+    # ironbar
+    polybar
     ripgrep
     spotify
     # discord #managed via nixcord flake 

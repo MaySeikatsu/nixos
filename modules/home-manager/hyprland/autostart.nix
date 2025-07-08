@@ -9,6 +9,7 @@
       # "nix shell github:Rexcrazy804/Zaphkiel#quickshell"
       #"waybar &"
       #"ashell &"
+      #"ironbar &"
       # "hyprpaper"
       # "swww-daemon & swww img ~/Pictures/"
       # "swww init & swww ~/Pictures/" 
