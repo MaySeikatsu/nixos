@@ -281,6 +281,7 @@ in
     # catppuccin-grub
 
     protonup
+    protonplus
     lutris
     heroic
     bottles
