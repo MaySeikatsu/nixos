@@ -281,6 +281,8 @@ in
     # catppuccin-grub
 
     protonup
+    protonup-rs
+    protonup-qt
     protonplus
     lutris
     heroic
@@ -381,5 +383,19 @@ in
     unzip
     dotnetCorePackages.sdk_8_0_1xx
   ];
+
+# Increase system-wide file descriptor limit
+boot.kernel.sysctl = {
+  "fs.file-max" = 524288;
+};
+
+# Increase limits for all users (including systemd services)
+# security.pam.loginLimits = [
+#   { domain = "*"; type = "soft"; item = "nofile"; value = "524288"; }
+#   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
+# ];
+
+# Specifically for the nix-daemon (if relevant)
+systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
 
 }
