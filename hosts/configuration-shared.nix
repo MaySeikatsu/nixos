@@ -255,6 +255,7 @@ in
     git
     # warp-terminal
     wget
+    fd
     # kanata
     gcc
     tealdeer
