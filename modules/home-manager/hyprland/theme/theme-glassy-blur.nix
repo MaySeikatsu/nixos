@@ -55,13 +55,13 @@
       shadow = {
         enabled = true;
         # range = 18;
+        # range = 10;
         range = 12;
         # range = 8;
         # render_power = 3;
-        render_power = 1;
-        # color = rgba(00000034);
+        render_power = 2;
+        color = "rgba(00000034)";
       };
-
     };
   };
 }
