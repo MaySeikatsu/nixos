@@ -9,6 +9,7 @@
     alacritty.enable = true;
     kitty.enable = true;
     ghostty.enable = true;
+    foot.enable = true;
     # yazi.enable = true;
     # neovim.enable = true;
     # btop.enable = true;

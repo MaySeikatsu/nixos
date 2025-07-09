@@ -42,7 +42,7 @@ in
     ];
   };
   
-  powerManagement.enable = true;
+  # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
 
   # nixCats = {
@@ -170,6 +170,9 @@ in
     hyprland.withUWSM = true;
 
     zsh.enable = true;    # Enable ZSH
+    zsh.enableCompletion = false;
+    # zsh.enableGlobalCompInit = false;
+
     firefox.enable = true;     # Install firefox.
     kdeconnect.enable = true;
 
@@ -277,6 +280,7 @@ in
     wallust
     power-profiles-daemon
     powertop
+    foot
     # hyprpanel #imported flawith the repo which can be used with Home Manager.
 # Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default

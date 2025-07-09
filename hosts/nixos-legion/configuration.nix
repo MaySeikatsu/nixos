@@ -27,6 +27,7 @@
   networking.hostName = "nixos-legion"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   services.power-profiles-daemon.enable = lib.mkDefault true;
+  # services.auto-cpufreq.enable = lib.mkForce true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -212,28 +213,37 @@ specialisation = {
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance";
-        CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
+
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
         CPU_DRIVER_OPMODE_ON_AC = "active";
         CPU_DRIVER_OPMODE_ON_BAT = "active";
 
-        WIFI_PWR_ON_AC = "on";
+        WIFI_PWR_ON_AC = "off";
         WIFI_PWR_ON_BAT = "on";
+
         RUNTIME_PM_ON_AC = "auto";
         RUNTIME_PM_ON_BAT = "auto";
 
         CPU_MIN_PERF_ON_AC = 10;
         CPU_MAX_PERF_ON_AC = 100;
-        CPU_MIN_PERF_ON_BAT = 10;
-        CPU_MAX_PERF_ON_BAT = 50;
+        CPU_MIN_PERF_ON_BAT = 0;
+        CPU_MAX_PERF_ON_BAT = 40;
 
         CPU_BOOST_ON_AC = 1;
         CPU_BOOST_ON_BAT = 0;
+
         CPU_HWP_DYN_BOOST_ON_AC = 1;
         CPU_HWP_DYN_BOOST_ON_BAT = 0;
 
-        START_CHARGE_THRESH_BAT0 = 85;
-        STOP_CHARGE_THRESH_BAT0 = 90;
+        # CPU_SCALING_MIN_FREQ_ON_AC=0;
+        # CPU_SCALING_MAX_FREQ_ON_AC=9999999;
+        # CPU_SCALING_MIN_FREQ_ON_BAT=0;
+        # CPU_SCALING_MAX_FREQ_ON_BAT=9999999;
+
+        START_CHARGE_THRESH_BAT0 = 0;
+        STOP_CHARGE_THRESH_BAT0 = 0;
 
         MEM_SLEEP_ON_AC = "deep";
         MEM_SLEEP_ON_BAT = "deep";
@@ -243,11 +253,21 @@ specialisation = {
 
         RADEON_DPM_STATE_ON_AC = "performance";
         RADEON_DPM_STATE_ON_BAT = "battery";
-        RADEON_POWER_PROFILE_ON_AC = "high";
+
+        RADEON_POWER_PROFILE_ON_AC = "auto";
         RADEON_POWER_PROFILE_ON_BAT = "low";
+
+        RADEON_DPM_PERF_LEVEL_ON_AC = "auto";
+        RADEON_DPM_PERF_LEVEL_ON_BAT = "low";
+
+        AMDGPU_ABM_LEVEL_ON_AC = 0;
+        AMDGPU_ABM_LEVEL_ON_BAT = 3; # might reduce brightness
 
         # INTEL_GPU_MIN_FREQ_ON_AC = 600;
         # INTEL_GPU_MIN_FREQ_ON_BAT = 600;
+      
+        NMI_WATCHDOG = 0;
+        RESTORE_DEVICE_STATE_ON_STARTUP = 1;
       };
     };
   };

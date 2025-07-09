@@ -23,6 +23,7 @@
     ../modules/home-manager/wezterm.nix
     ../modules/home-manager/gtk.nix
     ../modules/home-manager/qt.nix
+    ../modules/home-manager/foot.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
