@@ -13,7 +13,8 @@
 # Global section - values below can be overwritten by command line flags
 
 # How the image is parse, in order to get the colors:
-backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
+# backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
+backend = "wal" # full - resized - wal - thumb -  fastresize - kmeans
 
 
 # What color space to use to produce and select the most prominent colors:
@@ -25,7 +26,7 @@ color_space = "lch" # lab - labmixed - lch - lchmixed
 # harddark - harddark16 - harddarkcomp - harddarkcomp16
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
-palette = "dark"
+# palette = "dark"
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
@@ -90,3 +91,9 @@ walker.target = '/home/maike/.config/walker/themes/default.css'
 neopywal.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_neopywal.vim'
 # neopywal.target = '/home/maike/.cache/wallust/colors_neopywal.vim'
 neopywal.target = '/home/maike/.cache/wal/colors-wal.vim'
+
+foot.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_foot.ini'
+foot.target = '~/.cache/wallust/colors_foot.ini'
+
+ags.template =  '/home/maike/.config/nixos/ressources/wallust/templates/colors_ags.css'
+ags.target = '~/.config/ags/colors_ags.css'

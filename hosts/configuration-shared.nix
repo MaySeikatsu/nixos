@@ -111,6 +111,9 @@ in
   };
 
   services = {
+    system76-scheduler.enable = true; #without this the setting below would not apply
+    system76-scheduler.settings.cfsProfiles.enable = true; #enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+    upower.enable = config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
@@ -257,11 +260,9 @@ in
 
   environment.systemPackages = with pkgs; [ #would be pkgs.packagename without the with pkgs;
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    alacritty
     git
     # warp-terminal
     wget
-    fd
     # kanata
     gcc
     tealdeer
@@ -280,7 +281,6 @@ in
     wallust
     power-profiles-daemon
     powertop
-    foot
     # hyprpanel #imported flawith the repo which can be used with Home Manager.
 # Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default
@@ -332,8 +332,8 @@ in
     blender
     libresprite
     aseprite
-    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
     goxel
+    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
     kicad #pcb and electronics design
     obs-studio
     # davinci-resolve

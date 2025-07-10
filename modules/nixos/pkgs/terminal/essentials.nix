@@ -5,6 +5,8 @@
     # Terminal Emulators
     kitty
     ghostty
+    alacritty
+    foot
 
     # Terminal Utility
     zsh
@@ -13,9 +15,11 @@
     fzf
     zoxide
     lazygit
+    fd
 
     # Terminal Ressource Managers
     btop
+    htop
     nvtopPackages.full
 
     # Terminal File Explorers

@@ -10,9 +10,10 @@
       "float,class:^(xdg-desktop-portal-gtk)$"
 
       "float,title:^(Picture-in-Picture)$"
-      "pin, title:^(Picture-in-Picture)$"
-      "size, 709 397, title:^(Picture-in-Picture)$"
-      "move, 1833 1181, title:^(Picture-in-Picture)$"
+      "pin,title:^(Picture-in-Picture)$"
+      # "size 709 397, title:^(Picture-in-Picture)$" #good size
+      "size 355 199, title:^(Picture-in-Picture)$"
+      "move 100%-w-24 100%-w-24, title:^(Picture-in-Picture)$"
     ];
     windowrulev2 = [
       "opacity 0.9 0.9,class:^(steam)$"
