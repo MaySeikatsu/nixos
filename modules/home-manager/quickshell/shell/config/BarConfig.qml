@@ -17,7 +17,7 @@ Singleton {
     }
 
     component Workspaces: QtObject {
-        property int shown: 5
+        property int shown: 1
         property bool rounded: true
         property bool activeIndicator: true
         property bool occupiedBg: false
