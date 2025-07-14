@@ -27,6 +27,8 @@
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
+    ../modules/home-manager/quickshell
+
     
     # ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix

@@ -50,6 +50,14 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    claude-desktop = {
+      url = "github:k3d3/claude-desktop-linux-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
@@ -93,6 +101,8 @@
     ironbar,
     # sddm-astronaut-theme,
     sddm-sugar-candy-nix,
+    astal,
+    claude-desktop,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
