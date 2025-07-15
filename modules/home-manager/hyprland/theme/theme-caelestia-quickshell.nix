@@ -8,11 +8,12 @@
     ];
 
     general = {
-      gaps_in = 8;
-      gaps_out = 0;
+      # gaps_in = 8;
+      gaps_in = 2;
+      gaps_out = 4;
       border_size = 0;
       # "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
-      # "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+      # "col.inactive_border" = "rgba(00000000)";
       layout = "dwindle";
       resize_on_border = true;
       # allow_tearing = true;
@@ -30,7 +31,8 @@
     # };
 
     decoration = {
-      rounding = 24;
+      # rounding = 24;
+      rounding = 25;
       # rounding_power = 7.0; #4.0 is a squircle
       active_opacity = 1.0;
       inactive_opacity = 0.94;
