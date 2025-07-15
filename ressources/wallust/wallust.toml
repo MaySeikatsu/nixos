@@ -14,7 +14,7 @@
 
 # How the image is parse, in order to get the colors:
 # backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
-backend = "wal" # full - resized - wal - thumb -  fastresize - kmeans
+backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
 
 
 # What color space to use to produce and select the most prominent colors:
@@ -31,7 +31,7 @@ color_space = "lch" # lab - labmixed - lch - lchmixed
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
 # with your images. The reference color for the contrast is the background color.
-# check_contrast = true
+check_contrast = true
 
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
@@ -97,3 +97,6 @@ foot.target = '~/.cache/wallust/colors_foot.ini'
 
 ags.template =  '/home/maike/.config/nixos/ressources/wallust/templates/colors_ags.css'
 ags.target = '~/.config/ags/colors_ags.css'
+
+cava.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-cava'
+cava.target = '/home/maike/.config/cava/config'

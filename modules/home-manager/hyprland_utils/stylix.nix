@@ -13,8 +13,8 @@
     # yazi.enable = true;
     # neovim.enable = true;
     # btop.enable = true;
-    cava.enable = true;
-    cava.rainbow.enable = true;
+    # cava.enable = true;
+    # cava.rainbow.enable = true;
     # nixcord.enable = true;
     # vencord.enable = true;
     # vesktop.enable = true;

@@ -4,6 +4,7 @@
 
     fastfetch
     cava
+    cavalier
     cbonsai
     pipes-rs
     cmatrix
