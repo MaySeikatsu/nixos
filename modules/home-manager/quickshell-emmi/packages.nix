@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ config, pkgs, inputs, lib, ... }:
 
 let
   # Caelestia scripts derivation with Python shebang fixes
@@ -16,21 +10,15 @@ let
       owner = "caelestia-dots";
       repo = "scripts";
       rev = "main";
-      sha256 = "sha256-60GdtCjNtwRCHnIlRak3Hl6hJQPtINoS7g5bb5e60P4";
+      # sha256 = "sha256-60GdtCjNtwRCHnIlRak3Hl6hJQPtINoS7g5bb5e60P4"; #PC
+      sha256 = "sha256-xaSDZXvZtuM+88PsmfTDWv6+VxN5cOsT/5/czsk3xgI="; # Legion
     };
 
-    nativeBuildInputs = with pkgs; [
-      makeWrapper
-    ];
+    nativeBuildInputs = with pkgs; [ makeWrapper ];
 
     buildInputs = with pkgs; [
       fish
-      (python3.withPackages (
-        ps: with ps; [
-          materialyoucolor
-          pillow
-        ]
-      ))
+      (python3.withPackages (ps: with ps; [ materialyoucolor pillow ]))
     ];
 
     patchPhase = ''
@@ -60,36 +48,16 @@ let
 
       # Fix Python shebangs for NixOS with the wrapped Python
       find $out/share/caelestia-scripts -name "*.py" -type f -exec sed -i '1s|^#!/bin/python3|#!${
-        pkgs.python3.withPackages (
-          ps: with ps; [
-            materialyoucolor
-            pillow
-          ]
-        )
+        pkgs.python3.withPackages (ps: with ps; [ materialyoucolor pillow ])
       }/bin/python3|' {} \;
       find $out/share/caelestia-scripts -name "*.py" -type f -exec sed -i '1s|^#!/bin/python|#!${
-        pkgs.python3.withPackages (
-          ps: with ps; [
-            materialyoucolor
-            pillow
-          ]
-        )
+        pkgs.python3.withPackages (ps: with ps; [ materialyoucolor pillow ])
       }/bin/python|' {} \;
       find $out/share/caelestia-scripts -name "*.py" -type f -exec sed -i '1s|^#!/usr/bin/env python3|#!${
-        pkgs.python3.withPackages (
-          ps: with ps; [
-            materialyoucolor
-            pillow
-          ]
-        )
+        pkgs.python3.withPackages (ps: with ps; [ materialyoucolor pillow ])
       }/bin/python3|' {} \;
       find $out/share/caelestia-scripts -name "*.py" -type f -exec sed -i '1s|^#!/usr/bin/env python|#!${
-        pkgs.python3.withPackages (
-          ps: with ps; [
-            materialyoucolor
-            pillow
-          ]
-        )
+        pkgs.python3.withPackages (ps: with ps; [ materialyoucolor pillow ])
       }/bin/python|' {} \;
 
       # Make Python scripts executable
@@ -127,31 +95,23 @@ let
         --add-flags "$out/share/caelestia-scripts/run.sh" \
         --run "$out/bin/caelestia-setup" \
         --prefix PATH : ${
-          lib.makeBinPath (
-            with pkgs;
-            [
-              imagemagick
-              wl-clipboard
-              fuzzel
-              socat
-              foot
-              jq
-              (python3.withPackages (
-                ps: with ps; [
-                  materialyoucolor
-                  pillow
-                ]
-              ))
-              grim
-              wayfreeze
-              wl-screenrec
-              git
-              coreutils
-              findutils
-              gnugrep
-              xdg-user-dirs
-            ]
-          )
+          lib.makeBinPath (with pkgs; [
+            imagemagick
+            wl-clipboard
+            fuzzel
+            socat
+            foot
+            jq
+            (python3.withPackages (ps: with ps; [ materialyoucolor pillow ]))
+            grim
+            wayfreeze
+            wl-screenrec
+            git
+            coreutils
+            findutils
+            gnugrep
+            xdg-user-dirs
+          ])
         }
     '';
 
@@ -163,28 +123,21 @@ let
   };
 
   # Wrap quickshell with Qt dependencies and required tools in PATH
-  quickshell-wrapped =
-    pkgs.runCommand "quickshell-wrapped"
-      {
-        nativeBuildInputs = [ pkgs.makeWrapper ];
-      }
-      ''
-        mkdir -p $out/bin
-        makeWrapper ${inputs.quickshell.packages.${pkgs.system}.default}/bin/qs $out/bin/qs \
-          --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qtbase}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
-          --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qt5compat}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
-          --prefix QML2_IMPORT_PATH : "${pkgs.qt6.qt5compat}/${pkgs.qt6.qtbase.qtQmlPrefix}" \
-          --prefix QML2_IMPORT_PATH : "${pkgs.qt6.qtdeclarative}/${pkgs.qt6.qtbase.qtQmlPrefix}" \
-          --prefix PATH : ${
-            lib.makeBinPath [
-              pkgs.fd
-              pkgs.coreutils
-            ]
-          }
-      '';
+  quickshell-wrapped = pkgs.runCommand "quickshell-wrapped" {
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+  } ''
+    mkdir -p $out/bin
+    makeWrapper ${
+      inputs.quickshell.packages.${pkgs.system}.default
+    }/bin/qs $out/bin/qs \
+      --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qtbase}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
+      --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qt5compat}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
+      --prefix QML2_IMPORT_PATH : "${pkgs.qt6.qt5compat}/${pkgs.qt6.qtbase.qtQmlPrefix}" \
+      --prefix QML2_IMPORT_PATH : "${pkgs.qt6.qtdeclarative}/${pkgs.qt6.qtbase.qtQmlPrefix}" \
+      --prefix PATH : ${lib.makeBinPath [ pkgs.fd pkgs.coreutils ]}
+  '';
 
-in
-{
+in {
   options.programs.quickshell = {
     finalPackage = lib.mkOption {
       type = lib.types.package;
