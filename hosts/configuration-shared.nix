@@ -7,7 +7,9 @@ in {
     inputs.home-manager.nixosModules.default
     ./../modules/nixos/pkgs/terminal/essentials.nix
     ./../modules/nixos/pkgs/terminal/rice.nix
+    # ./../modules/nixos/pkgs/audio_engineering.nix
     ./../modules/nixos/pkgs/hyprland.nix
+
     ./../modules/home-manager/spicetify.nix
     ./../modules/nixos/config/kanata.nix
     ./../modules/nixos/config/matugen.nix
@@ -294,6 +296,10 @@ in {
       floorp
       # catppuccin-grub
 
+      wineWowPackages.stable
+      wineWowPackages.waylandFull
+      winetricks
+      protontricks
       protonup
       protonup-rs
       protonup-qt
