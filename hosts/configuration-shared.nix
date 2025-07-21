@@ -16,6 +16,7 @@ in {
     ./../modules/nixos/config/stylix.nix
     ../modules/nixos/config/niri.nix
     ../modules/nixos/config/sddm-astronaut-theme.nix
+    ../modules/nixos/virtualisation.nix
     # ../modules/nixos/config/sddm-sugar-candy.nix
   ];
 
@@ -128,6 +129,7 @@ in {
 
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
     printing.enable = true; # Enable CUPS to print documents.
+    flatpak.enable = true;
 
     udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
 
@@ -311,7 +313,6 @@ in {
       steam-tui
       steamcmd
       ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-      ledfx
       # For Steam VR (troubleshooting):
       # procps
       # usbutils
@@ -326,6 +327,9 @@ in {
       polybar
       ripgrep
       spotify
+      ledfx
+      openrgb-with-all-plugins
+      hyperion-ng
       # discord #managed via nixcord flake 
       # vesktop #vencord desktop client without overwriting the official discord binary
       revolt-desktop
