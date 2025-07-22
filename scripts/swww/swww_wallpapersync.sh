@@ -16,16 +16,19 @@ mkdir "~/.config/hypr/colors-hyprland.conf"
 
 # Get all connected monitor names using hyprctl's JSON output
 for monitor in $(hyprctl -j monitors | jq -r '.[].name'); do
-  # Construct the path to the wallpaper file for this monitor
-  WP_PATH=$(grep '/home/' "/home/maike/.cache/swww/$monitor")
+	# Construct the path to the wallpaper file for this monitor
+	WP_PATH=$(grep '/home/' "/home/maike/.cache/swww/$monitor")
 
-  # Do something with $WP_PATH, e.g., update symlink for each monitor
-  if [ -n "$WP_PATH" ]; then
-    ln -sf "$WP_PATH" "/home/maike/.current-wallpaper"
-    echo "Set wallpaper for $monitor: $WP_PATH"
-  fi
+	# Do something with $WP_PATH, e.g., update symlink for each monitor
+	if [ -n "$WP_PATH" ]; then
+		ln -sf "$WP_PATH" "/home/maike/.current-wallpaper"
+		echo "Set wallpaper for $monitor: $WP_PATH"
+	fi
 done
 
 wallust run ~/.current-wallpaper
 
 # SCRIPTS MIGHT NEED: sudo chmod +x ./swww-find-wallpaper.sh     to run the scripts
+
+#Sync RGB Color to Wallpaper
+~/.config/nixos/scripts/openrbg.sh
