@@ -48,58 +48,58 @@ check_contrast = true
 # ¡ If either one is a directory, then both SHOULD be one. !
 # zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
 
-kitty.template = 'home/maike/.config/nixos/ressources/wallust/templates/colors-kitty.conf'
+kitty.template = 'home/maike/.config/nixos/ressources/theming/wallust/templates/colors-kitty.conf'
 kitty.target = '/home/maike/.config/kitty/kitty.conf'
 
-yazi.template = 'home/maike/.config/nixos/ressources/wallust/templates/yazi-theme.toml'
+yazi.template = 'home/maike/.config/nixos/ressources/theming/wallust/templates/yazi-theme.toml'
 yazi.target = '/home/maike/.config/yazi/yazi-theme.toml'
 
-ghostty.template = '/home/maike/.config/nixos/ressources/wallust/templates/ghostty.theme'
+ghostty.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/ghostty.theme'
 ghostty.target = '/home/maike/.config/ghostty/colors-config'
 
-wezterm.template = '/home/maike/.config/nixos/ressources/wallust/templates/wezterm.toml'
+wezterm.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/wezterm.toml'
 wezterm.target = '/home/maike/.config/wezterm/colors-wezterm.toml'
 
-hyprland.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-hyprland.conf'
+hyprland.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-hyprland.conf'
 hyprland.target = '/home/maike/.config/hypr/colors-hyprland.conf'
 
 spicetify.template = '~/templates/colors-spicetify.ini'
 spicetify.target = '~/.config/spotify/Themes/wallust/color.ini'
 
-hyprpanel.template = "/home/maike/.config/nixos/ressources/wallust/templates/hyprpanel.json"
+hyprpanel.template = "/home/maike/.config/nixos/ressources/theming/wallust/templates/hyprpanel.json"
 # hyprpanel.target = "~/.config/config.hm.json"
 hyprpanel.target = "/home/maike/.config/hyprpanel/config.json"
 
-waybar = { src = "/home/maike/.config/nixos/ressources/wallust/templates/waybar-colors.css", dst = "/home/maike/.config/waybar/colors.css" }
+waybar = { src = "/home/maike/.config/nixos/ressources/theming/wallust/templates/waybar-colors.css", dst = "/home/maike/.config/waybar/colors.css" }
 
-neovim.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-neovim.vim'
+neovim.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-neovim.vim'
 neovim.target = '/home/maike/.config/nvim/colors/wallust.vim'
 
-wofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-wofi.css'
+wofi.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-wofi.css'
 wofi.target = '/home/maike/.config/wofi/style.css'
 
 #currently overwrites the whole tidal config
 # tidal.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-tidalhifi.css'
 # tidal.target = '/home/maike/.config/tidal-hifi/config.json'
 
-rofi.template = '/home/maike/.config/nixos/ressources/wallust/templates/rofi-colors.rasi'
+rofi.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/rofi-colors.rasi'
 rofi.target = '/home/maike/.config/rofi/colors.rasi'
 
-walker.template = '/home/maike/.config/nixos/ressources/wallust/templates/walker-colors.css'
+walker.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/walker-colors.css'
 walker.target = '/home/maike/.config/walker/themes/default.css'
 
-neopywal.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_neopywal.vim'
+neopywal.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_neopywal.vim'
 # neopywal.target = '/home/maike/.cache/wallust/colors_neopywal.vim'
 neopywal.target = '/home/maike/.cache/wal/colors-wal.vim'
 
-foot.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_foot.ini'
+foot.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_foot.ini'
 foot.target = '~/.cache/wallust/colors_foot.ini'
 
-ags.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_ags.css'
+ags.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_ags.css'
 ags.target = '~/.config/ags/colors_ags.css'
 
-cava.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-cava'
+cava.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-cava'
 cava.target = '/home/maike/.config/cava/config'
 
-quickshell.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-quickshell.qml'
+quickshell.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-quickshell.qml'
 quickshell.target = '/home/maike/Downloads/github/quickshell/quickshell-examples/self/v1/Colors.qml'

@@ -6,7 +6,7 @@
     ./../modules/home-manager/terminal/zsh.nix
     ./../modules/home-manager/terminal/tmux.nix
     ./../modules/home-manager/zen-browser.nix
-    ./../modules/home-manager/nixcord.nix
+    # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
     ./../modules/home-manager/ghostty.nix
     ./../modules/home-manager/terminal/git.nix
     ./../modules/home-manager/terminal/yazi.nix
