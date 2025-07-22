@@ -295,7 +295,7 @@ in {
       wallust # rust
       power-profiles-daemon
       powertop
-      # hyprpanel #imported flawith the repo which can be used with Home Manager.
+      hyprpanel # imported flawith the repo which can be used with Home Manager.
       # Exampleke
       # inputs.hyprddm.packages.${pkgs.system}.default
 
