@@ -7,14 +7,14 @@ let
   # warning = "#${colors.base08}";
   # hover = "#${colors.base02}";
 in {
-  imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
+  # imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   programs.hyprpanel = {
     enable = true;
     # systemd.enable = true;
     # hyprland.enable = true;
-    overwrite.enable = true;
-    overlay.enable = true;
+    # overwrite.enable = true;
+    # overlay.enable = true;
 
     # override = {
     #   # # Global bar settings

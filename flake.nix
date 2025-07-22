@@ -10,17 +10,19 @@
     };
 
     # Flake imports:
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";     # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
-    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; #the rev value can be removed in the future, currently there is a but and the old rev must be used
+    zen-browser.url =
+      "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    nixcord.url =
+      "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; # the rev value can be removed in the future, currently there is a but and the old rev must be used
     textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
     nvix.url = "github:niksingh710/nvix";
     ashell.url = "github:MalpenZibo/ashell";
     eww.url = "github:elkowar/eww";
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprpanel = {
+    #   url = "github:Jas-SinghFSU/HyprPanel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,16 +37,17 @@
       # inputs.home-manager.follows = "home-manager";
     };
     niri = {
-     url = "github:sodiboo/niri-flake";
-     inputs.nixpkgs.follows = "nixpkgs";
-    };   
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sddm-astronaut-theme = {
       url = "./ressources/sddm-astronaut-theme";
       # url = "github:MaySeikatsu/sddm-astronaut-theme";
     };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";       # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows =
+        "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
     };
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -59,7 +62,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-  # CURRENTLY UNUSED FLAKE IMPORTS
+    # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
     # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
     # hyprscroller = {
@@ -80,133 +83,121 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    zen-browser,
-    home-manager,
-    hyprpanel,
-    swww,
-    spicetify-nix,
-    nixcord,
-    matugen,
-    stylix,
+  outputs = { self, nixpkgs, zen-browser, home-manager,
+    # hyprpanel,
+    swww, spicetify-nix, nixcord, matugen, stylix,
     # hyprddm,
-    textfox,
-    niri,
-    ashell,
-    eww,
+    textfox, niri, ashell, eww,
     # nixCats-nvim,
-    nvix,
-    ironbar,
+    nvix, ironbar,
     # sddm-astronaut-theme,
-    sddm-sugar-candy-nix,
-    astal,
-    claude-desktop,
+    sddm-sugar-candy-nix, astal, claude-desktop,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
-    ...
-    }@ inputs: let
+    ... }@inputs:
+    let
       system = "x86_64-linux";
       host = "nixos-maike-pc";
       host2 = "nixos-legion";
       username = "maike";
     in {
-    nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
-      specialArgs = {
+      nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {
           inherit inputs;
           inherit host;
           inherit system;
         };
-      modules = [
-        ./hosts/nixos-maike-pc/configuration.nix
+        modules = [
+          ./hosts/nixos-maike-pc/configuration.nix
 
-        # Nix Modules
-        inputs.spicetify-nix.nixosModules.default
-        inputs.stylix.nixosModules.stylix
-        matugen.nixosModules.default
-        sddm-sugar-candy-nix.nixosModules.default
-        # nixCats-nvim.nixosModules.default
+          # Nix Modules
+          inputs.spicetify-nix.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+          matugen.nixosModules.default
+          sddm-sugar-candy-nix.nixosModules.default
+          # nixCats-nvim.nixosModules.default
 
-        #Overlays (?)
-        {
-          nixpkgs.overlays = [
-              inputs.hyprpanel.overlay
+          #Overlays (?)
+          {
+            nixpkgs.overlays = [
+              # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
-          ];
-        }
-
-        # Home Manager as a NIXOS Module
-        home-manager.nixosModules.home-manager {
-          home-manager = {
-            users.maike = import ./hosts/nixos-maike-pc/home.nix;
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-          # Home-Manager Modules 
-            extraSpecialArgs = {
-              inherit inputs; # apperently needed for textfox?
-            };
-            sharedModules = [
-            inputs.nixcord.homeManagerModules.nixcord
-            textfox.homeManagerModules.default
-            # inputs.nixCats-nvim.homeModule
-            # inputs.matugen.packages.${system}.default
-              # inputs.stylix.homeModules.stylix
             ];
-          };
-        }
+          }
 
-      ];
-    };
-    nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
-      specialArgs = {
+          # Home Manager as a NIXOS Module
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              users.maike = import ./hosts/nixos-maike-pc/home.nix;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              # Home-Manager Modules 
+              extraSpecialArgs = {
+                inherit inputs; # apperently needed for textfox?
+              };
+              sharedModules = [
+                inputs.nixcord.homeManagerModules.nixcord
+                textfox.homeManagerModules.default
+                # inputs.nixCats-nvim.homeModule
+                # inputs.matugen.packages.${system}.default
+                # inputs.stylix.homeModules.stylix
+              ];
+            };
+          }
+
+        ];
+      };
+      nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
+        specialArgs = {
           inherit inputs;
           inherit host2;
           inherit system;
         };
-      modules = [
-        ./hosts/nixos-legion/configuration.nix
+        modules = [
+          ./hosts/nixos-legion/configuration.nix
 
-        # Nix Modules
-        inputs.spicetify-nix.nixosModules.default
-        inputs.stylix.nixosModules.stylix
-        matugen.nixosModules.default
-        sddm-sugar-candy-nix.nixosModules.default
-        # nixCats-nvim.nixosModules.default
+          # Nix Modules
+          inputs.spicetify-nix.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+          matugen.nixosModules.default
+          sddm-sugar-candy-nix.nixosModules.default
+          # nixCats-nvim.nixosModules.default
 
-        #Overlays (?)
-        {
-          nixpkgs.overlays = [
-              inputs.hyprpanel.overlay
+          #Overlays (?)
+          {
+            nixpkgs.overlays = [
+              # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
-          ];
-        }
-
-        # Home Manager as a NIXOS Module
-        home-manager.nixosModules.home-manager {
-          home-manager = {
-            users.maike = import ./hosts/nixos-legion/home.nix;
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-          # Home-Manager Modules 
-            extraSpecialArgs = {
-              inherit inputs; # apperently needed for textfox?
-            };
-            sharedModules = [
-            inputs.nixcord.homeManagerModules.nixcord
-            textfox.homeManagerModules.default
-            # inputs.nixCats-nvim.homeModule
-            # inputs.matugen.packages.${system}.default
-              # inputs.stylix.homeModules.stylix
             ];
-          };
-        }
+          }
 
-      ];
+          # Home Manager as a NIXOS Module
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              users.maike = import ./hosts/nixos-legion/home.nix;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              # Home-Manager Modules 
+              extraSpecialArgs = {
+                inherit inputs; # apperently needed for textfox?
+              };
+              sharedModules = [
+                inputs.nixcord.homeManagerModules.nixcord
+                textfox.homeManagerModules.default
+                # inputs.nixCats-nvim.homeModule
+                # inputs.matugen.packages.${system}.default
+                # inputs.stylix.homeModules.stylix
+              ];
+            };
+          }
+
+        ];
+      };
     };
-  };
 }
 
