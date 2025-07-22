@@ -274,8 +274,12 @@ in {
       # warp-terminal
       wget
       # kanata
+      bat # rust
+      bottom # rust
+      macchina # neofetch alt rust
+      # tokei #rust
       gcc
-      tealdeer
+      tealdeer # rust
       rustup
       rustfmt
       rust-analyzer
@@ -285,10 +289,10 @@ in {
       ncdu # storage scanning and cleanup tool
       # waypaper
       waytrogen # rust based wallpaper changer
-      matugen
+      matugen # rust
       inputs.matugen.packages.${system}.default
-      pywal
-      wallust
+      # pywal
+      wallust # rust
       power-profiles-daemon
       powertop
       # hyprpanel #imported flawith the repo which can be used with Home Manager.
@@ -325,20 +329,20 @@ in {
       inputs.ironbar.packages.${system}.default
       # ironbar
       polybar
-      ripgrep
+      ripgrep # rust
       spotify
       ledfx
       openrgb-with-all-plugins
-      hyperion-ng
+      hyperion-ng # not working yet
       # discord #managed via nixcord flake 
-      # vesktop #vencord desktop client without overwriting the official discord binary
+      vesktop # vencord desktop client without overwriting the official discord binary
       revolt-desktop
       element-desktop
       osu-lazer-bin
       easyeffects
       zed-editor
       code-cursor
-      hellwal
+      # hellwal
       # microsoft-edge
       obsidian
       ticktick
@@ -389,7 +393,7 @@ in {
       pavucontrol # audio volume and device control
       # firefoxpwa
       vial
-      via
+      # via
       intiface-central
       protontricks
 
@@ -431,5 +435,11 @@ in {
 
   # Specifically for the nix-daemon (if relevant)
   systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
-
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
 }
