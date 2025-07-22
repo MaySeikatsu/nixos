@@ -336,6 +336,7 @@ in {
       hyperion-ng # not working yet
       # discord #managed via nixcord flake 
       vesktop # vencord desktop client without overwriting the official discord binary
+      discordo # discord cli client
       revolt-desktop
       element-desktop
       osu-lazer-bin
@@ -346,7 +347,8 @@ in {
       # microsoft-edge
       obsidian
       ticktick
-      gimp-with-plugins
+      # gimp-with-plugins #broke on last update - reanable and troubleshoot
+      gimp
       krita
       godot_4
       blender
@@ -359,7 +361,7 @@ in {
       # davinci-resolve
       poppler
       base16-schemes
-      darktable
+      # darktable #like lightroom
       tidal-hifi
       jq
       # For quickshell config
@@ -439,7 +441,7 @@ in {
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];
     script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo  
     '';
   };
 }
