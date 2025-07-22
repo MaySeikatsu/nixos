@@ -228,6 +228,7 @@ in {
         menus = {
           dashboard = {
             directories = {
+              enabled = true;
               left = {
                 directory1.command = ''bash -c "xdg-open $HOME/Downloads/"'';
                 directory1.label = "󰉍 Downloads";
@@ -242,16 +243,13 @@ in {
                 directory2.command = ''bash -c "xdg-open $HOME/Pictures/"'';
                 directory2.label = "󰉏 Pictures";
                 directory3.label = "󱂵 Home";
+                directory3.command = ''bash -c "xdg-open $HOME/"'';
               };
 
             };
             shortcuts = {
               enabled = true;
               right.shortcut1.command = "gcolor3";
-            };
-            directories = {
-              enabled = true;
-              right.directory3.command = ''bash -c "xdg-open $HOME/"'';
             };
             controls.enabled = true;
             stats.enable_gpu = false;
