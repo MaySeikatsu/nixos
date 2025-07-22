@@ -95,8 +95,11 @@ neopywal.target = '/home/maike/.cache/wal/colors-wal.vim'
 foot.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_foot.ini'
 foot.target = '~/.cache/wallust/colors_foot.ini'
 
-ags.template =  '/home/maike/.config/nixos/ressources/wallust/templates/colors_ags.css'
+ags.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors_ags.css'
 ags.target = '~/.config/ags/colors_ags.css'
 
 cava.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-cava'
 cava.target = '/home/maike/.config/cava/config'
+
+quickshell.template = '/home/maike/.config/nixos/ressources/wallust/templates/colors-quickshell.qml'
+quickshell.target = '/home/maike/Downloads/github/quickshell/quickshell-examples/self/v1/Colors.qml'
