@@ -103,3 +103,6 @@ cava.target = '/home/maike/.config/cava/config'
 
 quickshell.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-quickshell.qml'
 quickshell.target = '/home/maike/Downloads/github/quickshell/quickshell-examples/self/v1/Colors.qml'
+
+vesktop.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-vesktop.css'
+vesktop.target = '/home/maike/.config/vesktop/themes/midnight-dynamic.theme.css'
