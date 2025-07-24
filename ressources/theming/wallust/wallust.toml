@@ -14,19 +14,21 @@
 
 # How the image is parse, in order to get the colors:
 # backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
-backend = "fastresize" # full - resized - wal - thumb -  fastresize - kmeans
+backend = "wal" # full - resized - wal - thumb -  fastresize - kmeans
 
 
 # What color space to use to produce and select the most prominent colors:
 color_space = "lch" # lab - labmixed - lch - lchmixed
+  # color_space = "ansidark" # lab - labmixed - lch - lchmixed
 
 # Use the most prominent colors in a way that makes sense, a scheme color palette:
-# dark - dark16 - darkcomp - darkcomp16
+# dark - dark16 - darkcomp - darkcomp16 #comp inverts the contrast colors to the initial one
 # light - light16 - lightcomp - lightcomp16
 # harddark - harddark16 - harddarkcomp - harddarkcomp16
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
-# palette = "dark"
+palette = "harddark" #dark with colored background
+  # palette = "ansidark" #for ansi colorspace use with ansidark colorspace
 
 # Ensures a "readable contrast" (OPTIONAL, disabled by default)
 # Should only be enabled when you notice an unreadable contrast frequently happening
