@@ -36,7 +36,7 @@ check_contrast = true
 # Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
 # usually something higher than 50 increases the saturation and below
 # decreases it (on a scheme with strong and vivid colors)
-# saturation = 95
+saturation = 75
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
 #alpha = 100
@@ -104,5 +104,8 @@ cava.target = '/home/maike/.config/cava/config'
 quickshell.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-quickshell.qml'
 quickshell.target = '/home/maike/Downloads/github/quickshell/quickshell-examples/self/v1/Colors.qml'
 
-vesktop.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-vesktop.css'
-vesktop.target = '/home/maike/.config/vesktop/themes/midnight-dynamic.theme.css'
+vesktop1.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-vesktop-midnight.css'
+vesktop1.target = '/home/maike/.config/vesktop/themes/midnight-dynamic.theme.css'
+
+vesktop2.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-vesktop-system24.css'
+vesktop2.target = '/home/maike/.config/vesktop/themes/system24-dynamic.theme.css'
