@@ -94,6 +94,7 @@ body {
     --active-2: hsla(250, 20%, 40%, 0.3); /* extra state for transparent buttons */
     --message-hover: hsla(250, 0%, 0%, 0.1); /* messages when hovered */
 
+
     /* accent colors */
     --accent-1: hsl(2, 65%, 88%); /* links and other accent text */
     --accent-2: {{color0 }}; /* small accent elements */
