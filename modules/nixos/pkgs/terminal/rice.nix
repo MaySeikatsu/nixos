@@ -8,6 +8,9 @@
     cbonsai
     pipes-rs
     cmatrix
+    rsclock
+    steam-tui
+    discordo # discord cli client
 
   ];
 }

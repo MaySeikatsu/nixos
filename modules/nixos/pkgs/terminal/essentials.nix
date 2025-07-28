@@ -10,6 +10,7 @@
 
     # Terminal Utility
     zsh
+    # starship
     tmux
     lsd
     fzf
@@ -20,6 +21,7 @@
     # Terminal Ressource Managers
     btop
     htop
+    bottom
     nvtopPackages.full
 
     # Terminal File Explorers

@@ -1,4 +1,4 @@
-{ nfig, inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   home.sessionVariables = {
     # HOSTNAME = "${config.networking.hostName}";

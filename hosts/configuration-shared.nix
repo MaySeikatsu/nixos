@@ -275,7 +275,6 @@ in {
       wget
       # kanata
       bat # rust
-      bottom # rust
       macchina # neofetch alt rust
       # tokei #rust
       gcc
@@ -314,7 +313,6 @@ in {
       heroic
       bottles
       mangohud
-      steam-tui
       steamcmd
       ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
       # For Steam VR (troubleshooting):
@@ -331,12 +329,12 @@ in {
       polybar
       ripgrep # rust
       spotify
+      # spicetify-cli
       ledfx
       openrgb-with-all-plugins
       hyperion-ng # not working yet
       # discord #managed via nixcord flake 
       vesktop # vencord desktop client without overwriting the official discord binary
-      discordo # discord cli client
       revolt-desktop
       element-desktop
       osu-lazer-bin

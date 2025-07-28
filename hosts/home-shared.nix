@@ -10,6 +10,7 @@
     ./../modules/home-manager/ghostty.nix
     ./../modules/home-manager/terminal/git.nix
     ./../modules/home-manager/terminal/yazi.nix
+    ./../modules/home-manager/terminal/starship.nix
     ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
     ../modules/home-manager/kitty.nix

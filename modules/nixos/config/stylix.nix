@@ -62,7 +62,7 @@
           # gtk.enable = true;
           # qt.enable = true;
           nixos-icons.enable = true;
-          spicetify.enable = true;
+          spicetify.enable = false;
       };
       fonts = {
       sizes = {
