@@ -51,6 +51,8 @@ in {
               "power"
             ];
           };
+        };
+        "bar.layouts" = {
           "1" = {
             left = [ "dashboard" "windowtitle" "systray" "media" "cava" ];
             middle = [ "workspaces" ];
@@ -208,7 +210,7 @@ in {
         osd.scaling = 80;
         tooltip.scaling = 80;
         notification.scaling = 80;
-        matugen = true;
+        matugen = false;
         matugen_settings = {
           mode = "dark";
           scheme_type = "tonal-spot";
@@ -219,7 +221,7 @@ in {
         };
         wallpaper = {
           enable = false;
-          pywal = true;
+          pywal = false;
           # image = "~/.config/nixos/ressources/wallpapers/1359465.png";
           # image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
           # image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
