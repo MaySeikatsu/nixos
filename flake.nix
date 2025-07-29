@@ -61,6 +61,9 @@
       url = "github:k3d3/claude-desktop-linux-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium = {
+      url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    };
 
     # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
@@ -83,15 +86,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, zen-browser, home-manager,
+  outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
+    , nixcord, matugen, stylix, textfox, niri, ashell, eww, nvix, ironbar
+    , sddm-sugar-candy-nix, astal, claude-desktop, millennium,
     # hyprpanel,
-    swww, spicetify-nix, nixcord, matugen, stylix,
     # hyprddm,
-    textfox, niri, ashell, eww,
     # nixCats-nvim,
-    nvix, ironbar,
     # sddm-astronaut-theme,
-    sddm-sugar-candy-nix, astal, claude-desktop,
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
@@ -123,6 +124,8 @@
             nixpkgs.overlays = [
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
+              inputs.millennium.overlays.default
+              # inputs.millennium.overlays.millennium
             ];
           }
 
@@ -171,6 +174,7 @@
             nixpkgs.overlays = [
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
+              inputs.millennium.overlays.default
             ];
           }
 

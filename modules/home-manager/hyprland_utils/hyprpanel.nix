@@ -6,6 +6,8 @@ let
   # accent = "#${colors.base0D}";
   # warning = "#${colors.base08}";
   # hover = "#${colors.base02}";
+  # background = grep "^let color1" home/maike/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/') -d 1 -c $(grep '^let color1' ~/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/') -d 2 -c $(grep '^let color1' ~/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/'
+  WALLPAPER = "$(readlink -f /home/maike/.current-wallpaper)";
 in {
   # imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
@@ -19,6 +21,7 @@ in {
     # override = {
     #   # # Global bar settings
     #   # "theme.bar.background" = bg;
+    # "theme.bar.background" = background;
     #   # "theme.bar.foreground" = fg;
     #   # "theme.bar.menus.border.color" = accent;
     #   #
@@ -160,6 +163,7 @@ in {
               power.enableBorder = true;
             };
             background_hover_opacity = 80;
+            # background = "#029192";
             innerRadiusMultiplier = "0.4";
             radius = "1.0em";
             y_margins = "0.5em";
@@ -207,10 +211,20 @@ in {
           name = "JetBrainsMono Nerd Font";
           size = "1.1rem";
         };
+        wallpaper = {
+          enable = true;
+          pywal = false;
+          # image = "/home/maike/.current-wallpaper";
+          image = WALLPAPER;
+          # image = "~/.config/nixos/ressources/wallpapers/1359465.png";
+          # image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
+          # image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
+          # image = "~/.config/nixos/ressources/wallpapers/1359465.png";
+        };
         osd.scaling = 80;
         tooltip.scaling = 80;
         notification.scaling = 80;
-        matugen = false;
+        matugen = true;
         matugen_settings = {
           mode = "dark";
           scheme_type = "tonal-spot";
@@ -218,14 +232,6 @@ in {
           # variation = "standard_1";
           variation = "standard_2";
           # variation = "vivid_1";
-        };
-        wallpaper = {
-          enable = false;
-          pywal = false;
-          # image = "~/.config/nixos/ressources/wallpapers/1359465.png";
-          # image = "/home/maike/.config/nixos/ressources/wallpapers/1359465.png";
-          # image = "${config.stylix.image}"; #use stylix image as wallpaper and source for matugen
-          # image = "~/.config/nixos/ressources/wallpapers/1359465.png";
         };
         menus = {
           dashboard = {

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ config, pkgs, inputs, system, lib, ... }:
 let
   _base00 =
     builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
@@ -203,6 +203,8 @@ in {
     # Steam
     steam = {
       enable = true;
+      # package = pkgs.callPackage pkgs.millennium { };
+      # pkgs.millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
       extraCompatPackages = [
         # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
         # Install proton-ge
@@ -294,7 +296,7 @@ in {
       wallust # rust
       power-profiles-daemon
       powertop
-      hyprpanel # imported flawith the repo which can be used with Home Manager.
+      # hyprpanel # imported via home-manager - flawith the repo which can be used with Home Manager.
       # Exampleke
       # inputs.hyprddm.packages.${pkgs.system}.default
 

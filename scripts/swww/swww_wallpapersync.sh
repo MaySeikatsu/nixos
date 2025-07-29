@@ -32,3 +32,5 @@ wallust run ~/.current-wallpaper
 
 #Sync RGB Color to Wallpaper
 ~/.config/nixos/scripts/openrbg.sh
+
+# hyprpanel restart
