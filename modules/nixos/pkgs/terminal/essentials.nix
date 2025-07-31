@@ -33,5 +33,6 @@
     pass-wayland
     gopass
 
+    ani-cli
   ];
 }
