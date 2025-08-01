@@ -400,7 +400,7 @@ in {
       vscode
       # dotnet-sdk_8
       omnisharp-roslyn
-      unzip
+      ani-cli
     ];
 
   # Increase system-wide file descriptor limit

@@ -20,6 +20,7 @@
     ncdu # storage scanning and cleanup tool
     # tokei #rust
     ripgrep # rust
+    unzip # nvim
 
     # Terminal Ressource Managers
     btop
