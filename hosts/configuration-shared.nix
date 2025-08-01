@@ -276,18 +276,9 @@ in {
       # warp-terminal
       wget
       # kanata
-      bat # rust
-      macchina # neofetch alt rust
-      # tokei #rust
-      gcc
-      tealdeer # rust
-      rustup
-      rustfmt
-      rust-analyzer
       deskflow
       lan-mouse
       remmina # rdp client
-      ncdu # storage scanning and cleanup tool
       # waypaper
       waytrogen # rust based wallpaper changer
       matugen # rust
@@ -295,7 +286,6 @@ in {
       # pywal
       wallust # rust
       power-profiles-daemon
-      powertop
       # hyprpanel # imported via home-manager - flawith the repo which can be used with Home Manager.
       # Exampleke
       # inputs.hyprddm.packages.${pkgs.system}.default
@@ -317,19 +307,12 @@ in {
       mangohud
       steamcmd
       ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-      # For Steam VR (troubleshooting):
-      # procps
-      # usbutils
-      lshw # to show hardware info(needed for nvidia config)
       inputs.nvix.packages.${pkgs.system}.full
       inputs.quickshell.packages.${system}.default
       inputs.ashell.defaultPackage.${pkgs.system}
       # inputs.eww.packages.${system}.default #should work both
       inputs.eww.packages.${system}.default # eww-wayland
       inputs.ironbar.packages.${system}.default
-      # ironbar
-      polybar
-      ripgrep # rust
       spotify
       # spicetify-cli
       ledfx
@@ -363,7 +346,6 @@ in {
       base16-schemes
       # darktable #like lightroom
       tidal-hifi
-      jq
       # For quickshell config
       kdePackages.qtsvg
       libsForQt5.qt5.qtsvg
@@ -379,10 +361,6 @@ in {
 
       kodi-wayland
       libsForQt5.plasma-bigscreen
-
-      #neovim npm
-      nodejs_20
-      nodePackages.npm
 
       ollama
       # lmstudio
@@ -423,7 +401,6 @@ in {
       # dotnet-sdk_8
       omnisharp-roslyn
       unzip
-      dotnetCorePackages.sdk_8_0_1xx
     ];
 
   # Increase system-wide file descriptor limit

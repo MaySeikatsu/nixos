@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, lib, ... }:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     fastfetch
+    macchina # neofetch alt rust
     cava
     cavalier
     cbonsai
