@@ -4,8 +4,8 @@
     source = "~/.config/hypr/colors-hyprland.conf";
     # we need to create this file in hyprland dir to make sure we don't get a build error on sourcing in the next line - this is now done inside of the swww script
     # "$term" = "ghostty"; 
-    # "$term" = "foot"; 
-    "$term" = "alacritty";
+    "$term" = "foot";
+    # "$term" = "alacritty";
     "$editor" = "nvim";
     "$file" = "dolphin";
     "$browser1" = ''microsoft-edge-dev --profile-directory="Default"'';

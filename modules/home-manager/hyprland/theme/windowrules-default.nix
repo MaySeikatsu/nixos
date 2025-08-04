@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
     windowrule = [
       "float,title:^(Open)$"
@@ -16,6 +15,7 @@
       "move 100%-w-24 100%-w-24, title:^(Picture-in-Picture)$"
     ];
     windowrulev2 = [
+      # active / inactive / fullscreen
       "opacity 0.9 0.9,class:^(steam)$"
       "opacity 0.9 0.9,class:^(discord)$"
       "opacity 0.9 0.9,class:^(vesktop)$"
@@ -26,6 +26,10 @@
       "opacity 0.9 0.9,class:^(ticktick)$"
       "opacity 0.8 0.8,class:^(tidal-hifi)$"
       "opacity 0.8 0.8,class:^(wofi)$"
+      "opacity 0.95 0.95,class:^(foot)$"
+      "opacity 1.0 1.0 0.85,class:^(foot)$"
+      "opacity 0.9 0.9 0.9,class:^(sherlock)$"
+      "xray ,class:^(foot)$"
 
       "idleinhibit always,class:^(teams-for-linux)$"
       # "noborder, class:^(zen-twilight)$" #nett aber not working
@@ -44,6 +48,8 @@
       "blur, ticktick"
       "blur, tidal-hifi"
       "blur, wofi"
+      "blur, foot"
+      "blur, sherlock"
     ];
   };
 }
