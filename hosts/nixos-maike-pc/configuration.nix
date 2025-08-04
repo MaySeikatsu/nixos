@@ -53,16 +53,6 @@
  
   # Enable the X11 windowing system.
 
-  # Enable Custom SDDM Theme in sddm-theme config
-  # Trying to get astronaut sddm theme working
-  # services.xserver = {
-  #   enable = true;
-  #   displayManager = {
-  #     sddm.enable = true;
-  #     sddm.theme = "${import ../../pkgs/sddm-astronaut-theme.nix { inherit pkgs; }}";
-  #   };
-  # };
-
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
   # Enable/Install Floorp
@@ -199,7 +189,12 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-  
 
+  # For GSK_RENDERER issue with gtk and wayland
+# environment.variables = {
+#   GSK_RENDERER = "ngl";
+#   # GSK_RENDERER = "gl";
+#   # GSK_RENDERER = "opengl";
+# };
 
 }
