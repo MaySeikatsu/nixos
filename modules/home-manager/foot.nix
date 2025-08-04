@@ -6,8 +6,8 @@
         main = {
 
         };
-        colors.alpha = 0.7;
-        colors.alpha-mode = "all";
+        # colors.alpha = 0.7;
+        # colors.alpha-mode = "all";
       };
 
     };

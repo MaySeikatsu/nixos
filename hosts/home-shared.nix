@@ -27,7 +27,7 @@
     ../modules/home-manager/sherlock-launcher.nix
     ../modules/home-manager/terminal/zellij.nix
     ../modules/home-manager/terminal/nushell.nix
-    # ../modules/home-manager/neovim.nix
+    ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
     # ../modules/home-manager/quickshell-emmi
@@ -36,7 +36,6 @@
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
-    # ./../../modules/home-manager/neovim.nix
     # ./../../modules/home-manager/starship.nix
     # ./../../modules/home-manager/tidal.nix
     # inputs.stylix.homeModules.stylix
@@ -59,8 +58,8 @@
   # environment.
   home.packages = [
     pkgs.hyprpanel
-    pkgs.hellwal
-    pkgs.nushell
+    # pkgs.hellwal
+    # pkgs.nushell
 
     #csharp dev env
     # pkgs.jetbrains.rider

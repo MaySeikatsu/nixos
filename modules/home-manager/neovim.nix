@@ -1,4 +1,4 @@
-{inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   # imports = [
@@ -11,6 +11,7 @@
 
   programs.neovim = {
     enable = true;
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
     # Add extra packages as needed
     extraPackages = with pkgs; [
       lua-language-server
