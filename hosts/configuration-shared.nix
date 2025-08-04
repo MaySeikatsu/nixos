@@ -26,7 +26,7 @@ in {
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
   };
 
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.zsh;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maike = {
     isNormalUser = true;
@@ -37,7 +37,7 @@ in {
       "input" # for Kanata
       "uinput" # for Kanata
     ];
-    useDefaultShell = false;
+    useDefaultShell = true;
     # shell = pkgs.zsh;
     shell = pkgs.nushell;
     # shell = pkgs.fish;
@@ -187,7 +187,7 @@ in {
     hyprland.enable = true;
     hyprland.withUWSM = true;
 
-    zsh.enable = false; # Enable ZSH
+    zsh.enable = true; # Enable ZSH
     zsh.enableCompletion = false;
     # zsh.enableGlobalCompInit = false;
 

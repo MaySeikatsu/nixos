@@ -3,7 +3,7 @@
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
 
-    # ./../modules/home-manager/terminal/zsh.nix
+    ./../modules/home-manager/terminal/zsh.nix
     # ./../modules/home-manager/terminal/tmux.nix
     ./../modules/home-manager/zen-browser.nix
     # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
