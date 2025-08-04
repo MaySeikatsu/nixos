@@ -13,22 +13,6 @@
           name = "Discord";
         };
       };
-      config = {
-        appearance = {
-          icon_size = 22;
-          opacity = 0.9;
-          # gsk_renderer = "ngl"; #default is cairo
-        };
-        units = {
-          lengths = "meter";
-        };
-
-      # style = null
-
-      # debug = {
-      #     try_suppress_warnings = true;
-      #   };
-      };
       launchers = [
         {
           name = "App Launcher";
@@ -52,7 +36,22 @@
           priority = 10;
         }
       ];
+      config = {
+        # appearance = {
+        #   icon_size = 22;
+        #   opacity = 0.9;
+        #   # gsk_renderer = "ngl"; #default is cairo
+        # };
+        units = {
+          lengths = "meter";
+        };
 
+      # style = null
+
+      # debug = {
+      #     try_suppress_warnings = true;
+      #   };
+      };
       # ignore = ''
       #   Avahi*
       # '';
