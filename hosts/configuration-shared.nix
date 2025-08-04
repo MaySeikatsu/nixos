@@ -26,7 +26,8 @@ in {
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
   };
 
-  users.defaultUserShell = pkgs.zsh;
+  # users.defaultUserShell = pkgs.zsh;
+  users.defaultUserShell = pkgs.nushell;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maike = {
     isNormalUser = true;
@@ -37,7 +38,7 @@ in {
       "input" # for Kanata
       "uinput" # for Kanata
     ];
-    useDefaultShell = true;
+    useDefaultShell = false;
     # shell = pkgs.zsh;
     shell = pkgs.nushell;
     # shell = pkgs.fish;
@@ -386,9 +387,8 @@ in {
       qtpass
       # pinentry
       gnupg
-      cairo #2d graphics library like opengl - fore issues with sherlock
+      cairo # 2d graphics library like opengl - fore issues with sherlock
       # gvfs # glib # same as above but no difference
-
 
       # feh
       vital
