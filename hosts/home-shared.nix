@@ -3,7 +3,7 @@
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
 
-    ./../modules/home-manager/terminal/zsh.nix
+    # ./../modules/home-manager/terminal/zsh.nix
     # ./../modules/home-manager/terminal/tmux.nix
     ./../modules/home-manager/zen-browser.nix
     # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
@@ -26,6 +26,7 @@
     ../modules/home-manager/foot.nix
     ../modules/home-manager/sherlock-launcher.nix
     ../modules/home-manager/terminal/zellij.nix
+    ../modules/home-manager/terminal/nushell.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
@@ -46,25 +47,10 @@
   home.username = "maike";
   home.homeDirectory = "/home/maike";
 
-  # programs.nodejs.enable = true;
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
 
-  # systemd.user.services.hellwal-update = {
-  #   Unit = {
-  #     Description = "Update Ghostty color scheme with hellwal";
-  #     After = [ "graphical-session.target" ];
-  #   };
-  #   Service = {
-  #     Type = "oneshot";
-  #     ExecStart = "${pkgs.hellwal}/bin/hellwal --wallpaper "${config.stylix.image}";
-  #   };
-  #   Install = {
-  #     WantedBy = [ "default.target" ];
-  #   };
-  # };
-  #
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
@@ -74,6 +60,7 @@
   home.packages = [
     pkgs.hyprpanel
     pkgs.hellwal
+    pkgs.nushell
 
     #csharp dev env
     # pkgs.jetbrains.rider

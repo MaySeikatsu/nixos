@@ -9,6 +9,7 @@
 
     # Terminal Utility
     # zsh
+    nushell
     tmux
     lsd
     fzf
