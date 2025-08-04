@@ -22,19 +22,19 @@
           priority = 1;
           home = true;
         }
-        {
-          name = "Web Search";
-          display_name = "Web Search";
-          tag_start = "{keyword}";
-          tag_end = "{keyword}";
-          alias = "gg";
-          type = "web_launcher";
-          args = {
-              "search_engine" = "ecosia";
-              "icon" = "ecosia";
-          };
-          priority = 10;
-        }
+        # {
+        #   name = "Web Search";
+        #   display_name = "Web Search";
+        #   tag_start = "{keyword}";
+        #   tag_end = "{keyword}";
+        #   alias = "gg";
+        #   type = "web_launcher";
+        #   args = {
+        #       "search_engine" = "ecosia";
+        #       "icon" = "ecosia";
+        #   };
+        #   priority = 10;
+        # }
       ];
       config = {
         # appearance = {
@@ -42,9 +42,12 @@
         #   opacity = 0.9;
         #   # gsk_renderer = "ngl"; #default is cairo
         # };
-        units = {
-          lengths = "meter";
-        };
+        # behavior = {
+        #   daemonize = true;
+        # };
+        # units = {
+        #   lengths = "meter";
+        # };
 
       # style = null
 

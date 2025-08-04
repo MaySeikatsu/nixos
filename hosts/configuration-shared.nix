@@ -37,6 +37,7 @@ in {
       "uinput" # for Kanata
     ];
     shell = pkgs.zsh;
+    # shell = pkgs.nushell;
     packages = with pkgs;
       [
         kdePackages.kate
@@ -64,6 +65,7 @@ in {
   #     pkgs.xdg-desktop-portal-gtk 
   #   ];
   # };
+
   #
   #   xdg.portal = {
   #   enable = true;
@@ -382,6 +384,7 @@ in {
       qtpass
       # pinentry
       gnupg
+      cairo #2d graphics library like opengl
 
       # feh
       vital
