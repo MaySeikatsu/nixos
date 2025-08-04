@@ -4,7 +4,7 @@
     ./../modules/home-manager/hyprland_utils/default.nix
 
     ./../modules/home-manager/terminal/zsh.nix
-    ./../modules/home-manager/terminal/tmux.nix
+    # ./../modules/home-manager/terminal/tmux.nix
     ./../modules/home-manager/zen-browser.nix
     # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
     ./../modules/home-manager/ghostty.nix
@@ -24,6 +24,7 @@
     ../modules/home-manager/gtk.nix
     ../modules/home-manager/qt.nix
     ../modules/home-manager/foot.nix
+    ../modules/home-manager/sherlock-launcher.nix
     ../modules/home-manager/terminal/zellij.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix

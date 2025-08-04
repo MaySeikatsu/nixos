@@ -1,6 +1,6 @@
 {pkgs, ...}:
 {
-  programs.zellij= {
+  programs.zellij = {
       enable = true;
       #shortcut = " ";
       settings = {

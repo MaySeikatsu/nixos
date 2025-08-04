@@ -64,6 +64,9 @@
     millennium = {
       url = "git+https://github.com/SteamClientHomebrew/Millennium";
     };
+    sherlock-launcher = {
+      url = "github:Skxxtz/sherlock";
+    };
 
     # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
@@ -88,7 +91,7 @@
 
   outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
     , nixcord, matugen, stylix, textfox, niri, ashell, eww, nvix, ironbar
-    , sddm-sugar-candy-nix, astal, claude-desktop, millennium,
+    , sddm-sugar-candy-nix, astal, claude-desktop, millennium, sherlock-launcher,
     # hyprpanel,
     # hyprddm,
     # nixCats-nvim,
@@ -144,6 +147,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
+                sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
                 # inputs.stylix.homeModules.stylix
@@ -193,6 +197,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
+                sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
                 # inputs.stylix.homeModules.stylix
