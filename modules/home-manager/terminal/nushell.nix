@@ -5,52 +5,44 @@
       n = "nvim";
       v = "nvim";
       y = "yazi";
+      zja = "zellij attach";
     };
     settings = {
       edit_mode = "vi";
 
     };
+    plugins = [
+      pkgs.nushellPlugins.skim
+      pkgs.nushellPlugins.highlight
+      pkgs.nushellPlugins.hcl
+      pkgs.nushellPlugins.gstat
+      pkgs.nushellPlugins.formats
+    ];
+    extraConfig = ''
+      $env.config = ($env.config | upsert show_banner false)
+      #
+      # def start_zellij [] {
+      #    if 'ZELLIJ' not-in ($env | columns) {
+      #      zellij
+      #    }
+      #  }
+      #  start_zellij
+
+       # Example binding - this might need adjustment to Nushell's actual syntax:
+       # bind alt-backspace = delete_word_backward
+       # bind alt-delete = delete_word_forward
+       # bind alt-h = move_word_backward
+       # bind alt-l = move_word_forward
+    '';
+
     envFile.text = ''
       zoxide init nushell | save -f ~/.zoxide.nu
     '';
     configFile.text = ''
       source ~/.zoxide.nu
     '';
-    plugins = [
-      pkgs.nushellPlugins.skim
-      pkgs.nushellPlugins.highlight
-      pkgs.nushellPlugins.hcl
-    ];
     # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
     # configFile.source = ./.../config.nu;
-
-    # for editing directly to config.nu 
-    # extraConfig = ''
-    #  let carapace_completer = {|spans|
-    #  carapace $spans.0 nushell ...$spans | from json
-    #  }
-    #  $env.config = {
-    #   show_banner: false,
-    #   completions: {
-    #   case_sensitive: false # case-sensitive completions
-    #   quick: true    # set to false to prevent auto-selecting completions
-    #   partial: true    # set to false to prevent partial filling of the prompt
-    #   algorithm: "fuzzy"    # prefix or fuzzy
-    #   external: {
-    #   # set to false to prevent nushell looking into $env.PATH to find more suggestions
-    #       enable: true 
-    #   # set to lower can improve completion performance at the cost of omitting some options
-    #       max_results: 100 
-    #       completer: $carapace_completer # check 'carapace_completer' 
-    #     }
-    #   }
-    #  } 
-    #  $env.PATH = ($env.PATH | 
-    #  split row (char esep) |
-    #  prepend /home/myuser/.apps |
-    #  append /usr/bin/env
-    #  )
-    #  '';
 
   };
   # For Autocompletions:

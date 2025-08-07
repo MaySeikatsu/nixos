@@ -9,8 +9,14 @@
     pipes-rs
     cmatrix
     rsclock
-    steam-tui
+    # steam-tui
     discordo # discord cli client
+    bluetui
+    # spotify-player
+    # ytui-music
+    manga-tui
+    ani-cli
+    taskwarrior-tui
 
   ];
 }

@@ -11,11 +11,13 @@
 
   programs.neovim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim mini-surround ];
     # Add extra packages as needed
     extraPackages = with pkgs; [
       lua-language-server
       ripgrep
+      rust-analyzer
+
       # ...other tools
     ];
     # nixCats will handle plugins and LazyVim setup

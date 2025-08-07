@@ -4,6 +4,7 @@
       enable = true;
       settings = {
         main = {
+          selection-target = "both";
 
         };
         # colors.alpha = 0.7;

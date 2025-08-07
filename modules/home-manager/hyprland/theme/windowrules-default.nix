@@ -27,8 +27,8 @@
       "opacity 0.8 0.8,class:^(tidal-hifi)$"
       "opacity 0.8 0.8,class:^(wofi)$"
       "opacity 0.95 0.95,class:^(foot)$"
-      "opacity 1.0 1.0 0.94,class:^(foot)$"
-      "opacity 0.9 0.9 0.9,class:^(sherlock)$"
+      "opacity 1.0 1.0 0.90,class:^(foot)$"
+      "opacity 0.9 0.9 0.90,class:^(sherlock)$"
       "xray ,class:^(foot)$"
 
       "idleinhibit always,class:^(teams-for-linux)$"

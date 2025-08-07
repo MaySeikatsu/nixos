@@ -7,6 +7,15 @@
     alacritty
     foot
 
+    cargo
+    rust-analyzer
+    rustup
+    rustfmt
+    rustc
+    gcc
+    openssl
+    rustls-libssl
+
     # Terminal Utility
     # zsh
     nushell
