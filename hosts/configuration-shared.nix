@@ -136,6 +136,9 @@ in {
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
     printing.enable = true; # Enable CUPS to print documents.
     flatpak.enable = true;
+    # tailscale.enable = true;
+    # Tell the firewall to implicitly trust packets routed over Tailscale:
+    # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
     udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
 
@@ -225,10 +228,10 @@ in {
     # Enable git-lfs to use hand trackers in VR
 
     # mtr.enable = true;
-    gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
-      enable = true;
-      enableSSHSupport = true;
-    };
+    # gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
   };
 
   # Shared hardware configuration should be defined here
@@ -261,6 +264,7 @@ in {
   };
 
   networking.networkmanager.enable = true; # Enable networking
+  networking.firewall.enable = true;
   #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
 
   # Enable Bluetooth Driver for Multiple Tablets
@@ -335,6 +339,7 @@ in {
       vscode
       # hellwal
       # microsoft-edge
+      # vivaldi
       obsidian
       ticktick
       # gimp-with-plugins #broke on last update - reanable and troubleshoot
@@ -403,12 +408,10 @@ in {
       #teams
       teams-for-linux
       onlyoffice-bin
+      google-cloud-sdk
+      terraform
       # citrix_workspace
-<<<<<<< Updated upstream
-      vscode
-=======
       # dotnet-sdk_8
->>>>>>> Stashed changes
       omnisharp-roslyn
     ];
 

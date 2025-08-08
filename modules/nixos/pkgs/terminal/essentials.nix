@@ -2,10 +2,11 @@
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
-    kitty
-    ghostty
-    alacritty
-    foot
+    # All of them are already in in home-manager
+    # kitty
+    # ghostty
+    # alacritty
+    # foot 
 
     cargo
     rust-analyzer
@@ -19,7 +20,7 @@
 
     # Terminal Utility
     # zsh
-    nushell
+    # nushell #already in home-manager
     tmux
     lsd
     fzf
@@ -41,8 +42,8 @@
     nvtopPackages.full
 
     # Terminal File Explorers
-    yazi # terminal file manager
-    ranger
+    # yazi # terminal file manager
+    # ranger
     # mc # midnight-commander
 
     # Password Managers
@@ -55,6 +56,9 @@
     # procps
     # usbutils
     lshw # to show hardware info(needed for nvidia config)
+
+    nixfmt
+    nixd
 
     google-cloud-sdk
     # azure-cli

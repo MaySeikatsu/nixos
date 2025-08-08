@@ -27,6 +27,7 @@
     ../modules/home-manager/sherlock-launcher.nix
     ../modules/home-manager/terminal/zellij.nix
     ../modules/home-manager/terminal/nushell.nix
+    ../modules/home-manager/terminal/fish.nix
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix

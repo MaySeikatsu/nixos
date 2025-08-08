@@ -18,6 +18,11 @@
       pkgs.nushellPlugins.gstat
       pkgs.nushellPlugins.formats
     ];
+
+    completer = {
+      enable = true;
+      fallback = "fish";
+    };
     extraConfig = ''
       $env.config = ($env.config | upsert show_banner false)
       #
@@ -48,5 +53,9 @@
   # For Autocompletions:
   programs.carapace.enable = true;
   programs.carapace.enableNushellIntegration = true;
-
+  # programs.carapace.enableZshIntegration= true;
+  # programs.carapace.enableFishIntegration= true;
+  home.sessionVariables = {
+    CARAPACE_BRIDGES = "fish";
+  };
 }
