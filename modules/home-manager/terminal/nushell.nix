@@ -6,7 +6,7 @@
       n = "nvim";
       v = "nvim";
       y = "yazi";
-      zja = "zellij attach";
+      zlja = "zellij attach";
       zlj = "zellij";
     };
     settings = {
