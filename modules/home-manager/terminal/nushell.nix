@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nushell = {
     enable = true;
     shellAliases = {
@@ -9,7 +10,12 @@
     };
     settings = {
       edit_mode = "vi";
-
+      show_banner = false;
+      completions = {
+        external.enable = true;
+        # external.completer = "fish";
+        # external.fallback = "fish"; #set fish as fallsback to nuhsell / carapace
+      };
     };
     plugins = [
       pkgs.nushellPlugins.skim
@@ -19,12 +25,9 @@
       pkgs.nushellPlugins.formats
     ];
 
-    completer = {
-      enable = true;
-      fallback = "fish";
-    };
     extraConfig = ''
-      $env.config = ($env.config | upsert show_banner false)
+      # $env.config = ($env.config | upsert show_banner false)
+      # $env.config.completions.external = ($env.config.completions.external | upsert completer fish)
       #
       # def start_zellij [] {
       #    if 'ZELLIJ' not-in ($env | columns) {
@@ -54,7 +57,7 @@
   programs.carapace.enable = true;
   programs.carapace.enableNushellIntegration = true;
   # programs.carapace.enableZshIntegration= true;
-  # programs.carapace.enableFishIntegration= true;
+  programs.carapace.enableFishIntegration = true;
   home.sessionVariables = {
     CARAPACE_BRIDGES = "fish";
   };

@@ -1,16 +1,18 @@
-{ config, inputs, pkgs, system, ... }: {
+{
+  config,
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
+{
   imports = [
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
 
-    ./../modules/home-manager/terminal/zsh.nix
-    # ./../modules/home-manager/terminal/tmux.nix
     ./../modules/home-manager/zen-browser.nix
     # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
     ./../modules/home-manager/ghostty.nix
-    ./../modules/home-manager/terminal/git.nix
-    ./../modules/home-manager/terminal/yazi.nix
-    ./../modules/home-manager/terminal/starship.nix
     ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
     ../modules/home-manager/kitty.nix
@@ -25,9 +27,15 @@
     ../modules/home-manager/qt.nix
     ../modules/home-manager/foot.nix
     ../modules/home-manager/sherlock-launcher.nix
-    ../modules/home-manager/terminal/zellij.nix
-    ../modules/home-manager/terminal/nushell.nix
-    ../modules/home-manager/terminal/fish.nix
+    ../modules/home-manager/terminal
+    # ../modules/home-manager/terminal/zellij.nix
+    # ../modules/home-manager/terminal/nushell.nix
+    # ../modules/home-manager/terminal/fish.nix
+    # ./../modules/home-manager/terminal/git.nix
+    # ./../modules/home-manager/terminal/yazi.nix
+    # ./../modules/home-manager/terminal/starship.nix
+    # ./../modules/home-manager/terminal/zsh.nix
+    # ./../modules/home-manager/terminal/tmux.nix
     ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
@@ -37,8 +45,6 @@
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix
-    # ./../../modules/home-manager/starship.nix
-    # ./../../modules/home-manager/tidal.nix
     # inputs.stylix.homeModules.stylix
   ];
 

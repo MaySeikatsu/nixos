@@ -1,4 +1,11 @@
-{ config, pkgs, inputs, lib, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -6,7 +13,7 @@
     # kitty
     # ghostty
     # alacritty
-    # foot 
+    # foot
 
     cargo
     rust-analyzer
@@ -57,8 +64,9 @@
     # usbutils
     lshw # to show hardware info(needed for nvidia config)
 
-    nixfmt
-    nixd
+    nixfmt # nix formatter
+    nixd # lsp
+    vulnix # nix vulnerability checker
 
     google-cloud-sdk
     # azure-cli
