@@ -1,9 +1,17 @@
-{ config, pkgs, inputs, system, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  lib,
+  ...
+}:
 let
-  _base00 =
-    builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
-in {
-  imports = [ # Include the results of the hardware scan.
+  _base00 = builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
     ./../modules/nixos/pkgs/terminal/essentials.nix
     ./../modules/nixos/pkgs/terminal/rice.nix
@@ -20,7 +28,10 @@ in {
     # ../modules/nixos/config/sddm-sugar-candy.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
@@ -42,12 +53,11 @@ in {
     # shell = pkgs.zsh;
     shell = pkgs.nushell;
     # shell = pkgs.fish;
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        # pipes
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      kdePackages.kate
+      # pipes
+      #  thunderbird
+    ];
   };
 
   # powerManagement.enable = true;
@@ -62,11 +72,11 @@ in {
   #
   # };
 
-  # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though) 
+  # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though)
   #   enable = true;
-  #   extraPortals = [ 
-  #     pkgs.xdg-desktop-portal-hyprland 
-  #     pkgs.xdg-desktop-portal-gtk 
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-hyprland
+  #     pkgs.xdg-desktop-portal-gtk
   #   ];
   # };
 
@@ -118,16 +128,13 @@ in {
     sudo.wheelNeedsPassword = false; # Request password for sudo actions as user
 
     # autoUpgrade.enable = true;
-    # autoUpgrade.allowReboot = true; 
+    # autoUpgrade.allowReboot = true;
   };
 
   services = {
-    system76-scheduler.enable =
-      true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
-    system76-scheduler.settings.cfsProfiles.enable =
-      true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
-    upower.enable =
-      config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
+    system76-scheduler.enable = true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
+    system76-scheduler.settings.cfsProfiles.enable = true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+    upower.enable = config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
@@ -140,7 +147,10 @@ in {
     # Tell the firewall to implicitly trust packets routed over Tailscale:
     # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-    udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
+    udev.packages = with pkgs; [
+      vial
+      via
+    ]; # Enabling qmk vial
 
     # Enable sound with pipewire.
     pulseaudio.enable = false;
@@ -183,8 +193,7 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 12";
-      flake =
-        "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
 
     # Enable Hyprland
@@ -205,8 +214,7 @@ in {
       # ];
     };
 
-    gamemode.enable =
-      true; # Enabling optional optimisations for gaming / game-mode
+    gamemode.enable = true; # Enabling optional optimisations for gaming / game-mode
     # floorp.enable = true;     # Enable/Install Floorp
 
     # Steam
@@ -215,15 +223,15 @@ in {
       # package = pkgs.callPackage pkgs.millennium { };
       # pkgs.millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
       extraCompatPackages = [
-        # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize 
+        # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize
         # Install proton-ge
         # could also be done via home-manager - view vimjoyer gaming video
         pkgs.proton-ge-bin
       ];
-      gamescopeSession =
-        { # allows to boot directly into the steamdeck / big picture mode
-          enable = true;
-        };
+      gamescopeSession = {
+        # allows to boot directly into the steamdeck / big picture mode
+        enable = true;
+      };
     };
     # Enable git-lfs to use hand trackers in VR
 
@@ -280,144 +288,146 @@ in {
   #   XRT_COMPOSITOR_COMPUTE = "1";
   # };
 
-  environment.systemPackages =
-    with pkgs; [ # would be pkgs.packagename without the with pkgs;
-      neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      git
-      wget
-      # kanata
-      deskflow
-      lan-mouse
-      remmina # rdp client
-      # waypaper
-      waytrogen # rust based wallpaper changer
-      matugen # rust
-      inputs.matugen.packages.${system}.default
-      # pywal
-      wallust # rust
-      power-profiles-daemon
-      # hyprpanel # imported via home-manager - flawith the repo which can be used with Home Manager.
-      # Exampleke
-      # inputs.hyprddm.packages.${pkgs.system}.default
+  environment.systemPackages = with pkgs; [
+    # would be pkgs.packagename without the with pkgs;
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    git
+    wget
+    # kanata
+    deskflow
+    lan-mouse
+    remmina # rdp client
+    # waypaper
+    waytrogen # rust based wallpaper changer
+    matugen # rust
+    inputs.matugen.packages.${system}.default
+    # pywal
+    wallust # rust
+    power-profiles-daemon
+    # hyprpanel # imported via home-manager - flawith the repo which can be used with Home Manager.
+    # Exampleke
+    # inputs.hyprddm.packages.${pkgs.system}.default
 
-      floorp
-      # catppuccin-grub
+    floorp
+    # catppuccin-grub
 
-      wineWowPackages.stable
-      wineWowPackages.waylandFull
-      winetricks
-      protontricks
-      protonup
-      protonup-rs
-      protonup-qt
-      protonplus
-      lutris
-      heroic
-      bottles
-      mangohud
-      steamcmd
-      ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-      inputs.nvix.packages.${pkgs.system}.full
-      inputs.quickshell.packages.${system}.default
-      inputs.ashell.defaultPackage.${pkgs.system}
-      # inputs.eww.packages.${system}.default #should work both
-      inputs.eww.packages.${system}.default # eww-wayland
-      inputs.ironbar.packages.${system}.default
-      spotify
-      # spicetify-cli
-      ledfx
-      openrgb-with-all-plugins
-      hyperion-ng # not working yet
-      # discord #managed via nixcord flake 
-      vesktop # vencord desktop client without overwriting the official discord binary
-      revolt-desktop
-      element-desktop
-      osu-lazer-bin
-      easyeffects
-      zed-editor
-      code-cursor
-      helix
-      vscode
-      # hellwal
-      # microsoft-edge
-      # vivaldi
-      obsidian
-      ticktick
-      # gimp-with-plugins #broke on last update - reanable and troubleshoot
-      gimp
-      krita
-      godot_4
-      blender
-      libresprite
-      aseprite
-      goxel
-      # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
-      kicad # pcb and electronics design
-      obs-studio
-      # davinci-resolve
-      poppler
-      base16-schemes
-      # darktable #like lightroom
-      tidal-hifi
-      # For quickshell config
-      kdePackages.qtsvg
-      libsForQt5.qt5.qtsvg
-      libsForQt5.qt5.qtimageformats
-      libsForQt5.qt5.qtmultimedia
-      kdePackages.qtmultimedia
-      kdePackages.qt5compat
-      qt5.qtdeclarative
+    wineWowPackages.stable
+    wineWowPackages.waylandFull
+    winetricks
+    protontricks
+    protonup
+    protonup-rs
+    protonup-qt
+    protonplus
+    lutris
+    heroic
+    bottles
+    mangohud
+    steamcmd
+    ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
+    inputs.nvix.packages.${pkgs.system}.full
+    inputs.quickshell.packages.${system}.default
+    inputs.ashell.defaultPackage.${pkgs.system}
+    # inputs.eww.packages.${system}.default #should work both
+    inputs.eww.packages.${system}.default # eww-wayland
+    inputs.ironbar.packages.${system}.default
+    spotify
+    # spicetify-cli
+    ledfx
+    openrgb-with-all-plugins
+    hyperion-ng # not working yet
+    # discord #managed via nixcord flake
+    vesktop # vencord desktop client without overwriting the official discord binary
+    revolt-desktop
+    element-desktop
+    osu-lazer-bin
+    easyeffects
+    zed-editor
+    code-cursor
+    helix
+    vscode
+    # hellwal
+    # microsoft-edge
+    # vivaldi
+    obsidian
+    ticktick
+    # gimp-with-plugins #broke on last update - reanable and troubleshoot
+    gimp
+    krita
+    godot_4
+    blender
+    libresprite
+    aseprite
+    goxel
+    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
+    kicad # pcb and electronics design
+    obs-studio
+    # davinci-resolve
+    poppler
+    base16-schemes
+    # darktable #like lightroom
+    tidal-hifi
+    # For quickshell config
+    kdePackages.qtsvg
+    libsForQt5.qt5.qtsvg
+    libsForQt5.qt5.qtimageformats
+    libsForQt5.qt5.qtmultimedia
+    kdePackages.qtmultimedia
+    kdePackages.qt5compat
+    qt5.qtdeclarative
 
-      libsForQt5.qt5.qtgraphicaleffects
-      kdePackages.syntax-highlighting
-      material-symbols
+    libsForQt5.qt5.qtgraphicaleffects
+    kdePackages.syntax-highlighting
+    material-symbols
 
-      kodi-wayland
-      libsForQt5.plasma-bigscreen
+    kodi-wayland
+    libsForQt5.plasma-bigscreen
 
-      ollama
-      # lmstudio
-      docker
-      ffmpeg
-      p7zip
-      overskride
-      bluez
-      bluez-tools
-      pavucontrol # audio volume and device control
-      # firefoxpwa
-      vial
-      # via
-      intiface-central
-      protontricks
+    ollama
+    # lmstudio
+    docker
+    ffmpeg
+    p7zip
+    overskride
+    bluez
+    bluez-tools
+    pavucontrol # audio volume and device control
+    # firefoxpwa
+    vial
+    # via
+    intiface-central
+    protontricks
 
-      localsend
-      # spicetify-cli
-      qtpass
-      # pinentry
-      gnupg
-      cairo # 2d graphics library like opengl - fore issues with sherlock
-      # gvfs # glib # same as above but no difference
+    localsend
+    # spicetify-cli
+    qtpass
+    # pinentry
+    gnupg
+    cairo # 2d graphics library like opengl - fore issues with sherlock
+    # gvfs # glib # same as above but no difference
 
-      # feh
-      vital
-      # opentabletdriver #not working yet
-      # wacomtablet
-      evemu
-      # linuxKernel.packages.linux_zen.digimend
-      # roccat-tools
+    # feh
+    vital
+    # opentabletdriver #not working yet
+    # wacomtablet
+    evemu
+    # linuxKernel.packages.linux_zen.digimend
+    # roccat-tools
 
-      #teams
-      teams-for-linux
-      onlyoffice-bin
-      google-cloud-sdk
-      terraform
-      # citrix_workspace
-      # dotnet-sdk_8
-      omnisharp-roslyn
-    ];
+    #teams
+    teams-for-linux
+    onlyoffice-bin
+    google-cloud-sdk
+    terraform
+    # citrix_workspace
+    # dotnet-sdk_8
+    omnisharp-roslyn
+  ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = { "fs.file-max" = 524288; };
+  boot.kernel.sysctl = {
+    "fs.file-max" = 524288;
+  };
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [

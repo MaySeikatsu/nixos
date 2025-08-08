@@ -49,6 +49,7 @@
     # Password Managers
     pass-wayland
     gopass
+    gnupg
     passphrase2pgp
     tomb
     gnupg
@@ -63,6 +64,8 @@
     nixfmt # nix formatter
     nixd # lsp
     vulnix # nix vulnerability checker
+    trivy # vulnerability checker
+    gitleaks # checking for accidantal leaks of credentials in git repos
 
     google-cloud-sdk
     # azure-cli
@@ -74,9 +77,12 @@
     # terraform-landscape
     # terraform-inventory
     # terraform-mcp-server
+    # tfmigrate
     opentofu
     tofu-ls
-    # tfmigrate
+
+    # Virtualisation like WSL for unix systems:
+    lima
 
   ];
 }
