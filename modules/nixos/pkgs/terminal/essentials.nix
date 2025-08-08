@@ -1,4 +1,11 @@
-{ config, pkgs, inputs, lib, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -49,6 +56,8 @@
     # Password Managers
     # pass-wayland
     gopass
+    gopass-jsonapi
+    gopass-hibp # haveIbeenPwned?
     gnupg
     passphrase2pgp
     tomb
