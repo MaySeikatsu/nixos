@@ -331,6 +331,8 @@ in {
       easyeffects
       zed-editor
       code-cursor
+      helix
+      vscode
       # hellwal
       # microsoft-edge
       obsidian
@@ -402,7 +404,11 @@ in {
       teams-for-linux
       onlyoffice-bin
       # citrix_workspace
+<<<<<<< Updated upstream
       vscode
+=======
+      # dotnet-sdk_8
+>>>>>>> Stashed changes
       omnisharp-roslyn
     ];
 
