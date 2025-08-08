@@ -8,6 +8,7 @@
       y = "yazi";
       zlja = "zellij attach";
       zlj = "zellij";
+      pass = "gopass";
     };
     settings = {
       edit_mode = "vi";

@@ -47,7 +47,7 @@
     # mc # midnight-commander
 
     # Password Managers
-    pass-wayland
+    # pass-wayland
     gopass
     gnupg
     passphrase2pgp
