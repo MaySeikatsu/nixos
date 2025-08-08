@@ -15,6 +15,7 @@
     gcc
     openssl
     rustls-libssl
+    # dotnet-sdk_8
 
     # Terminal Utility
     # zsh
@@ -47,11 +48,27 @@
     # Password Managers
     pass-wayland
     gopass
+    passphrase2pgp
+    tomb
 
     # For Steam VR (troubleshooting):
     # procps
     # usbutils
     lshw # to show hardware info(needed for nvidia config)
+
+    google-cloud-sdk
+    # azure-cli
+    terraform
+    terraformer
+    terraform-ls
+    terraform-docs
+    hclfmt
+    # terraform-landscape
+    # terraform-inventory
+    # terraform-mcp-server
+    opentofu
+    tofu-ls
+    # tfmigrate
 
   ];
 }

@@ -401,11 +401,8 @@ in {
       #teams
       teams-for-linux
       onlyoffice-bin
-      google-cloud-sdk
-      terraform
       # citrix_workspace
       vscode
-      # dotnet-sdk_8
       omnisharp-roslyn
     ];
 
