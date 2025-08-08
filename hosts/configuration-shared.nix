@@ -228,10 +228,11 @@ in {
     # Enable git-lfs to use hand trackers in VR
 
     # mtr.enable = true;
-    # gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
+    gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
+      enable = true;
+      # enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-curses;
+    };
   };
 
   # Shared hardware configuration should be defined here

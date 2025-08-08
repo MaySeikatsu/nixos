@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -58,6 +51,9 @@
     gopass
     passphrase2pgp
     tomb
+    gnupg
+    pinentry
+    pinentry-curses
 
     # For Steam VR (troubleshooting):
     # procps
