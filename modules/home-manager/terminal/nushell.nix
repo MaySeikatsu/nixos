@@ -7,6 +7,7 @@
       v = "nvim";
       y = "yazi";
       zja = "zellij attach";
+      zlj = "zellij";
     };
     settings = {
       edit_mode = "vi";
