@@ -8,9 +8,9 @@
   inputs,
   system,
   ...
-}: 
+}:
 {
-    #DOES NOT WORK - put hard values in instead
+  #DOES NOT WORK - put hard values in instead
   #This part is used for hyprpanel configuration with stylix - stolen from: https://github.com/anotherhadi/nixy/blob/main/themes/nixy.nix
   #   options.theme = lib.mkOption {
   #   type = lib.types.attrs;
@@ -36,18 +36,19 @@
   #   };
   #   description = "Theme configuration options";
   # };
-  
+
   #Stylix Setup for NIXOS Modules (also loads hm targets)
-  config = { #usually just stylix but config part is needed as we're using options above
-    stylix = { 
-      enable = true;
+  config = {
+    # usually just stylix but config part is needed as we're using options above
+    stylix = {
+      enable = false;
       autoEnable = false;
       # image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
       image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
       polarity = "dark"; # options: light, dark, either (selects closest)
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-    # homeManagerIntegration.followSystem = true;
+      # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+      # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+      # homeManagerIntegration.followSystem = true;
 
       opacity = {
         applications = 1.0;
@@ -59,45 +60,45 @@
       };
 
       targets = {
-          # gtk.enable = true;
-          # qt.enable = true;
-          nixos-icons.enable = true;
-          spicetify.enable = false;
+        # gtk.enable = true;
+        # qt.enable = true;
+        nixos-icons.enable = true;
+        spicetify.enable = false;
       };
       fonts = {
-      sizes = {
-      terminal = 11;
-      applications = 11;
-      popups = 11;
-      };
-      #
-      serif = {
-      #     name = "CaskaydiaCove Nerd Font";
-      #     package = pkgs.nerd-fonts.caskaydia-cove;
-            package = pkgs.nerd-fonts.jetbrains-mono;
-            name = "JetBrains Mono Nerd Font";
-      };
-      #
-      sansSerif = {
-      #     name = "CaskaydiaCove Nerd Font";
-      #     package = pkgs. nerd-fonts.caskaydia-cove;
-            package = pkgs.nerd-fonts.jetbrains-mono;
-            name = "JetBrains Mono Nerd Font";
-      };
-      #
-      monospace = {
-      #     package = pkgs. nerd-fonts.caskaydia-cove;
-      #     name = "CaskaydiaCove Nerd Font";
-            package = pkgs.nerd-fonts.jetbrains-mono;
-            name = "JetBrains Mono Nerd Font";
+        sizes = {
+          terminal = 11;
+          applications = 11;
+          popups = 11;
+        };
+        #
+        serif = {
+          #     name = "CaskaydiaCove Nerd Font";
+          #     package = pkgs.nerd-fonts.caskaydia-cove;
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrains Mono Nerd Font";
+        };
+        #
+        sansSerif = {
+          #     name = "CaskaydiaCove Nerd Font";
+          #     package = pkgs. nerd-fonts.caskaydia-cove;
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrains Mono Nerd Font";
+        };
+        #
+        monospace = {
+          #     package = pkgs. nerd-fonts.caskaydia-cove;
+          #     name = "CaskaydiaCove Nerd Font";
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrains Mono Nerd Font";
 
-         # emoji = {
-         #   package = pkgs.noto-fonts-emoji;
-         #   name = "Noto Color Emoji";
-         # };
+          # emoji = {
+          #   package = pkgs.noto-fonts-emoji;
+          #   name = "Noto Color Emoji";
+          # };
+        };
       };
-    };
-    
+
       # making your own theme
       # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
       # base16Scheme = {

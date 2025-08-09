@@ -13,7 +13,7 @@
     ./../modules/home-manager/zen-browser.nix
     # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
     ./../modules/home-manager/ghostty.nix
-    ../modules/home-manager/hyprland_utils/stylix.nix
+    # ../modules/home-manager/hyprland_utils/stylix.nix
     ../modules/home-manager/cava.nix
     ../modules/home-manager/kitty.nix
     ../modules/home-manager/alacritty.nix

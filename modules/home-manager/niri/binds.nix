@@ -317,7 +317,7 @@
             enable = true;
             width = 1;
             active = {
-              color = "#e0e0e0ff";
+              color = "#22222222";
             };
             inactive = {
               color = "#00000000";
@@ -357,7 +357,7 @@
                 top-right = radius;
               };
             clip-to-geometry = true;
-            draw-border-with-background = true;
+            draw-border-with-background = false;
           }
           {
             matches = [

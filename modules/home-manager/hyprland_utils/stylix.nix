@@ -1,4 +1,10 @@
-{pkgs, inputs, lib, config, ...}:
+{
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}:
 {
   # needs to be enabled as a homemanager module to work (look at imported files in this folder)
 
@@ -58,7 +64,7 @@
     # };
     floorp = {
       enable = true;
-      profileNames = [ "default" ]; #necessary
+      profileNames = [ "default" ]; # necessary
       colorTheme.enable = true;
       firefoxGnomeTheme.enable = false;
     };
