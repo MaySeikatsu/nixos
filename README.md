@@ -130,7 +130,6 @@ With that said, now to the actual content of this repo - I hope you enjoy it
 
 I go crazy when I don't know  what exactly is configured on my system. Especially when I am troubleshooting and set multiple options of which I forget about later and therfore can't clean them up properly. I have been using archlinux for a while and really enjoyed it but as I am using multiple devices and love to have feature parity on all of them once I change a thing, I decided to use NixOS and I am really happy with it so far.
 
----
 
 ## 🤝 Contributing / Feedback
 
@@ -142,4 +141,3 @@ I know this config is far from perfect and in parts very cluttered. I’m still 
 Happy ricing y'all!  |^.^/ 
 **MaySeikatsu**
 
----
