@@ -1,8 +1,9 @@
-{ inputs, pkgs, ...}: {
+{ inputs, pkgs, ... }:
+{
   imports = [
     inputs.niri.homeModules.niri
     # ./settings.nix
-    ./binds.nix
+    # ./binds.nix
     # ./rules.nix
   ];
 
@@ -21,8 +22,8 @@
       # catppuccin-cursors.mochaGreen
     ];
     sessionVariables = {
-            #      QT_QPA_PLATFORMTHEME = "kvantum";
-      QT_STYLE_OVERRIDE = "kvantum";
+      #      QT_QPA_PLATFORMTHEME = "kvantum";
+      # QT_STYLE_OVERRIDE = "kvantum";
       XDG_SESSION_TYPE = "wayland";
     };
   };
