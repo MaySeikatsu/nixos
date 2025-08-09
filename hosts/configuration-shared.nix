@@ -63,8 +63,39 @@ in
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
 
-  # also for quickshell (linting and ls)
-  qt.enable = true;
+  ###GNOME EXCLUDE PACKAGES###
+  environment.gnome.excludePackages = (
+    with pkgs;
+    [
+      epiphany # web browser
+      # evince # document viewer
+      geary # email reader
+      # gnome-characters
+      gnome-music
+      gnome-photos
+      gnome-terminal
+      gnome-tour
+      totem # video player
+    ]
+  );
+  ###GNOME EXCLUDE PACKAGES###
+  ###QT###
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+
+    # platformTheme = "qtct";
+    # style.name = "kvantum";
+  };
+  # xdg.configFile = {
+  #   "Kvantum/ArcDark".source = "${pkgs.arc-kde-theme}/share/Kvantum/ArcDark";
+  #   "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=ArcDark";
+  # };
+
+  # If display issues:
+  # programs.dconf.enable = true;
+  ###QT###
 
   # nixCats = {
   #   enable = true;
@@ -97,6 +128,9 @@ in
   #     pkgs.kdePackages.xdg-desktop-portal-kde
   #   ];
   # };
+
+  nix.settings.download-buffer-size = 524288000; # 500MB
+  systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -236,7 +270,8 @@ in
     # Enable git-lfs to use hand trackers in VR
 
     # mtr.enable = true;
-    gnupg.agent = { # for gpg keys i think, could be deleted as it did not work
+    gnupg.agent = {
+      # for gpg keys i think, could be deleted as it did not work
       enable = true;
       # enableSSHSupport = true;
       pinentryPackage = pkgs.pinentry-curses;
@@ -436,7 +471,6 @@ in
   # ];
 
   # Specifically for the nix-daemon (if relevant)
-  systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];

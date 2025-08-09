@@ -2,8 +2,8 @@
 {
   programs.zellij = {
     enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
+    # enableZshIntegration = true;
+    # enableFishIntegration = true;
 
     #shortcut = " ";
     # settings = {

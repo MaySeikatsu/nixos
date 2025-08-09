@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
 
   # use this if not already defined in flake
   # imports = [
@@ -8,29 +9,34 @@
   programs.sherlock = {
     enable = true;
     settings = {
-      aliases = { vesktop = { name = "Discord"; }; };
-      launchers = [{
-        name = "App Launcher";
-        alias = "app";
-        type = "app_launcher";
-        args = { };
-        priority = 1;
-        home = true;
-      }
-      # {
-      #   name = "Web Search";
-      #   display_name = "Web Search";
-      #   tag_start = "{keyword}";
-      #   tag_end = "{keyword}";
-      #   alias = "gg";
-      #   type = "web_launcher";
-      #   args = {
-      #       "search_engine" = "ecosia";
-      #       "icon" = "ecosia";
-      #   };
-      #   priority = 10;
-      # }
-        ];
+      aliases = {
+        vesktop = {
+          name = "Discord";
+        };
+      };
+      launchers = [
+        {
+          name = "App Launcher";
+          alias = "app";
+          type = "app_launcher";
+          args = { };
+          priority = 1;
+          home = true;
+        }
+        # {
+        #   name = "Web Search";
+        #   display_name = "Web Search";
+        #   tag_start = "{keyword}";
+        #   tag_end = "{keyword}";
+        #   alias = "gg";
+        #   type = "web_launcher";
+        #   args = {
+        #       "search_engine" = "ecosia";
+        #       "icon" = "ecosia";
+        #   };
+        #   priority = 10;
+        # }
+      ];
       config = {
         # appearance = {
         #   icon_size = 22;

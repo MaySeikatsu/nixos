@@ -22,7 +22,7 @@
     plugins = [
       pkgs.nushellPlugins.skim
       pkgs.nushellPlugins.highlight
-      pkgs.nushellPlugins.hcl
+      # pkgs.nushellPlugins.hcl
       pkgs.nushellPlugins.gstat
       pkgs.nushellPlugins.formats
     ];
