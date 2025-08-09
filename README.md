@@ -4,8 +4,6 @@ Hey, glad you found my config. Please be aware that this repo contains my person
 
 With that said, now to the actual content of this repo - I hope you enjoy it
 
----
-
 ## ✨ Screenshots
 ### Autumn Themed Desktop with Stylix & Hyprpanel
 
