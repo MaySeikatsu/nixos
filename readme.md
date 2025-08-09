@@ -1,7 +1,8 @@
 # 🍁 Bloated NixOS Config with Hyprland and Stylix 🍁
 
-Welcome!  
-This repo contains my personal NixOS system configuration, focused on a fully riced Hyprland desktop with dynamic theming and a modular, flake-based structure. It’s a living setup—always evolving as I learn more about NixOS and the world of ricing.
+Hey, glad you found my config. Please be aware that this repo contains my personal NixOS configuration which is actively developing day by day. Therefore it's not adviced to directly copy this configuration to use it as a foundation for your system, as there might be a lot of stuff that's not necessary for you. I published it to offer a reference for people who are working on their own config and might want to figure out how to set up specific features that I integrated into my system. 
+
+With that said, now to the actual content of this repo - I hope you enjoy it
 
 ---
 
@@ -10,41 +11,106 @@ This repo contains my personal NixOS system configuration, focused on a fully ri
 
 ![Autumn Theme with Stylix](https://github.com/user-attachments/assets/fe25b266-b54e-421a-aa6a-4b1cfb4c22c8)
 
-Here’s my autumn-inspired rice! The wallpaper and system colors are managed by [Stylix](https://github.com/danth/stylix), and the panel is powered by [Hyprpanel](https://github.com/hyprwm/hyprpanel). The goal: everything matches the current wallpaper, for a cozy, unified look.
+## 🖥️ Current Setup - what’s in the config?
 
----
+### Features
+  - home-manager and flakes
+  - multiple device support
+    -> incremental device management via *shared* and *standalone* config files
+  - multiple supported desktops and VMs
+    -> [hyprland](https://github.com/hyprwm/Hyprlandf) (fully configured, used as main WM)
+    -> [niri](https://github.com/YaLTeR/niri) (wip, working on migration towards it)
+    -> kde-plasma (as fallback)
+    -> gnome (also as fallback)
+    -> [wayfire](https://github.com/WayfireWM/wayfire) (for funny effects)
+  - full integration of [kanata](https://github.com/jtroo/kanata) managed by nix
+    -> homerow mods enabled by default
+    -> replaced Capslock with ESC(tap) and Layerswitch(hold)
+    -> HJKL in layer for VIM movements everywhere
+    -> quick *home* and *end* buttons for faster navigation
+  - Modular Theming with [Stylix](https://github.com/danth/stylix) on rebuild (currently mostly inactive)
+  - Modular Theming with [Wallust](https://codeberg.org/explosion-mental/wallust) on wallpaper change (a faster and more advanced version of pywal)
+  - [tmux](https://github.com/tmux/tmux/wiki) / [zellij](https://github.com/zellij-org/zellij) configurations
+  - [nushell](https://github.com/nushell/nushell) with [carapace](https://github.com/carapace-sh/carapace) completions
+  - [hyprpanel](https://github.com/Jas-SinghFSU/HyprPanel) config via home-manager
+  - custom scripts to match room/device rgb to apps to wallpaper with openrgb and wallust
+  - sherlock-launcher for app launching
+  - sddm-astronaut-theme
 
-## 🗂️ Repo Structure
+### 🗂️ Base Repo Structure
+```
+├── flake.lock
+├── flake.nix
+├── hosts
+│   ├── common
+│   ├── configuration-shared.nix
+│   ├── home-shared.nix
+│   ├── nixos-legion
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+│   ├── nixos-maike-pc
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+├── modules
+│   ├── home-manager
+│   └── nixos
+├── readme.md
+├── ressources
+│   ├── sddm-astronaut-theme
+│   │   ├── default.nix
+│   │   └── flake.nix
+│   ├── theming
+│   │   ├── hellwal
+│   │   ├── matugen
+│   │   └── wallust
+│   │       ├── templates
+│   └── wallpapers
+└── scripts
+├── flake.lock
+├── flake.nix
+├── hosts
+│   ├── common
+│   ├── configuration-shared.nix
+│   ├── home-shared.nix
+│   ├── nixos-legion
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+│   ├── nixos-maike-pc
+│   │   ├── configuration.nix
+│   │   ├── hardware-configuration.nix
+│   │   └── home.nix
+├── modules
+│   ├── home-manager
+│   └── nixos
+├── readme.md
+├── ressources
+│   ├── sddm-astronaut-theme
+│   │   ├── default.nix
+│   │   └── flake.nix
+│   ├── theming
+│   │   ├── hellwal
+│   │   ├── matugen
+│   │   └── wallust
+│   │       ├── templates
+│   └── wallpapers
+└── scripts
+```
 
-- **hosts/**  
-  Per-machine configurations. Each host (laptop, desktop, etc.) has its own entrypoint, making it easy to manage multiple systems with shared and unique settings.
-
-- **modules/**  
-  Custom NixOS modules for things like Hyprland, theming, and extra services. This is where most of my desktop and ricing logic lives.
-
-- **pkgs/**  
-  Custom or overridden Nix packages. If I need to patch or tweak something from nixpkgs, it goes here.
-
-- **ressources/**  
-  Wallpapers, icons, and other static assets that make the rice shine.
-
-- **scripts-unused/**  
-  Scripts I’m not currently using but might revisit later.
-
-- **flake.nix / flake.lock**  
-  The main entry point for the configuration, using Nix flakes for reproducibility and modularity.
-
----
-
-## 🖥️ What’s in the Config?
-
-- **Hyprland** as the main Wayland compositor, with custom settings for window management, keybinds, and effects.
-- **Stylix** for dynamic theming—automatically updates GTK, Qt, terminal, and other app colors to match the wallpaper.
-- **Hyprpanel** as the status bar, themed to match the system.
-- **Anime & Nature Wallpapers** with a focus on seasonal vibes.
-- **Declarative Home Manager** config for user-level dotfiles and app settings.
-- **Modular NixOS Setup**—split into reusable modules for easy tweaking and expansion.
-- **Custom scripts** (planned) for future features like automatic wallpaper and theme switching (think pywal/matugen, but “the Nix way”).
+## 📝 Roadmap / Wishlist
+- [ ] full niri setup and rice
+- [ ] alternative styles and rice themes for WM 
+  -> osu!lazer based rice (OSyoU)
+  -> retro futurism rice (thinking of win 95 with some dystopian aspects to it)
+- [ ] writing own quickshell config to integrate with niri and hyprland
+- [ ] refactor config for better modularization and providing a barebones core config
+- [ ] cleanup unused tools
+- [ ] focus on using mainly rust based applications
+- [ ] improved scripts for multiple syncing purposes
+- [x] Automatic wallpaper and theme switching (matugen/pywal style, but fully declarative)
+- [ ] Improved documentation and onboarding for others
 
 ---
 
@@ -62,29 +128,21 @@ Here’s my autumn-inspired rice! The wallpaper and system colors are managed by
 
 4. **Enjoy!** (And tweak as needed.)
 
----
-
-## 📝 Roadmap / Wishlist
-
-- [ ] Automatic wallpaper and theme switching (matugen/pywal style, but fully declarative)
-- [ ] More modularization and cleanup of configs
-- [ ] Improved documentation and onboarding for others
 
 ---
 
-## 💬 Why NixOS & Hyprland?
+## 💬 Why NixOS
 
-I chose NixOS for its reproducibility and modularity—no more “it worked on my machine” headaches.  
-Hyprland gives me a fast, modern Wayland environment with great ricing potential.  
-Stylix and Home Manager tie it all together for a seamless, auto-themed desktop.
+I go crazy when I don't know  what exactly is configured on my system. Especially when I am troubleshooting and set multiple options of which I forget about later and therfore can't clean them up properly. I have been using archlinux for a while and really enjoyed it but as I am using multiple devices and love to have feature parity on all of them once I change a thing, I decided to use NixOS and I am really happy with it so far.
 
 ---
 
 ## 🤝 Contributing / Feedback
 
-If you have suggestions, questions, or want to share your own rice, feel free to contact me!  
-I’m always learning and happy to chat about NixOS, Hyprland, and ricing.
+If you have suggestions, questions, or want to share your feedback, feel free to contact me! 
+I know this config is far from perfect and in parts very cluttered. I’m still relatively new to nix, but I hope it gives you some inspiration or helped you to solve an issue you're working on.
 
 ---
 
+Happy Ricing y'all! |^.^/
 **MaySeikatsu**
