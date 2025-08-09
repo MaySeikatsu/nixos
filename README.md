@@ -144,5 +144,5 @@ I know this config is far from perfect and in parts very cluttered. I’m still 
 
 ---
 
-Happy Ricing y'all! |^.^/
+Happy ricing y'all!  |^.^/ 
 **MaySeikatsu**
