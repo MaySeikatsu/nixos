@@ -1,4 +1,4 @@
-# 🍁 Bloated NixOS Config with Hyprland and Stylix 🍁
+# 🍁My NixOS Config with Dynamic Theming🍁
 
 Hey, glad you found my config. Please be aware that this repo contains my personal NixOS configuration which is actively developing day by day. Therefore it's not adviced to directly copy this configuration to use it as a foundation for your system, as there might be a lot of stuff that's not necessary for you. I published it to offer a reference for people who are working on their own config and might want to figure out how to set up specific features that I integrated into my system. 
 
