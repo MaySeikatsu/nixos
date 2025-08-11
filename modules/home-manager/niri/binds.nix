@@ -234,7 +234,8 @@
             "Ctrl+Alt+C".action = sh "pidof wl-color-picker || wl-color-picker";
             "Super+C".action = spawn "qalculate-gtk";
             # "Super+T".action = spawn "kitty";
-            "Super+T".action = spawn "ghostty";
+            # "Super+T".action = spawn "ghostty";
+            "Super+T".action = spawn "foot";
             # "Super+A".action = sh "wofi  -drun || wofi";
             "Super+A".action = sh "sherlock"; # walker -C
             # "Super+S".action = sh "swaync-client -t";

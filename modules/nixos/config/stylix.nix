@@ -41,7 +41,7 @@
   config = {
     # usually just stylix but config part is needed as we're using options above
     stylix = {
-      enable = false;
+      enable = true;
       autoEnable = false;
       # image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
       image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
@@ -54,7 +54,8 @@
         applications = 1.0;
         # terminal = 0.30;
         # terminal = 0.50;
-        terminal = 0.70;
+        # terminal = 0.70; # good
+        terminal = 0.96; # niri
         desktop = 0.99;
         popups = 0.95;
       };

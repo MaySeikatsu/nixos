@@ -242,7 +242,7 @@ in
     kdeconnect.enable = true;
 
     wayfire = {
-      enable = true;
+      enable = false;
       # plugins = [
       #   pkgs.wcm
       # ];
@@ -255,7 +255,7 @@ in
     steam = {
       enable = true;
       # package = pkgs.callPackage pkgs.millennium { };
-      # pkgs.millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
+      # package = pkgs.millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
       extraCompatPackages = [
         # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize
         # Install proton-ge
