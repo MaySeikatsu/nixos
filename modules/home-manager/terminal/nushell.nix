@@ -28,21 +28,78 @@
     ];
 
     extraConfig = ''
-      # $env.config = ($env.config | upsert show_banner false)
-      # $env.config.completions.external = ($env.config.completions.external | upsert completer fish)
-      #
-      # def start_zellij [] {
-      #    if 'ZELLIJ' not-in ($env | columns) {
-      #      zellij
-      #    }
-      #  }
-      #  start_zellij
 
-       # Example binding - this might need adjustment to Nushell's actual syntax:
-       # bind alt-backspace = delete_word_backward
-       # bind alt-delete = delete_word_forward
-       # bind alt-h = move_word_backward
-       # bind alt-l = move_word_forward
+      let fish_completer = {|spans|
+          fish --command $"complete '--do-complete=($spans | str replace --all "'" "\\'" | str join ' ')'"
+          | from tsv --flexible --noheaders --no-infer
+          | rename value description
+          | update value {|row|
+            let value = $row.value
+            let need_quote = ['\' ',' '[' ']' '(' ')' ' ' '\t' "'" '"' "`"] | any {$in in $value}
+            if ($need_quote and ($value | path exists)) {
+              let expanded_path = if ($value starts-with ~) {$value | path expand --no-symlink} else {$value}
+              $'"($expanded_path | str replace --all "\"" "\\\"")"'
+            } else {$value}
+          }
+      }
+
+      let carapace_completer = {|spans: list<string>|
+          carapace $spans.0 nushell ...$spans
+          | from json
+          | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+      }
+
+      # This completer will use carapace by default
+      let external_completer = {|spans|
+          let expanded_alias = scope aliases
+          | where name == $spans.0
+          | get -o 0.expansion
+
+          let spans = if $expanded_alias != null {
+              $spans
+              | skip 1
+              | prepend ($expanded_alias | split row ' ' | take 1)
+          } else {
+              $spans
+          }
+
+          match $spans.0 {
+              # carapace completions are incorrect for nu
+              nu => $fish_completer
+              # fish completes commits and branch names in a nicer way
+              git => $fish_completer
+              # carapace doesn't have completions for asdf
+              gopass => $fish_completer
+              hyprctl => $fish_completer
+              niri => $fish_completer
+              # _ => $carapace_completer
+              _ => $fish_completer
+          } | do $in $spans
+      }
+
+      $env.config = {
+          completions: {
+              external: {
+                  enable: true
+                  completer: $external_completer
+              }
+          }
+      }
+        # $env.config = ($env.config | upsert show_banner false)
+        # $env.config.completions.external = ($env.config.completions.external | upsert completer fish)
+        #
+        # def start_zellij [] {
+        #    if 'ZELLIJ' not-in ($env | columns) {
+        #      zellij
+        #    }
+        #  }
+        #  start_zellij
+
+        # Example binding - this might need adjustment to Nushell's actual syntax:
+        # bind alt-backspace = delete_word_backward
+        # bind alt-delete = delete_word_forward
+        # bind alt-h = move_word_backward
+        # bind alt-l = move_word_forward
     '';
 
     envFile.text = ''
@@ -50,6 +107,7 @@
     '';
     configFile.text = ''
       source ~/.zoxide.nu
+      cat ~/.cache/wallust/sequences
     '';
     # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
     # configFile.source = ./.../config.nu;
@@ -57,9 +115,9 @@
   };
   # For Autocompletions:
   programs.carapace.enable = true;
-  programs.carapace.enableNushellIntegration = true;
+  # programs.carapace.enableNushellIntegration = true;
   # programs.carapace.enableZshIntegration= true;
-  programs.carapace.enableFishIntegration = true;
+  # programs.carapace.enableFishIntegration = true;
   home.sessionVariables = {
     CARAPACE_BRIDGES = "fish";
   };

@@ -31,6 +31,6 @@ wallust run ~/.current-wallpaper
 # SCRIPTS MIGHT NEED: sudo chmod +x ./swww-find-wallpaper.sh     to run the scripts
 
 #Sync RGB Color to Wallpaper
-~/.config/nixos/scripts/openrbg.sh
+# ~/.config/nixos/scripts/openrbg.sh
 
 # hyprpanel restart
