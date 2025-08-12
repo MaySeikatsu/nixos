@@ -365,11 +365,12 @@ in
     inputs.ashell.defaultPackage.${pkgs.system}
     # inputs.eww.packages.${system}.default #should work both
     inputs.eww.packages.${system}.default # eww-wayland
-    inputs.ironbar.packages.${system}.default
+    # inputs.ironbar.packages.${system}.default
     spotify
     # spicetify-cli
     ledfx
     openrgb-with-all-plugins
+    openlinkhub
     hyperion-ng # not working yet
     # discord #managed via nixcord flake
     vesktop # vencord desktop client without overwriting the official discord binary

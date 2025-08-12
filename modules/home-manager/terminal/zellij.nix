@@ -3,7 +3,15 @@
   programs.zellij = {
     enable = true;
     # enableZshIntegration = true;
-    # enableFishIntegration = true;
+    enableFishIntegration = true;
+
+    exitShellOnExit = true;
+    settings = {
+      show_startup_tips = false;
+      theme = "dracula";
+      copy_on_select = true;
+      default_mode = "locked";
+    };
 
     #shortcut = " ";
     # settings = {

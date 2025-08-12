@@ -157,7 +157,7 @@
               users.maike = import ./hosts/nixos-maike-pc/home.nix;
               useGlobalPkgs = true;
               useUserPackages = true;
-              backupFileExtension = "backup";
+              backupFileExtension = "bck";
               # Home-Manager Modules
               extraSpecialArgs = {
                 inherit inputs; # apperently needed for textfox?
@@ -165,6 +165,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
+                inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
@@ -207,7 +208,7 @@
               users.maike = import ./hosts/nixos-legion/home.nix;
               useGlobalPkgs = true;
               useUserPackages = true;
-              backupFileExtension = "backup";
+              backupFileExtension = "bck";
               # Home-Manager Modules
               extraSpecialArgs = {
                 inherit inputs; # apperently needed for textfox?
@@ -215,6 +216,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
+                inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default

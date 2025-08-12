@@ -24,6 +24,14 @@
           home = true;
         }
         # {
+        #   name = "Clipboard";
+        #   alias = "clip";
+        #   type = "clipboard-execution";
+        #   args = { };
+        #   priority = 2;
+        #   home = true;
+        # }
+        # {
         #   name = "Web Search";
         #   display_name = "Web Search";
         #   tag_start = "{keyword}";

@@ -29,6 +29,7 @@
     ../modules/home-manager/foot.nix
     ../modules/home-manager/sherlock-launcher.nix
     ../modules/home-manager/terminal
+    ../modules/home-manager/ironbar.nix
     # ../modules/home-manager/terminal/zellij.nix
     # ../modules/home-manager/terminal/nushell.nix
     # ../modules/home-manager/terminal/fish.nix

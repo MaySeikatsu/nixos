@@ -126,7 +126,8 @@
             { command = sh ++ [ "cliphist wipe" ]; }
             { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
             { command = sh ++ [ "systemctl --user start hypridle.service" ]; }
-            { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+            # { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+            { command = sh ++ [ "systemctl --user start ironbar" ]; }
             # { command = sh ++ [ "systemctl --user start hyprpanel" ]; }
             { command = sh ++ [ "systemctl --user start xwayland-satellite.service" ]; }
             { command = sh ++ [ "systemctl --user start swaybg.service" ]; }

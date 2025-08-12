@@ -85,15 +85,12 @@
               }
           }
       }
-        # $env.config = ($env.config | upsert show_banner false)
-        # $env.config.completions.external = ($env.config.completions.external | upsert completer fish)
-        #
-        # def start_zellij [] {
-        #    if 'ZELLIJ' not-in ($env | columns) {
-        #      zellij
-        #    }
-        #  }
-        #  start_zellij
+      def start_zellij [] {
+         if 'ZELLIJ' not-in ($env | columns) {
+           zellij
+         }
+       }
+       start_zellij
 
         # Example binding - this might need adjustment to Nushell's actual syntax:
         # bind alt-backspace = delete_word_backward
