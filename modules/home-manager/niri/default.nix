@@ -5,7 +5,7 @@
     # ./settings.nix
     # ./binds.nix
     # ./rules.nix
-    ./output.nix
+    # ./output.nix
   ];
 
   home = {
