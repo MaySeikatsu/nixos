@@ -1,5 +1,4 @@
-{ pkgs, inputs, ... }:
-{
+{ pkgs, inputs, ... }: {
   programs.ironbar = {
     enable = true;
     systemd = true;
@@ -10,6 +9,79 @@
       # height = 16;
 
       monitors = {
+        eDP-2 = {
+          anchor_to_edges = true;
+          position = "top";
+          height = 16;
+          margin.top = 8;
+          margin.left = 8;
+          margin.right = 8;
+          # autohide = 1000;
+          icon_theme = "Paper";
+
+          start = [
+            {
+              type = "menu";
+              height = 600;
+              width = 400;
+            }
+            {
+              type = "workspaces";
+              all_monitors = false;
+              icon_size = 28;
+              sort = "name";
+            }
+            {
+              type = "launcher";
+              favorites = [
+                "foot"
+                "zen-twilight"
+                # "files"
+                "vesktop"
+                "spotify"
+                # "steam"
+                "teams-for-linux"
+              ];
+            }
+          ];
+          center = [{
+            type = "focused";
+            show_icon = true;
+            show_title = true;
+            icon_size = 28;
+            truncate = "end";
+          }];
+          end = [
+            {
+              type = "tray";
+              icon_size = 18;
+            }
+            {
+              type = "clipboard";
+              max_items = 5;
+            }
+            {
+              type = "upower";
+              # format = "{percentage}% - {time_remaining}";
+              format = "{percentage} %";
+            }
+            {
+              type = "volume";
+              format = "{icon} {percentage}%";
+            }
+            {
+              type = "network_manager";
+              icon_size = 24;
+            }
+            { type = "clock"; }
+            {
+              type = "notifications";
+              show_count = true;
+            }
+          ];
+
+        };
+
         DP-2 = {
           anchor_to_edges = true;
           position = "top";
@@ -45,15 +117,13 @@
               ];
             }
           ];
-          center = [
-            {
-              type = "focused";
-              show_icon = true;
-              show_title = true;
-              icon_size = 28;
-              truncate = "end";
-            }
-          ];
+          center = [{
+            type = "focused";
+            show_icon = true;
+            show_title = true;
+            icon_size = 28;
+            truncate = "end";
+          }];
           end = [
             {
               type = "tray";
@@ -65,7 +135,8 @@
             }
             {
               type = "upower";
-              format = "{time_remaining} {percentage}%";
+              # format = "{time_remaining} {percentage}%";
+              format = "{percentage} %";
             }
             {
               type = "volume";
@@ -73,11 +144,9 @@
             }
             {
               type = "network_manager";
-              icon_size = 32;
+              icon_size = 24;
             }
-            {
-              type = "clock";
-            }
+            { type = "clock"; }
             {
               type = "notifications";
               show_count = true;
@@ -106,15 +175,13 @@
               sort = "name";
             }
           ];
-          center = [
-            {
-              type = "focused";
-              show_icon = true;
-              show_title = false;
-              icon_size = 28;
-              truncate = "end";
-            }
-          ];
+          center = [{
+            type = "focused";
+            show_icon = true;
+            show_title = false;
+            icon_size = 28;
+            truncate = "end";
+          }];
           end = [
             {
               type = "tray";
@@ -128,9 +195,7 @@
               type = "volume";
               format = "{icon} {percentage}%";
             }
-            {
-              type = "clock";
-            }
+            { type = "clock"; }
           ];
 
         };
@@ -203,96 +268,74 @@
             # font-weight: bold;
             margin-left: 5px;
         }
-
         .popup-clock .calendar-clock {
             color: @color_text;
             font-size: 2.5em;
             padding-bottom: 0.1em;
         }
-
         .popup-clock .calendar {
             background-color: @color_bg;
             color: @color_text;
         }
-
         .popup-clock .calendar .header {
             padding-top: 1em;
             border-top: 1px solid @color_border;
             font-size: 1.5em;
         }
-
         .popup-clock .calendar:selected {
             background-color: @color_border_active;
         }
 
-
         /* -- launcher -- */
-
         .launcher .item {
             margin-right: 4px;
         }
-
         .launcher .ifix examtem:not(.focused):hover {
             background-color: @color_bg_dark;
         }
-
         .launcher .open {
             border-bottom: 1px solid @color_text;
         }
-
         .launcher .focused {
             border-bottom: 1px solid @color_border_active;
         }
-
         .launcher .urgent {
             border-bottom-color: @color_urgent;
         }
-
         .popup-launcher {
             padding: 0;
         }
-
         .popup-launcher .popup-item:not(:first-child) {
             border-top: 1px solid @color_border;
         }
 
-
         /* -- music -- */
-
         .music:hover * {
             background-color: @color_bg_dark;
         }
-
         .popup-music .album-art {
             margin-right: 1em;
         }
-
         .popup-music .icon-box {
             margin-right: 0.4em;
         }
-
         .popup-music .title .icon, .popup-music .title .label {
             font-size: 1.7em;
         }
-
         .popup-music .controls *:disabled {
             color: @color_border;
         }
-
         .popup-music .volume .slider slider {
             border-radius: 100%;
         }
-
         .popup-music .volume .icon {
             margin-left: 4px;
         }
-
         .popup-music .progress .slider slider {
             border-radius: 100%;
         }
 
         /* notifications */
-
         .notifications .count {
             font-size: 0.6rem;
             background-color: @color_text;

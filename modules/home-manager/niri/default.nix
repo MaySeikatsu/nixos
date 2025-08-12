@@ -1,9 +1,8 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   imports = [
     inputs.niri.homeModules.niri
     # ./settings.nix
-    # ./binds.nix
+    ./binds.nix
     # ./rules.nix
     # ./output.nix
   ];
