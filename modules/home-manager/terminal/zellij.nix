@@ -1,18 +1,12 @@
-{ pkgs, ... }: {
-  home.file.".config/zellij/config.kdl".source =
-    ../../../ressources/dots/zellij/config.kdl;
+{ pkgs, ... }:
+{
+  home.file.".config/zellij/config.kdl".source = ../../../ressources/dots/zellij/config.kdl;
 
   programs.zellij = {
     enable = true;
     # enableZshIntegration = true;
     # enableFishIntegration = true;
     # exitShellOnExit = true; # not working yet
-
-    # settings = {
-    # simplified_ui = false;
-    # pane_frames = false;
-    # ui = { pane_frames = { hide_seession_name = true; }; };
-    # };
   };
 }
 
@@ -24,6 +18,7 @@
 #       # themes.custom.bg = "#000000";
 #       # default_layout = "compact";
 #       # simplified_ui = false;
+# pane_frames = false;
 #       # pane_frames = false;
 #       ui.pane_frames.hide_seession_name = true;
 #

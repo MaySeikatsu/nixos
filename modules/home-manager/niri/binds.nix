@@ -1,4 +1,11 @@
-{ pkgs, inputs, username, config, ... }: {
+{
+  pkgs,
+  inputs,
+  username,
+  config,
+  ...
+}:
+{
   # services = {
   #   blueman.enable = true;
   #   gnome.gnome-keyring.enable = true;
@@ -107,38 +114,47 @@
           CLUTTER_BACKEND = "wayland";
         };
 
-        spawn-at-startup = let sh = [ "sh" "-c" ];
-        in [
-          { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
-          { command = sh ++ [ "cliphist wipe" ]; }
-          { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
-          {
-            command = sh ++ [ "systemctl --user start hypridle.service" ];
-          }
-          # { command = sh ++ [ "systemctl --user start waybar.service" ]; }
-          {
-            command = [ "ironbar" ];
-          }
-          # { command = sh ++ [ "systemctl --user start hyprpanel" ]; }
-          {
-            command = sh
-              ++ [ "systemctl --user start xwayland-satellite.service" ];
-          }
-          { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
-          { command = sh ++ [ "systemctl --user start swaync.service" ]; }
-          { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
-          { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
-          { command = sh ++ [ "id=0" ]; }
-          { command = [ "swayosd-server" ]; }
-          { command = [ "nm-applet" ]; }
-        ];
+        spawn-at-startup =
+          let
+            sh = [
+              "sh"
+              "-c"
+            ];
+          in
+          [
+            { command = sh ++ [ "wl-clip-persist --clipboard regular" ]; }
+            { command = sh ++ [ "cliphist wipe" ]; }
+            { command = sh ++ [ "systemctl --user start cliphist.service" ]; }
+            {
+              command = sh ++ [ "systemctl --user start hypridle.service" ];
+            }
+            # { command = sh ++ [ "systemctl --user start waybar.service" ]; }
+            {
+              command = sh ++ [ "ironbar" ];
+            }
+            # { command = sh ++ [ "systemctl --user start hyprpanel" ]; }
+            {
+              command = sh ++ [ "systemctl --user start xwayland-satellite.service" ];
+            }
+            { command = sh ++ [ "systemctl --user start swaybg.service" ]; }
+            { command = sh ++ [ "systemctl --user start swaync.service" ]; }
+            { command = sh ++ [ "sleep 1 && blueman-applet" ]; }
+            { command = sh ++ [ "sleep 3 && syncthingtray --wait" ]; }
+            { command = sh ++ [ "id=0" ]; }
+            { command = [ "swayosd-server" ]; }
+            { command = [ "nm-applet" ]; }
+          ];
 
         input = {
           power-key-handling.enable = false;
           warp-mouse-to-focus.enable = true;
 
-          mouse = { accel-speed = 0.5; };
-          touchpad = { accel-speed = 0.5; };
+          mouse = {
+            accel-speed = 0.5;
+          };
+          touchpad = {
+            accel-speed = 0.5;
+          };
 
           keyboard.xkb = {
             layout = "us, de";
@@ -155,9 +171,12 @@
           };
         };
 
-        binds = with config.lib.niri.actions;
-          let sh = spawn "sh" "-c";
-          in {
+        binds =
+          with config.lib.niri.actions;
+          let
+            sh = spawn "sh" "-c";
+          in
+          {
             # "Super+Shift+M" = sh "~/.config/nixos/scripts/wall_cycle.sh";
             "Super+Q".action = close-window;
             "Super+W".action = toggle-window-floating;
@@ -183,8 +202,7 @@
             "Super+Ctrl+Shift+Right".action = consume-or-expel-window-right;
             "Super+Ctrl+Shift+Left".action = consume-or-expel-window-left;
             "Super+Ctrl+Shift+Up".action = move-window-up-or-to-workspace-up;
-            "Super+Ctrl+Shift+Down".action =
-              move-window-down-or-to-workspace-down;
+            "Super+Ctrl+Shift+Down".action = move-window-down-or-to-workspace-down;
 
             "Super+Ctrl+Shift+L".action = consume-or-expel-window-right;
             "Super+Ctrl+Shift+H".action = consume-or-expel-window-left;
@@ -230,33 +248,27 @@
             # "Super+S".action = sh "swaync-client -t";
             # "Super+Escape".action = sh "loginctl lock-session";
             "Super+Escape".action = sh "hyprlock";
-            "Super+Alt+P".action =
-              sh "pidof wofi-power-menu || wofi-power-menu";
-            "XF86PowerOff".action =
-              sh "pidof wofi-power-menu || wofi-power-menu";
-            "XF86AudioMute".action =
-              sh "swayosd-client --output-volume=mute-toggle";
+            "Super+Alt+P".action = sh "pidof wofi-power-menu || wofi-power-menu";
+            "XF86PowerOff".action = sh "pidof wofi-power-menu || wofi-power-menu";
+            "XF86AudioMute".action = sh "swayosd-client --output-volume=mute-toggle";
             "XF86AudioPlay".action = sh "playerctl play-pause";
             "XF86AudioPrev".action = sh "playerctl previous";
             "XF86AudioNext".action = sh "playerctl next";
-            "XF86AudioRaiseVolume".action =
-              sh "swayosd-client --output-volume=raise";
-            "XF86AudioLowerVolume".action =
-              sh "swayosd-client --output-volume=lower";
-            "XF86MonBrightnessUp".action =
-              sh "swayosd-client --brightness=raise";
-            "XF86MonBrightnessDown".action =
-              sh "swayosd-client --brightness=lower";
+            "XF86AudioRaiseVolume".action = sh "swayosd-client --output-volume=raise";
+            "XF86AudioLowerVolume".action = sh "swayosd-client --output-volume=lower";
+            "XF86MonBrightnessUp".action = sh "swayosd-client --brightness=raise";
+            "XF86MonBrightnessDown".action = sh "swayosd-client --brightness=lower";
           };
 
         # gestures.hot-corners.enable = false;
 
         outputs = {
+          # PC
           "HDMI-A-1" = {
             mode = {
               width = 1920;
               height = 1080;
-              refresh = null;
+              refresh = 239.964;
             };
             scale = 1.0;
             position = {
@@ -266,17 +278,18 @@
             # transform = "90";
           };
           "DP-2" = {
-            # mode = {
-            #     width = 2160;
-            #     height = 1440;
-            #     refresh = null;
-            # };
+            mode = {
+              width = 3840;
+              height = 2160;
+              refresh = 143.851;
+            };
             scale = 1.0;
             position = {
               x = 0;
               y = 0;
             };
           };
+          # PC End
           # Legion
           "eDP-2" = {
             mode = {
@@ -292,6 +305,7 @@
             };
           };
         };
+        # Legion End
 
         # output = {
         #   # HDMI-A-1 = {
@@ -305,7 +319,9 @@
         layout = {
           gaps = 8;
           default-column-width.proportion = 0.5;
-          insert-hint.display = { color = "rgba(224, 224, 224, 30%)"; };
+          insert-hint.display = {
+            color = "rgba(224, 224, 224, 30%)";
+          };
 
           preset-column-widths = [
             { proportion = 1.0 / 3.0; }
@@ -325,8 +341,12 @@
           focus-ring = {
             enable = true;
             width = 1;
-            active = { color = "#22222222"; };
-            inactive = { color = "#00000000"; };
+            active = {
+              color = "#22222222";
+            };
+            inactive = {
+              color = "#00000000";
+            };
           };
 
           tab-indicator = {
@@ -337,8 +357,12 @@
             gap = 8;
             gaps-between-tabs = 8;
             position = "top";
-            active = { color = "rgba(224, 224, 224, 100%)"; };
-            inactive = { color = "rgba(224, 224, 224, 30%)"; };
+            active = {
+              color = "rgba(224, 224, 224, 100%)";
+            };
+            inactive = {
+              color = "rgba(224, 224, 224, 30%)";
+            };
             length.total-proportion = 1.0;
           };
         };
@@ -347,13 +371,16 @@
 
         window-rules = [
           {
-            geometry-corner-radius = let radius = 12.0;
-            in {
-              bottom-left = radius;
-              bottom-right = radius;
-              top-left = radius;
-              top-right = radius;
-            };
+            geometry-corner-radius =
+              let
+                radius = 12.0;
+              in
+              {
+                bottom-left = radius;
+                bottom-right = radius;
+                top-left = radius;
+                top-right = radius;
+              };
             clip-to-geometry = true;
             draw-border-with-background = false;
           }
@@ -370,16 +397,24 @@
             open-floating = true;
           }
           {
-            matches = [{ is-window-cast-target = true; }];
+            matches = [ { is-window-cast-target = true; } ];
 
             focus-ring = {
-              active = { color = "rgba(224, 53, 53, 100%)"; };
-              inactive = { color = "rgba(224, 53, 53, 30%)"; };
+              active = {
+                color = "rgba(224, 53, 53, 100%)";
+              };
+              inactive = {
+                color = "rgba(224, 53, 53, 30%)";
+              };
             };
 
             tab-indicator = {
-              active = { color = "rgba(224, 53, 53, 100%)"; };
-              inactive = { color = "rgba(224, 53, 53, 30%)"; };
+              active = {
+                color = "rgba(224, 53, 53, 100%)";
+              };
+              inactive = {
+                color = "rgba(224, 53, 53, 30%)";
+              };
             };
 
             opacity = 0.96;
