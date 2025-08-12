@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+  home.file.".config/zellij/config.kdl".source =
+    ../../../ressources/dots/zellij/config.kdl;
+
   programs.zellij = {
     enable = true;
     # enableZshIntegration = true;
@@ -11,8 +14,6 @@
     # ui = { pane_frames = { hide_seession_name = true; }; };
     # };
   };
-  home.file.".config/zellij/config.kdl".source =
-    ../../../ressources/dots/zellij/config.kdl;
 }
 
 # settings = {
