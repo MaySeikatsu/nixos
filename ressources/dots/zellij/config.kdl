@@ -157,6 +157,10 @@ keybinds clear-defaults=true {
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
         bind "Alt n" { NewPane; }
+        bind "Alt p" { NewPane; }
+        bind "Alt x" { CloseFocus; SwitchToMode "locked"; }
+        bind "Alt t" { NewTab; SwitchToMode "locked"; }
+        bind "Alt w" { CloseTab; SwitchToMode "locked"; }
         bind "Alt o" { MoveTab "right"; }
     }
     shared_except "locked" "renametab" "renamepane" {
@@ -255,7 +259,8 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "dracula"
+// theme "dracula"
+theme "tokyo-night-dark"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -370,7 +375,7 @@ on_force_close "detach"
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-// attach_to_session true
+attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:

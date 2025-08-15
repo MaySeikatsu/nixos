@@ -1,15 +1,4 @@
-{
-  pkgs,
-  config,
-  host,
-  username,
-  options,
-  lib,
-  inputs,
-  system,
-  ...
-}:
-{
+{ pkgs, config, host, username, options, lib, inputs, system, ... }: {
   #DOES NOT WORK - put hard values in instead
   #This part is used for hyprpanel configuration with stylix - stolen from: https://github.com/anotherhadi/nixy/blob/main/themes/nixy.nix
   #   options.theme = lib.mkOption {
@@ -44,9 +33,11 @@
       enable = true;
       autoEnable = false;
       # image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
-      image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
+      image =
+        ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
       polarity = "dark"; # options: light, dark, either (selects closest)
-      # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+      base16Scheme =
+        "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       # homeManagerIntegration.followSystem = true;
 
