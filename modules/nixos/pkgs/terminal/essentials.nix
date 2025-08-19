@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -89,6 +82,10 @@
     # tfmigrate
     opentofu
     tofu-ls
+    gemini-cli
+    geminicommit
+    claude-code
+    # gpt-cli
 
     # Virtualisation like WSL for unix systems:
     lima
