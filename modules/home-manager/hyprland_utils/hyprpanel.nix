@@ -147,6 +147,7 @@ in {
       };
       theme = {
         bar = {
+          # radius = "2.0";
           buttons = {
             workspaces = {
               spacing = "0.4";

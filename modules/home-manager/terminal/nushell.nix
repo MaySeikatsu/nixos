@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.nushell = {
     enable = true;
     shellAliases = {
@@ -49,6 +48,12 @@
           | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
       }
 
+      # let zsh_completer = {|spans|
+      #     zsh --rcfile /dev/null -c $"autoload -Uz compinit; compinit; compgen -A file -- ($spans | str join ' ')"
+      #     | lines
+      #     | each {|line| { value: $line description: "" } }
+      # }
+
       # This completer will use carapace by default
       let external_completer = {|spans|
           let expanded_alias = scope aliases
@@ -72,8 +77,9 @@
               gopass => $fish_completer
               hyprctl => $fish_completer
               niri => $fish_completer
-              # _ => $carapace_completer
-              _ => $fish_completer
+              # wallust => $zsh_completer
+              _ => $carapace_completer
+              # _ => $fish_completer
           } | do $in $spans
       }
 
@@ -101,6 +107,10 @@
 
     envFile.text = ''
       zoxide init nushell | save -f ~/.zoxide.nu
+
+      $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+      mkdir ~/.cache/carapace
+      carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
     '';
     configFile.text = ''
       source ~/.zoxide.nu
@@ -112,10 +122,10 @@
   };
   # For Autocompletions:
   programs.carapace.enable = true;
+  # home.file.".config/carapace/config.kdl".source = ../../../ressources/dots/carapace/config.kdl;
   # programs.carapace.enableNushellIntegration = true;
   # programs.carapace.enableZshIntegration= true;
   # programs.carapace.enableFishIntegration = true;
-  home.sessionVariables = {
-    CARAPACE_BRIDGES = "fish";
-  };
+  # home.sessionVariables = { CARAPACE_BRIDGES = "fish"; };
+  home.sessionVariables = { CARAPACE_BRIDGES = "fish,zsh,inshellisense"; };
 }

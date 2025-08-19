@@ -45,8 +45,8 @@
         applications = 1.0;
         # terminal = 0.30;
         # terminal = 0.50;
-        # terminal = 0.70; # good
-        terminal = 0.96; # niri
+        terminal = 0.7; # good
+        # terminal = 0.96; # niri
         desktop = 0.99;
         popups = 0.95;
       };
