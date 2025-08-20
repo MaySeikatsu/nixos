@@ -185,7 +185,8 @@ in {
           margin_bottom = "0em";
           margin_top = "0.5em";
           layer = "overlay";
-          opacity = 90;
+          opacity = 80;
+          # opacity = 90;
           scaling = 85;
           menus = {
             menu = {
@@ -205,7 +206,8 @@ in {
           };
           location = "top";
           transparent = false;
-          floating = true;
+          floating = false;
+          # floating = true;
           # transparent = true;
         };
         font = {
@@ -213,7 +215,7 @@ in {
           size = "1.1rem";
         };
         wallpaper = {
-          enable = true;
+          enable = false;
           pywal = false;
           # image = "/home/maike/.current-wallpaper";
           image = WALLPAPER;
@@ -225,7 +227,7 @@ in {
         osd.scaling = 80;
         tooltip.scaling = 80;
         notification.scaling = 80;
-        matugen = true;
+        matugen = false;
         matugen_settings = {
           mode = "dark";
           scheme_type = "tonal-spot";
