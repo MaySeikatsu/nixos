@@ -112,6 +112,8 @@ vesktop1.target = '/home/maike/.config/vesktop/themes/midnight-dynamic.theme.css
 vesktop2.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-vesktop-system24.css'
 vesktop2.target = '/home/maike/.config/vesktop/themes/system24-dynamic.theme.css'
 
-btop.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/btop.tpl'
+btop.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-btop.tpl'
 btop.target = '~/.config/btop/themes/wallust.theme'
 
+zellij.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-zellij.kdl'
+zellij.target = '~/.config/zellij/themes/wallust-theme.kdl'

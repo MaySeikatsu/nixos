@@ -1,0 +1,121 @@
+themes {
+    wallust-theme {
+        text_unselected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ background | red  }} {{ background | green }} {{ background | blue }}
+            emphasis_0 {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_1 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            emphasis_2 {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            emphasis_3 {{ color3 | red }} {{ color3 | green }} {{ color3 | blue }}
+        }
+        text_selected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_0 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_1 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_2 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_3 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+        }
+        ribbon_unselected {
+            base {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            background {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            emphasis_0 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            emphasis_1 {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            emphasis_2 {{ color3 | red }} {{ color3 | green }} {{ color3 | blue }}
+            emphasis_3 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+        }
+        ribbon_selected {
+            // base {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            base 0 0 0
+            background {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            emphasis_0 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_1 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_2 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+            emphasis_3 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+        }
+        table_title {
+            base {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            background 0 0 0
+            emphasis_0 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_1 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_2 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_3 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+        }
+        table_cell_unselected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ background | red }} {{ background | green }} {{ background | blue }}
+            emphasis_0 {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_1 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            emphasis_2 {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            emphasis_3 {{ color3 | red }} {{ color3 | green }} {{ color3 | blue }}
+        }
+        table_cell_selected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_0 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_1 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_2 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_3 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+        }
+        list_unselected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ background | red }} {{ background | green }} {{ background | blue }}
+            emphasis_0 {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_1 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            emphasis_2 {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            emphasis_3 {{ color3 | red }} {{ color3 | green }} {{ color3 | blue }}
+        }
+        list_selected {
+            base {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            background {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_0 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_1 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_2 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_3 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+        }
+        frame_selected {
+            base {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            background 0 0 0
+            emphasis_0 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_1 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_2 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+            emphasis_3 0 0 0
+        }
+        frame_highlight {
+            base {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            background 0 0 0
+            emphasis_0 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+            emphasis_1 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_2 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            emphasis_3 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+        }
+        exit_code_success {
+            base {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            background 0 0 0
+            emphasis_0 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            emphasis_1 {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+            emphasis_2 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+            emphasis_3 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+        }
+        exit_code_error {
+            base {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            background 0 0 0
+            emphasis_0 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            emphasis_1 0 0 0
+            emphasis_2 0 0 0
+            emphasis_3 0 0 0
+        }
+        multiplayer_user_colors {
+            player_1 {{ color7 | red }} {{ color7 | green }} {{ color7 | blue }}
+            player_2 {{ color1 | red }} {{ color1 | green }} {{ color1 | blue }}
+            player_3 {{ color2 | red }} {{ color2 | green }} {{ color2 | blue }}
+            player_4 {{ color3 | red }} {{ color3 | green }} {{ color3 | blue }}
+            player_5 {{ color4 | red }} {{ color4 | green }} {{ color4 | blue }}
+            player_6 {{ color5 | red }} {{ color5 | green }} {{ color5 | blue }}
+            player_7 {{ color6 | red }} {{ color6 | green }} {{ color6 | blue }}
+            player_8 {{ background | red }} {{ background | green }} {{ background | blue }}
+            player_9 {{ foreground | red }} {{ foreground | green }} {{ foreground | blue }}
+            player_10 {{ color0 | red }} {{ color0 | green }} {{ color0 | blue }}
+        }
+    }
+}

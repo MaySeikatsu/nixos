@@ -260,7 +260,8 @@ simplified_ui false
 // Default: default
 // 
 // theme "dracula"
-theme "tokyo-night-dark"
+// theme "tokyo-night-dark"
+theme "wallust-theme"
  
 // Choose the base input mode of zellij.
 // Default: normal
