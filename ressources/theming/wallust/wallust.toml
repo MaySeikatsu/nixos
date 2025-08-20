@@ -117,3 +117,6 @@ btop.target = '~/.config/btop/themes/wallust.theme'
 
 zellij.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-zellij.kdl'
 zellij.target = '~/.config/zellij/themes/wallust-theme.kdl'
+
+nix-active.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors-nix-active.nix'
+nix-active.target = '~/.config/nixos/ressources/theming/wallust/colors-nix-active.nix'

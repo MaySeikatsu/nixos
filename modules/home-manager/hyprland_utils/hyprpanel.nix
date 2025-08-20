@@ -8,6 +8,9 @@ let
   # hover = "#${colors.base02}";
   # background = grep "^let color1" home/maike/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/') -d 1 -c $(grep '^let color1' ~/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/') -d 2 -c $(grep '^let color1' ~/.cache/wal/colors-wal.vim | sed -E 's/.*= "#([0-9A-Fa-f]+)"/\1/'
   WALLPAPER = "$(readlink -f /home/maike/.current-wallpaper)";
+  color1 = "#c01c28";
+  color2 = "#33d17a";
+  colorText = "#000000";
 in {
   # imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
@@ -147,9 +150,16 @@ in {
       };
       theme = {
         bar = {
+          buttonStyle = "default";
           # radius = "2.0";
           buttons = {
+            icon = color1;
+            text = color1;
+            borderColor = color1;
+            monochrome = true;
             workspaces = {
+              active = color1;
+              occupied = color2;
               spacing = "0.4";
               enableBorder = true;
               pill = {
@@ -166,7 +176,7 @@ in {
             background_hover_opacity = 80;
             # background = "#029192";
             innerRadiusMultiplier = "0.4";
-            radius = "1.0em";
+            radius = "0.0em";
             y_margins = "0.5em";
             padding_y = "0.1rem";
             padding_x = "0.7rem";
@@ -189,6 +199,12 @@ in {
           # opacity = 90;
           scaling = 85;
           menus = {
+            monochrome = true;
+            label = color2;
+            text = color2;
+            icons.active = color2;
+            buttons.default = color2;
+            buttons.text = color1;
             menu = {
               dashboard = {
                 # confirmation_scaling = 80;

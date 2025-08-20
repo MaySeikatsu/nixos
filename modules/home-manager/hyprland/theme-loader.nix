@@ -6,7 +6,8 @@
     # ./theme/theme-batterysaver.nix
     # ./theme/theme-no-rounding.nix
     # ./theme/theme-squircle-glass.nix
-    ./theme/theme-no-padding.nix
+    # ./theme/theme-no-padding.nix
+    ./theme/theme-no-padding-inside.nix
     ./theme/windowrules-default.nix
   ];
 }
