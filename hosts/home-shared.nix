@@ -38,7 +38,7 @@
     # ./../modules/home-manager/terminal/starship.nix
     # ./../modules/home-manager/terminal/zsh.nix
     # ./../modules/home-manager/terminal/tmux.nix
-    ../modules/home-manager/neovim.nix
+    # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
     # ../modules/home-manager/quickshell-emmi

@@ -162,6 +162,8 @@ keybinds clear-defaults=true {
         bind "Alt t" { NewTab; SwitchToMode "locked"; }
         bind "Alt w" { CloseTab; SwitchToMode "locked"; }
         bind "Alt o" { MoveTab "right"; }
+        // bind "Alt t r" { MoveTab "right"; } add rename tab
+        // bind "Alt o r" { MoveTab "right"; } add rename session
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }

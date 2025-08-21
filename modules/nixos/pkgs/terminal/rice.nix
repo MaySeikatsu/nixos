@@ -1,4 +1,11 @@
-{ config, pkgs, inputs, lib, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
 
     fastfetch
@@ -9,6 +16,7 @@
     pipes-rs
     cmatrix
     rsclock
+    lolcat
     # steam-tui
     discordo # discord cli client
     bluetui
