@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   wayland.windowManager.hyprland.settings = {
     exec = [
       #   "exec = gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-dracula'"
@@ -7,16 +8,20 @@
     ];
 
     general = {
-      gaps_in = 0;
+      gaps_in = 0; # 5
       gaps_out = 10;
+      float_gaps = 10;
       # border_size = 2;
       border_size = 0;
       # "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
       # "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
       layout = "dwindle";
       resize_on_border = true;
+      extend_border_grab_area = 10;
       # allow_tearing = true;
-      snap = { enabled = true; };
+      snap = {
+        enabled = true;
+      };
     };
 
     # Colors are commented out for stylix theming
@@ -25,6 +30,17 @@
     #   "col.border_inactive" = "rgb(272727)";
     #   "col.border_locked_active" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
     #   "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
+    #   groupbar = {
+    #     height = 15;
+    #     gradients = false;
+    #     rounding = 0;
+    #     text_color =
+    #     text_color_inactive =
+    #     # text_color_locked_active =
+    #     # text_color_locked_inactive =
+    #     col.active =
+    #     col.inactive =
+    #   };
     # };
 
     decoration = {
@@ -32,6 +48,7 @@
       rounding_power = 0.0; # 4.0 is a squircle
       active_opacity = 1.0;
       inactive_opacity = 0.96;
+      fullscreen_opacity = 0.98;
       dim_special = 0.2;
       dim_around = 0.6;
       border_part_of_window = true;
@@ -42,7 +59,8 @@
         new_optimizations = true;
         size = 2;
         passes = 6;
-        xray = true;
+        # xray = true;
+        xray = false;
 
         noise = 1.17e-2;
         vibrancy = 0.7696;

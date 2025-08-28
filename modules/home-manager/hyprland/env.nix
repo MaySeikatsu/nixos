@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   wayland.windowManager.hyprland.settings = {
     # master = [
@@ -7,7 +7,7 @@
     env = [
       "XCURSOR_SIZE,24"
       "HYPRCURSOR_SIZE,24"
-    ]; 
+    ];
     # dwindle = [
     #   "pseudotile = true" # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     #   "preserve_split = true" # You probably want this

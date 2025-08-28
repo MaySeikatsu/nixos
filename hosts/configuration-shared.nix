@@ -417,7 +417,7 @@ in
     material-symbols
 
     kodi-wayland
-    libsForQt5.plasma-bigscreen
+    # libsForQt5.plasma-bigscreen
 
     ollama
     # lmstudio
