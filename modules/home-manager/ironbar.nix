@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
   programs.ironbar = {
-    enable = true;
+    enable = false;
     systemd = true;
     config = {
       # anchor_to_edges = true;
@@ -9,7 +9,7 @@
       # height = 16;
 
       monitors = {
-        eDP-2 = {
+        eDP-1 = {
           anchor_to_edges = true;
           position = "top";
           height = 16;

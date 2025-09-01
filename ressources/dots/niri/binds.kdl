@@ -1,0 +1,60 @@
+binds {
+    Alt+Return { fullscreen-window; }
+    Ctrl+Alt+A { switch-preset-window-height; }
+    Ctrl+Alt+C { spawn "sh" "-c" "pidof wl-color-picker || wl-color-picker"; }
+    Ctrl+Alt+Q { switch-preset-column-width; }
+    Ctrl+Alt+Tab { toggle-column-tabbed-display; }
+    Ctrl+Alt+W { maximize-column; }
+    Ctrl+Super+Down { focus-workspace-down; }
+    Ctrl+Super+H { focus-workspace-up; }
+    Ctrl+Super+J { focus-workspace-down; }
+    Ctrl+Super+K { focus-workspace-up; }
+    Ctrl+Super+L { focus-workspace-down; }
+    Ctrl+Super+Left { focus-workspace-up; }
+    Ctrl+Super+Right { focus-workspace-down; }
+    Ctrl+Super+Up { focus-workspace-up; }
+    Print { screenshot; }
+    Super+0 { focus-workspace 10; }
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+A { spawn "sh" "-c" "sherlock"; }
+    Super+Alt+P { spawn "sh" "-c" "pidof wofi-power-menu || wofi-power-menu"; }
+    Super+C { spawn "qalculate-gtk"; }
+    Super+Ctrl+Shift+Down { move-window-down-or-to-workspace-down; }
+    Super+Ctrl+Shift+H { consume-or-expel-window-left; }
+    Super+Ctrl+Shift+J { move-window-down-or-to-workspace-down; }
+    Super+Ctrl+Shift+K { move-window-up-or-to-workspace-up; }
+    Super+Ctrl+Shift+L { consume-or-expel-window-right; }
+    Super+Ctrl+Shift+Left { consume-or-expel-window-left; }
+    Super+Ctrl+Shift+Right { consume-or-expel-window-right; }
+    Super+Ctrl+Shift+Up { move-window-up-or-to-workspace-up; }
+    Super+Down { focus-window-or-monitor-down; }
+    Super+Escape { spawn "sh" "-c" "hyprlock"; }
+    Super+H { focus-column-or-monitor-left; }
+    Super+J { focus-window-or-monitor-down; }
+    Super+K { focus-window-or-monitor-up; }
+    Super+L { focus-column-or-monitor-right; }
+    Super+Left { focus-column-or-monitor-left; }
+    Super+Q { close-window; }
+    Super+Return { move-window-to-monitor-next; }
+    Super+Right { focus-column-or-monitor-right; }
+    Super+T { spawn "foot"; }
+    Super+Up { focus-window-or-monitor-up; }
+    Super+W { toggle-window-floating; }
+    XF86AudioLowerVolume { spawn "sh" "-c" "swayosd-client --output-volume=lower"; }
+    XF86AudioMute { spawn "sh" "-c" "swayosd-client --output-volume=mute-toggle"; }
+    XF86AudioNext { spawn "sh" "-c" "playerctl next"; }
+    XF86AudioPlay { spawn "sh" "-c" "playerctl play-pause"; }
+    XF86AudioPrev { spawn "sh" "-c" "playerctl previous"; }
+    XF86AudioRaiseVolume { spawn "sh" "-c" "swayosd-client --output-volume=raise"; }
+    XF86MonBrightnessDown { spawn "sh" "-c" "swayosd-client --brightness=lower"; }
+    XF86MonBrightnessUp { spawn "sh" "-c" "swayosd-client --brightness=raise"; }
+    XF86PowerOff { spawn "sh" "-c" "pidof wofi-power-menu || wofi-power-menu"; }
+}

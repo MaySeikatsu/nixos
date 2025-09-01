@@ -1,5 +1,4 @@
-{ inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   imports = [
     inputs.niri.homeModules.niri
     # ./settings.nix
@@ -9,15 +8,22 @@
   ];
 
   home = {
+    file.".config/niri/config.kdl".source =
+      ../../../ressources/dots/niri/config.kdl;
     packages = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+      # gnome-keyring
+      xwayland-satellite
+      qt6.qtwayland
+      # plasma-polkit-agent # check if needed
+      walker
+      mako # notification agent
       # seatd
       # jaq
       # brillo
-      qt6.qtwayland
-      walker
       # wl-clip-persist
       # cliphist
-      xwayland-satellite
       # wl-clipboard
       # gnome-control-center
       # catppuccin-cursors.mochaGreen
