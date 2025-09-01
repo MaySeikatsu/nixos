@@ -85,7 +85,7 @@
   };
 
   # Optimising responsiveness
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "performance"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
   # Load AMDGPU drivers for xorg
   # services.xserver.videoDrivers = ["amdgpu"];
 

@@ -1,12 +1,19 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./../configuration-shared.nix
     ./hardware-configuration.nix
   ];
 
-  # Variables that can be called from nix script 
+  # Variables that can be called from nix script
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -46,17 +53,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # to search for pkgs do nix search nixpkgs $name
-  environment.systemPackages = with pkgs;
-    [ # would be pkgs.packagename without the with pkgs;
-      lenovo-legion
-      # inputs.legionrgb
+  environment.systemPackages = with pkgs; [
+    # would be pkgs.packagename without the with pkgs;
+    lenovo-legion
+    # inputs.legionrgb
 
-    ];
+  ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     # backupFileExtension = "bak";
-    users = { "maike" = import ./home.nix; };
+    users = {
+      "maike" = import ./home.nix;
+    };
   };
 
   fileSystems."/mnt/archlinux" = {
@@ -66,8 +75,7 @@
 
   fileSystems."/mnt/2tb-drive" = {
     device = "/dev/disk/by-uuid/925EFF8B5EFF667F";
-    fsType =
-      "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
+    fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
     options = [
       "rw"
       "uid=1000"
@@ -88,7 +96,9 @@
 
   # INSTALL NVIDIA DRIVERS
   # Enable OpenGL
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {
+    enable = true;
+  };
 
   ## ENABLE NVIDIA
   # Load nvidia driver for Xorg and Wayland
@@ -103,10 +113,9 @@
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable =
-      true; # not really needed but battery left time was shown higher even though it didn't change gpu behavior
+    powerManagement.enable = true; # not really needed but battery left time was shown higher even though it didn't change gpu behavior
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -115,9 +124,9 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     open = true;
 
@@ -133,7 +142,7 @@
       #CHOSE ONE!
       # 01. PRIME Sync and Offload Mode cannot be enabled at the same time
       # keeps nvidia card active even when not in use, except if called for via cli to put it to sleep
-      # sync.enable = true; 
+      # sync.enable = true;
 
       # 02. Offload to Nvidia GPU must be done via cli manually!
       offload = {
@@ -183,6 +192,8 @@
     # };
     no-nvidia.configuration = {
       system.nixos.tags = [ "no-nvidia" ];
+      powerManagement.cpuFreqGovernor = "powersave"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
+
       #  DISABLE NVIDIA
       boot.extraModprobeConfig = ''
         blacklist nouveau
@@ -199,11 +210,15 @@
         # Remove NVIDIA VGA/3D controller devices
         ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
       '';
-      boot.blacklistedKernelModules =
-        [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+      boot.blacklistedKernelModules = [
+        "nouveau"
+        "nvidia"
+        "nvidia_drm"
+        "nvidia_modeset"
+      ];
 
       # Seems to affect the eDP-2 to be inactive even if it would be enabled in normal nvidia profile
-      # USE THIS INSTEAD OF THE BOTTOM SETTINGS TO SEPERATE THE eDP-X Profiles (USE THIS TO LET THE NON NVIDIA PROFILE BE JUST INTEGRATED AND THE NORMAL PROFILE BE ALWAYS NVIDIA OFFLOAD MODE - COMMENT OUT BOTTOM SECTION) 
+      # USE THIS INSTEAD OF THE BOTTOM SETTINGS TO SEPERATE THE eDP-X Profiles (USE THIS TO LET THE NON NVIDIA PROFILE BE JUST INTEGRATED AND THE NORMAL PROFILE BE ALWAYS NVIDIA OFFLOAD MODE - COMMENT OUT BOTTOM SECTION)
       services.power-profiles-daemon.enable = lib.mkForce false;
       services.tlp = {
         enable = true;
@@ -271,7 +286,7 @@
   };
 
   # # Seems to affect the eDP-2 to be inactive even if it would be enabled in normal nvidia profile
-  # # If PowerCable is connected on boot it enables nvidia card, and eDP-2 in hyprland if PowerCable is disconnected it automatically chooses to deactivate hyprland on boot 
+  # # If PowerCable is connected on boot it enables nvidia card, and eDP-2 in hyprland if PowerCable is disconnected it automatically chooses to deactivate hyprland on boot
   # services.power-profiles-daemon.enable = false;
   # services.tlp = {
   #   enable = true;
