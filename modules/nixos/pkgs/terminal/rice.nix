@@ -25,6 +25,6 @@
     manga-tui
     ani-cli
     taskwarrior-tui
-
+    cool-retro-term
   ];
 }

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nushell = {
     enable = true;
     shellAliases = {
@@ -77,6 +78,7 @@
               gopass => $fish_completer
               hyprctl => $fish_completer
               niri => $fish_completer
+              zellij => $fish_completer
               # wallust => $zsh_completer
               _ => $carapace_completer
               # _ => $fish_completer
@@ -127,5 +129,7 @@
   # programs.carapace.enableZshIntegration= true;
   # programs.carapace.enableFishIntegration = true;
   # home.sessionVariables = { CARAPACE_BRIDGES = "fish"; };
-  home.sessionVariables = { CARAPACE_BRIDGES = "fish,zsh,inshellisense"; };
+  home.sessionVariables = {
+    CARAPACE_BRIDGES = "fish,zsh,inshellisense";
+  };
 }
