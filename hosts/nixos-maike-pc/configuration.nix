@@ -70,6 +70,8 @@
     };
   };
 
+  # Optimising responsiveness
+  powerManagement.cpuFreqGovernor = "performance"
   # Load AMDGPU drivers for xorg
   # services.xserver.videoDrivers = ["amdgpu"];
 
