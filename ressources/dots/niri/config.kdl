@@ -2,6 +2,27 @@
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+
+// Add lines like this to spawn processes at startup.
+// spawn-at-startup "ironbar"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "plasma-polkit-agent"
+// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell" //shellscript to start automatically (quickshell in this case)
+
+// spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
+// spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
+// spawn-at-startup "sh" "-c" "cliphist wipe"
+// spawn-at-startup "sh" "-c" "systemctl --user start cliphist.service"
+// spawn-at-startup "sh" "-c" "systemctl --user start hypridle.service"
+// spawn-at-startup "sh" "-c" "ironbar"
+// spawn-at-startup "sh" "-c" "systemctl --user start swaybg.service"
+// spawn-at-startup "sh" "-c" "systemctl --user start swaync.service"
+// spawn-at-startup "sh" "-c" "sleep 1 && blueman-applet"
+// spawn-at-startup "sh" "-c" "sleep 3 && syncthingtray --wait"
+// spawn-at-startup "sh" "-c" "id=0"
+// spawn-at-startup "swayosd-server"
+// spawn-at-startup "nm-applet"
+
 cursor {
     xcursor-theme "default"
     xcursor-size 24
@@ -169,8 +190,8 @@ output "eDP-1" {
     scale 1.000000
     transform "normal"
     position x=0 y=0
-    mode "2560x1600@165.002000"
-    // mode "2560x1600@60.002000"
+    // mode "2560x1600@165.004000"
+    mode "2560x1600@60.002000"
 }
 output "eDP-2" {
     variable-refresh-rate // on-demand=true
@@ -458,28 +479,6 @@ layout {
   // center-focused-column "never"
 }
 
-// Add lines like this to spawn processes at startup.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
-// spawn-at-startup "ironbar"
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "plasma-polkit-agent"
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell" //shellscript to start automatically (quickshell in this case)
-
-// spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
-// spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
-// spawn-at-startup "sh" "-c" "cliphist wipe"
-// spawn-at-startup "sh" "-c" "systemctl --user start cliphist.service"
-// spawn-at-startup "sh" "-c" "systemctl --user start hypridle.service"
-// spawn-at-startup "sh" "-c" "ironbar"
-// spawn-at-startup "sh" "-c" "systemctl --user start swaybg.service"
-// spawn-at-startup "sh" "-c" "systemctl --user start swaync.service"
-// spawn-at-startup "sh" "-c" "sleep 1 && blueman-applet"
-// spawn-at-startup "sh" "-c" "sleep 3 && syncthingtray --wait"
-// spawn-at-startup "sh" "-c" "id=0"
-// spawn-at-startup "swayosd-server"
-// spawn-at-startup "nm-applet"
 // window-rule {
 //     draw-border-with-background false
 //     geometry-corner-radius 12.000000 12.000000 12.000000 12.000000
@@ -820,9 +819,9 @@ binds {
     Mod+Shift+v { switch-focus-between-floating-and-tiling; }
     Alt+Tab { focus-workspace-previous; }
     Mod+g { toggle-column-tabbed-display; }
-      Mod+Shift+Ctrl+T { toggle-debug-tint; }
-      Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
-      Mod+Shift+Ctrl+D { debug-toggle-damage; }
+    Mod+Shift+Ctrl+T { toggle-debug-tint; }
+    Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
+    Mod+Shift+Ctrl+D { debug-toggle-damage; }
 }
 
 // binds {
