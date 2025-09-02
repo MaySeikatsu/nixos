@@ -60,6 +60,12 @@ in
     ];
   };
 
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 15d";
+  # };
+
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
 
@@ -172,7 +178,9 @@ in
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
-    # displayManager.defaultSession = "hyprland"; #if not working write lower case  was a try to set hyprland as default option after logging in
+    displayManager.defaultSession = "hyprland-uwsm"; # default option after logging in
+    displayManager.autoLogin.enable = false;
+    displayManager.autoLogin.user = "maike";
 
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
     printing.enable = true; # Enable CUPS to print documents.
@@ -200,6 +208,7 @@ in
     displayManager.gdm.enable = false;
     desktopManager.gnome.enable = true;
     xserver = {
+      # enable = true;
       # Enable the GNOME Desktop Environment.
       desktopManager.kodi.enable = true;
       # desktopManager.plasma5.bigscreen.enable = true;
@@ -226,7 +235,7 @@ in
     nh = {
       enable = true;
       clean.enable = true;
-      clean.extraArgs = "--keep-since 14d --keep 12";
+      clean.extraArgs = "--keep-since 14d --keep 7";
       flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
 
