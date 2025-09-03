@@ -7,9 +7,19 @@
 // spawn-at-startup "ironbar"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "plasma-polkit-agent"
-// spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell" //shellscript to start automatically (quickshell in this case)
+// spawn-sh-at-startup "swww-daemon &"
+// spawn-sh-at-startup "swww img  ~/.current-wallpaper"
+// spawn-sh-at-startup "~/.config/nixos/scripts/swww/swww_wallpapersync.sh"
+// spawn-sh-at-startup "qs -c ~/.config/nixos/ressources/quickshell/noctalia-shell" //shellscript to start automatically (quickshell in this case)
 
-// spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
+spawn-at-startup "vesktop"
+// spawn-at-startup "foot"
+// spawn-at-startup "zen-twilight"
+spawn-at-startup "ticktick"
+spawn-at-startup "obsidian"
+
+spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
+spawn-at-startup "sh" "-c" "noctalia-shell"
 // spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
 // spawn-at-startup "sh" "-c" "cliphist wipe"
 // spawn-at-startup "sh" "-c" "systemctl --user start cliphist.service"
@@ -27,7 +37,7 @@ cursor {
     xcursor-theme "default"
     xcursor-size 24
     // hide-when-typing
-    hide-after-inactive-ms 1000 
+    // hide-after-inactive-ms 1000 
 }
 // OVERVIEW SETTINGS
 overview {
@@ -222,11 +232,11 @@ layout {
     gaps 10
     // gaps -10
 
-    // center-focused-column "never"
+    center-focused-column "never"
     // center-focused-column "always"
-    center-focused-column "on-overflow"
+    // center-focused-column "on-overflow"
     always-center-single-column
-    empty-workspace-above-first
+    // empty-workspace-above-first
     // default-column-display "tabbed"
     // background-color "#003300" //default workspace color
 
@@ -234,10 +244,10 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        // fixed 1280
+        fixed 1920
     }
 
-    default-column-width { proportion 0.45; }
+    default-column-width { proportion 0.55; }
     // New windows decide their initial width themselves.
     // default-column-width { }
 
@@ -245,7 +255,7 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        // fixed 720
+        fixed 1080
     }
     focus-ring {
         // off
@@ -636,11 +646,9 @@ switch-events {
 
 workspace "docu/tasks"
 workspace "browser"
-workspace "dev"
+// workspace "dev" // maybe merge browser and dev?
+workspace "chat" // { open-on-output "Vertical monitor pls" }
 workspace "work"
-workspace "chat" {
-  open-on-output "Vertical monitor pls"
-}
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -676,6 +684,28 @@ window-rule {
 window-rule {
     match at-startup=true app-id=r#"^org\.gnome\.Fractal$"#
     open-on-workspace "chat"
+}
+window-rule {
+    // match at-startup=true app-id="obsidian"
+    // match at-startup=true app-id="ticktick"
+    match app-id="obsidian"
+    match app-id="ticktick"
+    open-on-workspace "docu/tasks"
+}
+window-rule {
+    match at-startup=true app-id="vesktop"
+    match app-id="vesktop"
+    match app-id="steam"
+    open-on-workspace "chat"
+}
+// window-rule {
+//     match at-startup=true app-id="foot"
+//     open-on-workspace "dev"
+// }
+window-rule {
+    match app-id="teams-for-linux"
+    // match at-startup=true app-id="ticktick"
+    open-on-workspace "work"
 }
 // ROUNDED corners
 window-rule {
@@ -747,21 +777,62 @@ window-rule {
 }
 
 binds {
+    Mod+Shift+M { spawn "~/.config/nixos/scripts/wall_cycle.sh"; }
+    Mod+Shift+N { spawn "~/.config/nixos/scripts/wall_cycle_back.sh"; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Super+Escape { spawn "hyprlock"; }
+    Super+A { spawn "sherlock"; }
+    Super+T { spawn "foot"; }
+    Mod+Y { spawn "zen-twilight"; }
+    Mod+E { spawn "dolphin"; }
+    Super+Q { close-window; }
+
+    // Ctrl+Alt+C { spawn "sh" "-c" "pidof wl-color-picker || wl-color-picker"; }
+    Mod+Shift+W { switch-preset-column-width; }
+    Mod+Shift+E { switch-preset-window-height; }
+
+    Mod+G { toggle-column-tabbed-display; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    // Center all fully visible columns on screen.
+    Mod+Ctrl+C { center-visible-columns; }
+    Mod+C { center-column; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+H { set-column-width "-10%"; }
+    Mod+Shift+L { set-column-width "+10%"; }
+    // Finer height adjustments when in column with other windows.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+K { set-window-height "-10%"; }
+    Mod+Shift+J { set-window-height "+10%"; }
+
+    Super+W { toggle-window-floating; }
+    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+    // Ctrl+Alt+Tab { toggle-column-tabbed-display; }
+  
     Alt+Return { fullscreen-window; }
-    Ctrl+Alt+A { switch-preset-window-height; }
-    Ctrl+Alt+C { spawn "sh" "-c" "pidof wl-color-picker || wl-color-picker"; }
-    Ctrl+Alt+Q { switch-preset-column-width; }
-    Ctrl+Alt+Tab { toggle-column-tabbed-display; }
-    Ctrl+Alt+W { maximize-column; }
-    Ctrl+Super+Down { focus-workspace-down; }
-    Ctrl+Super+H { focus-workspace-up; }
-    Ctrl+Super+J { focus-workspace-down; }
-    Ctrl+Super+K { focus-workspace-up; }
-    Ctrl+Super+L { focus-workspace-down; }
-    Ctrl+Super+Left { focus-workspace-up; }
-    Ctrl+Super+Right { focus-workspace-down; }
-    Ctrl+Super+Up { focus-workspace-up; }
+    Mod+Return { maximize-column; }
+    Mod+Alt+Return { expand-column-to-available-width; }
+    Mod+Alt+F { toggle-windowed-fullscreen; }
+    Super+Ctrl+Return { move-window-to-monitor-next; }
+
+    Mod+Ctrl+H { focus-workspace-up; }
+    Mod+Ctrl+J { focus-workspace-down; }
+    Mod+Ctrl+K { focus-workspace-up; }
+    Mod+Ctrl+L { focus-workspace-down; }
+
+    Mod+Ctrl+Left { focus-workspace-up; }
+    Mod+Ctrl+Right { focus-workspace-down; }
+    Mod+Ctrl+Up { focus-workspace-up; }
+    Mod+Ctrl+Down { focus-workspace-down; }
+
     Print { screenshot; }
+    Alt+Print { screenshot-screen; }
+    Mod+Shift+S { screenshot-window; }
+
     Super+0 { focus-workspace 10; }
     Super+1 { focus-workspace 1; }
     Super+2 { focus-workspace 2; }
@@ -772,33 +843,92 @@ binds {
     Super+7 { focus-workspace 7; }
     Super+8 { focus-workspace 8; }
     Super+9 { focus-workspace 9; }
-    Super+A { spawn "sh" "-c" "sherlock"; }
-    Super+Alt+P { spawn "sh" "-c" "pidof wofi-power-menu || wofi-power-menu"; }
-    Super+C { spawn "qalculate-gtk"; }
-    Super+Ctrl+Shift+Down { move-window-down-or-to-workspace-down; }
+    Alt+Tab { focus-workspace-previous; }
+    Mod+Tab repeat=false { toggle-overview; }
+
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    // set-workspace-name "browser"
+    Mod+Ctrl+Y { focus-workspace "browser"; }
+    Mod+Ctrl+B { focus-workspace "browser"; }
+    Mod+Ctrl+O { focus-workspace "docu/tasks"; }
+    Mod+Ctrl+W { focus-workspace "work"; }
+
+    Super+L { focus-column-or-monitor-right; }
+    Super+H { focus-column-or-monitor-left; }
+    Super+J { focus-window-or-monitor-down; }
+    Super+K { focus-window-or-monitor-up; }
+
+    Super+Right { focus-column-or-monitor-right; }
+    Super+Left { focus-column-or-monitor-left; }
+    Super+Up { focus-window-or-monitor-up; }
+    Super+Down { focus-window-or-monitor-down; }
+
     Super+Ctrl+Shift+H { consume-or-expel-window-left; }
     Super+Ctrl+Shift+J { move-window-down-or-to-workspace-down; }
     Super+Ctrl+Shift+K { move-window-up-or-to-workspace-up; }
     Super+Ctrl+Shift+L { consume-or-expel-window-right; }
-    Super+Ctrl+Shift+Left { consume-or-expel-window-left; }
     Super+Ctrl+Shift+Right { consume-or-expel-window-right; }
+    Super+Ctrl+Shift+Left { consume-or-expel-window-left; }
     Super+Ctrl+Shift+Up { move-window-up-or-to-workspace-up; }
-    Super+Down { focus-window-or-monitor-down; }
-    Super+Escape { spawn "sh" "-c" "hyprlock"; }
-    Super+H { focus-column-or-monitor-left; }
-    Super+J { focus-window-or-monitor-down; }
-    Super+K { focus-window-or-monitor-up; }
-    Super+L { focus-column-or-monitor-right; }
-    Super+Left { focus-column-or-monitor-left; }
-    Super+Q { close-window; }
-    Super+Return { move-window-to-monitor-next; }
-    Super+Right { focus-column-or-monitor-right; }
-    Super+T { spawn "foot"; }
-    Super+Up { focus-window-or-monitor-up; }
-    Super+W { toggle-window-floating; }
-    Mod+Ctrl+Shift+F { toggle-windowed-fullscreen; }
-// Example volume keys mappings for PipeWire & WirePlumber.
-// The allow-when-locked=true property makes them work even when the session is locked.
+    Super+Ctrl+Shift+Down { move-window-down-or-to-workspace-down; }
+
+    Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    Mod+Shift+Ctrl+Right { move-workspace-to-monitor-right; }
+    Mod+Shift+Ctrl+L { move-workspace-to-monitor-next; }
+    Mod+Shift+Ctrl+H { move-workspace-to-monitor-previous; }
+
+    Mod+Shift+Ctrl+T { toggle-debug-tint; }
+    Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
+    Mod+Shift+Ctrl+D { debug-toggle-damage; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Alt+Home { move-column-to-first; }
+    Mod+Ctrl+Alt+End  { move-column-to-last; }
+//
+//     Mod+Shift+Left  { focus-monitor-left; }
+//     Mod+Shift+Down  { focus-monitor-down; }
+//     Mod+Shift+Up    { focus-monitor-up; }
+//     Mod+Shift+Right { focus-monitor-right; }
+//     Mod+Shift+H     { focus-monitor-left; }
+//     Mod+Shift+J     { focus-monitor-down; }
+//     Mod+Shift+K     { focus-monitor-up; }
+//     Mod+Shift+L     { focus-monitor-right; }
+//
+//     Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+//     Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+//     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+//     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+//     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+//     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+//     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+//     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+  
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+  
+    // Example volume keys mappings for PipeWire & WirePlumber.
+    // The allow-when-locked=true property makes them work even when the session is locked.
     XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -809,19 +939,6 @@ binds {
     XF86MonBrightnessDown     allow-when-locked=true { spawn "brightnessctl" "s" "10%-"; }
     XF86MonBrightnessUp     allow-when-locked=true { spawn "brightnessctl" "s" "10%+"; }
     // XF86PowerOff { spawn "sh" "-c" "pidof wofi-power-menu || wofi-power-menu"; }
-
-    Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    Mod+Shift+Ctrl+Right { move-workspace-to-monitor-right; }
-    Mod+Shift+Ctrl+l { move-workspace-to-monitor-next; }
-    Mod+Shift+Ctrl+h { move-workspace-to-monitor-previous; }
-    // set-workspace-name "browser"
-    // focus-workspace "browser"
-    Mod+Shift+v { switch-focus-between-floating-and-tiling; }
-    Alt+Tab { focus-workspace-previous; }
-    Mod+g { toggle-column-tabbed-display; }
-    Mod+Shift+Ctrl+T { toggle-debug-tint; }
-    Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
-    Mod+Shift+Ctrl+D { debug-toggle-damage; }
 }
 
 // binds {
@@ -1014,6 +1131,19 @@ binds {
 //     // If the window is already in a column, they will expel it out.
 //     Mod+BracketLeft  { consume-or-expel-window-left; }
 //     Mod+BracketRight { consume-or-expel-window-right; }
+//     Mod+Ctrl+F { expand-column-to-available-width; }
+//
+//     // Center all fully visible columns on screen.
+//     Mod+Ctrl+C { center-visible-columns; }
+//
+//     Mod+C { center-column; }
+//     Mod+Minus { set-column-width "-10%"; }
+//     Mod+Equal { set-column-width "+10%"; }
+//
+//     // Finer height adjustments when in column with other windows.
+//     Mod+Shift+Minus { set-window-height "-10%"; }
+//     Mod+Shift+Equal { set-window-height "+10%"; }
+// Mod+g { toggle-column-tabbed-display; }
 //
 //     // Consume one window from the right to the bottom of the focused column.
 //     Mod+Comma  { consume-window-into-column; }
@@ -1030,10 +1160,17 @@ binds {
 //     // Makes the column "fill the rest of the space".
 //     Mod+Ctrl+F { expand-column-to-available-width; }
 //
-//     Mod+C { center-column; }
-//
 //     // Center all fully visible columns on screen.
 //     Mod+Ctrl+C { center-visible-columns; }
+//
+//     Mod+C { center-column; }
+//     Mod+Minus { set-column-width "-10%"; }
+//     Mod+Equal { set-column-width "+10%"; }
+//
+//     // Finer height adjustments when in column with other windows.
+//     Mod+Shift+Minus { set-window-height "-10%"; }
+//     Mod+Shift+Equal { set-window-height "+10%"; }
+// Mod+g { toggle-column-tabbed-display; }
 //
 //     // Finer width adjustments.
 //     // This command can also:
@@ -1049,6 +1186,7 @@ binds {
 //     // Finer height adjustments when in column with other windows.
 //     Mod+Shift+Minus { set-window-height "-10%"; }
 //     Mod+Shift+Equal { set-window-height "+10%"; }
+// Mod+g { toggle-column-tabbed-display; }
 //
 //     // Move the focused window between the floating and the tiling layout.
 //     Mod+V       { toggle-window-floating; }
@@ -1057,7 +1195,6 @@ binds {
 //     // Toggle tabbed column display mode.
 //     // Windows in this column will appear as vertical tabs,
 //     // rather than stacked on top of each other.
-// Mod+g { toggle-column-tabbed-display; }
 //
 //     // Actions to switch layouts.
 //     // Note: if you uncomment these, make sure you do NOT have

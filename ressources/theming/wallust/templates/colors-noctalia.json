@@ -1,0 +1,22 @@
+{
+  "mPrimary": "{{color1 | lighten(0.4)}}" ,
+  "mOnPrimary": "{{color1 | darken(0.4)}}",
+
+  "mSecondary": "{{color2 | lighten(0.4)}}" ,
+  "mOnSecondary": "{{color2 | darken(0.4)}}",
+
+  "mTertiary": "{{color3 | lighten(0.4)}}" ,
+  "mOnTertiary": "{{color3 | darken(0.4)}}",
+
+  "mError": "#ffb4ab",
+  "mOnError": "#690005",
+
+  "mSurface": "{{background}}",
+  "mOnSurface": "{{foreground}}",
+
+  "mSurfaceVariant": "{{background | lighten(0.075)}}",
+  "mOnSurfaceVariant": "{{foreground | lighten(0.2)}}",
+  
+  "mOutline":  "{{color1 | saturate(0.2)}}",
+  "mShadow": "#000000"
+} 
