@@ -1,5 +1,4 @@
-{...}:
-{
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
 
     "$mainMod" = "Super";
@@ -30,7 +29,7 @@
       "$mainMod, N, exec, $editor"
       "$mainMod, B, exec, $browser1"
       "$mainMod+Shift, B, exec, $browser1-work"
-      "$mainMod, M, exec, $teams" 
+      "$mainMod, M, exec, $teams"
       "$mainMod, D, exec, $discord"
       "$mainMod, Y, exec, $browser2"
       "$mainMod, C, exec, $vscode"
@@ -43,32 +42,38 @@
       # "$mainMod, A, exec, wofi --show drun"
       # "Alt, Space, exec, wofi --show drun"
       "$mainMod, A, exec, sherlock"
+      "$mainMod, R, exec, caelestia shell drawers toggle launcher"
+      "$mainMod+Shift, Escape, exec, caelestia  shell drawers toggle session"
+      "$mainMod+Ctrl, B, exec, caelestia  shell drawers toggle bar"
+      "$mainMod+Ctrl, M, exec, caelestia toggle music"
+      "$mainMod+Ctrl, O, exec, caelestia toggle tasks"
+      "$mainMod+Ctrl, C, exec, caelestia toggle communication"
       "Alt, Space, exec, sherlock"
       # Alt, Space, exec, pkill -x rofi #|| $scrPath/rofilaunch.sh d # launch application launcher
       "$mainMod, Tab, exec, pkill -x rofi || $scrPath/rofilaunch.sh w"
       "$mainMod+Shift, E, exec, pkill -x rofi || $scrPath/rofilaunch.sh f"
-      "$mainMod CTRL , S, changegroupactive, b" 
-      "$mainMod CTRL , D, changegroupactive, f" 
+      "$mainMod CTRL , S, changegroupactive, b"
+      "$mainMod CTRL , D, changegroupactive, f"
 
       # Screenshot/Screencapture
-      "$mainMod, P, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture       
-      "$mainMod+Shift, S, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture 
-      "$mainMod+Ctrl, P, exec, $scrPath/screenshot.sh sf" # partial screenshot capture (frozen screen)           
-      "$mainMod+Alt, P, exec, $scrPath/screenshot.sh m" # monitor screenshot capture                             
-      ", Print, exec, $scrPath/screenshot.sh p" # all monitors screenshot capture                                
+      "$mainMod, P, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture
+      "$mainMod+Shift, S, exec, hyprshot -m region output --clipboard-only --freeze" # partial screenshot capture
+      "$mainMod+Ctrl, P, exec, $scrPath/screenshot.sh sf" # partial screenshot capture (frozen screen)
+      "$mainMod+Alt, P, exec, $scrPath/screenshot.sh m" # monitor screenshot capture
+      ", Print, exec, $scrPath/screenshot.sh p" # all monitors screenshot capture
 
       # Move/Change window focus
-      "$mainMod, Left, movefocus, l"  
-      "$mainMod, Right, movefocus, r" 
-      "$mainMod, Up, movefocus, u"    
-      "$mainMod, Down, movefocus, d"  
-      "Alt, Tab, movefocus, d"        
-                                    
-      "$mainMod, H, movefocus, l"     
-      "$mainMod, L, movefocus, r"     
-      "$mainMod, K, movefocus, u"     
-      "$mainMod, J, movefocus, d"     
-      "Alt, Tab, movefocus, d"        
+      "$mainMod, Left, movefocus, l"
+      "$mainMod, Right, movefocus, r"
+      "$mainMod, Up, movefocus, u"
+      "$mainMod, Down, movefocus, d"
+      "Alt, Tab, movefocus, d"
+
+      "$mainMod, H, movefocus, l"
+      "$mainMod, L, movefocus, r"
+      "$mainMod, K, movefocus, u"
+      "$mainMod, J, movefocus, d"
+      "Alt, Tab, movefocus, d"
 
       # Switch workspaces
       "$mainMod, 1, workspace, 1"
@@ -83,22 +88,22 @@
       "$mainMod, 0, workspace, 10"
 
       # Switch workspaces to a relative workspace
-      "$mainMod+Ctrl, Down, workspace, r+1" #Vertical Workspaces
+      "$mainMod+Ctrl, Down, workspace, r+1" # Vertical Workspaces
       "$mainMod+Ctrl, Up, workspace, r-1"
-      "$mainMod+Ctrl, Right, workspace, r+1" #Horizontal Workspaces
+      "$mainMod+Ctrl, Right, workspace, r+1" # Horizontal Workspaces
       "$mainMod+Ctrl, Left, workspace, r-1"
 
-      "$mainMod+Ctrl, j, workspace, r+1" #Vertical Workspaces
+      "$mainMod+Ctrl, j, workspace, r+1" # Vertical Workspaces
       "$mainMod+Ctrl, k, workspace, r-1"
-      "$mainMod+Ctrl, l, workspace, r+1" #Horizontal Workspaces
+      "$mainMod+Ctrl, l, workspace, r+1" # Horizontal Workspaces
       "$mainMod+Ctrl, h, workspace, r-1"
 
       # Move to the first empty workspace
       # "$mainMod+Ctrl, Right, workspace, empty" 
-      
+
       # Scroll through existing workspaces
       "$mainMod, mouse_down, workspace, e+1"
-      "$mainMod, mouse_up, workspace, e-1"   
+      "$mainMod, mouse_up, workspace, e-1"
 
       # Move/Switch to special workspace (scratchpad)
       "$mainMod+Alt, S, movetoworkspacesilent, special"
@@ -177,25 +182,25 @@
     ];
 
     binde = [
-    #Resize Windows
+      #Resize Windows
       "$mainMod+Shift, Right, resizeactive, 30 0"
       "$mainMod+Shift, Left, resizeactive, -30 0"
-      "$mainMod+Shift, Up, resizeactive, 0 -30"  
-      "$mainMod+Shift, Down, resizeactive, 0 30" 
-                                              
-      "$mainMod+Shift, l, resizeactive, 30 0"    
-      "$mainMod+Shift, h, resizeactive, -30 0"   
-      "$mainMod+Shift, k, resizeactive, 0 -30"   
-      "$mainMod+Shift, j, resizeactive, 0 30"    
+      "$mainMod+Shift, Up, resizeactive, 0 -30"
+      "$mainMod+Shift, Down, resizeactive, 0 30"
+
+      "$mainMod+Shift, l, resizeactive, 30 0"
+      "$mainMod+Shift, h, resizeactive, -30 0"
+      "$mainMod+Shift, k, resizeactive, 0 -30"
+      "$mainMod+Shift, j, resizeactive, 0 30"
     ];
     bindm = [
-    # Move/Resize focused window
-      "$mainMod, mouse:272, movewindow"   
-      "$mainMod, mouse:273, resizewindow" 
-      "$mainMod, Z, movewindow"           
-      "$mainMod, X, resizewindow"         
-#bindm = ,mouse:274, movewindow
-#bindm = ,mouse:272+mouse:273, movewindow
+      # Move/Resize focused window
+      "$mainMod, mouse:272, movewindow"
+      "$mainMod, mouse:273, resizewindow"
+      "$mainMod, Z, movewindow"
+      "$mainMod, X, resizewindow"
+      #bindm = ,mouse:274, movewindow
+      #bindm = ,mouse:272+mouse:273, movewindow
     ];
   };
 }

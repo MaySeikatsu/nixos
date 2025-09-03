@@ -32,5 +32,6 @@ wallust run ~/.current-wallpaper
 
 #Sync RGB Color to Wallpaper
 # ~/.config/nixos/scripts/openrbg.sh
-
+caelestia wallpaper -f ~/.current-wallpaper
+# caelestia  shell wallpaper set ~/.current-wallpaper
 # hyprpanel restart
