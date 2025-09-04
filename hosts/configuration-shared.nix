@@ -51,6 +51,12 @@ in {
       ];
   };
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs;
+    [
+      imagemagick
+      # add any libraries WallRizz needs here if needed
+    ];
   # nix.gc = {
   #   automatic = true;
   #   dates = "weekly";
@@ -169,7 +175,8 @@ in {
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
-    displayManager.defaultSession = "hyprland-uwsm"; # default option after logging in
+    displayManager.defaultSession =
+      "hyprland-uwsm"; # default option after logging in
     displayManager.autoLogin.enable = false;
     displayManager.autoLogin.user = "maike";
 
@@ -224,7 +231,8 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake =
+        "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
 
     # Enable Hyprland

@@ -36,6 +36,10 @@
       "noborder, floating:1, class:^(zen-twilight)$"
       # "bordercolor rgb(00FF00), !floating:1, class:^(zen-twilight)$"
       # put this into binds to pin the current window bind = $mainMod, S, pin
+      # "workspace tasks,class:^(Obsidian)$"
+      # "workspace tasks,class:^(ticktick)$"
+      # "workspace communication,class:^(vesktop)$"
+      # "workspace music,class:^(tidal-hifi)$"
     ];
     layerrule = [
       "blur,rofi"

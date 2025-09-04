@@ -1,11 +1,5 @@
 # *.nix
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, inputs, pkgs, lib, ... }:
 let
   # fg = "#${colors.base05}";
   # bg = "#${colors.base00}";
@@ -17,12 +11,11 @@ let
   color1 = "#ffffff";
   color2 = "#afffff";
   colorText = "#000000";
-in
-{
+in {
   # imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   programs.hyprpanel = {
-    enable = true;
+    enable = false;
     # systemd.enable = true;
     # hyprland.enable = true;
     # overwrite.enable = true;
@@ -51,13 +44,7 @@ in
       layout = {
         "bar.layouts" = {
           "0" = {
-            left = [
-              "dashboard"
-              "windowtitle"
-              "systray"
-              "cava"
-              "media"
-            ];
+            left = [ "dashboard" "windowtitle" "systray" "cava" "media" ];
             middle = [ "workspaces" ];
             right = [
               "volume"
@@ -73,22 +60,10 @@ in
         };
         "bar.layouts" = {
           "1" = {
-            left = [
-              "dashboard"
-              "windowtitle"
-              "systray"
-              "media"
-              "cava"
-            ];
+            left = [ "dashboard" "windowtitle" "systray" "media" "cava" ];
             middle = [ "workspaces" ];
-            right = [
-              "volume"
-              "network"
-              "clock"
-              "notifications"
-              "hypridle"
-              "power"
-            ];
+            right =
+              [ "volume" "network" "clock" "notifications" "hypridle" "power" ];
           };
         };
       };
@@ -134,7 +109,8 @@ in
         };
         media.show_active_only = false;
         notifications.show_total = true;
-        windowtitle.leftClick = "'pkill rofi||/nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview'";
+        windowtitle.leftClick =
+          "'pkill rofi||/nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview'";
         battery.hideLabelWhenFull = true;
         media.format = "{title}";
         autoHide = "fullscreen";
@@ -144,16 +120,7 @@ in
             showIcon = true;
             icon = "";
             spaceCharacter = " ";
-            barCharacters = [
-              "▁"
-              "▂"
-              "▃"
-              "▄"
-              "▅"
-              "▆"
-              "▇"
-              "█"
-            ];
+            barCharacters = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
             showActiveOnly = true;
             bars = 12;
             # channels = 2;
@@ -171,7 +138,8 @@ in
             # scrollDown = "";
           };
           updates = {
-            updateCommand = "jq '[.[].cvssv3_basescore | to_entries | add | select(.value > 5)] | length' <<< $(vulnix -S --json)";
+            updateCommand =
+              "jq '[.[].cvssv3_basescore | to_entries | add | select(.value > 5)] | length' <<< $(vulnix -S --json)";
             pollingInterval = 1440000;
             icon = {
               updated = "󰋼";
@@ -312,7 +280,8 @@ in
             };
             controls.enabled = true;
             stats.enable_gpu = false;
-            powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";
+            powermenu.avatar.image =
+              "~/.config/nixos/ressources/wallpapers/375567.png";
           };
         };
         media.displayTime = true;

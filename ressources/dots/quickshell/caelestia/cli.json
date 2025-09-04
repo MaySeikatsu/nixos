@@ -1,0 +1,61 @@
+{
+    "theme": {
+        "enableTerm": true,
+        "enableHypr": true,
+        "enableDiscord": true,
+        "enableSpicetify": true,
+        "enableFuzzel": true,
+        "enableBtop": true,
+        "enableGtk": true,
+        "enableQt": true
+    },
+    "toggles": {
+        "communication": {
+            "vestkop": {
+                "enable": true,
+                "match": [{ "class": "vesktop" }],
+                "command": ["vestkop"],
+                "move": true
+            },
+            "whatsapp": {
+                "enable": true,
+                "match": [{ "class": "whatsapp" }],
+                "move": true
+            }
+        },
+        "music": {
+            "spotify": {
+                "enable": true,
+                "match": [{ "class": "Spotify" }, { "initialTitle": "Spotify" }, { "initialTitle": "Spotify Free" }],
+                "command": ["spicetify", "watch", "-s"],
+                "move": true
+            },
+            "tidal-hifi": {
+                "enable": true,
+                "match": [{ "class": "tidal-hifi" }, { "initialTitle": "tidal-hifi" }, { "initialTitle": "Tidal-HiFi" }],
+                "move": true
+            }
+        },
+        "sysmon": {
+            "btop": {
+                "enable": true,
+                "match": [{ "class": "btop", "title": "btop", "workspace": { "name": "special:sysmon" } }],
+                "command": ["foot", "-a", "btop", "-T", "btop", "fish", "-C", "exec btop"]
+            }
+        },
+        "todo": {
+            "ticktick": {
+                "enable": true,
+                "match": [{ "class": "TickTick" }],
+                "command": ["ticktick"],
+                "move": true
+            },
+            "obsidian": {
+                "enable": true,
+                "match": [{ "class": "Obsidian" }],
+                "command": ["obsidian"],
+                "move": true
+            }
+        }
+    }
+}

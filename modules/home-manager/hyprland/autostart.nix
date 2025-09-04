@@ -16,8 +16,15 @@
       # "swww init & swww ~/Pictures/" 
       "swww-daemon &"
 
-      #"nm-applet &"
-      # "[workspace 1 silent] obsidian"
+      # "hyprctl dispatch workspace music" # To set main monitor to main screen by starting the first workspace on that monitor and give it the right monitor id
+      # "hyprctl dispatch workspace tasks" # To set main monitor to main screen by starting the first workspace on that monitor and give it the right monitor id
+      # "hyprctl dispatch workspace communication" # To set main monitor to main screen by starting the first workspace on that monitor and give it the right monitor id
+      # #"nm-applet &"
+      # "[workspace tasks silent] ticktick"
+      # "[workspace tasks silent] obsidian"
+      # "[workspace tasks silent] foot -D ~/Documents/obsidian-sync/"
+      # "[workspace communication silent] vesktop"
+      # "[workspace music silent] tidal-hifi"
       # "[workspace specialworkspace] ticktick"
 
       "hyprctl dispatch workspace 1" # To set main monitor to main screen by starting the first workspace on that monitor and give it the right monitor id

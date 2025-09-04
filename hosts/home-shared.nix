@@ -1,11 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  system,
-  ...
-}:
-{
+{ config, inputs, pkgs, system, ... }: {
   imports = [
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
@@ -40,6 +33,7 @@
     # ./../modules/home-manager/terminal/tmux.nix
     # ../modules/home-manager/neovim.nix
     ../modules/home-manager/niri/default.nix
+    ../modules/home-manager/qs-caelestia.nix
     ../modules/home-manager/hyprland_utils/wallust.nix
     # ../modules/home-manager/quickshell-emmi
 

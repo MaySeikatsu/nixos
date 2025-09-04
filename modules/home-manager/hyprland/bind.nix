@@ -45,9 +45,10 @@
       "$mainMod, R, exec, caelestia shell drawers toggle launcher"
       "$mainMod+Shift, Escape, exec, caelestia  shell drawers toggle session"
       "$mainMod+Ctrl, B, exec, caelestia  shell drawers toggle bar"
-      "$mainMod+Ctrl, M, exec, caelestia toggle music"
-      "$mainMod+Ctrl, O, exec, caelestia toggle tasks"
-      "$mainMod+Ctrl, C, exec, caelestia toggle communication"
+      "$mainMod+Ctrl, M, exec, caelestia toggle music ; tidal-hifi"
+      "$mainMod+Ctrl, O, exec, caelestia toggle task ; ticktick"
+      "$mainMod+Ctrl, C, exec, caelestia toggle communication ; vesktop"
+      "$mainMod+Ctrl, P, exec, caelestia clipboard"
       "Alt, Space, exec, sherlock"
       # Alt, Space, exec, pkill -x rofi #|| $scrPath/rofilaunch.sh d # launch application launcher
       "$mainMod, Tab, exec, pkill -x rofi || $scrPath/rofilaunch.sh w"
