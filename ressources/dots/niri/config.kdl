@@ -199,6 +199,7 @@ input {
 //     mode "1920x1080@239.964000"
 // }
 
+// PC Home
 output "Microstep MAG 274URFW 0x00000001" {
     variable-refresh-rate // on-demand=true
     scale 1.000000
@@ -215,6 +216,8 @@ output "PNP(AOP) 25XV2Q F 11470AAAA420" {
     position x=-1080 y=0
     mode "1920x1080@239.964000"
 }
+// END PC Home
+
 output "eDP-1" {
     variable-refresh-rate // on-demand=true > if wanted just for specific games or apps via windowrules
     scale 1.000000
