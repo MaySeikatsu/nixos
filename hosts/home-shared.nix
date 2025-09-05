@@ -1,4 +1,11 @@
-{ config, inputs, pkgs, system, ... }: {
+{
+  config,
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
+{
   imports = [
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
@@ -37,7 +44,7 @@
     ../modules/home-manager/hyprland_utils/wallust.nix
     # ../modules/home-manager/quickshell-emmi
 
-    # ../modules/home-manager/textfox.nix
+    ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # ./../../modules/home-manager/rofi/default.nix

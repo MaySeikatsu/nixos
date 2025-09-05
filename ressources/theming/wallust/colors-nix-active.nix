@@ -1,25 +1,25 @@
 { ... }:
 let
   wallpaper = "~/.current-wallpaper";
-  background = "#030410";
-  foreground = "#A9ABB9";
-  cursor = "#C56094";
-  color0 = "#34454B";
-  color1 = "#101963";
-  color2 = "#66128B";
-  color3 = "#134FC0";
-  color4 = "#6A14DE";
-  color5 = "#E30868";
-  color6 = "#11C4F7";
-  color7 = "#7C7E92";
-  color8 = "#565866";
-  color9 = "#101963";
-  color10 = "#66128B";
-  color11 = "#134FC0";
-  color12 = "#6A14DE";
-  color13 = "#E30868";
-  color14 = "#11C4F7";
-  color15 = "#7C7E92";
+  background = "#232136";
+  foreground = "#E0DEF4";
+  cursor = "#E0DEF4";
+  color0 = "#2A273F";
+  color1 = "#EB6F92";
+  color2 = "#F6C177";
+  color3 = "#EA9A97";
+  color4 = "#3E8FB0";
+  color5 = "#C4A7E7";
+  color6 = "#9CCFD8";
+  color7 = "#6E6A86";
+  color8 = "#393552";
+  color9 = "#EB6F92";
+  color10 = "#F6C177";
+  color11 = "#EA9A97";
+  color12 = "#3E8FB0";
+  color13 = "#C4A7E7";
+  color14 = "#9CCFD8";
+  color15 = "#908CAA";
 in {
 
 }

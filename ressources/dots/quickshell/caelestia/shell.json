@@ -42,7 +42,7 @@
         },
         "enabled": true,
         "visualiser": {
-            "enabled": true,
+            "enabled": false,
             "autoHide": true,
             "rounding": 1,
             "spacing": 1
@@ -116,7 +116,7 @@
             "label": "  ",
             "occupiedBg": false,
             "occupiedLabel": "  ",
-            "perMonitorWorkspaces": false,
+            "perMonitorWorkspaces": true,
             "showWindows": false,
             "shown": 5
         }

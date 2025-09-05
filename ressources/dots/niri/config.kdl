@@ -130,7 +130,7 @@ input {
   }
   mouse {
         // off
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2 //0.5
         // accel-profile "flat"
         // scroll-factor 1.0
@@ -165,7 +165,7 @@ input {
   }
   tablet {
     // off
-    // map-to-output "eDP-1"
+    map-to-output "DP-2"
     // left-handed
     // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0 // interesting for osu
   }
@@ -181,7 +181,25 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "DP-2" {
+
+// output "DP-2" {
+//     variable-refresh-rate // on-demand=true
+//     scale 1.000000
+//     transform "normal"
+//     position x=0 y=0
+//     mode "3840x2160@143.851000"
+//     focus-at-startup
+//     // background-color "#003300" //just for testing unsure what its doing
+//     // backdrop-color "#001100" //color between workspaces
+// }
+// output "HDMI-A-1" {
+//     scale 1.000000
+//     transform "90"
+//     position x=-1080 y=0
+//     mode "1920x1080@239.964000"
+// }
+
+output "Microstep MAG 274URFW 0x00000001" {
     variable-refresh-rate // on-demand=true
     scale 1.000000
     transform "normal"
@@ -191,10 +209,10 @@ output "DP-2" {
     // background-color "#003300" //just for testing unsure what its doing
     // backdrop-color "#001100" //color between workspaces
 }
-output "HDMI-A-1" {
+output "PNP(AOP) 25XV2Q F 11470AAAA420" {
     scale 1.000000
     transform "90"
-    position x=-1920 y=540
+    position x=-1080 y=0
     mode "1920x1080@239.964000"
 }
 output "eDP-1" {
@@ -262,11 +280,11 @@ layout {
     focus-ring {
         // off
         width 3
-        // active-color "#7fc8ff"
+        active-color "#57457f"
         inactive-color "#505050"
         // urgent-color "#9b0000"
         // active-gradient from="#80c8ff" to="#bbddff" angle=45
-        active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue" relative-to="workspace-view"
+        // active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue" relative-to="workspace-view"
         // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
         urgent-gradient from="#800" to="#a33" angle=45
     }
@@ -313,10 +331,10 @@ layout {
         // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
     }
     struts {
-        left 20
-        right 20
-        top 20
-        bottom 20
+        left 10
+        right 10
+        top 10
+        bottom 10
     }
 
     // Set gaps around windows in logical pixels.
@@ -490,7 +508,19 @@ layout {
   // }
   // center-focused-column "never"
 }
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
 
+layer-rule {
+    match namespace="^quickshell-wallpaper$"
+}
+
+layer-rule {
+    match namespace="^quickshell-overview$"
+    place-within-backdrop true
+}
 // window-rule {
 //     draw-border-with-background false
 //     geometry-corner-radius 12.000000 12.000000 12.000000 12.000000
@@ -647,9 +677,9 @@ switch-events {
 
 
 workspace "docu/tasks"
+workspace "chat" // { open-on-output "Vertical monitor pls" }
 workspace "browser"
 // workspace "dev" // maybe merge browser and dev?
-workspace "chat" // { open-on-output "Vertical monitor pls" }
 workspace "work"
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
@@ -706,14 +736,13 @@ window-rule {
 // }
 window-rule {
     match app-id="teams-for-linux"
-    // match at-startup=true app-id="ticktick"
     open-on-workspace "work"
 }
 // ROUNDED corners
-window-rule {
-    geometry-corner-radius 2
-    clip-to-geometry true
-}
+// window-rule {
+//     geometry-corner-radius 2
+//     clip-to-geometry true
+// }
 // Put swaybg inside the overview backdrop. might not work with swww
 layer-rule {
     match namespace="^wallpaper$"
@@ -773,10 +802,10 @@ window-rule {
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
+// /-window-rule {
+//     geometry-corner-radius 12
+//     clip-to-geometry true
+// }
 
 binds {
     Mod+Shift+M { spawn "~/.config/nixos/scripts/wall_cycle.sh"; }
