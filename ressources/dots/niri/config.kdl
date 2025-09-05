@@ -43,7 +43,7 @@ cursor {
 }
 // OVERVIEW SETTINGS
 overview {
-  zoom 0.65
+  // zoom 0.65
   // backdrop-color "#777777"
 //   workspace-shadow {
 //     // off
@@ -210,7 +210,7 @@ output "Microstep MAG 274URFW 0x00000001" {
     // background-color "#003300" //just for testing unsure what its doing
     // backdrop-color "#001100" //color between workspaces
 }
-output "PNP(AOP) 25XV2Q F 11470AAAA420" {
+output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
     scale 1.000000
     transform "90"
     position x=-1080 y=0
@@ -739,6 +739,7 @@ window-rule {
 // }
 window-rule {
     match app-id="teams-for-linux"
+    match app-id="microsoft-edge"
     open-on-workspace "work"
 }
 // ROUNDED corners
@@ -819,6 +820,7 @@ binds {
     Super+A { spawn "sherlock"; }
     Super+T { spawn "foot"; }
     Mod+Y { spawn "zen-twilight"; }
+    Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "dolphin"; }
     Super+Q { close-window; }
 
@@ -853,16 +855,6 @@ binds {
     Mod+Alt+F { toggle-windowed-fullscreen; }
     Super+Ctrl+Return { move-window-to-monitor-next; }
 
-    Mod+Ctrl+H { focus-workspace-up; }
-    Mod+Ctrl+J { focus-workspace-down; }
-    Mod+Ctrl+K { focus-workspace-up; }
-    Mod+Ctrl+L { focus-workspace-down; }
-
-    Mod+Ctrl+Left { focus-workspace-up; }
-    Mod+Ctrl+Right { focus-workspace-down; }
-    Mod+Ctrl+Up { focus-workspace-up; }
-    Mod+Ctrl+Down { focus-workspace-down; }
-
     Print { screenshot; }
     Alt+Print { screenshot-screen; }
     Mod+Shift+S { screenshot-window; }
@@ -891,9 +883,10 @@ binds {
     Mod+Ctrl+9 { move-column-to-workspace 9; }
 
     // set-workspace-name "browser"
-    Mod+Ctrl+Y { focus-workspace "browser"; }
-    Mod+Ctrl+B { focus-workspace "browser"; }
     Mod+Ctrl+O { focus-workspace "docu/tasks"; }
+    Mod+Ctrl+Y { focus-workspace "browser"; } //maybe main
+    // Mod+Ctrl+C { focus-workspace "chat"; }
+    Mod+Ctrl+B { focus-workspace "work"; }
     Mod+Ctrl+W { focus-workspace "work"; }
 
     Super+L { focus-column-or-monitor-right; }
@@ -906,6 +899,16 @@ binds {
     Super+Up { focus-window-or-monitor-up; }
     Super+Down { focus-window-or-monitor-down; }
 
+    Mod+Ctrl+H { focus-monitor-left; }
+    Mod+Ctrl+J { focus-workspace-down; }
+    Mod+Ctrl+K { focus-workspace-up; }
+    Mod+Ctrl+L { focus-monitor-right; }
+
+    Mod+Ctrl+Left { focus-workspace-up; }
+    Mod+Ctrl+Right { focus-workspace-down; }
+    Mod+Ctrl+Up { focus-workspace-up; }
+    Mod+Ctrl+Down { focus-workspace-down; }
+
     Super+Ctrl+Shift+H { consume-or-expel-window-left; }
     Super+Ctrl+Shift+J { move-window-down-or-to-workspace-down; }
     Super+Ctrl+Shift+K { move-window-up-or-to-workspace-up; }
@@ -915,10 +918,20 @@ binds {
     Super+Ctrl+Shift+Up { move-window-up-or-to-workspace-up; }
     Super+Ctrl+Shift+Down { move-window-down-or-to-workspace-down; }
 
-    Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    Mod+Shift+Ctrl+Right { move-workspace-to-monitor-right; }
-    Mod+Shift+Ctrl+L { move-workspace-to-monitor-next; }
-    Mod+Shift+Ctrl+H { move-workspace-to-monitor-previous; }
+    Mod+Alt+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    Mod+Alt+Shift+Ctrl+Right { move-workspace-to-monitor-right; }
+    Mod+Alt+Shift+Ctrl+H { move-workspace-to-monitor-previous; }
+    Mod+Alt+Shift+Ctrl+L { move-workspace-to-monitor-next; }
+
+    // Mod+Alt+Ctrl+Left { move-column-to-monitor-left; }
+    // Mod+Alt+Ctrl+Right { move-column-to-monitor-right; }
+    // Mod+Alt+Ctrl+H { move-coklumn-to-monitor-left; }
+    // Mod+Alt+Ctrl+L { move-column-to-monitor-right; }
+
+    Mod+Alt+Ctrl+Left { move-window-to-monitor-left; }
+    Mod+Alt+Ctrl+Right { move-window-to-monitor-right; }
+    Mod+Alt+Ctrl+H { move-window-to-monitor-left; }
+    Mod+Alt+Ctrl+L { move-window-to-monitor-right; }
 
     Mod+Shift+Ctrl+T { toggle-debug-tint; }
     Mod+Shift+Ctrl+O { debug-toggle-opaque-regions; }
@@ -954,10 +967,10 @@ binds {
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Shift+WheelScrollDown { move-column-right; }
+    Mod+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Ctrl+WheelScrollRight { focus-column-right; }
+    Mod+Ctrl+WheelScrollLeft        { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
   
@@ -993,7 +1006,7 @@ binds {
 //     // Suggested binds for running programs: terminal, app launcher, screen locker.
 //     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
 //     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-//     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+//     Sper+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 //
 //     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
 //     // Note: the entire command goes as a single argument in the end.
