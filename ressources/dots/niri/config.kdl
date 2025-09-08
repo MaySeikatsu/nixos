@@ -19,6 +19,7 @@ spawn-at-startup "ticktick"
 spawn-at-startup "obsidian"
 
 spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
+// spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome"
 spawn-at-startup "sh" "-c" "noctalia-shell"
 // spawn-at-startup "sh" "-c" "caelestia-shell"
 
@@ -110,13 +111,13 @@ input {
   touchpad {
         // off
         tap
-        // dwt //disab;e when typing
+        // dwt //disabe when typing
         // dwtp //disable when trackpointing
         // drag true //false
         // drag-lock
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.4
+        accel-profile "adaptive" //"flat" = no accl
         // scroll-factor 1.0
         // scroll-factor vertical=1.0 horizontal=-2.0
         // scroll-method "two-finger"
@@ -234,9 +235,6 @@ output "eDP-2" {
     mode "2560x1600@165.002000"
     // mode "2560x1600@60.002000"
 }
-output "Some Company CoolMonitor 1234" {
-    // ...settings for CoolMonitor... // use niri msg outputs to detect the displays name
-}
     // Position of the output in the global coordinate space.
     // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
     // The cursor can only move between directly adjacent outputs.
@@ -268,23 +266,28 @@ layout {
         proportion 0.5
         proportion 0.66667
         fixed 1920
+        proportion 1.0
     }
 
     default-column-width { proportion 0.55; }
+    // default-column-width { proportion 0.45; }
     // New windows decide their initial width themselves.
-    // default-column-width { }
+    // default-olumn-width { }
 
     preset-window-heights {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
         fixed 1080
+        proportion 1.0
     }
     focus-ring {
         // off
         width 3
-        active-color "#57457f"
-        inactive-color "#505050"
+        // active-color "#57457f"
+        active-color "#ea9a97"
+        // inactive-color "#505050"
+        inactive-color "#57457f"
         // urgent-color "#9b0000"
         // active-gradient from="#80c8ff" to="#bbddff" angle=45
         // active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue" relative-to="workspace-view"
@@ -519,11 +522,19 @@ window-rule {
 layer-rule {
     match namespace="^quickshell-wallpaper$"
 }
-
 layer-rule {
     match namespace="^quickshell-overview$"
     place-within-backdrop true
 }
+
+// // // Make the wallpaper stationary, rather than moving with workspaces.
+// layer-rule {
+//     // This is for swaybg; change for other wallpaper tools.
+//     // Find the right namespace by running niri msg layers.
+//     match namespace="^quickshell-wallpaper$"
+//     place-within-backdrop true
+// }
+
 // window-rule {
 //     draw-border-with-background false
 //     geometry-corner-radius 12.000000 12.000000 12.000000 12.000000
@@ -537,8 +548,19 @@ window-rule {
     match app-id="wdisplays"
     match app-id="qalculate-gtk"
     match title="Syncthing Tray"
+    match title="Picture-in-Picture"
     open-floating true
 }
+
+// Open the Firefox picture-in-picture player as floating by default.
+// window-rule {
+//     // This app-id regular expression will work for both:
+//     // - host Firefox (app-id is "firefox")
+//     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+//     match title="^Picture-in-Picture$"
+//     open-floating true
+// }
+
 window-rule {
     match is-window-cast-target=true
     focus-ring {
@@ -552,9 +574,124 @@ window-rule {
     opacity 0.960000
 }
 
+workspace "docu/tasks"
+workspace "chat" // { open-on-output "Vertical monitor pls" }
+workspace "main" //browser
+// workspace "music"
+// workspace "dev" // maybe merge browser and dev?
+workspace "work"
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+// window-rule {
+//     // This regular expression is intentionally made as specific as possible,
+//     // since this is the default config, and we want no false positives.
+//     // You can get away with just app-id="wezterm" if you want.
+//     match app-id=r#"^org\.wezfurlong\.wezterm$"#
+//     default-column-width {}
+// }
+
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+// set-dynamic-cast-window
+// set-dynamic-cast-monitor
+// clear-dynamic-cast-target
+
+
+// Open Fractal on the "chat" workspace, if it runs at niri startup.
+// window-rule {
+//     match at-startup=true app-id=r#"^org\.gnome\.Fractal$"#
+//     open-on-workspace "chat"
+// }
+window-rule {
+    // match at-startup=true app-id="obsidian"
+    // match at-startup=true app-id="ticktick"
+    match app-id="obsidian"
+    match app-id="ticktick"
+    open-on-workspace "docu/tasks"
+}
+window-rule {
+    match at-startup=true app-id="vesktop"
+    match app-id="vesktop"
+    match app-id="steam"
+    open-on-workspace "chat"
+}
+// window-rule {
+//     match at-startup=true app-id="foot"
+//     open-on-workspace "dev"
+// }
+window-rule {
+    match app-id="teams-for-linux"
+    match app-id="microsoft-edge"
+    open-on-workspace "work"
+}
+window-rule {
+  match app-id="tidal-hifi"
+  match app-id="spotify"
+  open-on-workspace "music"
+  open-on-output "PNP(AOP) 25XV2Q F 11470AAAA4200"
+}
+// ROUNDED corners
+// window-rule {
+//     geometry-corner-radius 2
+//     clip-to-geometry true
+// }
+// Put swaybg inside the overview backdrop. might not work with swww
+// layer-rule {
+//     match namespace="^wallpaper$"
+//     place-within-backdrop true
+// }
+//SCREENCASTING BLACKOUT
+// Block out password managers from screencasts.
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screencast"
+}
+// Block out mako notifications from screencasts.
+layer-rule {
+    match namespace="^notifications$"
+
+    block-out-from "screencast"
+}
+// Indicate screencasted windows with red colors.
+window-rule {
+    match is-window-cast-target=true
+
+    focus-ring {
+        active-color "#7d0d2d"
+        inactive-color "#f38ba8"
+    }
+
+    border {
+        inactive-color "#7d0d2d"
+    }
+
+    shadow {
+        color "#7d0d2d70"
+    }
+
+    tab-indicator {
+        active-color "#f38ba8"
+        inactive-color "#7d0d2d"
+    }
+}
+
 // This option will also fix border/focus ring drawing behind some semitransparent windows.
 // After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
+switch-events {
+    lid-close { spawn "notify-send" "The laptop lid is closed!"; } //not needed
+    lid-open { spawn "notify-send" "The laptop lid is open!"; } //not rly needed, lid function is automatically configured
+    tablet-mode-on { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"; }
+    tablet-mode-off { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"; }
+}
 
 // screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png"
@@ -634,7 +771,26 @@ animations {
         spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
     }
 }
+//
+// // Set transparent workspace background color.
+// layout {
+//     background-color "transparent"
+// }
+//
+// // Optionally, disable the workspace shadows in the overview.
+// overview {
+//     workspace-shadow {
+//         off
+//     }
+// }
+// For some reason, DMABUF screencasts are disabled in the Zen Browser, so screencasting doesn't work out of the box on niri. To fix it, open about:config and set widget.dmabuf.force-enabled to true.
 
+// Example: enable rounded corners for all windows.
+// (This example rule is commented out with a "/-" in front.)
+// /-window-rule {
+//     geometry-corner-radius 12
+//     clip-to-geometry true
+// }
 
 // hotkey-overlay { skip-at-startup; }
 environment {
@@ -649,168 +805,6 @@ environment {
     "SDL_VIDEODRIVER" "wayland"
 }
 
-
-
-// // Make the wallpaper stationary, rather than moving with workspaces.
-// layer-rule {
-//     // This is for swaybg; change for other wallpaper tools.
-//     // Find the right namespace by running niri msg layers.
-//     match namespace="^wallpaper$"
-//     place-within-backdrop true
-// }
-//
-// // Set transparent workspace background color.
-// layout {
-//     background-color "transparent"
-// }
-//
-// // Optionally, disable the workspace shadows in the overview.
-// overview {
-//     workspace-shadow {
-//         off
-//     }
-// }
-
-switch-events {
-    lid-close { spawn "notify-send" "The laptop lid is closed!"; } //not needed
-    lid-open { spawn "notify-send" "The laptop lid is open!"; } //not rly needed, lid function is automatically configured
-    tablet-mode-on { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled true"; }
-    tablet-mode-off { spawn "bash" "-c" "gsettings set org.gnome.desktop.a11y.applications screen-keyboard-enabled false"; }
-}
-
-
-workspace "docu/tasks"
-workspace "chat" // { open-on-output "Vertical monitor pls" }
-workspace "browser"
-// workspace "dev" // maybe merge browser and dev?
-workspace "work"
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
-window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-window-rule {
-    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-    default-floating-position x=10 y=10 relative-to="bottom-right"
-}
-// set-dynamic-cast-window
-// set-dynamic-cast-monitor
-// clear-dynamic-cast-target
-
-
-// Open Fractal on the "chat" workspace, if it runs at niri startup.
-window-rule {
-    match at-startup=true app-id=r#"^org\.gnome\.Fractal$"#
-    open-on-workspace "chat"
-}
-window-rule {
-    // match at-startup=true app-id="obsidian"
-    // match at-startup=true app-id="ticktick"
-    match app-id="obsidian"
-    match app-id="ticktick"
-    open-on-workspace "docu/tasks"
-}
-window-rule {
-    match at-startup=true app-id="vesktop"
-    match app-id="vesktop"
-    match app-id="steam"
-    open-on-workspace "chat"
-}
-// window-rule {
-//     match at-startup=true app-id="foot"
-//     open-on-workspace "dev"
-// }
-window-rule {
-    match app-id="teams-for-linux"
-    match app-id="microsoft-edge"
-    open-on-workspace "work"
-}
-// ROUNDED corners
-// window-rule {
-//     geometry-corner-radius 2
-//     clip-to-geometry true
-// }
-// Put swaybg inside the overview backdrop. might not work with swww
-layer-rule {
-    match namespace="^wallpaper$"
-    place-within-backdrop true
-}
-//SCREENCASTING BLACKOUT
-// Block out password managers from screencasts.
-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screencast"
-}
-// Block out mako notifications from screencasts.
-layer-rule {
-    match namespace="^notifications$"
-
-    block-out-from "screencast"
-}
-// Indicate screencasted windows with red colors.
-window-rule {
-    match is-window-cast-target=true
-
-    focus-ring {
-        active-color "#7d0d2d"
-        inactive-color "#f38ba8"
-    }
-
-    border {
-        inactive-color "#7d0d2d"
-    }
-
-    shadow {
-        color "#7d0d2d70"
-    }
-
-    tab-indicator {
-        active-color "#f38ba8"
-        inactive-color "#7d0d2d"
-    }
-}
-// For some reason, DMABUF screencasts are disabled in the Zen Browser, so screencasting doesn't work out of the box on niri. To fix it, open about:config and set widget.dmabuf.force-enabled to true.
-
-
-
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-// /-window-rule {
-//     geometry-corner-radius 12
-//     clip-to-geometry true
-// }
-
 binds {
     Mod+Shift+M { spawn "~/.config/nixos/scripts/wall_cycle.sh"; }
     Mod+Shift+N { spawn "~/.config/nixos/scripts/wall_cycle_back.sh"; }
@@ -822,16 +816,19 @@ binds {
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "dolphin"; }
+    Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
+    Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
     Super+Q { close-window; }
 
     // Ctrl+Alt+C { spawn "sh" "-c" "pidof wl-color-picker || wl-color-picker"; }
-    Mod+Shift+W { switch-preset-column-width; }
-    Mod+Shift+E { switch-preset-window-height; }
+    Mod+BracketLeft  { switch-preset-column-width; }
+    Mod+BracketRight { switch-preset-window-height; }
 
     Mod+G { toggle-column-tabbed-display; }
 
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    // Mod+BracketLeft  { consume-or-expel-window-left; }
+    // Mod+BracketRight { consume-or-expel-window-right; }
+
     // Center all fully visible columns on screen.
     Mod+Ctrl+C { center-visible-columns; }
     Mod+C { center-column; }
@@ -884,7 +881,7 @@ binds {
 
     // set-workspace-name "browser"
     Mod+Ctrl+O { focus-workspace "docu/tasks"; }
-    Mod+Ctrl+Y { focus-workspace "browser"; } //maybe main
+    Mod+Ctrl+Y { focus-workspace "main"; } //maybe main
     // Mod+Ctrl+C { focus-workspace "chat"; }
     Mod+Ctrl+B { focus-workspace "work"; }
     Mod+Ctrl+W { focus-workspace "work"; }
@@ -939,8 +936,8 @@ binds {
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
-    Mod+Ctrl+Alt+Home { move-column-to-first; }
-    Mod+Ctrl+Alt+End  { move-column-to-last; }
+    Mod+Ctrl+Shift+Home { move-column-to-first; }
+    Mod+Ctrl+Shift+End  { move-column-to-last; }
 //
 //     Mod+Shift+Left  { focus-monitor-left; }
 //     Mod+Shift+Down  { focus-monitor-down; }
@@ -959,6 +956,8 @@ binds {
 //     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
 //     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
 //     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+//
+    // Mod+MouseMiddle  { center-focused-column; }
   
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
@@ -967,10 +966,10 @@ binds {
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Shift+WheelScrollDown { move-column-right; }
-    Mod+Shift+WheelScrollUp   { move-column-left; }
-    Mod+Ctrl+WheelScrollRight { focus-column-right; }
-    Mod+Ctrl+WheelScrollLeft        { focus-column-left; }
+    Mod+Shift+WheelScrollDown { focus-column-right; }
+    Mod+Shift+WheelScrollUp   { focus-column-left; }
+    // Mod+Ctrl+WheelScrollRight { focus-column-right; }
+    // Mod+Ctrl+WheelScrollLeft  { focus-column-left; }
     Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
   

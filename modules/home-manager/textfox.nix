@@ -8,13 +8,13 @@
     profile = "default";
     config = {
       background = {
-        # color = "#123456";
+        # color = "#232136";
       };
       border = {
-        # color = "#654321";
+        # color = "#EA9A97";
         width = "2px";
-        transition = "1.0s ease";
-        radius = "3px";
+        transition = "0.2s ease";
+        radius = "2px";
       };
       displayHorizontalTabs = false;
       displayWindowControls = false;

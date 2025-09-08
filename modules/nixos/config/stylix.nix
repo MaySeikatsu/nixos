@@ -46,7 +46,8 @@
       # image = ../../../ressources/wallpapers/Anime/anime-girl-aesthetic-autumn-wallpaper-4k.jpg;
       image = ../../../ressources/wallpapers/Anime/anime-girl-pink-eyes-city-desktop-wallpaper.jpg;
       polarity = "dark"; # options: light, dark, either (selects closest)
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+      # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
       # homeManagerIntegration.followSystem = true;
 
@@ -63,7 +64,7 @@
       };
 
       targets = {
-        # gtk.enable = true;
+        gtk.enable = true;
         # qt.enable = true;
         nixos-icons.enable = true;
         spicetify.enable = false;

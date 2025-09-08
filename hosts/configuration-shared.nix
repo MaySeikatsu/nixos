@@ -423,17 +423,19 @@ in
     base16-schemes
     # darktable #like lightroom
     tidal-hifi
-    # For quickshell config
+    # For quickshell caelestia config (should be able to be deleted)
     kdePackages.qtsvg
     libsForQt5.qt5.qtsvg
     libsForQt5.qt5.qtimageformats
     libsForQt5.qt5.qtmultimedia
     kdePackages.qtmultimedia
     kdePackages.qt5compat
+
     qt5.qtdeclarative
 
     libsForQt5.qt5.qtgraphicaleffects
     kdePackages.syntax-highlighting
+    kdePackages.plasma-workspace # to fix issue with mime associations in dolphin
     material-symbols
 
     kodi-wayland
@@ -469,6 +471,7 @@ in
     evemu
     # linuxKernel.packages.linux_zen.digimend
     # roccat-tools
+    protonmail-desktop
 
     #teams
     teams-for-linux
@@ -491,7 +494,9 @@ in
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  # Specifically for the nix-daemon (if relevant)
+  environment.etc."/xdg/menus/applications.menu".text =
+    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
+
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];

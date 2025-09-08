@@ -1,4 +1,11 @@
-{ config, pkgs, inputs, lib, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+{
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -17,6 +24,10 @@
     openssl
     rustls-libssl
     # dotnet-sdk_8
+
+    #nodejs
+    #bun
+    deno
 
     # Terminal Utility
     # zsh
