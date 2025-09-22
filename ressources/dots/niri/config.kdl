@@ -235,6 +235,17 @@ output "eDP-2" {
     mode "2560x1600@165.002000"
     // mode "2560x1600@60.002000"
 }
+// TV 
+output "Samsung Electric Company QCQ90S 0x01000E00" {
+    variable-refresh-rate // on-demand=true
+    scale 1.000000
+    transform "normal"
+    position x=-2560 y=0
+    mode "2560x1440@59.951"
+    // mode "2560x1600@60.002000"
+
+}
+// END TV 
     // Position of the output in the global coordinate space.
     // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
     // The cursor can only move between directly adjacent outputs.
