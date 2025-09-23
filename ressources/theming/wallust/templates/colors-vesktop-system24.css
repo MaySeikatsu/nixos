@@ -68,7 +68,7 @@ body {
     --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
 
     /* unrounding options */
-    --unrounding: on; /* off: default, on: remove rounded corners from panels */
+    --unrounding: off; /* off: default, on: remove rounded corners from panels */
 
     /* styling options */
     --custom-spotify-bar: on; /* off: default, on: custom text-like spotify progress bar */
