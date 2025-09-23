@@ -1,0 +1,20 @@
+:root {
+  --tf-font-family: "SF Mono", Consolas, monospace;
+  --tf-font-size: 14px;
+  --tf-accent: var(--toolbarbutton-icon-fill);
+  --tf-bg: var(--lwt-accent-color, -moz-dialog);
+  --tf-border: var(--arrowpanel-border-color, --toolbar-field-background-color);
+  --tf-border-transition: 0.2s ease;
+  --tf-border-width: 2px;
+  --tf-rounding: 15px;
+  --tf-margin: 1.0rem;
+  --tf-text-transform: none;
+  --tf-display-horizontal-tabs: none;
+  --tf-display-window-controls: none;
+  --tf-display-nav-buttons: flex;
+  --tf-display-urlbar-icons: flex;
+  --tf-display-sidebar-tools: none;
+  --tf-display-titles: none;
+  --tf-newtab-logo: "   __            __  ____          A   / /____  _  __/ /_/ __/___  _  __A  / __/ _ \\| |/_/ __/ /_/ __ \\| |/_/A / /_/  __/>  </ /_/ __/ /_/ />  <  A \\__/\\___/_/|_|\\__/_/  \\____/_/|_|  ";
+}
+
