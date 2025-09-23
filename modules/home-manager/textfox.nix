@@ -14,7 +14,7 @@
         # color = "#EA9A97";
         width = "2px";
         transition = "0.2s ease";
-        radius = "2px";
+        radius = "15px"; # 2px orig
       };
       displayHorizontalTabs = false;
       displayWindowControls = false;

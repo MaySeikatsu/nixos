@@ -95,7 +95,7 @@ in {
   # };
 
   # If display issues:
-  # programs.dconf.enable = true;
+  programs.dconf.enable = true;
   ###QT###
 
   # nixCats = {
@@ -388,13 +388,18 @@ in {
     ledfx
     openrgb-with-all-plugins
     openlinkhub
+
     hyperion-ng # not working yet
+    gtk3
+    gnome.adwaita-icon-theme
+
     # discord #managed via nixcord flake
     vesktop # vencord desktop client without overwriting the official discord binary
     revolt-desktop
     element-desktop
     osu-lazer-bin
     easyeffects
+    tenacity
     zed-editor
     code-cursor
     helix
