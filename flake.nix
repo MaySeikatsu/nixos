@@ -65,9 +65,9 @@
       url = "git+https://github.com/SteamClientHomebrew/Millennium";
     };
     qs-noctalia = {
-      # url = "github:noctalia-dev/noctalia-shell";
-      url =
-        "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
+      url = "github:noctalia-dev/noctalia-shell";
+      # url =
+      #   "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     qs-retroism = {
@@ -80,6 +80,14 @@
     };
     qs-caelestia-cli = {
       url = "github:caelestia-dots/cli";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    winboat = {
+      url = "github:TibixDev/winboat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    winapps = {
+      url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # sherlock-launcher = {
@@ -110,7 +118,7 @@
   outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
     , nixcord, matugen, stylix, textfox, niri, ashell, eww, nvix, ironbar
     , sddm-sugar-candy-nix, astal, claude-desktop, millennium, qs-noctalia
-    , qs-retroism, qs-caelestia-shell, qs-caelestia-cli,
+    , qs-retroism, qs-caelestia-shell, qs-caelestia-cli, winboat, winapps,
     # sherlock-launcher,
     # hyprpanel,
     # hyprddm,

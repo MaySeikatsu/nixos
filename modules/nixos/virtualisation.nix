@@ -1,5 +1,6 @@
-{ ... }:
-{
+{ ... }: {
+
+  virtualisation.docker.enable = true;
 
   #Enable VMware virtualisation straight out of nixos
   # virtualisation.vmware.host.enable = true; #needs to be added manually to nix store

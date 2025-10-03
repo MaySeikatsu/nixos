@@ -1,15 +1,8 @@
-{
-  config,
-  pkgs,
-  inputs,
-  system,
-  lib,
-  ...
-}:
+{ config, pkgs, inputs, system, lib, ... }:
 let
-  _base00 = builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
-in
-{
+  _base00 =
+    builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
+in {
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
@@ -28,10 +21,7 @@ in
     # ../modules/nixos/config/sddm-sugar-candy.nix
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
@@ -48,23 +38,26 @@ in
       "wheel"
       "input" # for Kanata
       "uinput" # for Kanata
+      "docker"
     ];
     useDefaultShell = false;
     # shell = pkgs.zsh;
     shell = pkgs.nushell;
     # shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-      # pipes
-      #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        kdePackages.kate
+        # pipes
+        #  thunderbird
+      ];
   };
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    imagemagick
-    # add any libraries WallRizz needs here if needed
-  ];
+  programs.nix-ld.libraries = with pkgs;
+    [
+      imagemagick
+      # add any libraries WallRizz needs here if needed
+    ];
   # nix.gc = {
   #   automatic = true;
   #   dates = "weekly";
@@ -75,20 +68,17 @@ in
   powerManagement.powertop.enable = true;
 
   ###GNOME EXCLUDE PACKAGES###
-  environment.gnome.excludePackages = (
-    with pkgs;
-    [
-      epiphany # web browser
-      # evince # document viewer
-      geary # email reader
-      # gnome-characters
-      gnome-music
-      gnome-photos
-      gnome-terminal
-      gnome-tour
-      totem # video player
-    ]
-  );
+  environment.gnome.excludePackages = (with pkgs; [
+    epiphany # web browser
+    # evince # document viewer
+    geary # email reader
+    # gnome-characters
+    gnome-music
+    gnome-photos
+    gnome-terminal
+    gnome-tour
+    totem # video player
+  ]);
   ###GNOME EXCLUDE PACKAGES###
   ###QT###
   qt = {
@@ -177,13 +167,17 @@ in
   };
 
   services = {
-    system76-scheduler.enable = true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
-    system76-scheduler.settings.cfsProfiles.enable = true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
-    upower.enable = config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
+    system76-scheduler.enable =
+      true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
+    system76-scheduler.settings.cfsProfiles.enable =
+      true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+    upower.enable =
+      config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
-    displayManager.defaultSession = "hyprland-uwsm"; # default option after logging in
+    displayManager.defaultSession =
+      "hyprland-uwsm"; # default option after logging in
     displayManager.autoLogin.enable = false;
     displayManager.autoLogin.user = "maike";
 
@@ -194,10 +188,7 @@ in
     # Tell the firewall to implicitly trust packets routed over Tailscale:
     # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-    udev.packages = with pkgs; [
-      vial
-      via
-    ]; # Enabling qmk vial
+    udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
 
     # Enable sound with pipewire.
     pulseaudio.enable = false;
@@ -241,7 +232,8 @@ in
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake =
+        "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
 
     # Enable Hyprland
@@ -262,14 +254,15 @@ in
       # ];
     };
 
-    gamemode.enable = true; # Enabling optional optimisations for gaming / game-mode
+    gamemode.enable =
+      true; # Enabling optional optimisations for gaming / game-mode
     # floorp.enable = true;     # Enable/Install Floorp
 
     # Steam
     steam = {
       enable = true;
       # package = pkgs.callPackage pkgs.millennium { };
-      # package = pkgs.millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
+      # package = pkgs.steam-millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
       extraCompatPackages = [
         # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize
         # Install proton-ge
@@ -384,6 +377,10 @@ in
     inputs.qs-caelestia-shell.packages.${system}.default
     inputs.qs-caelestia-cli.packages.${system}.default
     inputs.qs-retroism.packages.${system}.default
+    inputs.winboat.packages.${system}.winboat
+    # inputs.winapps.packages.${system}.winapps
+    # inputs.winapps.packages.${system}.winapps-launcher
+    # inputs.millennium.packages.${pkgs.system}.millennium
     rose-pine-gtk-theme
     rose-pine-icon-theme
     spotify
@@ -444,6 +441,8 @@ in
     ollama
     # lmstudio
     docker
+    freerdp
+    iptables
     ffmpeg
     p7zip
     overskride
@@ -484,9 +483,7 @@ in
   ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = {
-    "fs.file-max" = 524288;
-  };
+  boot.kernel.sysctl = { "fs.file-max" = 524288; };
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [
@@ -494,8 +491,8 @@ in
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  environment.etc."/xdg/menus/applications.menu".text =
-    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
+  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
 
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
