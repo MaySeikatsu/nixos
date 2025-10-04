@@ -350,7 +350,7 @@ in {
     # Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default
 
-    floorp
+    floorp-bin
     # catppuccin-grub
 
     wineWowPackages.stable
