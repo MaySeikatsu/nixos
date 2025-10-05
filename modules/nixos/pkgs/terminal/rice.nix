@@ -20,7 +20,7 @@
     # steam-tui
     discordo # discord cli client
     bluetui
-    # spotify-player
+    spotify-player
     # ytui-music
     manga-tui
     ani-cli

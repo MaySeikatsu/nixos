@@ -2,7 +2,8 @@
 let
   # system = "x86_64-linux";
   spicePkgs = inputs.spicetify-nix.legacyPackages."x86_64-linux";
-in {
+in
+{
   # Configured over normal module not home-manager
   programs.spicetify = {
     enable = true;
@@ -26,7 +27,7 @@ in {
     #  };
     #
     #  # Additional theme options all set to defaults
-    #  # the docs of the theme should say which of these 
+    #  # the docs of the theme should say which of these
     #  # if any you have to change
     #  injectCss = true;
     #  injectThemeJs = true;
@@ -85,4 +86,4 @@ in {
 #	notification-error = "e67e80";
 #	equalizer          = "F2D5CF";
 #	misc               = "626880";
-#}; 
+#};
