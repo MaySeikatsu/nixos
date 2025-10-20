@@ -286,6 +286,7 @@ layout {
     // default-column-width { proportion 0.90; }
     // default-column-width { proportion 0.55; }
     default-column-width { proportion 0.45; }
+    // default-column-width { proportion 0.48; }
     // default-column-width { proportion 0.40; }
     // New windows decide their initial width themselves.
     // default-olumn-width { }
