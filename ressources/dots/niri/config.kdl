@@ -118,7 +118,7 @@ input {
         // drag true //false
         // drag-lock
         natural-scroll
-        accel-speed 0.3
+        // accel-speed 0.3
         accel-profile "adaptive" //"flat" = no accl
         // scroll-factor 1.0
         // scroll-factor vertical=1.0 horizontal=-2.0
@@ -720,8 +720,9 @@ binds {
     Super+Ctrl+Return { move-window-to-monitor-next; }
 
     Print { screenshot; }
-    Alt+Print { screenshot-screen; }
-    Mod+Shift+S { screenshot-window; }
+    Alt+Print { screenshot-window; }
+    // Mod+Shift+S { screenshot-window; }
+    Mod+Shift+S { screenshot; }
 
     Super+0 { focus-workspace 10; }
     Super+1 { focus-workspace 1; }

@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   imports = [
     inputs.niri.homeModules.niri
     # ./settings.nix
@@ -8,8 +9,7 @@
   ];
 
   home = {
-    file.".config/niri/config.kdl".source =
-      ../../../ressources/dots/niri/config.kdl;
+    file.".config/niri/config.kdl".source = ../../../ressources/dots/niri/config.kdl;
     packages = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
@@ -18,7 +18,7 @@
       qt6.qtwayland
       # plasma-polkit-agent # check if needed
       walker
-      mako # notification agent
+      # mako # notification agent
       # seatd
       # jaq
       # brillo
