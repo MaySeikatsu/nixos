@@ -43,8 +43,8 @@
               ;;layer-hold-time 160
 
               ;; set tap/hold time for space tap-hold
-              spc-tap-time 400
-              spc-hold-time 400
+              spc-tap-time 500
+              spc-hold-time 500
 
               ;; set tap/hold time for homerow mods
               ctl-tap 200
@@ -98,8 +98,8 @@
 
               ;;define key-alias and functions
               lesc (tap-hold-press $tap-time $hold-time esc @nav1) 
-              ltab (tap-hold-press $tap-time $spc-hold-time tab @game) 
-              lbtab (tap-hold-press $tap-time $spc-hold-time tab @base) 
+              ltab (tap-hold-press $spc-tap-time $spc-hold-time tab @game) 
+              lbtab (tap-hold-press $spc-tap-time $spc-hold-time tab @base) 
               lspc (tap-hold-press $spc-tap-time $spc-hold-time spc @nav1)
 
               chj (chord jkl-chords j)
