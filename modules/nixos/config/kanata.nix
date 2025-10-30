@@ -47,8 +47,8 @@
               spc-hold-time 350
 
               ;; set tap/hold time for game tap-hold
-              game-tap-time 500
-              game-hold-time 1000
+              game-tap-time 800
+              game-hold-time 800
 
               ;; set tap/hold time for homerow mods
               ctl-tap 200
@@ -77,9 +77,19 @@
               (deflayer nav1 
               _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
               _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
-              _ A-left up A-rght  _    _    _    C-v  C-c  C-x  _   RA-y  _    _     _    _    _     _    _    _    _
+              _ A-left up A-rght  _    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _
               _  left down rght   _    _    left down up  rght RA-p RA-q  _                          _    _    _
               _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
+              _    _    _              _              _    _    _    _               _    _    _     _    _
+              )
+
+              ;; ---layer two (test) for navigation---
+              (deflayer nav2 
+              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+              _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
+              _ A-left  _ A-rght  _    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _
+              _    1    2    3    4    5    left down up  rght RA-p RA-q  _                          _    _    _
+              _    6    7    8    9    0    _    _    _    _    _    _                    _          _    _    _    _
               _    _    _              _              _    _    _    _               _    _    _     _    _
               )
 
@@ -97,14 +107,16 @@
 
               ;;define layer-alias
               nav1 (layer-toggle nav1)
+              nav2 (layer-toggle nav2)
               game (layer-switch game)
               base (layer-switch base)
 
               ;;define key-alias and functions
               lesc (tap-hold-press $tap-time $hold-time esc @nav1) 
+              ;;lesc (tap-hold $tap-time $hold-time esc @nav1) mhm?
               ltab (tap-hold-press $game-tap-time $game-hold-time tab @game) 
               lbtab (tap-hold-press $game-tap-time $game-hold-time tab @base) 
-              lspc (tap-hold-press $spc-tap-time $spc-hold-time spc @nav1)
+              lspc (tap-hold $spc-tap-time $spc-hold-time spc @nav2)
 
               chj (chord jkl-chords j)
               chk (chord jkl-chords k)
