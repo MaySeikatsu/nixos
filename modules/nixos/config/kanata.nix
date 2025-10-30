@@ -43,8 +43,12 @@
               ;;layer-hold-time 160
 
               ;; set tap/hold time for space tap-hold
-              spc-tap-time 500
-              spc-hold-time 500
+              spc-tap-time 350
+              spc-hold-time 350
+
+              ;; set tap/hold time for game tap-hold
+              game-tap-time 500
+              game-hold-time 1000
 
               ;; set tap/hold time for homerow mods
               ctl-tap 200
@@ -65,7 +69,7 @@
               @ltab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn  kp7  kp8  kp9  kp+
               @lesc @am  @sa  @ds  @fc  g    h    @jc  @ks  @la  @;m  '    ret                        kp4  kp5  kp6
               lsft   z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
-              @chom  lmet @aend          spc            ralt rmet cmp  rctl            left down rght  kp0  kp.
+              @chom  lmet @aend          @lspc            ralt rmet cmp  rctl            left down rght  kp0  kp.
               ) 
               ;;might need to replace the hardcoded one with _ to emulate the original layer underneath it - only if qwertz layout switch doesnt work anymore afterwards
 
@@ -98,8 +102,8 @@
 
               ;;define key-alias and functions
               lesc (tap-hold-press $tap-time $hold-time esc @nav1) 
-              ltab (tap-hold-press $spc-tap-time $spc-hold-time tab @game) 
-              lbtab (tap-hold-press $spc-tap-time $spc-hold-time tab @base) 
+              ltab (tap-hold-press $game-tap-time $game-hold-time tab @game) 
+              lbtab (tap-hold-press $game-tap-time $game-hold-time tab @base) 
               lspc (tap-hold-press $spc-tap-time $spc-hold-time spc @nav1)
 
               chj (chord jkl-chords j)
