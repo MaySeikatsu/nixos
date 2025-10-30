@@ -43,8 +43,8 @@
               ;;layer-hold-time 160
 
               ;; set tap/hold time for space tap-hold
-              spc-tap-time 350
-              spc-hold-time 350
+              spc-tap-time 250
+              spc-hold-time 250
 
               ;; set tap/hold time for game tap-hold
               game-tap-time 800

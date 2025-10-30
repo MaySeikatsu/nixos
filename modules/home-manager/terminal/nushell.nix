@@ -105,6 +105,15 @@
         # bind alt-delete = delete_word_forward
         # bind alt-h = move_word_backward
         # bind alt-l = move_word_forward
+        $env.config.keybindings = [
+        {
+          name: delete_word_backward
+          modifier: control
+          keycode: char_h
+          mode: [emacs vi_insert vi_normal]
+          event: { edit: backspaceword }
+        }
+      ]
     '';
 
     envFile.text = ''
