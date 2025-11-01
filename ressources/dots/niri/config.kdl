@@ -275,9 +275,12 @@ layout {
     // background-color "#003300" //default workspace color
 
     preset-column-widths {
+        proportion 0.25
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 0.75
+        // proportion 0.90
         // fixed 1920
         proportion 1.0
     }
@@ -285,7 +288,8 @@ layout {
     // default-column-width { proportion 1.0; }
     // default-column-width { proportion 0.90; }
     // default-column-width { proportion 0.55; }
-    default-column-width { proportion 0.45; }
+    // default-column-width { proportion 0.45; }
+    default-column-width { proportion 0.80; }
     // default-column-width { proportion 0.48; }
     // default-column-width { proportion 0.40; }
     // New windows decide their initial width themselves.

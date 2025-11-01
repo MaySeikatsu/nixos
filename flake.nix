@@ -64,6 +64,11 @@
     millennium = {
       url = "git+https://github.com/SteamClientHomebrew/Millennium";
     };
+
+    # qs-dankmaterial= {
+    #   url = "github:AvengeMedia/danklinux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     qs-noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       # url =

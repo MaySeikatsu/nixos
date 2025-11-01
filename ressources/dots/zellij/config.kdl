@@ -327,7 +327,8 @@ pane_frames false
 //   - detach (Default)
 //   - quit
 // 
-on_force_close "detach"
+// on_force_close "detach"
+on_force_close "quit"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
