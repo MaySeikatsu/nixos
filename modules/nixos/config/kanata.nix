@@ -85,12 +85,12 @@
 
               ;; ---layer two (test) for navigation---
               (deflayer nav2 
-              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-              _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
-              _ A-left  _ A-rght  _    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _
-              _    1    2    3    4    5    left down up  rght RA-p RA-q  _                          _    _    _
-              _    6    7    8    9    0    _    _    _    _    _    _                    _          _    _    _    _
-              _    _    _              _              _    _    _    _               _    _    _     _    _
+              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _                      
+              _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _ 
+              _    7    8    9    0    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _ 
+              _    4    5    6    0    _    left down up  rght RA-p RA-q  _                          _    _    _      
+              _    1    2    3    0    _    _    _    _    _    _    _                    _          _    _    _    _ 
+              _    _    _              _              _    _    _    _               _    _    _     _    _           
               )
 
               ;; ---gaming layer without homerow mods---
