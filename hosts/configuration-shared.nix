@@ -350,14 +350,14 @@ in {
     # Exampleke
     # inputs.hyprddm.packages.${pkgs.system}.default
 
-    floorp-bin
+    # floorp-bin
     # catppuccin-grub
 
     wineWowPackages.stable
     wineWowPackages.waylandFull
     winetricks
     protontricks
-    protonup
+    protonup-ng
     protonup-rs
     protonup-qt
     protonplus
@@ -483,7 +483,7 @@ in {
 
     #teams
     teams-for-linux
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     # citrix_workspace
     # dotnet-sdk_8
     omnisharp-roslyn

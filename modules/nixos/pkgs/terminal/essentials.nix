@@ -43,7 +43,7 @@
     # htop
     bottom
     powertop
-    nvtopPackages.full
+    # nvtopPackages.full
 
     # Terminal File Explorers
     # yazi # terminal file manager
@@ -59,7 +59,7 @@
     # passphrase2pgp
     # tomb
     gnupg
-    pinentry
+    # pinentry
     pinentry-curses
 
     # For Steam VR (troubleshooting):
