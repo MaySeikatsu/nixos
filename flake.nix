@@ -87,10 +87,10 @@
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    winboat = {
-      url = "github:TibixDev/winboat";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # winboat = {
+    #   url = "github:TibixDev/winboat";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # winapps = {
     #   url = "github:winapps-org/winapps";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -122,8 +122,8 @@
 
   outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
     , nixcord, matugen, stylix, textfox, niri, nvix, sddm-sugar-candy-nix, astal
-    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli, winboat
-    ,
+    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli,
+    # winboat
     # winapps
     # millennium
     # qs-retroism

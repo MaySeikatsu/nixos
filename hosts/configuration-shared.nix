@@ -377,7 +377,7 @@ in {
     inputs.qs-caelestia-shell.packages.${system}.default
     inputs.qs-caelestia-cli.packages.${system}.default
     # inputs.qs-retroism.packages.${system}.default
-    inputs.winboat.packages.${system}.winboat
+    # inputs.winboat.packages.${system}.winboat
     # inputs.winapps.packages.${system}.winapps
     # inputs.winapps.packages.${system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.system}.millennium
