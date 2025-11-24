@@ -17,8 +17,8 @@
     textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
     nvix.url = "github:niksingh710/nvix";
-    ashell.url = "github:MalpenZibo/ashell";
-    eww.url = "github:elkowar/eww";
+    # ashell.url = "github:MalpenZibo/ashell";
+    # eww.url = "github:elkowar/eww";
     # hyprpanel = {
     #   url = "github:Jas-SinghFSU/HyprPanel";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -61,9 +61,9 @@
       url = "github:k3d3/claude-desktop-linux-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    millennium = {
-      url = "git+https://github.com/SteamClientHomebrew/Millennium";
-    };
+    # millennium = {
+    #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    # };
 
     # qs-dankmaterial= {
     #   url = "github:AvengeMedia/danklinux";
@@ -75,10 +75,10 @@
       #   "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    qs-retroism = {
-      url = "github:diinki/linux-retroism?dir=configs/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # qs-retroism = {
+    #   url = "github:diinki/linux-retroism?dir=configs/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     qs-caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -91,10 +91,10 @@
       url = "github:TibixDev/winboat";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    winapps = {
-      url = "github:winapps-org/winapps";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # winapps = {
+    #   url = "github:winapps-org/winapps";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # sherlock-launcher = {
     #   url = "github:Skxxtz/sherlock";
     # };
@@ -114,16 +114,22 @@
     #   url = "github:/4JX/L5P-Keyboard-RGB";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    ironbar = {
-      url = "github:JakeStanger/ironbar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ironbar = {
+    #   url = "github:JakeStanger/ironbar";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
-    , nixcord, matugen, stylix, textfox, niri, ashell, eww, nvix, ironbar
-    , sddm-sugar-candy-nix, astal, claude-desktop, millennium, qs-noctalia
-    , qs-retroism, qs-caelestia-shell, qs-caelestia-cli, winboat, winapps,
+    , nixcord, matugen, stylix, textfox, niri, nvix, sddm-sugar-candy-nix, astal
+    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli, winboat
+    ,
+    # winapps
+    # millennium
+    # qs-retroism
+    # ashell
+    # ironbar
+    # eww
     # sherlock-launcher,
     # hyprpanel,
     # hyprddm,
@@ -160,7 +166,7 @@
             nixpkgs.overlays = [
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
-              inputs.millennium.overlays.default
+              # inputs.millennium.overlays.default
               # inputs.millennium.overlays.millennium
             ];
           }
@@ -180,7 +186,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
-                inputs.ironbar.homeManagerModules.default
+                # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
@@ -212,7 +218,7 @@
             nixpkgs.overlays = [
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
-              inputs.millennium.overlays.default
+              # inputs.millennium.overlays.default
             ];
           }
 
@@ -231,7 +237,7 @@
               sharedModules = [
                 inputs.nixcord.homeManagerModules.nixcord
                 textfox.homeManagerModules.default
-                inputs.ironbar.homeManagerModules.default
+                # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default

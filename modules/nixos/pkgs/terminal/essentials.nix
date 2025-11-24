@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -27,12 +20,12 @@
 
     #nodejs
     #bun
-    deno
+    # deno
 
     # Terminal Utility
     # zsh
     # nushell #already in home-manager
-    tmux
+    # tmux
     lsd
     fzf
     zoxide
@@ -47,7 +40,7 @@
 
     # Terminal Ressource Managers
     btop
-    htop
+    # htop
     bottom
     powertop
     nvtopPackages.full
@@ -61,10 +54,10 @@
     # pass-wayland
     gopass
     gopass-jsonapi
-    gopass-hibp # haveIbeenPwned?
+    # gopass-hibp # haveIbeenPwned?
     gnupg
-    passphrase2pgp
-    tomb
+    # passphrase2pgp
+    # tomb
     gnupg
     pinentry
     pinentry-curses

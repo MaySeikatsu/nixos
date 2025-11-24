@@ -1,15 +1,8 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     fastfetch
-    macchina # neofetch alt rust
+    # macchina # neofetch alt rust
     cava
     cavalier
     cbonsai
@@ -21,6 +14,7 @@
     discordo # discord cli client
     bluetui
     spotify-player
+    reddix
     # ytui-music
     manga-tui
     ani-cli
