@@ -398,6 +398,7 @@ in {
     # revolt-desktop
     element-desktop
     signal-desktop
+    fluffychat
     osu-lazer-bin
     easyeffects
     tenacity
