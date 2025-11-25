@@ -206,7 +206,7 @@ input {
 // PC Home
 output "Microstep MAG 274URFW 0x00000001" {
     variable-refresh-rate // on-demand=true
-    scale 1.000000
+    scale 1.200000
     transform "normal"
     position x=0 y=0
     mode "3840x2160@143.851000"
@@ -287,15 +287,16 @@ layout {
         proportion 1.0
     }
 
-    // default-column-width { proportion 1.0; }
-    // default-column-width { proportion 0.90; }
-    // default-column-width { proportion 0.55; }
-    // default-column-width { proportion 0.45; }
-    default-column-width { proportion 0.80; }
-    // default-column-width { proportion 0.48; }
     // default-column-width { proportion 0.40; }
+    // default-column-width { proportion 0.45; }
+    // default-column-width { proportion 0.48; }
+    default-column-width { proportion 0.50; }
+    // default-column-width { proportion 0.55; }
+    // default-column-width { proportion 0.80; }
+    // default-column-width { proportion 0.90; }
+    // default-column-width { proportion 1.0; }
     // New windows decide their initial width themselves.
-    // default-olumn-width { }
+    // default-column-width { }
 
     preset-window-heights {
         proportion 0.33333
@@ -440,7 +441,7 @@ window-rule {
 }
 
 workspace "docu/tasks"
-workspace "chat" // { open-on-output "Vertical monitor pls" }
+workspace "entertainment" // { open-on-output "Vertical monitor pls" }
 workspace "main" //browser
 // workspace "music"
 // workspace "dev" // maybe merge browser and dev?
@@ -482,9 +483,10 @@ window-rule {
 }
 window-rule {
     // match at-startup=true app-id="vesktop"
-    match app-id="vesktop"
+    match app-id="vesktop" //    default-column-width { proportion 40; }
     match app-id="steam"
-    open-on-workspace "chat"
+    open-on-workspace "entertainment"
+
 }
 // window-rule {
 //     match at-startup=true app-id="foot"
@@ -756,7 +758,7 @@ binds {
     // set-workspace-name "browser"
     Mod+Ctrl+O { focus-workspace "docu/tasks"; }
     Mod+Ctrl+Y { focus-workspace "main"; } //maybe main
-    // Mod+Ctrl+C { focus-workspace "chat"; }
+    // Mod+Ctrl+C { focus-workspace "entertainment"; }
     Mod+Ctrl+B { focus-workspace "work"; }
     Mod+Ctrl+W { focus-workspace "work"; }
 
