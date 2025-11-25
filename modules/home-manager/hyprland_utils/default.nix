@@ -5,7 +5,7 @@
 
     ./hypridle.nix
     ./waybar.nix
-    ./swww.nix
+    # ./swww.nix
 
     ./hyprpaper.nix
     ./hyprpanel.nix

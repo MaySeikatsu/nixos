@@ -87,6 +87,10 @@
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    qs-illogical-flake = {
+      url = "github:soymou/illogical-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # winboat = {
     #   url = "github:TibixDev/winboat";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -122,7 +126,8 @@
 
   outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
     , nixcord, matugen, stylix, textfox, niri, nvix, sddm-sugar-candy-nix, astal
-    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli,
+    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli
+    , qs-illogical-flake,
     # winboat
     # winapps
     # millennium
@@ -191,6 +196,9 @@
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
                 # inputs.stylix.homeModules.stylix
+                qs-illogical-flake.homeManagerModules.default
+                { programs.illogical-impulse.enable = true; }
+
               ];
             };
           }
@@ -242,6 +250,9 @@
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${system}.default
                 # inputs.stylix.homeModules.stylix
+
+                qs-illogical-flake.homeManagerModules.default
+                { programs.illogical-impulse.enable = true; }
               ];
             };
           }

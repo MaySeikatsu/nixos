@@ -156,6 +156,10 @@ in {
     source-sans
     font-awesome
     openmoji-color
+
+    #enabled for end-4-dots
+    rubik
+    nerd-fonts.ubuntu
   ];
 
   security = {
@@ -189,6 +193,10 @@ in {
     # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
     udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
+
+    #Enabled for end-4-dots flake:
+    geoclue2.enable = true;
+    # networkmanager.enable = true;
 
     # Enable sound with pipewire.
     pulseaudio.enable = false;
