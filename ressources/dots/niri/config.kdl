@@ -22,8 +22,8 @@ spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
 
 spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
 // spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome"
-// spawn-at-startup "sh" "-c" "noctalia-shell"
-spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
+spawn-at-startup "sh" "-c" "noctalia-shell"
+// spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
 // spawn-at-startup "sh" "-c" "caelestia-shell"
 
 // spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
