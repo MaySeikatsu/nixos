@@ -110,10 +110,15 @@ layout {
         // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to=" "main"workspace-view"
     }
     struts {
-        left 15
-        right 15
-        top 15
-        bottom 15
+        // left 15
+        // right 15
+        // top 15
+        // bottom 15
+ 
+        // left 15
+        // right 15
+        top 10
+        bottom 10
     }
 
   // center-focused-column "never"

@@ -3,7 +3,8 @@ binds {
     Mod+Shift+N { spawn "~/.config/nixos/scripts/wall_cycle_back.sh"; }
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Super+Escape { spawn "hyprlock"; }
+    // Super+Escape { spawn "hyprlock"; }
+    Mod+P { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
     Super+A { spawn "sherlock"; }
     Super+T { spawn "foot"; }
     Mod+Y { spawn "zen-twilight"; }
