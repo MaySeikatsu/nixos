@@ -1,0 +1,37 @@
+
+// Add lines like this to spawn processes at startup.
+// spawn-at-startup "ironbar"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "plasma-polkit-agent"
+// spawn-sh-at-startup "swww-daemon &"
+// spawn-sh-at-startup "swww img  ~/.current-wallpaper"
+// spawn-sh-at-startup "~/.config/nixos/scripts/swww/swww_wallpapersync.sh"
+// spawn-sh-at-startup "qs -c ~/.config/nixos/ressources/quickshell/noctalia-shell" //shellscript to start automatically (quickshell in this case)
+
+spawn-at-startup "vesktop"
+// spawn-at-startup "foot"
+// spawn-at-startup "zen-twilight"
+spawn-at-startup "ticktick"
+spawn-at-startup "obsidian"
+spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
+
+
+spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
+// spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome"
+spawn-at-startup "sh" "-c" "noctalia-shell"
+// spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
+// spawn-at-startup "sh" "-c" "caelestia-shell"
+
+// spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
+// spawn-at-startup "sh" "-c" "cliphist wipe"
+// spawn-at-startup "sh" "-c" "systemctl --user start cliphist.service"
+// spawn-at-startup "sh" "-c" "systemctl --user start hypridle.service"
+// spawn-at-startup "sh" "-c" "ironbar"
+// spawn-at-startup "sh" "-c" "systemctl --user start swaybg.service"
+// spawn-at-startup "sh" "-c" "systemctl --user start swaync.service"
+// spawn-at-startup "sh" "-c" "sleep 1 && blueman-applet"
+// spawn-at-startup "sh" "-c" "sleep 3 && syncthingtray --wait"
+// spawn-at-startup "sh" "-c" "id=0"
+// spawn-at-startup "swayosd-server"
+// spawn-at-startup "nm-applet"
+

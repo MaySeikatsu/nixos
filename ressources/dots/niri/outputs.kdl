@@ -1,0 +1,70 @@
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+// The built-in laptop monitor is usually called "eDP-1".
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+// Remember to uncomment the node by removing "/-"!
+
+// output "DP-2" {
+//     variable-refresh-rate // on-demand=true
+//     scale 1.000000
+//     transform "normal"
+//     position x=0 y=0
+//     mode "3840x2160@143.851000"
+//     focus-at-startup
+//     // background-color "#003300" //just for testing unsure what its doing
+//     // backdrop-color "#001100" //color between workspaces
+// }
+// output "HDMI-A-1" {
+//     scale 1.000000
+//     transform "90"
+//     position x=-1080 y=0
+//     mode "1920x1080@239.964000"
+// }
+
+// PC Home
+output "Microstep MAG 274URFW 0x00000001" {
+    variable-refresh-rate // on-demand=true
+    scale 1.200000
+    transform "normal"
+    position x=0 y=0
+    mode "3840x2160@143.851000"
+    focus-at-startup
+    // background-color "#003300" //just for testing unsure what its doing
+    // backdrop-color "#001100" //color between workspaces
+}
+output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
+    scale 1.000000
+    transform "90"
+    position x=-1080 y=0
+    mode "1920x1080@239.964000"
+}
+// END PC Home
+
+output "eDP-1" {
+    variable-refresh-rate // on-demand=true > if wanted just for specific games or apps via windowrules
+    scale 1.000000
+    transform "normal"
+    position x=0 y=0
+    // mode "2560x1600@165.004000"
+    mode "2560x1600@60.002000"
+}
+output "eDP-2" {
+    variable-refresh-rate // on-demand=true
+    scale 1.000000
+    transform "normal"
+    position x=0 y=0
+    mode "2560x1600@165.002000"
+    // mode "2560x1600@60.002000"
+}
+// TV 
+output "Samsung Electric Company QCQ90S 0x01000E00" {
+    variable-refresh-rate // on-demand=true
+    scale 1.250000
+    transform "normal"
+    position x=-2560 y=0
+    mode "2560x1440@59.951"
+    // mode "2560x1600@60.002000"
+
+}
+// END TV 
