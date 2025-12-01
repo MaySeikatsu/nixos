@@ -26,12 +26,16 @@ for monitor in $(hyprctl -j monitors | jq -r '.[].name'); do
 	fi
 done
 
-wallust run ~/.current-wallpaper
+# wallust run ~/.current-wallpaper
 
 # SCRIPTS MIGHT NEED: sudo chmod +x ./swww-find-wallpaper.sh     to run the scripts
 
 #Sync RGB Color to Wallpaper
 # ~/.config/nixos/scripts/openrbg.sh
-caelestia wallpaper -f ~/.current-wallpaper
+# caelestia wallpaper -f ~/.current-wallpaper #enable on hyprland
+noctalia-shell ipc call wallpaper set ~/.current-wallpaper, eDP-1
 # caelestia  shell wallpaper set ~/.current-wallpaper
 # hyprpanel restart
+#
+# wallust run ~/.current-wallpaper
+wallust run ~/.current-wallpaper --palette softlight
