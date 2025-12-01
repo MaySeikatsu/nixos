@@ -10,6 +10,14 @@
 
   home = {
     file.".config/niri/config.kdl".source = ../../../ressources/dots/niri/config.kdl;
+    file.".config/niri/binds.kdl".source = ../../../ressources/dots/niri/binds.kdl;
+    file.".config/niri/layout.kdl".source = ../../../ressources/dots/niri/layout.kdl;
+    file.".config/niri/colors.kdl".source = ../../../ressources/dots/niri/colors.kdl;
+    file.".config/niri/init.kdl".source = ../../../ressources/dots/niri/init.kdl;
+    file.".config/niri/input.kdl".source = ../../../ressources/dots/niri/input.kdl;
+    file.".config/niri/outputs.kdl".source = ../../../ressources/dots/niri/outputs.kdl;
+    file.".config/niri/animations.kdl".source = ../../../ressources/dots/niri/animations.kdl;
+
     packages = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
