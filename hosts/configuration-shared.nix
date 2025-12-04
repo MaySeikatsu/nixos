@@ -63,10 +63,10 @@ in
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = [ "aarch64-linux" ];
-  nix.config.trusted-users = [
-    "root"
-    "maike"
-  ];
+  # nix.config.trusted-users = [
+  #   "root"
+  #   "maike"
+  # ];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -461,6 +461,7 @@ in
     libsForQt5.qt5.qtmultimedia
     kdePackages.qtmultimedia
     kdePackages.qt5compat
+    kdePackages.okular
 
     qt5.qtdeclarative
 
