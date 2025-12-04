@@ -60,6 +60,13 @@ in
       #  thunderbird
     ];
   };
+  #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = [ "aarch64-linux" ];
+  nix.config.trusted-users = [
+    "root"
+    "maike"
+  ];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

@@ -4,7 +4,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Super+Escape { spawn "hyprlock"; }
-    Mod+P { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
+    Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
     Super+A { spawn "sherlock"; }
     Super+T { spawn "foot"; }
     Mod+Y { spawn "zen-twilight"; }

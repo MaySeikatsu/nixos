@@ -115,8 +115,8 @@ layout {
         // top 15
         // bottom 15
  
-        // left 15
-        // right 15
+        left 10
+        right 10
         top 10
         bottom 10
     }
