@@ -16,7 +16,10 @@
         transition = "0.2s ease";
         radius = "15px"; # 2px orig
       };
-      displayHorizontalTabs = false;
+      tabs = {
+        horizontal.enable = false;
+        vertical.margin = "1.0rem";
+      };
       displayWindowControls = false;
       displayNavButtons = true;
       displayUrlbarIcons = true;
@@ -28,9 +31,6 @@
       #   size = "15px";
       #   accent = "#654321";
       # };
-      sidebery = {
-        margin = "1.0rem";
-      };
     };
   };
 }
