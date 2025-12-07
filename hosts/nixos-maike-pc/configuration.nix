@@ -120,6 +120,7 @@
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.beta;
+
     # prime = {
     #CHOSE ONE!
     # 01. PRIME Sync and Offload Mode cannot be enabled at the same time

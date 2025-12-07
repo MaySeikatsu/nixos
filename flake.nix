@@ -212,7 +212,7 @@
                 # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
-                # inputs.matugen.packages.${system}.default
+                # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
                 qs-illogical-flake.homeManagerModules.default
                 { programs.illogical-impulse.enable = true; }
@@ -266,7 +266,7 @@
                 # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
-                # inputs.matugen.packages.${system}.default
+                # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
 
                 qs-illogical-flake.homeManagerModules.default

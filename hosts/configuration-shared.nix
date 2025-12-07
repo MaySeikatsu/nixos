@@ -37,6 +37,9 @@ in
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
   };
 
+  # system.nixos-init.enable = true;
+  # services.journald.extraConfig = "SystemMaxUse=1G";
+
   # users.defaultUserShell = pkgs.zsh;
   users.defaultUserShell = pkgs.nushell;
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -195,7 +198,7 @@ in
     # Enable the KDE Plasma Desktop Environment.
     # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
     desktopManager.plasma6.enable = true;
-    displayManager.defaultSession = "hyprland-uwsm"; # default option after logging in
+    displayManager.defaultSession = "niri"; # "hyprland-uwsm"; # default option after logging in
     displayManager.autoLogin.enable = false;
     displayManager.autoLogin.user = "maike";
 
@@ -287,7 +290,7 @@ in
     steam = {
       enable = true;
       # package = pkgs.callPackage pkgs.millennium { };
-      # package = pkgs.steam-millennium; # inputs.millennium.packages.${system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
+      # package = pkgs.steam-millennium; # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
       extraCompatPackages = [
         # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize
         # Install proton-ge
@@ -367,13 +370,13 @@ in
     # waypaper
     waytrogen # rust based wallpaper changer
     matugen # rust
-    inputs.matugen.packages.${system}.default
+    inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     # pywal
     wallust # rust
     power-profiles-daemon
     # hyprpanel # imported via home-manager - flawith the repo which can be used with Home Manager.
     # Exampleke
-    # inputs.hyprddm.packages.${pkgs.system}.default
+    # inputs.hyprddm.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # floorp-bin
     # catppuccin-grub
@@ -392,20 +395,20 @@ in
     mangohud
     steamcmd
     ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-    inputs.nvix.packages.${pkgs.system}.full
-    inputs.quickshell.packages.${system}.default
-    # inputs.ashell.defaultPackage.${pkgs.system}
-    # inputs.eww.packages.${system}.default #should work both
-    # inputs.eww.packages.${system}.default # eww-wayland
-    # inputs.ironbar.packages.${system}.default
-    inputs.qs-noctalia.packages.${system}.default
-    inputs.qs-caelestia-shell.packages.${system}.default
-    inputs.qs-caelestia-cli.packages.${system}.default
-    # inputs.qs-retroism.packages.${system}.default
-    # inputs.winboat.packages.${system}.winboat
-    # inputs.winapps.packages.${system}.winapps
-    # inputs.winapps.packages.${system}.winapps-launcher
-    # inputs.millennium.packages.${pkgs.system}.millennium
+    inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.full
+    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.ashell.defaultPackage.${pkgs.pkgs.stdenv.hostPlatform.system}
+    # inputs.eww.packages.${pkgs.stdenv.hostPlatform.system}.default #should work both
+    # inputs.eww.packages.${pkgs.stdenv.hostPlatform.system}.default # eww-wayland
+    # inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.qs-retroism.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.winboat.packages.${pkgs.stdenv.hostPlatform.system}.winboat
+    # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
+    # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
+    # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     rose-pine-gtk-theme
     rose-pine-icon-theme
     spotify
@@ -446,7 +449,7 @@ in
     libresprite
     aseprite
     goxel
-    # inputs.zen-browser.packages."${system}".twilight #is now seperate in zen-browser.nix
+    # inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight #is now seperate in zen-browser.nix
     kicad # pcb and electronics design
     obs-studio
     # davinci-resolve

@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, system, ... }: {
+{ config, inputs, pkgs, ... }: {
   imports = [
     ./../modules/home-manager/hyprland/default.nix
     ./../modules/home-manager/hyprland_utils/default.nix
