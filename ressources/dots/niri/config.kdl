@@ -118,7 +118,7 @@ window-rule {
     opacity 0.960000
 }
 
-workspace "docu/tasks"
+workspace "orga"
 workspace "entertainment" // { open-on-output "Vertical monitor pls" }
 workspace "main" //browser
 // workspace "music"
@@ -157,7 +157,8 @@ window-rule {
     // match at-startup=true app-id="ticktick"
     match app-id="obsidian"
     match app-id="ticktick"
-    open-on-workspace "docu/tasks"
+    match app-id="todoist"
+    open-on-workspace "orga"
 }
 window-rule {
     // match at-startup=true app-id="vesktop"
