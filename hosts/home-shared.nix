@@ -1,46 +1,13 @@
 { config, inputs, pkgs, ... }: {
   imports = [
-    ./../modules/home-manager/hyprland/default.nix
-    ./../modules/home-manager/hyprland_utils/default.nix
-
-    ./../modules/home-manager/zen-browser.nix
-    # ./../modules/home-manager/nixcord.nix //reinclude later, has been broken on latest nixos update
-    ./../modules/home-manager/ghostty.nix
-    ../modules/home-manager/hyprland_utils/stylix.nix
-    ../modules/home-manager/cava.nix
-    ../modules/home-manager/kitty.nix
-    ../modules/home-manager/alacritty.nix
-    ../modules/home-manager/btop.nix
-    ../modules/home-manager/fzf.nix
-    ../modules/home-manager/lazygit.nix
-    ../modules/home-manager/rofi.nix
-    ../modules/home-manager/wofi.nix
-    ../modules/home-manager/wezterm.nix
-    ../modules/home-manager/gtk.nix
-    ../modules/home-manager/gnome.nix
-    ../modules/home-manager/qt.nix
-    ../modules/home-manager/foot.nix
-    ../modules/home-manager/sherlock-launcher.nix
+    ../modules/home-manager/cli
+    ../modules/home-manager/desktop
     ../modules/home-manager/terminal
-    # ../modules/home-manager/ironbar.nix
-    # ../modules/home-manager/terminal/zellij.nix
-    # ../modules/home-manager/terminal/nushell.nix
-    # ../modules/home-manager/terminal/fish.nix
-    # ./../modules/home-manager/terminal/git.nix
-    # ./../modules/home-manager/terminal/yazi.nix
-    # ./../modules/home-manager/terminal/starship.nix
-    # ./../modules/home-manager/terminal/zsh.nix
-    # ./../modules/home-manager/terminal/tmux.nix
-    # ../modules/home-manager/neovim.nix
-    ../modules/home-manager/niri/default.nix
-    ../modules/home-manager/qs-caelestia.nix
-    ../modules/home-manager/hyprland_utils/wallust.nix
-    # ../modules/home-manager/quickshell-emmi
+    ../modules/home-manager/theming
+    ../modules/home-manager/ui/zen-browser.nix
 
-    ../modules/home-manager/textfox.nix
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
-    # ./../../modules/home-manager/rofi/default.nix
     # inputs.stylix.homeModules.stylix
   ];
 

@@ -1,14 +1,4 @@
-{ ... }:
-{
-  imports = [
-    ./fish.nix
-    ./git.nix
-    ./nushell.nix
-    ./starship.nix
-    ./yazi.nix
-    ./zellij.nix
-    ./zsh.nix
-    # ./tmux.nix
-    # ./zoxide.nix
-  ];
+{ ... }: {
+  imports =
+    [ ./alacritty.nix ./foot.nix ./ghostty.nix ./kitty.nix ./wezterm.nix ];
 }

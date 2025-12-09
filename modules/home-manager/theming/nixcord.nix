@@ -1,8 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  # system = "x86_64-linux";
-  home.packages = inputs.nixcord.homeManagerModules.nixcord."x86_64-linux";
-in {
+{ pkgs, system, inputs, ... }: {
   programs.nixcord = {
     enable = true;
     # vesktop = { enable = true; };

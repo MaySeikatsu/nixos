@@ -10,8 +10,11 @@
     };
 
     # Flake imports:
-    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
-    nixcord.url = "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; # the rev value can be removed in the future, currently there is a but and the old rev must be used
+    zen-browser.url =
+      "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    # nixcord.url =
+    #   "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; # the rev value can be removed in the future, currently there is a but and the old rev must be used
+    nixcord.url = "github:kaylorben/nixcord";
     textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
     nvix.url = "github:niksingh710/nvix";
@@ -44,7 +47,8 @@
     };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows =
+        "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
     };
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -121,44 +125,26 @@
     # };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      zen-browser,
-      home-manager,
-      swww,
-      spicetify-nix,
-      nixcord,
-      matugen,
-      stylix,
-      textfox,
-      niri,
-      nvix,
-      sddm-sugar-candy-nix,
-      astal,
-      claude-desktop,
-      qs-noctalia,
-      qs-caelestia-shell,
-      qs-caelestia-cli,
-      qs-illogical-flake,
-      # winboat
-      # winapps
-      # millennium
-      # qs-retroism
-      # ashell
-      # ironbar
-      # eww
-      # sherlock-launcher,
-      # hyprpanel,
-      # hyprddm,
-      # nixCats-nvim,
-      # sddm-astronaut-theme,
-      # hyprscroller,
-      # hyprland-plugins,
-      # legionrgb
-      ...
-    }@inputs:
+  outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
+    , nixcord, matugen, stylix, textfox, niri, nvix, sddm-sugar-candy-nix, astal
+    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli
+    , qs-illogical-flake,
+    # winboat
+    # winapps
+    # millennium
+    # qs-retroism
+    # ashell
+    # ironbar
+    # eww
+    # sherlock-launcher,
+    # hyprpanel,
+    # hyprddm,
+    # nixCats-nvim,
+    # sddm-astronaut-theme,
+    # hyprscroller,
+    # hyprland-plugins,
+    # legionrgb
+    ... }@inputs:
     let
       system = "x86_64-linux";
       system2 = "aarch64-linux";
@@ -166,8 +152,7 @@
       host2 = "nixos-legion";
       host3 = "nixos-pi3";
       username = "maike";
-    in
-    {
+    in {
       nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
@@ -207,7 +192,7 @@
                 inherit inputs; # apperently needed for textfox?
               };
               sharedModules = [
-                inputs.nixcord.homeManagerModules.nixcord
+                inputs.nixcord.homeModules.nixcord
                 textfox.homeManagerModules.default
                 # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
@@ -261,7 +246,7 @@
                 inherit inputs; # apperently needed for textfox?
               };
               sharedModules = [
-                inputs.nixcord.homeManagerModules.nixcord
+                inputs.nixcord.homeModules.nixcord
                 textfox.homeManagerModules.default
                 # inputs.ironbar.homeManagerModules.default
                 # sherlock-launcher.homeManagerModules.default
