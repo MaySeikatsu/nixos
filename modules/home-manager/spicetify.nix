@@ -8,9 +8,9 @@ in
   programs.spicetify = {
     enable = true;
     # theme = spicePkgs.themes.catppuccin;
-    theme = spicePkgs.themes.text;
+    # theme = spicePkgs.themes.text;
     # theme = spicePkgs.themes.TokyoNight;
-    # theme = spicePkgs.themes.defaultDynamic;
+    theme = spicePkgs.themes.defaultDynamic;
 
     ##Custom Theme
     #theme = {
@@ -58,12 +58,12 @@ in
     # Themes for Text
     # colorScheme = "Spotify";
     # colorScheme = "Spicetify";
-    colorScheme = "RosePine";
+    # colorScheme = "RosePineMoon";
     # colorScheme = "CatppuccinMocha";
     # colorScheme = "TokyoNight";
     # colorScheme = "Storm";
     # Theme for dynamic
-    # colorScheme = "Base";
+    colorScheme = "Dark-Base";
   };
 }
 

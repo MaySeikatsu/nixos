@@ -364,6 +364,7 @@ in
     git
     wget
     kanata
+    gh
     # deskflow
     # lan-mouse
     remmina # rdp client
