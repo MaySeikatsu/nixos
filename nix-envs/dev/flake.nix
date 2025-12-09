@@ -1,4 +1,5 @@
 {
+  #run with nix develop ~/.config/nixos/nix-envs/dev/#rust (or any other possible variation)
   description = "osu! development environment";
 
   inputs = {
