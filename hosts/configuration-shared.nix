@@ -6,6 +6,11 @@ in {
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
+    ../modules/nixos/config/fonts.nix
+    ../modules/nixos/config/services.nix
+    ../modules/nixos/config/gnome.nix
+    ../modules/nixos/config/localisation.nix
+    ../modules/nixos/config/qt.nix
     ../modules/nixos/config/niri.nix
     ../modules/nixos/config/kanata.nix
     ../modules/nixos/config/stylix.nix
@@ -28,7 +33,6 @@ in {
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
 
-  # users.defaultUserShell = pkgs.zsh;
   users.defaultUserShell = pkgs.nushell;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maike = {
@@ -42,9 +46,7 @@ in {
       "docker"
     ];
     useDefaultShell = false;
-    # shell = pkgs.zsh;
-    shell = pkgs.nushell;
-    # shell = pkgs.fish;
+    shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
     packages = with pkgs;
       [
         kdePackages.kate
@@ -74,100 +76,14 @@ in {
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
 
-  ###GNOME EXCLUDE PACKAGES###
-  environment.gnome.excludePackages = (with pkgs; [
-    epiphany # web browser
-    # evince # document viewer
-    geary # email reader
-    # gnome-characters
-    gnome-music
-    gnome-photos
-    gnome-terminal
-    gnome-tour
-    totem # video player
-  ]);
-  ###GNOME EXCLUDE PACKAGES###
-  ###QT###
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-
-    # platformTheme = "qtct";
-    # style.name = "kvantum";
-  };
-  # xdg.configFile = {
-  #   "Kvantum/ArcDark".source = "${pkgs.arc-kde-theme}/share/Kvantum/ArcDark";
-  #   "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=ArcDark";
-  # };
-
-  # If display issues:
-  # programs.dconf.enable = true;
-  ###QT###
-
   # nixCats = {
   #   enable = true;
   #   luaPath = "~/.config/nixCats-nvim/";
   #
   # };
 
-  # xdg.portal = { # for discord and vesktop to fix startup issue (didn't help though)
-  #   enable = true;
-  #   extraPortals = [
-  #     pkgs.xdg-desktop-portal-hyprland
-  #     pkgs.xdg-desktop-portal-gtk
-  #   ];
-  # };
-
-  #
-  #   xdg.portal = {
-  #   enable = true;
-  #   xdgOpenUsePortal = true;
-  #   config = {
-  #     common.default = [ "gtk" ];
-  #     hyprland.default = [ "gtk" "hyprland" ];
-  #     gnome.default = [ "gtk" "gnome" ];
-  #     kde.default = [ "gtk" "kde" ];
-  #   };
-  #   extraPortals = [
-  #     pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal-hyprland
-  #     pkgs.xdg-desktop-portal-gnome
-  #     pkgs.kdePackages.xdg-desktop-portal-kde
-  #   ];
-  # };
-
   nix.settings.download-buffer-size = 524288000; # 500MB
   systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
-  };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    roboto
-    source-sans
-    font-awesome
-    openmoji-color
-
-    #enabled for end-4-dots
-    rubik
-    nerd-fonts.ubuntu
-  ];
 
   security = {
     rtkit.enable = true;
@@ -175,69 +91,6 @@ in {
 
     # autoUpgrade.enable = true;
     # autoUpgrade.allowReboot = true;
-  };
-
-  services = {
-    system76-scheduler.enable =
-      true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
-    system76-scheduler.settings.cfsProfiles.enable =
-      true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
-    upower.enable =
-      config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
-    # Enable the KDE Plasma Desktop Environment.
-    # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
-    desktopManager.plasma6.enable = true;
-    displayManager.defaultSession =
-      "niri"; # "hyprland-uwsm"; # default option after logging in
-    displayManager.autoLogin.enable = false;
-    displayManager.autoLogin.user = "maike";
-
-    blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
-    printing.enable = true; # Enable CUPS to print documents.
-    flatpak.enable = true;
-    # tailscale.enable = true;
-    # Tell the firewall to implicitly trust packets routed over Tailscale:
-    # networking.firewall.trustedInterfaces = [ "tailscale0" ];
-
-    udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
-
-    #Enabled for end-4-dots flake:
-    geoclue2.enable = true;
-    # networkmanager.enable = true;
-
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-    };
-
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = true;
-    xserver = {
-      # enable = true;
-      # Enable the GNOME Desktop Environment.
-      desktopManager.kodi.enable = true;
-      # desktopManager.plasma5.bigscreen.enable = true;
-
-      wacom.enable = true; # Enable Wacom Tablet
-
-      # Configure keymap in X11
-      xkb = {
-        layout = "us";
-        variant = "altgr-intl";
-      };
-    };
-
-    # Enable VR with Monado / OpenXR and SteamVR
-    # monado = {
-    #   enable = true;
-    #   defaultRuntime = true; # Register as default OpenXR runtime
-    # };
   };
 
   # Shared Programs should be defined here
@@ -348,8 +201,7 @@ in {
   # };
 
   environment.systemPackages = with pkgs; [
-    # would be pkgs.packagename without the with pkgs;
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     git
     wget
     kanata
@@ -362,7 +214,6 @@ in {
     inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     wallust # rust
     power-profiles-daemon
-    # Exampleke
     # floorp-bin
     wineWowPackages.stable
     wineWowPackages.waylandFull
@@ -380,9 +231,6 @@ in {
     ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
     inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.full
     inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # inputs.ashell.defaultPackage.${pkgs.pkgs.stdenv.hostPlatform.system}
-    # inputs.eww.packages.${pkgs.stdenv.hostPlatform.system}.default #should work both
-    # inputs.eww.packages.${pkgs.stdenv.hostPlatform.system}.default # eww-wayland
     # inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -399,14 +247,10 @@ in {
     ledfx
     openrgb-with-all-plugins
     openlinkhub
-
     hyperion-ng # not working yet
     # gtk3
     # gnome.adwaita-icon-theme
-
-    # discord #managed via nixcord flake
     vesktop # vencord desktop client without overwriting the official discord binary
-    # revolt-desktop
     element-desktop
     signal-desktop
     beeper
@@ -448,17 +292,13 @@ in {
     kdePackages.qtmultimedia
     kdePackages.qt5compat
     kdePackages.okular
-
     qt5.qtdeclarative
-
     libsForQt5.qt5.qtgraphicaleffects
     kdePackages.syntax-highlighting
     kdePackages.plasma-workspace # to fix issue with mime associations in dolphin
     material-symbols
-
     kodi-wayland
     # libsForQt5.plasma-bigscreen
-
     ollama
     # ollama-cuda
     # ollama-rocm
@@ -477,7 +317,6 @@ in {
     # via
     intiface-central
     protontricks
-
     localsend
     # spicetify-cli
     qtpass
@@ -485,7 +324,6 @@ in {
     gnupg
     cairo # 2d graphics library like opengl - fore issues with sherlock
     # gvfs # glib # same as above but no difference
-
     # feh
     vital
     # opentabletdriver #not working yet
@@ -495,7 +333,6 @@ in {
     # roccat-tools
     protonmail-desktop
     proton-pass
-
     #teams
     teams-for-linux
     onlyoffice-desktopeditors

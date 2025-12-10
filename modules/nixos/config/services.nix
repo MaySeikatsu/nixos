@@ -1,0 +1,66 @@
+{ config, pkgs, ... }: {
+  services = {
+    system76-scheduler = {
+      enable =
+        true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
+      settings.cfsProfiles.enable =
+        true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+    };
+    upower.enable =
+      config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
+    # Enable the KDE Plasma Desktop Environment.
+    # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
+    desktopManager.plasma6.enable = true;
+    displayManager.defaultSession =
+      "niri"; # "hyprland-uwsm"; # default option after logging in
+    displayManager.autoLogin.enable = false;
+    displayManager.autoLogin.user = "maike";
+
+    blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
+    printing.enable = true; # Enable CUPS to print documents.
+    flatpak.enable = true;
+    # tailscale.enable = true;
+    # Tell the firewall to implicitly trust packets routed over Tailscale:
+    # networking.firewall.trustedInterfaces = [ "tailscale0" ];
+
+    udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
+
+    #Enabled for end-4-dots flake:
+    geoclue2.enable = true;
+    # networkmanager.enable = true;
+
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
+    };
+
+    displayManager.gdm.enable = false;
+    desktopManager.gnome.enable = true;
+    xserver = {
+      # enable = true;
+      # Enable the GNOME Desktop Environment.
+      desktopManager.kodi.enable = true;
+      # desktopManager.plasma5.bigscreen.enable = true;
+
+      wacom.enable = true; # Enable Wacom Tablet
+
+      # Configure keymap in X11
+      xkb = {
+        layout = "us";
+        variant = "altgr-intl";
+      };
+    };
+
+    # Enable VR with Monado / OpenXR and SteamVR
+    # monado = {
+    #   enable = true;
+    #   defaultRuntime = true; # Register as default OpenXR runtime
+    # };
+  };
+}

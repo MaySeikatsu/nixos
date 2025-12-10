@@ -12,14 +12,10 @@
     # Flake imports:
     zen-browser.url =
       "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
-    # nixcord.url =
-    #   "github:kaylorben/nixcord?rev=c1a2a14393dba951994442199b9adfe14bb78a99"; # the rev value can be removed in the future, currently there is a but and the old rev must be used
     nixcord.url = "github:kaylorben/nixcord";
     textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
     nvix.url = "github:niksingh710/nvix";
-    # ashell.url = "github:MalpenZibo/ashell";
-    # eww.url = "github:elkowar/eww";
     # hyprpanel = {
     #   url = "github:Jas-SinghFSU/HyprPanel";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -100,9 +96,6 @@
     #   url = "github:winapps-org/winapps";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    # sherlock-launcher = {
-    #   url = "github:Skxxtz/sherlock";
-    # };
 
     # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
@@ -133,10 +126,7 @@
     # winapps
     # millennium
     # qs-retroism
-    # ashell
     # ironbar
-    # eww
-    # sherlock-launcher,
     # hyprpanel,
     # hyprddm,
     # nixCats-nvim,
@@ -195,7 +185,6 @@
                 inputs.nixcord.homeModules.nixcord
                 textfox.homeManagerModules.default
                 # inputs.ironbar.homeManagerModules.default
-                # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
@@ -249,7 +238,6 @@
                 inputs.nixcord.homeModules.nixcord
                 textfox.homeManagerModules.default
                 # inputs.ironbar.homeManagerModules.default
-                # sherlock-launcher.homeManagerModules.default
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
