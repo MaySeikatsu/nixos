@@ -163,9 +163,9 @@ window-rule {
 window-rule {
     // match at-startup=true app-id="vesktop"
     match app-id="vesktop" //    default-column-width { proportion 40; }
-    match app-id="signal-desktop" //    default-column-width { proportion 40; }
-    match app-id="element-desktop" //    default-column-width { proportion 40; }
-    match app-id="beeper" //    default-column-width { proportion 40; }
+    match app-id="signal" //    default-column-width { proportion 40; }
+    match app-id="Element" //    default-column-width { proportion 40; }
+    match app-id="BeeperTexts" //    default-column-width { proportion 40; }
     match app-id="steam"
     open-on-workspace "entertainment"
 
