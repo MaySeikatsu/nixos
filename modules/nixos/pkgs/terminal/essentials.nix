@@ -25,6 +25,9 @@
     rustls-libssl
     # dotnet-sdk_8
 
+    typst
+    zathura
+
     #nodejs
     #bun
     # deno
@@ -81,8 +84,13 @@
     gitleaks # checking for accidantal leaks of credentials in git repos
 
     google-cloud-sdk
-    # azure-cli
+    azure-cli
+    awscli2
+    localstack
+    terraform-local
+
     terraform
+    terragrunt
     terraformer
     terraform-ls
     terraform-docs
@@ -93,13 +101,20 @@
     # tfmigrate
     opentofu
     tofu-ls
+
+    docker
+    podman
+    kubectl
+    kubernetes-helm
+    minikube
+    k9s
+    k3s
+
     gemini-cli
     geminicommit
     claude-code
-    # gpt-cli
 
     # Virtualisation like WSL for unix systems:
     lima
-
   ];
 }

@@ -1,8 +1,15 @@
-{ config, pkgs, inputs, system, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  lib,
+  ...
+}:
 let
-  _base00 =
-    builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
-in {
+  _base00 = builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
+in
+{
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
@@ -24,7 +31,10 @@ in {
     ../modules/home-manager/theming/spicetify.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
@@ -47,11 +57,10 @@ in {
     ];
     useDefaultShell = false;
     shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      kdePackages.kate
+      #  thunderbird
+    ];
   };
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -62,11 +71,10 @@ in {
   # ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs;
-    [
-      imagemagick
-      # add any libraries WallRizz needs here if needed
-    ];
+  programs.nix-ld.libraries = with pkgs; [
+    imagemagick
+    # add any libraries WallRizz needs here if needed
+  ];
   # nix.gc = {
   #   automatic = true;
   #   dates = "weekly";
@@ -100,8 +108,7 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake =
-        "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
 
     # Enable Hyprland
@@ -124,8 +131,7 @@ in {
 
     # xwayland needed for x11 / xserver support on niri for steam
     xwayland.enable = true;
-    gamemode.enable =
-      true; # Enabling optional optimisations for gaming / game-mode
+    gamemode.enable = true; # Enabling optional optimisations for gaming / game-mode
     # floorp.enable = true;     # Enable/Install Floorp
 
     # Steam
@@ -300,10 +306,8 @@ in {
     kodi-wayland
     # libsForQt5.plasma-bigscreen
     ollama
-    # ollama-cuda
-    # ollama-rocm
     # lmstudio
-    docker
+
     freerdp
     iptables
     ffmpeg
@@ -325,7 +329,6 @@ in {
     cairo # 2d graphics library like opengl - fore issues with sherlock
     # gvfs # glib # same as above but no difference
     # feh
-    vital
     # opentabletdriver #not working yet
     # wacomtablet
     evemu
@@ -339,10 +342,17 @@ in {
     # citrix_workspace
     # dotnet-sdk_8
     omnisharp-roslyn
+
+    # Synthesizer
+    vital
+    helm
+
   ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = { "fs.file-max" = 524288; };
+  boot.kernel.sysctl = {
+    "fs.file-max" = 524288;
+  };
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [
@@ -350,8 +360,8 @@ in {
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile
-    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
+  environment.etc."/xdg/menus/applications.menu".text =
+    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
 
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
