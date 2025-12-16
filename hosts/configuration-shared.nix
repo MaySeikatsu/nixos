@@ -27,7 +27,7 @@ in
     ../modules/nixos/pkgs/terminal/rice.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
-    # ./../modules/nixos/pkgs/audio_engineering.nix
+    # ../modules/nixos/pkgs/audio_engineering.nix
     ../modules/home-manager/theming/spicetify.nix
   ];
 
@@ -342,11 +342,6 @@ in
     # citrix_workspace
     # dotnet-sdk_8
     omnisharp-roslyn
-
-    # Synthesizer
-    vital
-    helm
-
   ];
 
   # Increase system-wide file descriptor limit

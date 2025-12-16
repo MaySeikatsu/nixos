@@ -9,5 +9,8 @@
     # neosynthesia
     neothesia
 
+    # Synthesizer
+    vital
+    helm
   ];
 }
