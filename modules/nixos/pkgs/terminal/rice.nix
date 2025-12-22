@@ -15,6 +15,9 @@
     bluetui
     spotify-player
     reddix
+    youtube-tui
+    mpv
+    yt-dlp
     # ytui-music
     manga-tui
     ani-cli
