@@ -1,15 +1,17 @@
 {
   description = "Nixos config flake";
 
+  # TODO find solution to avoid repetition of inputs.nixpkgs.follows = "nixpkgs"
   inputs = {
-    # Essentials (nixpkgs-channel and home-manager)
+    # Nixpkgs source and home-manager
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
 
-    # Flake imports:
+    # Flake Inputs:
     zen-browser.url =
       "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     nixcord.url = "github:kaylorben/nixcord";
@@ -58,6 +60,11 @@
       url = "github:k3d3/claude-desktop-linux-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mistral-vibe = {
+      url = "github:mistralai/mistral-vibe";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # millennium = {
     #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
     # };
@@ -118,10 +125,10 @@
     # };
   };
 
-  outputs = { self, nixpkgs, zen-browser, home-manager, swww, spicetify-nix
-    , nixcord, matugen, stylix, textfox, niri, nvix, sddm-sugar-candy-nix, astal
-    , claude-desktop, qs-noctalia, qs-caelestia-shell, qs-caelestia-cli
-    , qs-illogical-flake,
+  outputs = { self, nixpkgs, zen-browser, home-manager, flake-utils
+    , spicetify-nix, nixcord, matugen, stylix, textfox, niri, nvix
+    , sddm-sugar-candy-nix, astal, claude-desktop, qs-noctalia
+    , qs-caelestia-shell, qs-caelestia-cli, qs-illogical-flake, mistral-vibe,
     # winboat
     # winapps
     # millennium
@@ -142,7 +149,9 @@
       host2 = "nixos-legion";
       host3 = "nixos-pi3";
       username = "maike";
+
     in {
+
       nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
