@@ -1,4 +1,10 @@
-{ config, inputs, pkgs, ... }: {
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../modules/home-manager/cli
     ../modules/home-manager/desktop
@@ -9,6 +15,11 @@
     # ./../modules/home-manager/matugen.nix
     # ./../../modules/home-manager/kanata.nix
     # inputs.stylix.homeModules.stylix
+  ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
   ];
 
   home.username = "maike";

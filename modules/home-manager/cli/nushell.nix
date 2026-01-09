@@ -126,6 +126,13 @@
     configFile.text = ''
       source ~/.zoxide.nu
       cat ~/.cache/wallust/sequences
+      { ||
+          if (which direnv | is-empty) {
+              return
+          }
+
+          direnv export json | from json | default {} | load-env
+      }
     '';
     # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
     # configFile.source = ./.../config.nu;

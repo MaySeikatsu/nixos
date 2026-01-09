@@ -23,7 +23,10 @@
     gcc
     openssl
     rustls-libssl
+    bacon
+
     # dotnet-sdk_8
+    go
 
     typst
     zathura
@@ -77,16 +80,19 @@
     # usbutils
     lshw # to show hardware info(needed for nvidia config)
 
-    nixfmt # nix formatter
-    nixd # lsp
+    # nixfmt # nix formatter
+    # nixd # lsp
+    nil # nix lsp
+    alejandra # nix formatter
     vulnix # nix vulnerability checker
+
     trivy # vulnerability checker
     gitleaks # checking for accidantal leaks of credentials in git repos
 
     google-cloud-sdk
     azure-cli
-    awscli2
-    localstack
+    # awscli2
+    # localstack
     terraform-local
 
     terraform

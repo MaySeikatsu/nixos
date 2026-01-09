@@ -12,8 +12,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Flake Inputs:
-    zen-browser.url =
-      "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     nixcord.url = "github:kaylorben/nixcord";
     textfox.url = "github:adriankarlen/textfox";
     swww.url = "github:LGFae/swww";
@@ -45,8 +44,7 @@
     };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows =
-        "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
     };
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -95,6 +93,10 @@
       url = "github:soymou/illogical-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nuls = {
+      url = "github:MaySeikatsu/nuls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # winboat = {
     #   url = "github:TibixDev/winboat";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -125,23 +127,43 @@
     # };
   };
 
-  outputs = { self, nixpkgs, zen-browser, home-manager, flake-utils
-    , spicetify-nix, nixcord, matugen, stylix, textfox, niri, nvix
-    , sddm-sugar-candy-nix, astal, claude-desktop, qs-noctalia
-    , qs-caelestia-shell, qs-caelestia-cli, qs-illogical-flake, mistral-vibe,
-    # winboat
-    # winapps
-    # millennium
-    # qs-retroism
-    # ironbar
-    # hyprpanel,
-    # hyprddm,
-    # nixCats-nvim,
-    # sddm-astronaut-theme,
-    # hyprscroller,
-    # hyprland-plugins,
-    # legionrgb
-    ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      zen-browser,
+      home-manager,
+      flake-utils,
+      spicetify-nix,
+      nixcord,
+      matugen,
+      stylix,
+      textfox,
+      niri,
+      nvix,
+      sddm-sugar-candy-nix,
+      astal,
+      claude-desktop,
+      qs-noctalia,
+      qs-caelestia-shell,
+      qs-caelestia-cli,
+      qs-illogical-flake,
+      mistral-vibe,
+      nuls,
+      # winboat
+      # winapps
+      # millennium
+      # qs-retroism
+      # ironbar
+      # hyprpanel,
+      # hyprddm,
+      # nixCats-nvim,
+      # sddm-astronaut-theme,
+      # hyprscroller,
+      # hyprland-plugins,
+      # legionrgb
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       system2 = "aarch64-linux";
@@ -150,7 +172,8 @@
       host3 = "nixos-pi3";
       username = "maike";
 
-    in {
+    in
+    {
 
       nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {

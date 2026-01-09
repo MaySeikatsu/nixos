@@ -1,8 +1,15 @@
-{ config, pkgs, inputs, system, lib, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  lib,
+  ...
+}:
 let
-  _base00 =
-    builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
-in {
+  _base00 = builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
+in
+{
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
@@ -24,7 +31,10 @@ in {
     ../modules/home-manager/theming/spicetify.nix
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
@@ -47,11 +57,10 @@ in {
     ];
     useDefaultShell = false;
     shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      kdePackages.kate
+      #  thunderbird
+    ];
   };
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -62,16 +71,10 @@ in {
   # ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs;
-    [
-      imagemagick
-      # add any libraries WallRizz needs here if needed
-    ];
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "weekly";
-  #   options = "--delete-older-than 15d";
-  # };
+  programs.nix-ld.libraries = with pkgs; [
+    imagemagick
+    # add any libraries WallRizz needs here if needed
+  ];
 
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
@@ -93,6 +96,19 @@ in {
     # autoUpgrade.allowReboot = true;
   };
 
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 15d";
+  # };
+
+  # Storage Optimisations between different nix stores:
+  nix.optimise = {
+    automatic = true;
+    dates = [ "03:45" ];
+  };
+  # nix.settings.auto-optimise-store = true; # This would execute the optimisations on rebuild, does slow them down significantly though
+
   # Shared Programs should be defined here
   programs = {
     # Nixos Helper for cleanup and commands
@@ -100,8 +116,15 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake =
-        "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
+    };
+    direnv = {
+      enable = true;
+      # silent = true;
+      # loadInNixShell = false;
+      # nix-direenv.enable = true;
+      # enableFishIntegration = true;
+      # settings = {};
     };
 
     # Enable Hyprland
@@ -124,8 +147,7 @@ in {
 
     # xwayland needed for x11 / xserver support on niri for steam
     xwayland.enable = true;
-    gamemode.enable =
-      true; # Enabling optional optimisations for gaming / game-mode
+    gamemode.enable = true; # Enabling optional optimisations for gaming / game-mode
     # floorp.enable = true;     # Enable/Install Floorp
 
     # Steam
@@ -235,7 +257,8 @@ in {
     inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.mistral-vibe.packages.${pkgs.system}.default
+    inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.nuls.packages.${system}.default
     # inputs.qs-retroism.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.winboat.packages.${pkgs.stdenv.hostPlatform.system}.winboat
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
@@ -258,12 +281,14 @@ in {
     beeper-bridge-manager
     fluffychat
     osu-lazer-bin
+    prismlauncher
     easyeffects
     tenacity
     # zed-editor
     # code-cursor
     helix
     vscode
+    pomodoro
     # hellwal
     microsoft-edge
     vivaldi
@@ -340,7 +365,9 @@ in {
   ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = { "fs.file-max" = 524288; };
+  boot.kernel.sysctl = {
+    "fs.file-max" = 524288;
+  };
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [
@@ -348,8 +375,8 @@ in {
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile
-    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
+  environment.etc."/xdg/menus/applications.menu".text =
+    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
 
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
