@@ -23,7 +23,6 @@
     gcc
     openssl
     rustls-libssl
-    bacon
 
     # dotnet-sdk_8
     go

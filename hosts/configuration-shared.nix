@@ -31,10 +31,12 @@ in
     ../modules/home-manager/theming/spicetify.nix
   ];
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
   ];
+
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
@@ -85,7 +87,7 @@ in
   #
   # };
 
-  nix.settings.download-buffer-size = 524288000; # 500MB
+  # nix.settings.download-buffer-size = 524288000; # 500MB
   systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
 
   security = {

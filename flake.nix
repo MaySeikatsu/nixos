@@ -38,10 +38,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sddm-astronaut-theme = {
-      url = "./ressources/sddm-astronaut-theme";
-      # url = "github:MaySeikatsu/sddm-astronaut-theme";
-    };
+    # sddm-astronaut-theme = {
+    #   url = "path:./ressources/sddm-astronaut-theme";
+    #   # url = "github:MaySeikatsu/sddm-astronaut-theme";
+    # };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
       inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
@@ -191,9 +191,16 @@
           sddm-sugar-candy-nix.nixosModules.default
           # nixCats-nvim.nixosModules.default
 
-          #Overlays (?)
           {
             nixpkgs.overlays = [
+            (final: prev: {
+                inherit (prev.lixPackageSets.stable)
+                  nixpkgs-review
+                  nix-eval-jobs
+                  nix-fast-build
+                  colmena;
+              })
+
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
               # inputs.millennium.overlays.default
@@ -248,9 +255,18 @@
           #Overlays (?)
           {
             nixpkgs.overlays = [
+            (final: prev: {
+                inherit (prev.lixPackageSets.stable)
+                  nixpkgs-review
+                  nix-eval-jobs
+                  nix-fast-build
+                  colmena;
+              })
+
               # inputs.hyprpanel.overlay
               sddm-sugar-candy-nix.overlays.default
               # inputs.millennium.overlays.default
+              # inputs.millennium.overlays.millennium
             ];
           }
 

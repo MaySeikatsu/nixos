@@ -9,9 +9,22 @@
       zlja = "zellij attach";
       zlj = "zellij";
       pass = "gopass";
+
+      # Git Aliases:
+      gs = "git status";
+      ga = "git add";
+      gc = "git commit";
+      gf = "git fetch";
+      gp = "git pull";
+      gP = "git push";
+      gb = "git branch";
+      gC = "git checkout";
+      gm = "git merge";
+      gr = "git rebase";
     };
+
     settings = {
-      edit_mode = "vi";
+      # edit_mode = "vi";
       show_banner = false;
       completions = {
         external.enable = true;
@@ -20,11 +33,11 @@
       };
     };
     plugins = [
-      pkgs.nushellPlugins.skim
-      pkgs.nushellPlugins.highlight
+      # pkgs.nushellPlugins.skim
+      # pkgs.nushellPlugins.highlight
       # pkgs.nushellPlugins.hcl
-      pkgs.nushellPlugins.gstat
-      pkgs.nushellPlugins.formats
+      # pkgs.nushellPlugins.gstat
+      # pkgs.nushellPlugins.formats
     ];
 
     extraConfig = ''

@@ -2,8 +2,6 @@
 {
   programs.hyprlock = {
     enable = true;
-    settings.background.blur_passes = 3;
-    settings.background.blur_size = 2;
     # settings.label.text = "$TIME";
     settings = {
       label = [
@@ -47,6 +45,8 @@
 
       background = {
         path = "~/.current-wallpaper";
+        blur_passes = 3;
+        blur_size = 2;
       };
 
       input-field = {
