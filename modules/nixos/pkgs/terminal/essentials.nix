@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-{
+{ config, pkgs, inputs, lib, ... }: {
   environment.systemPackages = with pkgs; [
 
     # Terminal Emulators
@@ -62,18 +55,6 @@
     # ranger
     # mc # midnight-commander
 
-    # Password Managers
-    # pass-wayland
-    gopass
-    gopass-jsonapi
-    # gopass-hibp # haveIbeenPwned?
-    gnupg
-    # passphrase2pgp
-    # tomb
-    gnupg
-    # pinentry
-    pinentry-curses
-
     # For Steam VR (troubleshooting):
     # procps
     # usbutils
@@ -121,5 +102,35 @@
 
     # Virtualisation like WSL for unix systems:
     lima
+
+    # zed-editor
+    # code-cursor
+    # helix
+    vscode
+
+    # Gaming
+    osu-lazer-bin
+    prismlauncher
+
+    # Chat
+    vesktop # vencord desktop client without overwriting the official discord binary
+    element-desktop
+    signal-desktop
+    beeper
+    beeper-bridge-manager
+    fluffychat
+
+    # Password Managers
+    # pass-wayland
+    gopass
+    gopass-jsonapi
+    # gopass-hibp # haveIbeenPwned?
+    gnupg
+    # passphrase2pgp
+    # tomb
+    gnupg
+    # pinentry
+    pinentry-curses
+    proton-pass
   ];
 }

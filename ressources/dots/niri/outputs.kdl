@@ -43,7 +43,8 @@ output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
 
 output "eDP-1" {
     variable-refresh-rate // on-demand=true > if wanted just for specific games or apps via windowrules
-    scale 1.000000
+    // scale 1.000000
+    scale 1.20
     transform "normal"
     position x=0 y=0
     // mode "2560x1600@165.004000"
@@ -51,7 +52,8 @@ output "eDP-1" {
 }
 output "eDP-2" {
     variable-refresh-rate // on-demand=true
-    scale 1.000000
+    // scale 1.000000
+    scale 1.20
     transform "normal"
     position x=0 y=0
     mode "2560x1600@165.002000"

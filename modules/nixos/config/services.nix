@@ -1,4 +1,14 @@
 { config, pkgs, ... }: {
+
+  programs = {
+    wayfire = {
+      enable = false;
+      # plugins = [
+      #   pkgs.wcm
+      # ];
+    };
+  };
+
   services = {
     system76-scheduler = {
       enable =
@@ -9,12 +19,21 @@
     upower.enable =
       config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
-    # displayManager.sddm.enable = true; #now maaged by sddm-xxx file
-    desktopManager.plasma6.enable = true;
-    displayManager.defaultSession =
-      "niri"; # "hyprland-uwsm"; # default option after logging in
-    displayManager.autoLogin.enable = false;
-    displayManager.autoLogin.user = "maike";
+    desktopManager = {
+      plasma6.enable = false;
+      cosmic.enable = false;
+      gnome.enable = false;
+    };
+
+    displayManager = {
+      # sddm.enable = true; #now maaged by sddm-xxx file
+      sddm.wayland.enable = true;
+      gdm.enable = false;
+      defaultSession =
+        "niri"; # "hyprland-uwsm"; # default option after logging in
+      autoLogin.enable = false;
+      autoLogin.user = "maike";
+    };
 
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
     printing.enable = true; # Enable CUPS to print documents.
@@ -26,7 +45,7 @@
     udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
 
     #Enabled for end-4-dots flake:
-    geoclue2.enable = true;
+    # geoclue2.enable = true;
     # networkmanager.enable = true;
 
     # Enable sound with pipewire.
@@ -39,9 +58,6 @@
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
     };
-
-    displayManager.gdm.enable = false;
-    desktopManager.gnome.enable = true;
     xserver = {
       # enable = true;
       # Enable the GNOME Desktop Environment.

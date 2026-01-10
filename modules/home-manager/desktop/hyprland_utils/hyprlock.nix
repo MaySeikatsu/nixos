@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   programs.hyprlock = {
     enable = true;
     # settings.label.text = "$TIME";

@@ -1,21 +1,15 @@
-{
-  config,
-  pkgs,
-  inputs,
-  system,
-  lib,
-  ...
-}:
+{ config, pkgs, inputs, system, lib, ... }:
 let
-  _base00 = builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
-in
-{
+  _base00 =
+    builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
+in {
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
     ../modules/nixos/config/fonts.nix
     ../modules/nixos/config/services.nix
     ../modules/nixos/config/gnome.nix
+    ../modules/nixos/config/gaming.nix
     ../modules/nixos/config/localisation.nix
     ../modules/nixos/config/qt.nix
     ../modules/nixos/config/niri.nix
@@ -32,16 +26,14 @@ in
   ];
 
   nix.package = pkgs.lixPackageSets.stable.lix;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
   };
 
+  # floorp.enable = true;
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
 
@@ -59,10 +51,11 @@ in
     ];
     useDefaultShell = false;
     shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        kdePackages.kate
+        #  thunderbird
+      ];
   };
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -73,10 +66,11 @@ in
   # ];
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    imagemagick
-    # add any libraries WallRizz needs here if needed
-  ];
+  programs.nix-ld.libraries = with pkgs;
+    [
+      imagemagick
+      # add any libraries WallRizz needs here if needed
+    ];
 
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
@@ -93,7 +87,6 @@ in
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = false; # Request password for sudo actions as user
-
     # autoUpgrade.enable = true;
     # autoUpgrade.allowReboot = true;
   };
@@ -118,7 +111,8 @@ in
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake =
+        "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
     direnv = {
       enable = true;
@@ -140,36 +134,6 @@ in
     firefox.enable = true; # Install firefox.
     kdeconnect.enable = true;
 
-    wayfire = {
-      enable = false;
-      # plugins = [
-      #   pkgs.wcm
-      # ];
-    };
-
-    # xwayland needed for x11 / xserver support on niri for steam
-    xwayland.enable = true;
-    gamemode.enable = true; # Enabling optional optimisations for gaming / game-mode
-    # floorp.enable = true;     # Enable/Install Floorp
-
-    # Steam
-    steam = {
-      enable = true;
-      # package = pkgs.callPackage pkgs.millennium { };
-      # package = pkgs.steam-millennium; # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.default; # pkgs.millennium; # to use custom steam client - comment out to use default steam package
-      extraCompatPackages = [
-        # Setting up directory in which protonup should store its' proton-ge versions - run 'protonup' command in console afterwards to initialize
-        # Install proton-ge
-        # could also be done via home-manager - view vimjoyer gaming video
-        pkgs.proton-ge-bin
-      ];
-      gamescopeSession = {
-        # allows to boot directly into the steamdeck / big picture mode
-        enable = true;
-      };
-    };
-    # Enable git-lfs to use hand trackers in VR
-
     # mtr.enable = true;
     gnupg.agent = {
       # for gpg keys i think, could be deleted as it did not work
@@ -183,14 +147,6 @@ in
   hardware = {
     bluetooth.enable = true;
     # pulseaudio.enable = false;
-
-    # steam-hardware = {   # Troubleshooting for steamvr not detecting hardware
-    #   enable = true;
-    # };
-
-    # Enable opentabletdriver
-    # opentabletdriver.enable = true;
-    # opentabletdriver.daemon.enable = true;
   };
 
   environment = {
@@ -234,33 +190,21 @@ in
     # lan-mouse
     remmina # rdp client
     waytrogen # rust based wallpaper changer
-    matugen # rust
-    inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # matugen # rust
     wallust # rust
     power-profiles-daemon
-    # floorp-bin
-    wineWowPackages.stable
-    wineWowPackages.waylandFull
-    winetricks
-    protontricks
-    protonup-ng
-    protonup-rs
-    protonup-qt
-    protonplus
-    lutris
-    heroic
-    bottles
-    mangohud
-    steamcmd
-    ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-    inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.full
-    inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    quickshell
+    noctalia-shell
+    # dms-shell # dank-material-shell
     inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.nuls.packages.${system}.default
+    inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.full
     # inputs.qs-retroism.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.winboat.packages.${pkgs.stdenv.hostPlatform.system}.winboat
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
@@ -276,35 +220,25 @@ in
     hyperion-ng # not working yet
     # gtk3
     # gnome.adwaita-icon-theme
-    vesktop # vencord desktop client without overwriting the official discord binary
-    element-desktop
-    signal-desktop
-    beeper
-    beeper-bridge-manager
-    fluffychat
-    osu-lazer-bin
-    prismlauncher
+
     easyeffects
     tenacity
-    # zed-editor
-    # code-cursor
-    helix
-    vscode
     pomodoro
+    swww
+
     # hellwal
     microsoft-edge
     vivaldi
     obsidian
     ticktick
-    # gimp-with-plugins #broke on last update - reanable and troubleshoot
-    gimp
+    gimp-with-plugins # broke on last update - reanable and troubleshoot
+    # gimp
     krita
     godot_4
     blender
     libresprite
     aseprite
     goxel
-    # inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight #is now seperate in zen-browser.nix
     kicad # pcb and electronics design
     obs-studio
     # davinci-resolve
@@ -312,18 +246,30 @@ in
     base16-schemes
     # darktable #like lightroom
     # tidal-hifi
+
     # For quickshell caelestia config (should be able to be deleted)
+    # kdePackages.qtsvg
+    # libsForQt5.qt5.qtsvg
+    # libsForQt5.qt5.qtimageformats
+    # libsForQt5.qt5.qtmultimedia
+    # kdePackages.qtmultimedia
+    # kdePackages.qt5compat
+    # kdePackages.okular
+    # qt5.qtdeclarative
+    # libsForQt5.qt5.qtgraphicaleffects
+    # kdePackages.syntax-highlighting
+
+    # For Dolphin without KDE Plasma
+    kdePackages.dolphin
     kdePackages.qtsvg
-    libsForQt5.qt5.qtsvg
-    libsForQt5.qt5.qtimageformats
-    libsForQt5.qt5.qtmultimedia
-    kdePackages.qtmultimedia
-    kdePackages.qt5compat
-    kdePackages.okular
-    qt5.qtdeclarative
-    libsForQt5.qt5.qtgraphicaleffects
-    kdePackages.syntax-highlighting
+    kdePackages.kio
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
     kdePackages.plasma-workspace # to fix issue with mime associations in dolphin
+
+    nautilus
+    gnome-disk-utility
+    # gnome-mimeapps
     material-symbols
     kodi-wayland
     # libsForQt5.plasma-bigscreen
@@ -345,7 +291,6 @@ in
     protontricks
     localsend
     # spicetify-cli
-    qtpass
     # pinentry
     gnupg
     cairo # 2d graphics library like opengl - fore issues with sherlock
@@ -357,19 +302,14 @@ in
     # linuxKernel.packages.linux_zen.digimend
     # roccat-tools
     protonmail-desktop
-    proton-pass
     #teams
     teams-for-linux
     onlyoffice-desktopeditors
-    # citrix_workspace
-    # dotnet-sdk_8
     omnisharp-roslyn
   ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = {
-    "fs.file-max" = 524288;
-  };
+  boot.kernel.sysctl = { "fs.file-max" = 524288; };
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [
@@ -377,8 +317,8 @@ in
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  environment.etc."/xdg/menus/applications.menu".text =
-    builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
+  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile
+    "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
 
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];

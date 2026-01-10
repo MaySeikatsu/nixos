@@ -12,22 +12,13 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Flake Inputs:
-    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    zen-browser.url =
+      "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     nixcord.url = "github:kaylorben/nixcord";
     textfox.url = "github:adriankarlen/textfox";
-    swww.url = "github:LGFae/swww";
-    nvix.url = "github:niksingh710/nvix";
-    # hyprpanel = {
-    #   url = "github:Jas-SinghFSU/HyprPanel";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    matugen = {
-      url = "github:InioX/Matugen";
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
       url = "github:danth/stylix";
@@ -44,43 +35,21 @@
     # };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows =
+        "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
     };
     astal = {
       url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    claude-desktop = {
-      url = "github:k3d3/claude-desktop-linux-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mistral-vibe = {
       url = "github:mistralai/mistral-vibe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # millennium = {
-    #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
-    # };
-
-    # qs-dankmaterial= {
-    #   url = "github:AvengeMedia/danklinux";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    qs-noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      # url =
-      #   "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
-      inputs.nixpkgs.follows = "nixpkgs";
+    matugen = {
+      url = "github:InioX/Matugen";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    # qs-retroism = {
-    #   url = "github:diinki/linux-retroism?dir=configs/quickshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     qs-caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -97,6 +66,41 @@
       url = "github:MaySeikatsu/nuls";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # claude-desktop = {
+    #   url = "github:k3d3/claude-desktop-linux-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # swww.url = "github:LGFae/swww";
+    # nvix.url = "github:niksingh710/nvix";
+    # hyprpanel = {
+    #   url = "github:Jas-SinghFSU/HyprPanel";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # millennium = {
+    #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
+    # };
+
+    # quickshell = {
+    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # qs-dankmaterial= {
+    #   url = "github:AvengeMedia/danklinux";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # qs-noctalia = {
+    #   url = "github:noctalia-dev/noctalia-shell";
+    #   # url =
+    #   #   "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # qs-retroism = {
+    #   url = "github:diinki/linux-retroism?dir=configs/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # winboat = {
     #   url = "github:TibixDev/winboat";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -127,43 +131,26 @@
     # };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      zen-browser,
-      home-manager,
-      flake-utils,
-      spicetify-nix,
-      nixcord,
-      matugen,
-      stylix,
-      textfox,
-      niri,
-      nvix,
-      sddm-sugar-candy-nix,
-      astal,
-      claude-desktop,
-      qs-noctalia,
-      qs-caelestia-shell,
-      qs-caelestia-cli,
-      qs-illogical-flake,
-      mistral-vibe,
-      nuls,
-      # winboat
-      # winapps
-      # millennium
-      # qs-retroism
-      # ironbar
-      # hyprpanel,
-      # hyprddm,
-      # nixCats-nvim,
-      # sddm-astronaut-theme,
-      # hyprscroller,
-      # hyprland-plugins,
-      # legionrgb
-      ...
-    }@inputs:
+  outputs = { self, nixpkgs, zen-browser, home-manager, flake-utils
+    , spicetify-nix, nixcord, matugen, stylix, textfox, niri
+    , sddm-sugar-candy-nix, astal, qs-caelestia-shell, qs-caelestia-cli
+    , qs-illogical-flake, mistral-vibe, nuls,
+    # nvix,
+    # qs-noctalia,
+    # winboat
+    # claude-desktop,
+    # winapps
+    # millennium
+    # qs-retroism
+    # ironbar
+    # hyprpanel,
+    # hyprddm,
+    # nixCats-nvim,
+    # sddm-astronaut-theme,
+    # hyprscroller,
+    # hyprland-plugins,
+    # legionrgb
+    ... }@inputs:
     let
       system = "x86_64-linux";
       system2 = "aarch64-linux";
@@ -172,8 +159,7 @@
       host3 = "nixos-pi3";
       username = "maike";
 
-    in
-    {
+    in {
 
       nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -193,12 +179,9 @@
 
           {
             nixpkgs.overlays = [
-            (final: prev: {
+              (final: prev: {
                 inherit (prev.lixPackageSets.stable)
-                  nixpkgs-review
-                  nix-eval-jobs
-                  nix-fast-build
-                  colmena;
+                  nixpkgs-review nix-eval-jobs nix-fast-build colmena;
               })
 
               # inputs.hyprpanel.overlay
@@ -255,12 +238,9 @@
           #Overlays (?)
           {
             nixpkgs.overlays = [
-            (final: prev: {
+              (final: prev: {
                 inherit (prev.lixPackageSets.stable)
-                  nixpkgs-review
-                  nix-eval-jobs
-                  nix-fast-build
-                  colmena;
+                  nixpkgs-review nix-eval-jobs nix-fast-build colmena;
               })
 
               # inputs.hyprpanel.overlay
