@@ -1,5 +1,8 @@
-{ config, pkgs, ... }: {
-
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs = {
     wayfire = {
       enable = false;
@@ -29,8 +32,7 @@
       # sddm.enable = true; #now maaged by sddm-xxx file
       sddm.wayland.enable = true;
       gdm.enable = false;
-      defaultSession =
-        "niri"; # "hyprland-uwsm"; # default option after logging in
+      defaultSession = "niri"; # "hyprland-uwsm"; # default option after logging in
       autoLogin.enable = false;
       autoLogin.user = "maike";
     };
@@ -42,7 +44,7 @@
     # Tell the firewall to implicitly trust packets routed over Tailscale:
     # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-    udev.packages = with pkgs; [ vial via ]; # Enabling qmk vial
+    udev.packages = with pkgs; [vial via]; # Enabling qmk vial
 
     #Enabled for end-4-dots flake:
     # geoclue2.enable = true;
@@ -64,7 +66,7 @@
       desktopManager.kodi.enable = true;
       # desktopManager.plasma5.bigscreen.enable = true;
 
-      wacom.enable = true; # Enable Wacom Tablet
+      # wacom.enable = true; # Enable Wacom Tablet
 
       # Configure keymap in X11
       xkb = {

@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.wofi = {
-    enable = true;
+    enable = false;
     # style = ''
     #   window {
     #     margin: 0px;

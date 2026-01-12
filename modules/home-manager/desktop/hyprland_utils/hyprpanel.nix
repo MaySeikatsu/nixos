@@ -1,6 +1,5 @@
 # *.nix
-{ config, inputs, pkgs, lib, ... }:
-let
+{...}: let
   # fg = "#${colors.base05}";
   # bg = "#${colors.base00}";
   # accent = "#${colors.base0D}";
@@ -44,8 +43,8 @@ in {
       layout = {
         "bar.layouts" = {
           "0" = {
-            left = [ "dashboard" "windowtitle" "systray" "cava" "media" ];
-            middle = [ "workspaces" ];
+            left = ["dashboard" "windowtitle" "systray" "cava" "media"];
+            middle = ["workspaces"];
             right = [
               "volume"
               "network"
@@ -60,10 +59,9 @@ in {
         };
         "bar.layouts" = {
           "1" = {
-            left = [ "dashboard" "windowtitle" "systray" "media" "cava" ];
-            middle = [ "workspaces" ];
-            right =
-              [ "volume" "network" "clock" "notifications" "hypridle" "power" ];
+            left = ["dashboard" "windowtitle" "systray" "media" "cava"];
+            middle = ["workspaces"];
+            right = ["volume" "network" "clock" "notifications" "hypridle" "power"];
           };
         };
       };
@@ -84,9 +82,9 @@ in {
               "四": "<U+EC1B>",
               "五": "<U+F02B4>",
               "六": "<U+F1FF> ",
-              "七": "<U+EB1C>"        
-              "八": "<U+EB1C>"        
-              "九": "<U+EB1C>"        
+              "七": "<U+EB1C>"
+              "八": "<U+EB1C>"
+              "九": "<U+EB1C>"
             '';
           };
         };
@@ -109,8 +107,7 @@ in {
         };
         media.show_active_only = false;
         notifications.show_total = true;
-        windowtitle.leftClick =
-          "'pkill rofi||/nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview'";
+        windowtitle.leftClick = "'pkill rofi||/nix/store/rsb5ihbh4m3q4x046vc0y1r301i8j3is-ags-1.8.2/bin/ags -t overview'";
         battery.hideLabelWhenFull = true;
         media.format = "{title}";
         autoHide = "fullscreen";
@@ -120,7 +117,7 @@ in {
             showIcon = true;
             icon = "";
             spaceCharacter = " ";
-            barCharacters = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+            barCharacters = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
             showActiveOnly = true;
             bars = 12;
             # channels = 2;
@@ -138,8 +135,7 @@ in {
             # scrollDown = "";
           };
           updates = {
-            updateCommand =
-              "jq '[.[].cvssv3_basescore | to_entries | add | select(.value > 5)] | length' <<< $(vulnix -S --json)";
+            updateCommand = "jq '[.[].cvssv3_basescore | to_entries | add | select(.value > 5)] | length' <<< $(vulnix -S --json)";
             pollingInterval = 1440000;
             icon = {
               updated = "󰋼";
@@ -272,7 +268,6 @@ in {
                 directory3.label = "󱂵 Home";
                 directory3.command = ''bash -c "xdg-open $HOME/"'';
               };
-
             };
             shortcuts = {
               enabled = true;
@@ -280,8 +275,7 @@ in {
             };
             controls.enabled = true;
             stats.enable_gpu = false;
-            powermenu.avatar.image =
-              "~/.config/nixos/ressources/wallpapers/375567.png";
+            powermenu.avatar.image = "~/.config/nixos/ressources/wallpapers/375567.png";
           };
         };
         media.displayTime = true;

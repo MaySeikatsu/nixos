@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   #Maybe call it input
   wayland.windowManager.hyprland.settings = {
     input = {

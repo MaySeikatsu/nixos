@@ -19,7 +19,8 @@
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 1200;
+          timeout = 3600;
+          # timeout = 1200;
           # on-timeout = "hyprctl dispatch dpms off";
           # on-timeout = "systemctl hibernate || loginctl hibernate";
           on-timeout = "systemctl suspend || loginctl suspend";

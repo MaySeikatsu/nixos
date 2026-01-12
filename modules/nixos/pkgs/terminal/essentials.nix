@@ -1,6 +1,11 @@
-{ config, pkgs, inputs, lib, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-
     # Terminal Emulators
     # All of them are already in in home-manager
     # kitty
@@ -10,8 +15,9 @@
 
     cargo
     rust-analyzer
-    rustup
+    clippy
     rustfmt
+    rustup
     rustc
     gcc
     openssl
@@ -44,7 +50,7 @@
     unzip # nvim
 
     # Terminal Ressource Managers
-    btop
+    # btop
     # htop
     bottom
     powertop
@@ -64,8 +70,9 @@
     # nixd # lsp
     nil # nix lsp
     alejandra # nix formatter
-    vulnix # nix vulnerability checker
+    statix
 
+    vulnix # nix vulnerability checker
     trivy # vulnerability checker
     gitleaks # checking for accidantal leaks of credentials in git repos
 
@@ -88,7 +95,6 @@
     opentofu
     tofu-ls
 
-    docker
     podman
     kubectl
     kubernetes-helm

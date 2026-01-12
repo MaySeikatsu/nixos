@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   ###GNOME EXCLUDE PACKAGES###
-  environment.gnome.excludePackages = (with pkgs; [
+  environment.gnome.excludePackages = with pkgs; [
     epiphany # web browser
     # evince # document viewer
     geary # email reader
@@ -10,6 +10,6 @@
     gnome-terminal
     gnome-tour
     totem # video player
-  ]);
+  ];
   ###GNOME EXCLUDE PACKAGES###
 }

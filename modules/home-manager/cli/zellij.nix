@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.file.".config/zellij/config.kdl".source = ../../../ressources/dots/zellij/config.kdl;
 
   programs.zellij = {
@@ -9,7 +8,6 @@
     # exitShellOnExit = true; # not working yet
   };
 }
-
 # settings = {
 #       show_startup_tips = false;
 #       copy_on_select = true;
@@ -384,3 +382,4 @@
 #         # and all `shared_except`/`shared_among` sections the same way.
 #       };
 #     };
+

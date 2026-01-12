@@ -1,6 +1,5 @@
-{ config, pkgs, inputs, lib, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-
     fastfetch
     # macchina # neofetch alt rust
     cava
@@ -22,6 +21,6 @@
     manga-tui
     ani-cli
     taskwarrior-tui
-    cool-retro-term
+    # cool-retro-term
   ];
 }

@@ -11,7 +11,7 @@
 #   wallpaperScript = pkgs.writeScriptBin "niri-wallpaper" (builtins.readFile ./wallpaperAutoChange.sh);
 # in {
 #     xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome pkgs.gnome-keyring];
-#     home.packages = [ pkgs.wl-clipboard inputs.astal.packages.${pkgs.system}.default wallpaperScript];
+#     home.packages = [ pkgs.wl-clipboard inputs.astal.packages.${pkgs.stdenv.hostPlatform.system}.default wallpaperScript];
 #     programs.niri = {
 #         enable = true;
 #         # package = pkgs.niri-unstable;

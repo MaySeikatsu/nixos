@@ -1,5 +1,4 @@
-{...}:
-{
+{...}: {
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "HDMI-A-1, 3840x2160@highrr, auto-left, 1.25, bitdepth, 10"
@@ -18,7 +17,7 @@
       "DP-2, 3840x2160@143.85, 0x0, 1"
       # HDR
       # "DP-2, 3840x2160@143.85, 0x0, 1, bitdepth, 10, cm, hdr, sdrbrightness, 1.2, sdrsaturation, 0.98"
-      
+
       # 390Hz Screen
       "HDMI-A-2,1920x1080@239.96, auto-left, 1, transform, 1"
       "HDMI-A-1,1920x1080@239.96, auto-left, 1, transform, 1"
@@ -29,13 +28,12 @@
       # "DVI-D-1, 1440x900@75, 1920x590, 1"
       # "DP-2,1920x1080@360, 0x0, 1"
       # "HDMI-A-2,1920x1080@60, -1920x0, 1"
-      
-      ];
+    ];
 
-      workspace = [
-        # "name:0,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
-        "name:1,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
-      ];
+    workspace = [
+      # "name:0,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
+      "name:1,monitor:DP-2" # start workspace one on main monitor (in this case dp-2) to start steam games correctly
+    ];
     #not working properly yet i think
     # workspace = [
     #   "1,monitor:eDP-2"

@@ -1,11 +1,14 @@
 # { ... }: {
-#   # Creates a matugen.toml file inside of ~/.config/wallust or overwrites it with the given values of the file included in the repo 
+#   # Creates a matugen.toml file inside of ~/.config/wallust or overwrites it with the given values of the file included in the repo
 #   xdg.configFile."./matugen/matugen.toml".source =
 #     ../../../ressources/theming/matugen/matugen.toml;
 # }
-
-{ config, inputs, pkgs, ... }: {
-  imports = [ inputs.matugen.nixosModules.default ];
+{
+  config,
+  inputs,
+  ...
+}: {
+  imports = [inputs.matugen.nixosModules.default];
 
   programs = {
     matugen = {
@@ -17,8 +20,7 @@
       templates = {
         ghostty = {
           input_path = ./../../../ressources/matugen_templates/ghostty.theme;
-          output_path =
-            "/home/maike/.config/ghostty/matugen.theme"; # output path needs to be created manually if not already existing
+          output_path = "/home/maike/.config/ghostty/matugen.theme"; # output path needs to be created manually if not already existing
         };
         yazi = {
           input_path = ./../../../ressources/matugen_templates/yazi.toml;
@@ -27,7 +29,7 @@
         };
         palette = "default";
 
-        settings = { config = { reload_apps = true; }; };
+        settings = {config = {reload_apps = true;};};
       };
     };
   };

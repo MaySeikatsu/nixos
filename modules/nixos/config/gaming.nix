@@ -1,16 +1,12 @@
-{ config, pkgs, inputs, lib, ... }: {
-
+{pkgs, ...}: {
   programs = {
     # xwayland needed for x11 / xserver support on niri for steam
     xwayland.enable = true;
     gamemode.enable =
       true; # Enabling optional optimisations for gaming / game-mode
 
-    # Enable opentabletdriver
-    # opentabletdriver.enable = true;
-    # opentabletdriver.daemon.enable = true;
-
     # Troubleshooting for steamvr not detecting hardware
+    # Enable git-lfs to use hand trackers in VR
     # hardware.steam-hardware = {
     #   enable = true;
     # };
@@ -32,7 +28,11 @@
       };
     };
   };
-  # Enable git-lfs to use hand trackers in VR
+
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true; #does't start automatically for some reason
+  };
 
   environment.systemPackages = with pkgs; [
     wineWowPackages.stable
@@ -50,6 +50,7 @@
     steamcmd
     ntfs3g # to run steam games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
     dolphin-emu
+    # wacomtablet
+    # roccat-tools
   ];
 }
-

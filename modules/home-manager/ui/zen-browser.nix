@@ -1,8 +1,8 @@
-{ pkgs, inputs, ... }:
-let
-  system = "x86_64-linux";
-in
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = [
     # inputs.zen-browser.packages."${system}".specific
     # Docu: https://github.com/0xc000022070/zen-browser-flake

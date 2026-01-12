@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     # ./theme/theme-default.nix
     # ./theme/theme-glassy-blur.nix

@@ -1,8 +1,7 @@
-{...}:{
+{...}: {
   programs.rofi = {
-    enable = true;
+    enable = false;
     theme = {
-
     };
   };
 }

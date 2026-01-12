@@ -1,5 +1,4 @@
-{...}:
-{
+{...}: {
   wayland.windowManager.hyprland.settings = {
     layerrule = [
       "noanim, hyprpicker"

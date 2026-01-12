@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.ironbar = {
     enable = false;
     systemd = true;
@@ -13,9 +17,11 @@
           anchor_to_edges = true;
           position = "top";
           height = 16;
-          margin.top = 8;
-          margin.left = 8;
-          margin.right = 8;
+          margin = {
+            top = 8;
+            left = 8;
+            right = 8;
+          };
           # autohide = 1000;
           icon_theme = "Paper";
 
@@ -44,13 +50,15 @@
               ];
             }
           ];
-          center = [{
-            type = "focused";
-            show_icon = true;
-            show_title = true;
-            icon_size = 28;
-            truncate = "end";
-          }];
+          center = [
+            {
+              type = "focused";
+              show_icon = true;
+              show_title = true;
+              icon_size = 28;
+              truncate = "end";
+            }
+          ];
           end = [
             {
               type = "tray";
@@ -73,13 +81,12 @@
               type = "network_manager";
               icon_size = 24;
             }
-            { type = "clock"; }
+            {type = "clock";}
             {
               type = "notifications";
               show_count = true;
             }
           ];
-
         };
 
         DP-2 = {
@@ -117,13 +124,15 @@
               ];
             }
           ];
-          center = [{
-            type = "focused";
-            show_icon = true;
-            show_title = true;
-            icon_size = 28;
-            truncate = "end";
-          }];
+          center = [
+            {
+              type = "focused";
+              show_icon = true;
+              show_title = true;
+              icon_size = 28;
+              truncate = "end";
+            }
+          ];
           end = [
             {
               type = "tray";
@@ -146,13 +155,12 @@
               type = "network_manager";
               icon_size = 24;
             }
-            { type = "clock"; }
+            {type = "clock";}
             {
               type = "notifications";
               show_count = true;
             }
           ];
-
         };
         HDMI-A-1 = {
           anchor_to_edges = true;
@@ -175,13 +183,15 @@
               sort = "name";
             }
           ];
-          center = [{
-            type = "focused";
-            show_icon = true;
-            show_title = false;
-            icon_size = 28;
-            truncate = "end";
-          }];
+          center = [
+            {
+              type = "focused";
+              show_icon = true;
+              show_title = false;
+              icon_size = 28;
+              truncate = "end";
+            }
+          ];
           end = [
             {
               type = "tray";
@@ -195,14 +205,13 @@
               type = "volume";
               format = "{icon} {percentage}%";
             }
-            { type = "clock"; }
+            {type = "clock";}
           ];
-
         };
       };
-
     };
-    style = # css
+    style =
+      # css
       ''
         /* An example */
         @define-color color_bg #2d2d2d;

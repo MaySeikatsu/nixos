@@ -1,10 +1,10 @@
-{ config, inputs, pkgs, ... }: {
+{...}: {
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     settings = {
       # Enable the blur-my-shell extension here by UUID
-      "org/gnome/shell".enabled-extensions = [ "blur-my-shell@aunetx" ];
+      "org/gnome/shell".enabled-extensions = ["blur-my-shell@aunetx"];
 
       # Configure blur-my-shell extension options
       "org/gnome/shell/extensions/blur-my-shell" = {

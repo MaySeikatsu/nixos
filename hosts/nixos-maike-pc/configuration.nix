@@ -7,9 +7,7 @@
   inputs,
   lib,
   ...
-}:
-
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./../configuration-shared.nix
@@ -17,12 +15,14 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.loader.grub = {
-  #   enable = true;
-  #   efiSupport = true;
-  # };
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    # loader.grub = {
+    #   enable = true;
+    #   efiSupport = true;
+    # };
+  };
 
   #Enable Hibernate
   systemd.sleep.extraConfig = ''
@@ -32,31 +32,33 @@
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
 
-  fileSystems."/mnt/seagate-hdd-2tb" = {
-    device = "/dev/disk/by-uuid/B686BA9786BA5817";
-    fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
-    options = [
-      "rw"
-      "uid=1000"
-    ]; # also needed for steam games to run on ntfs uid = id of current user
-  };
+  fileSystems = {
+    "/mnt/seagate-hdd-2tb" = {
+      device = "/dev/disk/by-uuid/B686BA9786BA5817";
+      fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
+      options = [
+        "rw"
+        "uid=1000"
+      ]; # also needed for steam games to run on ntfs uid = id of current user
+    };
 
-  fileSystems."/mnt/programs" = {
-    device = "/dev/disk/by-uuid/CA5E85815E856753";
-    fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
-    options = [
-      "rw"
-      "uid=1000"
-    ]; # also needed for steam games to run on ntfs uid = id of current user
-  };
+    "/mnt/programs" = {
+      device = "/dev/disk/by-uuid/CA5E85815E856753";
+      fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
+      options = [
+        "rw"
+        "uid=1000"
+      ]; # also needed for steam games to run on ntfs uid = id of current user
+    };
 
-  fileSystems."/mnt/win10-32bit" = {
-    device = "/dev/disk/by-uuid/1666A92766A90897";
-    fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
-    options = [
-      "rw"
-      "uid=1000"
-    ]; # also needed for steam games to run on ntfs uid = id of current user
+    "/mnt/win10-32bit" = {
+      device = "/dev/disk/by-uuid/1666A92766A90897";
+      fsType = "ntfs-3g"; # usually ntfs but it does not support steam games and writing as it seems
+      options = [
+        "rw"
+        "uid=1000"
+      ]; # also needed for steam games to run on ntfs uid = id of current user
+    };
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -77,7 +79,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     # backupFileExtension = "bak";
     users = {
       "maike" = import ./home.nix;
@@ -91,7 +93,7 @@
 
   # INSTALL NVIDIA DRIVERS
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -194,7 +196,6 @@
 
   environment.systemPackages = with pkgs; [
     # would be pkgs.packagename without the with pkgs;
-
   ];
 
   # Open ports in the firewall.
@@ -217,5 +218,4 @@
   #   # GSK_RENDERER = "gl";
   #   # GSK_RENDERER = "opengl";
   # };
-
 }

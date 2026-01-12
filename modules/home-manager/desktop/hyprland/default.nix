@@ -1,5 +1,4 @@
-{...}:
-{
+{...}: {
   wayland.windowManager.hyprland.enable = true;
   imports = [
     ./animations.nix

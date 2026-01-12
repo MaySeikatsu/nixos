@@ -1,4 +1,3 @@
-{ ... }: {
-  imports =
-    [ ./alacritty.nix ./foot.nix ./ghostty.nix ./kitty.nix ./wezterm.nix ];
+{...}: {
+  imports = [./alacritty.nix ./foot.nix ./ghostty.nix ./kitty.nix ./wezterm.nix];
 }

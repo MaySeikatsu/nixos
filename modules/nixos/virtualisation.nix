@@ -1,28 +1,37 @@
-{ ... }: {
-
-  virtualisation.docker.enable = true;
-
-  #Enable VMware virtualisation straight out of nixos
+{...}: {
+  # Enable VMware virtualisation straight out of nixos
   # virtualisation.vmware.host.enable = true; #needs to be added manually to nix store
   programs.virt-manager.enable = true;
-  users.groups.libvirtd.members = [ "maike" ];
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
 
-  # Settings for build to VM / Virtualisation
-  users.users.nixosvmtest.isSystemUser = true;
-  users.users.nixosvmtest.initialPassword = "test";
-  users.users.nixosvmtest.group = "nixosvmtest";
-  users.groups.nixosvmtest = { };
-  virtualisation.vmVariant = {
-    # following configuration is added only when building VM with build-vm
-    virtualisation = {
-      resolution = {
-        x = 1920;
-        y = 1080;
+  users = {
+    groups = {
+      libvirtd.members = ["maike"];
+      nixosvmtest = {};
+    };
+    # Settings for build to VM / Virtualisation
+    users = {
+      nixosvmtest = {
+        isSystemUser = true;
+        initialPassword = "test";
+        group = "nixosvmtest";
       };
-      memorySize = 8192; # Use 2048MiB memory.
-      cores = 8;
+    };
+  };
+
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+    vmVariant = {
+      # following configuration is added only when building VM with build-vm
+      virtualisation = {
+        cores = 8;
+        memorySize = 8192; # Use 2048MiB memory.
+        resolution = {
+          x = 1920;
+          y = 1080;
+        };
+      };
     };
   };
 }

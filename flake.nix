@@ -12,8 +12,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Flake Inputs:
-    zen-browser.url =
-      "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     nixcord.url = "github:kaylorben/nixcord";
     textfox.url = "github:adriankarlen/textfox";
     spicetify-nix = {
@@ -35,8 +34,7 @@
     # };
     sddm-sugar-candy-nix = {
       url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows =
-        "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
+      inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
     };
     astal = {
       url = "github:aylur/astal";
@@ -64,6 +62,10 @@
     };
     nuls = {
       url = "github:MaySeikatsu/nuls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sysc-greet = {
+      url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -131,10 +133,26 @@
     # };
   };
 
-  outputs = { self, nixpkgs, zen-browser, home-manager, flake-utils
-    , spicetify-nix, nixcord, matugen, stylix, textfox, niri
-    , sddm-sugar-candy-nix, astal, qs-caelestia-shell, qs-caelestia-cli
-    , qs-illogical-flake, mistral-vibe, nuls,
+  outputs = {
+    self,
+    nixpkgs,
+    zen-browser,
+    home-manager,
+    flake-utils,
+    spicetify-nix,
+    nixcord,
+    matugen,
+    stylix,
+    textfox,
+    niri,
+    sddm-sugar-candy-nix,
+    astal,
+    qs-caelestia-shell,
+    qs-caelestia-cli,
+    qs-illogical-flake,
+    mistral-vibe,
+    nuls,
+    sysc-greet,
     # nvix,
     # qs-noctalia,
     # winboat
@@ -150,18 +168,17 @@
     # hyprscroller,
     # hyprland-plugins,
     # legionrgb
-    ... }@inputs:
-    let
-      system = "x86_64-linux";
-      system2 = "aarch64-linux";
-      host = "nixos-maike-pc";
-      host2 = "nixos-legion";
-      host3 = "nixos-pi3";
-      username = "maike";
-
-    in {
-
-      nixosConfigurations."${host}" = nixpkgs.lib.nixosSystem {
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    system2 = "aarch64-linux";
+    host = "nixos-maike-pc";
+    host2 = "nixos-legion";
+    host3 = "nixos-pi3";
+    username = "maike";
+  in {
+    nixosConfigurations = {
+      "${host}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           inherit host;
@@ -175,13 +192,19 @@
           inputs.stylix.nixosModules.stylix
           matugen.nixosModules.default
           sddm-sugar-candy-nix.nixosModules.default
+          sysc-greet.nixosModules.default
           # nixCats-nvim.nixosModules.default
 
           {
             nixpkgs.overlays = [
               (final: prev: {
-                inherit (prev.lixPackageSets.stable)
-                  nixpkgs-review nix-eval-jobs nix-fast-build colmena;
+                inherit
+                  (prev.lixPackageSets.stable)
+                  nixpkgs-review
+                  nix-eval-jobs
+                  nix-fast-build
+                  colmena
+                  ;
               })
 
               # inputs.hyprpanel.overlay
@@ -211,15 +234,13 @@
                 # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
                 qs-illogical-flake.homeManagerModules.default
-                { programs.illogical-impulse.enable = true; }
-
+                {programs.illogical-impulse.enable = true;}
               ];
             };
           }
-
         ];
       };
-      nixosConfigurations."${host2}" = nixpkgs.lib.nixosSystem {
+      "${host2}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           inherit host2;
@@ -233,14 +254,20 @@
           inputs.stylix.nixosModules.stylix
           matugen.nixosModules.default
           sddm-sugar-candy-nix.nixosModules.default
+          sysc-greet.nixosModules.default
           # nixCats-nvim.nixosModules.default
 
           #Overlays (?)
           {
             nixpkgs.overlays = [
               (final: prev: {
-                inherit (prev.lixPackageSets.stable)
-                  nixpkgs-review nix-eval-jobs nix-fast-build colmena;
+                inherit
+                  (prev.lixPackageSets.stable)
+                  nixpkgs-review
+                  nix-eval-jobs
+                  nix-fast-build
+                  colmena
+                  ;
               })
 
               # inputs.hyprpanel.overlay
@@ -271,14 +298,13 @@
                 # inputs.stylix.homeModules.stylix
 
                 qs-illogical-flake.homeManagerModules.default
-                { programs.illogical-impulse.enable = true; }
+                {programs.illogical-impulse.enable = true;}
               ];
             };
           }
-
         ];
       };
-      nixosConfigurations."${host3}" = nixpkgs.lib.nixosSystem {
+      "${host3}" = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           inherit host3;
@@ -301,4 +327,5 @@
         ];
       };
     };
+  };
 }

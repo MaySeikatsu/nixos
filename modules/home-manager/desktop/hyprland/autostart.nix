@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
       "~/.config/nixos/scripts/swww/swww_wallpapersync.sh" # to create hyprland colors file the remove the source error
@@ -13,7 +13,7 @@
       #"ironbar &"
       # "hyprpaper"
       # "swww-daemon & swww img ~/Pictures/"
-      # "swww init & swww ~/Pictures/" 
+      # "swww init & swww ~/Pictures/"
       "swww-daemon &"
 
       # "hyprctl dispatch workspace music" # To set main monitor to main screen by starting the first workspace on that monitor and give it the right monitor id

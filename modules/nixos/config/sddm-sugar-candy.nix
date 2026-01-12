@@ -2,7 +2,7 @@
 # Documentation: https://github.com/Zhaith-Izaliel/sddm-sugar-candy-nix
 {
   services.displayManager.sddm = {
-    enable = true; # Enable SDDM.
+    enable = false; # Enable SDDM.
     sugarCandyNix = {
       enable = true; # This set SDDM's theme to "sddm-sugar-candy-nix".
       settings = {

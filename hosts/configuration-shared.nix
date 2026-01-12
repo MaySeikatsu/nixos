@@ -1,5 +1,10 @@
-{ config, pkgs, inputs, system, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  ...
+}: let
   _base00 =
     builtins.trace "Stylix base00: ${config.lib.stylix.colors.base00}" null;
 in {
@@ -10,6 +15,7 @@ in {
     ../modules/nixos/config/services.nix
     ../modules/nixos/config/gnome.nix
     ../modules/nixos/config/gaming.nix
+    ../modules/nixos/config/greeter.nix
     ../modules/nixos/config/localisation.nix
     ../modules/nixos/config/qt.nix
     ../modules/nixos/config/niri.nix
@@ -18,15 +24,24 @@ in {
     ../modules/nixos/config/matugen.nix
     ../modules/nixos/config/sddm-astronaut-theme.nix
     ../modules/nixos/pkgs/hyprland.nix
-    ../modules/nixos/pkgs/terminal/rice.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
+    # ../modules/nixos/pkgs/terminal/rice.nix
     # ../modules/nixos/pkgs/audio_engineering.nix
     ../modules/home-manager/theming/spicetify.nix
   ];
 
-  nix.package = pkgs.lixPackageSets.stable.lix;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # xdg.mime = {
+  #   enable = true;
+  #   defaultApplications = {};
+  #   addedAssociations = {};
+  #   removedAssociations = {};
+  # };
+
+  nix = {
+    package = pkgs.lixPackageSets.stable.lix;
+    settings.experimental-features = ["nix-command" "flakes"];
+  };
 
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
@@ -51,26 +66,26 @@ in {
     ];
     useDefaultShell = false;
     shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
-    packages = with pkgs;
-      [
-        kdePackages.kate
-        #  thunderbird
-      ];
+    packages = with pkgs; [
+      kdePackages.kate
+      #  thunderbird
+    ];
   };
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  nix.settings.extra-platforms = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  nix.settings.extra-platforms = ["aarch64-linux"];
   # nix.config.trusted-users = [
   #   "root"
   #   "maike"
   # ];
 
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs;
-    [
+  programs = {
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
       imagemagick
       # add any libraries WallRizz needs here if needed
     ];
+  };
 
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
@@ -100,7 +115,7 @@ in {
   # Storage Optimisations between different nix stores:
   nix.optimise = {
     automatic = true;
-    dates = [ "03:45" ];
+    dates = ["03:45"];
   };
   # nix.settings.auto-optimise-store = true; # This would execute the optimisations on rebuild, does slow them down significantly though
 
@@ -111,8 +126,7 @@ in {
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 14d --keep 7";
-      flake =
-        "/home/maike/.config/nixos"; # might need adjustment to different hosts
+      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
     };
     direnv = {
       enable = true;
@@ -195,11 +209,11 @@ in {
     power-profiles-daemon
     quickshell
     noctalia-shell
-    # dms-shell # dank-material-shell
+    dms-shell # dank-material-shell
     inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.nuls.packages.${system}.default
+    inputs.nuls.packages.${stdenv.hostPlatform.system}.default
     inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -296,20 +310,18 @@ in {
     cairo # 2d graphics library like opengl - fore issues with sherlock
     # gvfs # glib # same as above but no difference
     # feh
-    # opentabletdriver #not working yet
-    # wacomtablet
     evemu
     # linuxKernel.packages.linux_zen.digimend
-    # roccat-tools
     protonmail-desktop
     #teams
     teams-for-linux
     onlyoffice-desktopeditors
     omnisharp-roslyn
+    tree-sitter
   ];
 
   # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = { "fs.file-max" = 524288; };
+  boot.kernel.sysctl = {"fs.file-max" = 524288;};
 
   # Increase limits for all users (including systemd services)
   # security.pam.loginLimits = [
@@ -317,14 +329,35 @@ in {
   #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
   # ];
 
-  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile
+  environment.etc."/xdg/menus/applications.menu".text =
+    builtins.readFile
     "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu"; # Specifically for the nix-daemon (if relevant) // this actually fixed the dolphine mime app issue
 
   systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
+    wantedBy = ["multi-user.target"];
+    path = [pkgs.flatpak];
     script = ''
-      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo  
+      flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     '';
   };
+
+  # specialisation = {
+  #   retro.configuration = {
+  #     system.nixos.tags = ["retro"];
+  #     services = {
+  #       displayManager.sddm.enable = false;
+  #       sysc-greet = {
+  #         enable = false;
+  #         compositor = "niri"; # or "hyprland" or "sway"
+  #         settings = {
+  #           theme = "TransIsHardJob";
+  #         };
+  #         # settings.initial_session = {
+  #         #   command = "niri";
+  #         #   user = "maike";
+  #         # };
+  #       };
+  #     };
+  #   };
+  # };
 }

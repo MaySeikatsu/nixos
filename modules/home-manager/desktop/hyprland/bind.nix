@@ -1,6 +1,5 @@
-{ ... }: {
+{...}: {
   wayland.windowManager.hyprland.settings = {
-
     "$mainMod" = "Super";
 
     bind = [
@@ -100,7 +99,7 @@
       "$mainMod+Ctrl, h, workspace, r-1"
 
       # Move to the first empty workspace
-      # "$mainMod+Ctrl, Right, workspace, empty" 
+      # "$mainMod+Ctrl, Right, workspace, empty"
 
       # Scroll through existing workspaces
       "$mainMod, mouse_down, workspace, e+1"

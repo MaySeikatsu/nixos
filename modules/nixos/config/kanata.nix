@@ -1,14 +1,6 @@
-{
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
-
-{
+{...}: {
   # For Kanata enable uinput
-  boot.kernelModules = [ "uinput" ];
+  boot.kernelModules = ["uinput"];
   hardware.uinput.enable = true;
 
   services.kanata = {
@@ -70,11 +62,11 @@
               @lesc @am  @sa  @ds  @fc  g    h    @jc  @ks  @la  @;m  '    ret                        kp4  kp5  kp6
               lsft   z    x    c    v    b    n    m    ,    .    /    rsft                 up         kp1  kp2  kp3  kprt
               @chom  lmet @aend          @lspc            ralt rmet cmp  rctl            left down rght  kp0  kp.
-              ) 
+              )
               ;;might need to replace the hardcoded one with _ to emulate the original layer underneath it - only if qwertz layout switch doesnt work anymore afterwards
 
               ;; ---layer one for navigation---
-              (deflayer nav1 
+              (deflayer nav1
               _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
               _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
               _ A-left up A-rght  _    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _
@@ -84,13 +76,13 @@
               )
 
               ;; ---layer two (test) for navigation---
-              (deflayer nav2 
-              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _                      
-              _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _ 
-              _    7    8    9    0    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _ 
-              _    4    5    6    0    _    left down up  rght RA-p RA-q  _                          _    _    _      
-              _    1    2    3    0    _    _    _    _    _    _    _                    _          _    _    _    _ 
-              _    _    _              _              _    _    _    _               _    _    _     _    _           
+              (deflayer nav2
+              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+              _    _    _    _    _    _    _    _    _    _    _   RA-s  _    _     _    _    _     _    _    _    _
+              _    7    8    9    0    _    _    _    _    _    _   RA-y  _    _     _    _    _     _    _    _    _
+              _    4    5    6    0    _    left down up  rght RA-p RA-q  _                          _    _    _
+              _    1    2    3    0    _    _    _    _    _    _    _                    _          _    _    _    _
+              _    _    _              _              _    _    _    _               _    _    _     _    _
               )
 
               ;; ---gaming layer without homerow mods---
@@ -112,10 +104,10 @@
               base (layer-switch base)
 
               ;;define key-alias and functions
-              lesc (tap-hold-press $tap-time $hold-time esc @nav1) 
+              lesc (tap-hold-press $tap-time $hold-time esc @nav1)
               ;;lesc (tap-hold $tap-time $hold-time esc @nav1) mhm?
-              ltab (tap-hold-press $game-tap-time $game-hold-time tab @game) 
-              lbtab (tap-hold-press $game-tap-time $game-hold-time tab @base) 
+              ltab (tap-hold-press $game-tap-time $game-hold-time tab @game)
+              lbtab (tap-hold-press $game-tap-time $game-hold-time tab @base)
               lspc (tap-hold $spc-tap-time $spc-hold-time spc @nav2)
 
               chj (chord jkl-chords j)

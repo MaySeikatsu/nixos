@@ -1,15 +1,4 @@
-{
-  pkgs,
-  config,
-  host,
-  username,
-  options,
-  lib,
-  inputs,
-  system,
-  ...
-}:
-{
+{pkgs, ...}: {
   #DOES NOT WORK - put hard values in instead
   #This part is used for hyprpanel configuration with stylix - stolen from: https://github.com/anotherhadi/nixy/blob/main/themes/nixy.nix
   #   options.theme = lib.mkOption {
