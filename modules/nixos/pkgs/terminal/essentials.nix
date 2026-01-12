@@ -6,6 +6,13 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+    gh
+    # kanata
+    # curl
+
     # Terminal Emulators
     # All of them are already in in home-manager
     # kitty
@@ -39,8 +46,6 @@
     # tmux
     lsd
     fzf
-    zoxide
-    lazygit
     fd
     bat # rust
     tealdeer # rust
@@ -50,16 +55,9 @@
     unzip # nvim
 
     # Terminal Ressource Managers
-    # btop
-    # htop
     bottom
     powertop
     # nvtopPackages.full
-
-    # Terminal File Explorers
-    # yazi # terminal file manager
-    # ranger
-    # mc # midnight-commander
 
     # For Steam VR (troubleshooting):
     # procps
@@ -88,23 +86,16 @@
     terraform-ls
     terraform-docs
     hclfmt
+    opentofu
+    tofu-ls
     # terraform-landscape
     # terraform-inventory
     # terraform-mcp-server
     # tfmigrate
-    opentofu
-    tofu-ls
-
-    podman
-    kubectl
-    kubernetes-helm
-    minikube
-    k9s
-    k3s
 
     gemini-cli
     geminicommit
-    claude-code
+    # claude-code
 
     # Virtualisation like WSL for unix systems:
     lima

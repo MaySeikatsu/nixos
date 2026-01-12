@@ -7,7 +7,6 @@ return
     priority = 1000,
     opts = {
         use_wallust = true,
-        -- use_palette = "nord"
         transparent_background = true,
         -- colorscheme_file = "~/.cache/wallust/colors_neopywal.vim",
         -- use_palette = "~/.cache/wallust/colors_neopywal.vim",
@@ -40,10 +39,10 @@ return
       },
     },
     -- comment out if you don't want to set it as the default colorscheme
-    -- {
-    --   "LazyVim/LazyVim", 
-    --   opts = {
-    --     colorscheme = "neopywal"
-    --   }
-    -- }
+    {
+      "LazyVim/LazyVim", 
+      opts = {
+        colorscheme = "neopywal"
+      }
+    }
 }

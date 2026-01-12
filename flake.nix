@@ -56,10 +56,6 @@
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    qs-illogical-flake = {
-      url = "github:soymou/illogical-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nuls = {
       url = "github:MaySeikatsu/nuls";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,6 +65,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # qs-illogical-flake = {
+    #   url = "github:soymou/illogical-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # claude-desktop = {
     #   url = "github:k3d3/claude-desktop-linux-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -149,10 +149,10 @@
     astal,
     qs-caelestia-shell,
     qs-caelestia-cli,
-    qs-illogical-flake,
     mistral-vibe,
     nuls,
     sysc-greet,
+    # qs-illogical-flake,
     # nvix,
     # qs-noctalia,
     # winboat
@@ -233,8 +233,8 @@
                 # inputs.nixCats-nvim.homeModule
                 # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
-                qs-illogical-flake.homeManagerModules.default
-                {programs.illogical-impulse.enable = true;}
+                # qs-illogical-flake.homeManagerModules.default
+                # {programs.illogical-impulse.enable = true;}
               ];
             };
           }
@@ -297,8 +297,8 @@
                 # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
                 # inputs.stylix.homeModules.stylix
 
-                qs-illogical-flake.homeManagerModules.default
-                {programs.illogical-impulse.enable = true;}
+                # qs-illogical-flake.homeManagerModules.default
+                # {programs.illogical-impulse.enable = true;}
               ];
             };
           }

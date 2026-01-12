@@ -1,6 +1,7 @@
-{ ... }: {
+{...}: {
   imports = [
     ./btop.nix
+    ./bacon.nix
     ./cava.nix
     ./fzf.nix
     ./lazygit.nix
@@ -9,11 +10,11 @@
     ./git.nix
     ./nushell.nix
     ./starship.nix
+    # ./kubernetes.nix
     ./yazi.nix
     ./zellij.nix
     ./zsh.nix
     # ./tmux.nix
-    # ./zoxide.nix
-
+    ./zoxide.nix
   ];
 }

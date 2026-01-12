@@ -1,7 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     reaper
+    tenacity
     # yabridge
     ardour
     # audacity

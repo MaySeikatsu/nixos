@@ -31,12 +31,27 @@ in {
     ../modules/home-manager/theming/spicetify.nix
   ];
 
-  # xdg.mime = {
-  #   enable = true;
-  #   defaultApplications = {};
-  #   addedAssociations = {};
-  #   removedAssociations = {};
-  # };
+  xdg.mime = {
+    enable = true;
+    addedAssociations = {
+      "image/jpeg" = "feh-2.desktop";
+      "image/png" = "feh-4.desktop;feh-3.desktop";
+      "x-scheme-handler/http" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
+      "x-scheme-handler/https" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
+      "x-scheme-handler/chrome" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
+      "text/html" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/x-extension-htm" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/x-extension-html" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/x-extension-shtml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/xhtml+xml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/x-extension-xhtml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+      "application/x-extension-xht" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
+    };
+    defaultApplications = {
+      "inode/directory" = "nautilus.desktop";
+    };
+    removedAssociations = {};
+  };
 
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
@@ -79,14 +94,6 @@ in {
   #   "maike"
   # ];
 
-  programs = {
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      imagemagick
-      # add any libraries WallRizz needs here if needed
-    ];
-  };
-
   # powerManagement.enable = true;
   powerManagement.powertop.enable = true;
 
@@ -121,6 +128,13 @@ in {
 
   # Shared Programs should be defined here
   programs = {
+    localsend.enable = true;
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      imagemagick
+      # add any libraries WallRizz needs here if needed
+    ];
+
     # Nixos Helper for cleanup and commands
     nh = {
       enable = true;
@@ -195,21 +209,15 @@ in {
   # };
 
   environment.systemPackages = with pkgs; [
-    neovim
-    git
-    wget
-    kanata
-    gh
     # deskflow
     # lan-mouse
     remmina # rdp client
     waytrogen # rust based wallpaper changer
     # matugen # rust
     wallust # rust
-    power-profiles-daemon
     quickshell
     noctalia-shell
-    dms-shell # dank-material-shell
+    # dms-shell # dank-material-shell
     inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -227,26 +235,17 @@ in {
     rose-pine-gtk-theme
     rose-pine-icon-theme
     spotify
-    # spicetify-cli
     ledfx
-    openrgb-with-all-plugins
     openlinkhub
     hyperion-ng # not working yet
+
+    easyeffects
+    pomodoro
+    swww
+    # hellwal
     # gtk3
     # gnome.adwaita-icon-theme
 
-    easyeffects
-    tenacity
-    pomodoro
-    swww
-
-    # hellwal
-    microsoft-edge
-    vivaldi
-    obsidian
-    ticktick
-    gimp-with-plugins # broke on last update - reanable and troubleshoot
-    # gimp
     krita
     godot_4
     blender
@@ -254,24 +253,17 @@ in {
     aseprite
     goxel
     kicad # pcb and electronics design
-    obs-studio
+    obsidian
+    ticktick
+    microsoft-edge
+    # vivaldi
+    # gimp
+    gimp-with-plugins # broke on last update - reanable and troubleshoot
     # davinci-resolve
     poppler
     base16-schemes
     # darktable #like lightroom
     # tidal-hifi
-
-    # For quickshell caelestia config (should be able to be deleted)
-    # kdePackages.qtsvg
-    # libsForQt5.qt5.qtsvg
-    # libsForQt5.qt5.qtimageformats
-    # libsForQt5.qt5.qtmultimedia
-    # kdePackages.qtmultimedia
-    # kdePackages.qt5compat
-    # kdePackages.okular
-    # qt5.qtdeclarative
-    # libsForQt5.qt5.qtgraphicaleffects
-    # kdePackages.syntax-highlighting
 
     # For Dolphin without KDE Plasma
     kdePackages.dolphin
@@ -280,15 +272,15 @@ in {
     kdePackages.kio-fuse
     kdePackages.kio-extras
     kdePackages.plasma-workspace # to fix issue with mime associations in dolphin
-
-    nautilus
     gnome-disk-utility
-    # gnome-mimeapps
+    nautilus
     material-symbols
-    kodi-wayland
     # libsForQt5.plasma-bigscreen
     ollama
     # lmstudio
+    kodi-wayland
+    kodiPackages.inputstream-adaptive
+    kodiPackages.youtube
 
     freerdp
     iptables
@@ -303,7 +295,6 @@ in {
     # via
     intiface-central
     protontricks
-    localsend
     # spicetify-cli
     # pinentry
     gnupg

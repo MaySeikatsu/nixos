@@ -19,6 +19,8 @@
       settings.cfsProfiles.enable =
         true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
     };
+    power-profiles-daemon.enable = true;
+
     upower.enable =
       config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
@@ -61,7 +63,7 @@
       #jack.enable = true;
     };
     xserver = {
-      # enable = true;
+      enable = true;
       # Enable the GNOME Desktop Environment.
       desktopManager.kodi.enable = true;
       # desktopManager.plasma5.bigscreen.enable = true;
@@ -73,6 +75,11 @@
         layout = "us";
         variant = "altgr-intl";
       };
+    };
+
+    hardware.openrgb = {
+      enable = true;
+      # startupProfile = "";
     };
 
     # Enable VR with Monado / OpenXR and SteamVR
