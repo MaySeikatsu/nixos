@@ -4,6 +4,7 @@
     ./bacon.nix
     ./cava.nix
     ./fzf.nix
+    ./helix.nix
     ./lazygit.nix
     # ./neovim.nix
     ./fish.nix

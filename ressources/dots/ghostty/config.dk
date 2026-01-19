@@ -1,0 +1,16 @@
+background-blur = 4
+background-opacity = 1.000000
+confirm-close-surface = false
+font-family = JetBrains Mono Nerd Font
+font-family = Noto Color Emoji
+font-feature = -liga
+font-feature = -dlig
+font-feature = -calt
+font-size = 11
+font-size = 11
+theme = stylix
+theme = rose-pine-moon
+window-decoration = false
+custom-shader = ~/.config/ghostty/shaders/in-game-crt-cursor.glsl
+custom-shader = ~/.config/ghostty/shaders/retro-terminal.glsl
+custom-shader = ~/.config/ghostty/shaders/glow-rgbsplit-twitchy.glsl

@@ -1,5 +1,4 @@
-{ config, inputs, pkgs, ... }:
-{
+{...}: {
   programs = {
     ghostty = {
       enable = true;
@@ -9,7 +8,13 @@
         confirm-close-surface = false;
         font-feature = ["-liga" "-dlig" "-calt"];
         # theme = "Adventure";
-        theme = "rose-pine-moon";
+        # theme = "rose-pine-moon";
+        custom-shader = [
+          "~/.config/nixos/ressources/dots/ghostty/shaders/glow-rgbsplit-twitchy.glsl"
+          "~/.config/nixos/ressources/dots/ghostty/shaders/retro-terminal.glsl"
+          "~/.config/nixos/ressources/dots/ghostty/shaders/in-game-crt-cursor.glsl"
+        ];
+
         # theme = "/home/maike/.config/ghostty/matugen.theme"; #theme path and folder needs to be created first ls -l /home/maike/.config/ghostty/themes/matugen.theme
         # background =000000;
         # background-opacity = 0.85;

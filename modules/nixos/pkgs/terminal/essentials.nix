@@ -102,7 +102,7 @@
 
     # zed-editor
     # code-cursor
-    # helix
+    helix
     vscode
 
     # Gaming

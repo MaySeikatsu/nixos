@@ -63,9 +63,8 @@
       #jack.enable = true;
     };
     xserver = {
-      enable = true;
+      # enable = true;
       # Enable the GNOME Desktop Environment.
-      desktopManager.kodi.enable = true;
       # desktopManager.plasma5.bigscreen.enable = true;
 
       # wacom.enable = true; # Enable Wacom Tablet

@@ -1,27 +1,36 @@
-{ inputs, config, pkgs, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # imports = [
   #   # Import the nixCats module
   #   inputs.nixCats-nvim.homeModule
   # ];
 
-  # Creates a wallust.lua file inside of ~/.config/wallust or overwrites it with the given values of the file included in the repo 
+  # Creates a wallust.lua file inside of ~/.config/wallust or overwrites it with the given values of the file included in the repo
   # xdg.configFile."./nvim/lua/plugins/wallust.lua".source = ../../../ressources/dos/nvim/lua/plugins/wallust.lua; #For neovim config to work with wallust
+
+  # Check out https://github.com/pfassina/lazyvim-nix for flake that includes up to date lazyvim config
 
   programs.neovim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ lazy-nvim mini-surround ];
+    plugins = with pkgs.vimPlugins; [lazy-nvim mini-surround];
     # Add extra packages as needed
     extraPackages = with pkgs; [
       lua-language-server
+      stylua
       ripgrep
       rust-analyzer
+      terraformls
+      terraformfmt
+      statix
+      nil
+      alejandra
 
       # ...other tools
     ];
-    extraLuaConfig = 
-    let
+    extraLuaConfig = let
       plugins = with pkgs.vimPlugins; [
         # LazyVim
         LazyVim
@@ -64,23 +73,48 @@
         vim-illuminate
         vim-startuptime
         which-key-nvim
-        { name = "LuaSnip"; path = luasnip; }
-        { name = "catppuccin"; path = catppuccin-nvim; }
-        { name = "mini.ai"; path = mini-nvim; }
-        { name = "mini.bufremove"; path = mini-nvim; }
-        { name = "mini.comment"; path = mini-nvim; }
-        { name = "mini.indentscope"; path = mini-nvim; }
-        { name = "mini.pairs"; path = mini-nvim; }
-        { name = "mini.surround"; path = mini-nvim; }
+        {
+          name = "LuaSnip";
+          path = luasnip;
+        }
+        {
+          name = "catppuccin";
+          path = catppuccin-nvim;
+        }
+        {
+          name = "mini.ai";
+          path = mini-nvim;
+        }
+        {
+          name = "mini.bufremove";
+          path = mini-nvim;
+        }
+        {
+          name = "mini.comment";
+          path = mini-nvim;
+        }
+        {
+          name = "mini.indentscope";
+          path = mini-nvim;
+        }
+        {
+          name = "mini.pairs";
+          path = mini-nvim;
+        }
+        {
+          name = "mini.surround";
+          path = mini-nvim;
+        }
       ];
       mkEntryFromDrv = drv:
-        if lib.isDerivation drv then
-          { name = "${lib.getName drv}"; path = drv; }
-        else
-          drv;
+        if lib.isDerivation drv
+        then {
+          name = "${lib.getName drv}";
+          path = drv;
+        }
+        else drv;
       lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-    in
-    ''
+    in ''
       require("lazy").setup({
         defaults = {
           lazy = true,
@@ -107,24 +141,26 @@
         },
       })
     '';
-  }; 
+  };
+
   # https://github.com/nvim-treesitter/nvim-treesitter#i-get-query-error-invalid-node-type-at-position
-  xdg.configFile."nvim/parser".source =
-    let
-      parsers = pkgs.symlinkJoin {
-        name = "treesitter-parsers";
-        paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: with plugins; [
-          c
-          lua
-        ])).dependencies;
-      };
-    in
-    "${parsers}/parser";
+  xdg.configFile."nvim/parser".source = let
+    parsers = pkgs.symlinkJoin {
+      name = "treesitter-parsers";
+      paths =
+        (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
+          with plugins; [
+            c
+            lua
+          ])).dependencies;
+    };
+  in "${parsers}/parser";
 
   # Normal LazyVim config here, see https://github.com/LazyVim/starter/tree/main/lua
   xdg.configFile."nvim/lua".source = ./lua;
 }
-    # nixCats will handle plugins and LazyVim setup
-  };
-}
+#     # nixCats will handle plugins and LazyVim setup
+#   };
+# }
+#
 

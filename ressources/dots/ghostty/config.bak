@@ -1,0 +1,4 @@
+window-decoration = false
+background-opacity = 0.90
+background-blur = 12
+confirm-close-surface = false

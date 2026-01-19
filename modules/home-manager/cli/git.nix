@@ -9,9 +9,15 @@
       lfs.enable = true;
       settings = {
         user = {
-          # name = "${HOSTNAME}";
-          email = "maynoshinseikatsu@gmail.com";
+          name = "maike";
+          # email = "maynoshinseikatsu@gmail.com";
         };
+        config = {
+          push = {autoSetupRemote = true;};
+        };
+        # extraConfig = {
+        #   init.defaultBranch = "main";
+        # };
       };
     };
   };

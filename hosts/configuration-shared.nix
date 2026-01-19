@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  system,
   ...
 }: let
   _base00 =
@@ -22,6 +21,7 @@ in {
     ../modules/nixos/config/kanata.nix
     ../modules/nixos/config/stylix.nix
     ../modules/nixos/config/matugen.nix
+    ../modules/nixos/config/boot.nix
     ../modules/nixos/config/sddm-astronaut-theme.nix
     ../modules/nixos/pkgs/hyprland.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
@@ -278,9 +278,6 @@ in {
     # libsForQt5.plasma-bigscreen
     ollama
     # lmstudio
-    kodi-wayland
-    kodiPackages.inputstream-adaptive
-    kodiPackages.youtube
 
     freerdp
     iptables

@@ -7,6 +7,7 @@ binds {
     Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
     Super+A { spawn "sherlock"; }
     Super+T { spawn "foot"; }
+    Super+Shift+T { spawn "ghostty"; }
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "dolphin"; }

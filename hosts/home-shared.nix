@@ -16,13 +16,6 @@
     # inputs.stylix.homeModules.stylix
   ];
 
-  # programs.kodi = {
-  #   enable = true;
-  #   settings = {};
-  #   sources = {};
-  #   addonSettings = {};
-  # };
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

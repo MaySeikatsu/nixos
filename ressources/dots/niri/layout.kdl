@@ -15,6 +15,19 @@
 layout {
     gaps 10
     // gaps -10
+    struts {
+        // left 15
+        // right 15
+        // top 15
+        // bottom 15
+ 
+        left 10
+        right 10
+        top 10
+        bottom 10
+    }
+
+  // center-focused-column "never"
 
     center-focused-column "never"
     // center-focused-column "always"
@@ -109,17 +122,4 @@ layout {
         color "#ffc87f80"
         // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to=" "main"workspace-view"
     }
-    struts {
-        // left 15
-        // right 15
-        // top 15
-        // bottom 15
- 
-        left 10
-        right 10
-        top 10
-        bottom 10
-    }
-
-  // center-focused-column "never"
 }
