@@ -22,5 +22,6 @@
     ani-cli
     taskwarrior-tui
     # cool-retro-term
+    gitlogue
   ];
 }

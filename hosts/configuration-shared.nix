@@ -213,6 +213,7 @@ in {
     # lan-mouse
     remmina # rdp client
     waytrogen # rust based wallpaper changer
+    mpv
     # matugen # rust
     wallust # rust
     quickshell
@@ -232,6 +233,7 @@ in {
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
+    anki-bin
     rose-pine-gtk-theme
     rose-pine-icon-theme
     spotify

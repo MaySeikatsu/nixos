@@ -10,7 +10,7 @@ binds {
     Super+Shift+T { spawn "ghostty"; }
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
-    Mod+E { spawn "dolphin"; }
+    Mod+E { spawn "nautilus"; }
     Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
     Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
     Super+Q { close-window; }

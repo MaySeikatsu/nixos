@@ -2,6 +2,7 @@
   # programs.sherlock.settings = null; # set this if settings should not be symlinked to nix store
   programs.sherlock = {
     enable = true;
+    systemd.enable = true;
     settings = {
       aliases = {vesktop = {name = "Discord";};};
       launchers = [
@@ -42,10 +43,12 @@
         #   # gsk_renderer = "ngl"; #default is cairo
         # };
         behavior = {
+          # daemonize = true;
           daemonize = false;
           caching = true;
           cache = "~/.cache/sherlock/sherlock_desktop_cache.json";
-          animate = false;
+          # animate = false;
+          animate = true;
         };
         # units = {
         #   lengths = "meter";
@@ -61,5 +64,25 @@
       #   Avahi*
       # '';
     };
+    # launchers = [
+    #   {
+    #     name = "Calculator";
+    #     type = "calculation";
+    #     args = {
+    #       capabilities = [
+    #         "calc.math"
+    #         "calc.units"
+    #       ];
+    #     };
+    #     priority = 1;
+    #   }
+    #   {
+    #     name = "App Launcher";
+    #     type = "app_launcher";
+    #     args = {};
+    #     priority = 2;
+    #     home = "Home";
+    #   }
+    # ];
   };
 }

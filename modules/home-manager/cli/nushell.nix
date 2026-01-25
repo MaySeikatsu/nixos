@@ -20,6 +20,7 @@
       gC = "git checkout";
       gm = "git merge";
       gr = "git rebase";
+      gl = "git log";
     };
 
     settings = {

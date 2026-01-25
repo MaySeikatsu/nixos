@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ./hyprland/default.nix
     ./hyprland_utils/default.nix
@@ -8,6 +8,7 @@
     ./qs-caelestia.nix
     ./rofi.nix
     ./wofi.nix
+    # ./walker.nix
     ./sherlock-launcher.nix
     # ./ironbar.nix
   ];

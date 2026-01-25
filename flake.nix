@@ -64,6 +64,10 @@
       url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tagstudio = {
+      url = "github:TagStudioDev/TagStudio";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # qs-illogical-flake = {
     #   url = "github:soymou/illogical-flake";

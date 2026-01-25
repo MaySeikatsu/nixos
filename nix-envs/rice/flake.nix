@@ -16,10 +16,10 @@
     devShells.${system} = {
       default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          #fun cli tools:
           fastfetch
           # macchina # neofetch alt rust
           cava
+          cavalier
           cbonsai
           pipes-rs
           cmatrix
@@ -27,17 +27,20 @@
           lolcat
           # steam-tui
           discordo # discord cli client
+          bluetui
           spotify-player
           reddix
+          youtube-tui
+          mpv
+          yt-dlp
           # ytui-music
           manga-tui
           ani-cli
           taskwarrior-tui
-          bluetui
-
-          # gui tools
-          cavalier
-          # add packages here
+          # cool-retro-term
+          gitlogue
+          netscanner
+          impala
         ];
       };
     };

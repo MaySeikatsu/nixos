@@ -1,3 +1,6 @@
+# Instead you could also use crane:
+# Start with a comprehensive suite of tests
+# nix flake init -t github:ipetkov/crane#quick-start
 {
   #run with nix develop ~/.config/nixos/nix-envs/dev/#rust (or any other possible variation)
   description = "osu! development environment";
