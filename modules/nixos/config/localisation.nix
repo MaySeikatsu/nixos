@@ -33,8 +33,17 @@
         addons = with pkgs; [
           fcitx5-mozc
           fcitx5-gtk
+          kdePackages.fcitx5-qt
+          fcitx5-fluent
         ];
       };
     };
+  };
+  # To fix anki issue of not displaying fcitx5 input methods (works if started via zsh with export in terminal)
+  environment.sessionVariables = {
+    # GTK_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "wayland";
+    XMODIFIERS = "@im=fcitx";
+    QT_IM_MODULE = "fcitx";
   };
 }

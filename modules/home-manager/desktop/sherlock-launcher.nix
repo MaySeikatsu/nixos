@@ -42,14 +42,14 @@
         #   opacity = 0.9;
         #   # gsk_renderer = "ngl"; #default is cairo
         # };
-        behavior = {
-          # daemonize = true;
-          daemonize = false;
-          caching = true;
-          cache = "~/.cache/sherlock/sherlock_desktop_cache.json";
-          # animate = false;
-          animate = true;
-        };
+        # behavior = {
+        #   # daemonize = true;
+        #   daemonize = false;
+        #   caching = true;
+        #   cache = "~/.cache/sherlock/sherlock_desktop_cache.json";
+        #   # animate = false;
+        #   animate = true;
+        # };
         # units = {
         #   lengths = "meter";
         # };
