@@ -13,12 +13,12 @@
   };
 
   services = {
-    # system76-scheduler = {
-    #   enable =
-    #     true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
-    #   settings.cfsProfiles.enable =
-    #     true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
-    # };
+    system76-scheduler = {
+      enable =
+        true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
+      settings.cfsProfiles.enable =
+        true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+    };
     power-profiles-daemon.enable = true;
 
     upower.enable =

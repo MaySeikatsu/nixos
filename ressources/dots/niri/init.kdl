@@ -12,6 +12,8 @@ spawn-at-startup "plasma-polkit-agent"
 spawn-at-startup "ticktick"
 spawn-at-startup "obsidian"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
+// spawn-sh-at-startup "sh" "-c" "system76-scheduler-niri"
+spawn-at-startup "system76-scheduler-niri"
 
 
 spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"

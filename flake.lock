@@ -502,6 +502,7 @@
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "sysc-greet": "sysc-greet",
+        "system76-scheduler-niri": "system76-scheduler-niri",
         "tagstudio": "tagstudio",
         "textfox": "textfox",
         "zen-browser": "zen-browser"
@@ -580,6 +581,26 @@
       "original": {
         "owner": "Nomadcxx",
         "repo": "sysc-greet",
+        "type": "github"
+      }
+    },
+    "system76-scheduler-niri": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769878625,
+        "narHash": "sha256-cOLzS70XjXcxPi4vkTjbvSBOZ5o+CmzkLXX/AgtJMRQ=",
+        "owner": "kirottu",
+        "repo": "system76-scheduler-niri",
+        "rev": "9fe30d78748bd8f655c3f8ec8b3ce8cd25577182",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kirottu",
+        "repo": "system76-scheduler-niri",
         "type": "github"
       }
     },

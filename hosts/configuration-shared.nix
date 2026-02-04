@@ -195,7 +195,7 @@ in {
   networking.networkmanager.enable = true; # Enable networking
   networking.firewall.enable = true;
   # adjust to use a different kernel version
-  # boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
+  boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
 
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
@@ -222,6 +222,7 @@ in {
     quickshell
     noctalia-shell
     # dms-shell # dank-material-shell
+    inputs.system76-scheduler-niri.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default

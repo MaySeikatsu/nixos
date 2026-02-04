@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    system76-scheduler-niri = {
+      url = "github:kirottu/system76-scheduler-niri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Flake Inputs:
     zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
@@ -142,6 +146,7 @@
     # qs-caelestia-shell,
     # qs-caelestia-cli,
     sysc-greet,
+    system76-scheduler-niri,
     # matugen,
     # sddm-sugar-candy-nix,
     # nuls,
