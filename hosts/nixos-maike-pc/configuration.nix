@@ -94,6 +94,7 @@
   # INSTALL NVIDIA DRIVERS
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
+  # hardware.graphics.enable = true;
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;

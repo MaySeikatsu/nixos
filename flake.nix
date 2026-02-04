@@ -5,6 +5,7 @@
   inputs = {
     # Nixpkgs source and home-manager
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +15,10 @@
     # Flake Inputs:
     zen-browser.url = "github:0xc000022070/zen-browser-flake"; # or emmi version: zen-browser.url = "./packages/home-manager/zen-browser";
     nixcord.url = "github:kaylorben/nixcord";
-    textfox.url = "github:adriankarlen/textfox";
+    textfox = {
+      url = "github:adriankarlen/textfox";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,38 +32,18 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # sddm-astronaut-theme = {
-    #   url = "path:./ressources/sddm-astronaut-theme";
-    #   # url = "github:MaySeikatsu/sddm-astronaut-theme";
+    # matugen = {
+    #   url = "github:InioX/Matugen";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
     # };
-    sddm-sugar-candy-nix = {
-      url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
-      inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
-    };
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mistral-vibe = {
-      url = "github:mistralai/mistral-vibe";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    matugen = {
-      url = "github:InioX/Matugen";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-    qs-caelestia-shell = {
-      url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    qs-caelestia-cli = {
-      url = "github:caelestia-dots/cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nuls = {
-      url = "github:MaySeikatsu/nuls";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # qs-caelestia-shell = {
+    #   url = "github:caelestia-dots/shell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # qs-caelestia-cli = {
+    #   url = "github:caelestia-dots/cli";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     sysc-greet = {
       url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +52,25 @@
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # CURRENTLY UNUSED FLAKE IMPORTS
 
+    # sddm-astronaut-theme = {
+    #   url = "path:./ressources/sddm-astronaut-theme";
+    #   # url = "github:MaySeikatsu/sddm-astronaut-theme";
+    # };
+    # sddm-sugar-candy-nix = {
+    #   url = "gitlab:Zhaith-Izaliel/sddm-sugar-candy-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs"; # Optional, by default this flake follows nixpkgs-unstable.
+    # };
+    # astal = {
+    #   url = "github:aylur/astal";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # nuls = {
+    #   url = "github:MaySeikatsu/nuls";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    # illogical-flake.url = "github:celesrenata/end-4-flakes";
     # qs-illogical-flake = {
     #   url = "github:soymou/illogical-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -83,24 +85,15 @@
     #   url = "github:Jas-SinghFSU/HyprPanel";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
     # millennium = {
     #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
     # };
-
     # quickshell = {
     #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
     # qs-dankmaterial= {
     #   url = "github:AvengeMedia/danklinux";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # qs-noctalia = {
-    #   url = "github:noctalia-dev/noctalia-shell";
-    #   # url =
-    #   #   "github:MaySeikatsu/noctalia-shell-wallust?ref=orig_settings_adjust";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
     # qs-retroism = {
@@ -115,8 +108,6 @@
     #   url = "github:winapps-org/winapps";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-
-    # CURRENTLY UNUSED FLAKE IMPORTS
     # hyprddm.url = "github:maotseantonio/hyprddm";
     # nixCats-nvim.url = "github:BirdeeHub/nixCats-nvim";
     # hyprscroller = {
@@ -140,22 +131,21 @@
   outputs = {
     self,
     nixpkgs,
-    zen-browser,
     home-manager,
     flake-utils,
+    zen-browser,
     spicetify-nix,
     nixcord,
-    matugen,
     stylix,
     textfox,
     niri,
-    sddm-sugar-candy-nix,
-    astal,
-    qs-caelestia-shell,
-    qs-caelestia-cli,
-    mistral-vibe,
-    nuls,
+    # qs-caelestia-shell,
+    # qs-caelestia-cli,
     sysc-greet,
+    # matugen,
+    # sddm-sugar-candy-nix,
+    # nuls,
+    # astal,
     # qs-illogical-flake,
     # nvix,
     # qs-noctalia,
@@ -194,8 +184,8 @@
           # Nix Modules
           inputs.spicetify-nix.nixosModules.default
           inputs.stylix.nixosModules.stylix
-          matugen.nixosModules.default
-          sddm-sugar-candy-nix.nixosModules.default
+          # matugen.nixosModules.default
+          # sddm-sugar-candy-nix.nixosModules.default
           sysc-greet.nixosModules.default
           # nixCats-nvim.nixosModules.default
 
@@ -212,7 +202,7 @@
               })
 
               # inputs.hyprpanel.overlay
-              sddm-sugar-candy-nix.overlays.default
+              # sddm-sugar-candy-nix.overlays.default
               # inputs.millennium.overlays.default
               # inputs.millennium.overlays.millennium
             ];
@@ -256,8 +246,8 @@
           # Nix Modules
           inputs.spicetify-nix.nixosModules.default
           inputs.stylix.nixosModules.stylix
-          matugen.nixosModules.default
-          sddm-sugar-candy-nix.nixosModules.default
+          # matugen.nixosModules.default
+          # sddm-sugar-candy-nix.nixosModules.default
           sysc-greet.nixosModules.default
           # nixCats-nvim.nixosModules.default
 
@@ -275,7 +265,7 @@
               })
 
               # inputs.hyprpanel.overlay
-              sddm-sugar-candy-nix.overlays.default
+              # sddm-sugar-candy-nix.overlays.default
               # inputs.millennium.overlays.default
               # inputs.millennium.overlays.millennium
             ];

@@ -3,6 +3,7 @@
     ./btop.nix
     ./bacon.nix
     ./cava.nix
+    ./emacs.nix
     ./fzf.nix
     ./helix.nix
     ./lazygit.nix

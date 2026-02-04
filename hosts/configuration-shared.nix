@@ -20,12 +20,12 @@ in {
     ../modules/nixos/config/niri.nix
     ../modules/nixos/config/kanata.nix
     ../modules/nixos/config/stylix.nix
-    ../modules/nixos/config/matugen.nix
     ../modules/nixos/config/boot.nix
     ../modules/nixos/config/sddm-astronaut-theme.nix
     ../modules/nixos/pkgs/hyprland.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
+    # ../modules/nixos/config/matugen.nix
     # ../modules/nixos/pkgs/terminal/rice.nix
     # ../modules/nixos/pkgs/audio_engineering.nix
     ../modules/home-manager/theming/spicetify.nix
@@ -194,7 +194,8 @@ in {
 
   networking.networkmanager.enable = true; # Enable networking
   networking.firewall.enable = true;
-  #boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
+  # adjust to use a different kernel version
+  # boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
 
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
@@ -215,15 +216,17 @@ in {
     waytrogen # rust based wallpaper changer
     mpv
     # matugen # rust
+    # mochi
+    # mise
     wallust # rust
     quickshell
     noctalia-shell
     # dms-shell # dank-material-shell
-    inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.nuls.packages.${stdenv.hostPlatform.system}.default
-    inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.qs-caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.mistral-vibe.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.nuls.packages.${stdenv.hostPlatform.system}.default
+    # inputs.matugen.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -241,9 +244,9 @@ in {
     openlinkhub
     hyperion-ng # not working yet
 
-    easyeffects
     pomodoro
     swww
+    mistral-vibe
     # hellwal
     # gtk3
     # gnome.adwaita-icon-theme

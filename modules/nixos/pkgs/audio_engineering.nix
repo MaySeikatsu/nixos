@@ -1,7 +1,10 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    easyeffects
+
     reaper
-    tenacity
+    audacity
+    # tenacity
     # yabridge
     ardour
     # audacity

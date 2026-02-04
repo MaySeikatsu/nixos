@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 # Documentation: https://github.com/Zhaith-Izaliel/sddm-sugar-candy-nix
 {
   services.displayManager.sddm = {
@@ -18,10 +23,10 @@
         # ...
       };
     };
-      # extraPackages = with pkgs; [
-      # kdePackages.qtmultimedia
-      # kdePackages.qtsvg
-      # kdePackages.qtvirtualkeyboard
-    ];
+    # extraPackages = with pkgs; [
+    # kdePackages.qtmultimedia
+    # kdePackages.qtsvg
+    # kdePackages.qtvirtualkeyboard
+    # ];
   };
 }

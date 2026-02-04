@@ -64,7 +64,7 @@
     homeDirectory = "/home/maike";
     stateVersion = "24.11"; # Please read the comment before changing.
     packages = [
-      pkgs.hyprpanel
+      # pkgs.hyprpanel
       # pkgs.anyrun
       # pkgs.jetbrains.rider
       # # It is sometimes useful to fine-tune packages, for example, by applying overrides. You can do that directly here, just don't forget the parentheses. Maybe you want to install Nerd Fonts with a limited number of fonts?

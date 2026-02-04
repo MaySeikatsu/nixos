@@ -13,7 +13,7 @@
 
     # Gysc-greet - needs flake installed
     sysc-greet = {
-      enable = false;
+      enable = true;
       compositor = "niri"; # or "hyprland" or "sway"
       settings = {
         theme = "TransIsHardJob";

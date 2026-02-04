@@ -4,9 +4,7 @@
   inputs,
   lib,
   ...
-}:
-
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./../configuration-shared.nix
@@ -38,18 +36,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable the X11 windowing system.
-
-  # Enable Custom SDDM Theme in sddm-theme config
-  # Trying to get astronaut sddm theme working
-  # services.xserver = {
-  #   enable = true;
-  #   displayManager = {
-  #     sddm.enable = true;
-  #     sddm.theme = "${import ../../pkgs/sddm-astronaut-theme.nix { inherit pkgs; }}";
-  #   };
-  # };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   # to search for pkgs do nix search nixpkgs $name
@@ -57,11 +43,10 @@
     # would be pkgs.packagename without the with pkgs;
     lenovo-legion
     # inputs.legionrgb
-
   ];
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     # backupFileExtension = "bak";
     users = {
       "maike" = import ./home.nix;
@@ -102,10 +87,9 @@
 
   ## ENABLE NVIDIA
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-
     # Modesetting is required.
     modesetting.enable = true;
     videoAcceleration = false;
@@ -191,7 +175,7 @@
     #   };
     # };
     no-nvidia.configuration = {
-      system.nixos.tags = [ "no-nvidia" ];
+      system.nixos.tags = ["no-nvidia"];
       powerManagement.cpuFreqGovernor = "powersave"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
 
       #  DISABLE NVIDIA
