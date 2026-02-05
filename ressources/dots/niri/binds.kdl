@@ -5,7 +5,10 @@ binds {
 
     // Super+Escape { spawn "hyprlock"; }
     Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
-    Super+A { spawn "sherlock"; }
+    // Super+A { spawn "sherlock"; }
+    Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
+    Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim nvim ~/Documents/obsidian/"; }
+    Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim nvim ~/.config/nixos/"; }
     Super+T { spawn "foot"; }
     Super+Shift+T { spawn "ghostty"; }
     Mod+Y { spawn "zen-twilight"; }

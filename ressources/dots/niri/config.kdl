@@ -118,12 +118,6 @@ window-rule {
     opacity 0.960000
 }
 
-workspace "orga"
-workspace "entertainment" // { open-on-output "Vertical monitor pls" }
-workspace "main" //browser
-// workspace "music"
-// workspace "dev" // maybe merge browser and dev?
-workspace "work"
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
@@ -152,12 +146,36 @@ window-rule {
 //     match at-startup=true app-id=r#"^org\.gnome\.Fractal$"#
 //     open-on-workspace "chat"
 // }
+workspace "orga"
+workspace "entertainment" // { open-on-output "Vertical monitor pls" }
+workspace "main" //browser
+// workspace "music"
+// workspace "dev" // maybe merge browser and dev?
+workspace "work"
+
+window-rule {
+  match title="fsel-launcher"
+  open-floating true
+  opacity 0.960000
+  // default-window-height {proportion 0.25}
+  // default-column-width {proportion 0.25}
+  focus-ring {
+    off
+    // width 2
+  }
+  shadow {
+    on
+  }
+}
+
 window-rule {
     // match at-startup=true app-id="obsidian"
     // match at-startup=true app-id="ticktick"
     match app-id="obsidian"
     match app-id="ticktick"
     match app-id="todoist"
+    match title="obsidian-nvim"
+    // open-focused true
     open-on-workspace "orga"
 }
 window-rule {

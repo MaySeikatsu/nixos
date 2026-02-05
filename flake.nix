@@ -56,6 +56,11 @@
       url = "github:TagStudioDev/TagStudio";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fsel = {
+      url = "github:mjoyufull/fsel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     # CURRENTLY UNUSED FLAKE IMPORTS
 
     # sddm-astronaut-theme = {
@@ -88,9 +93,6 @@
     # hyprpanel = {
     #   url = "github:Jas-SinghFSU/HyprPanel";
     #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # millennium = {
-    #   url = "git+https://github.com/SteamClientHomebrew/Millennium";
     # };
     # quickshell = {
     #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
@@ -157,7 +159,6 @@
     # winboat
     # claude-desktop,
     # winapps
-    # millennium
     # qs-retroism
     # ironbar
     # hyprpanel,
@@ -196,6 +197,8 @@
 
           {
             nixpkgs.overlays = [
+              # inputs.millennium.overlays.default
+
               (final: prev: {
                 inherit
                   (prev.lixPackageSets.stable)
@@ -259,6 +262,8 @@
           #Overlays (?)
           {
             nixpkgs.overlays = [
+              # inputs.millennium.overlays.default
+
               (final: prev: {
                 inherit
                   (prev.lixPackageSets.stable)
