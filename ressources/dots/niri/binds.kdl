@@ -7,8 +7,8 @@ binds {
     Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
     // Super+A { spawn "sherlock"; }
     Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
-    Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim nvim ~/Documents/obsidian/"; }
-    Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim nvim ~/.config/nixos/"; }
+    Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim ."; }
+    Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim -D ~/.config/nixos/ nvim ."; }
     Super+T { spawn "foot"; }
     Super+Shift+T { spawn "ghostty"; }
     Mod+Y { spawn "zen-twilight"; }

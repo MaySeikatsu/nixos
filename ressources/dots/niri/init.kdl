@@ -11,7 +11,7 @@ spawn-at-startup "plasma-polkit-agent"
 // spawn-at-startup "zen-twilight"
 spawn-at-startup "ticktick"
 spawn-at-startup "obsidian"
-spawn-at-startup "sh" "-c" "foot --title obsidian-nvim nvim ~/Documents/obsidian/";
+spawn-at-startup "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim .";
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
 // spawn-sh-at-startup "sh" "-c" "system76-scheduler-niri"
 spawn-at-startup "system76-scheduler-niri"

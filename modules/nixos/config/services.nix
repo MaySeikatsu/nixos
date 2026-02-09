@@ -25,7 +25,7 @@
       config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
     # Enable the KDE Plasma Desktop Environment.
     desktopManager = {
-      plasma6.enable = false;
+      plasma6.enable = true;
       cosmic.enable = false;
       gnome.enable = false;
     };
