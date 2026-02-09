@@ -156,6 +156,7 @@ workspace "work"
 window-rule {
   match title="fsel-launcher"
   open-floating true
+  // baba-is-float true
   opacity 0.960000
   // default-window-height {proportion 0.25}
   // default-column-width {proportion 0.25}

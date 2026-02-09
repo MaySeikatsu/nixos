@@ -1,7 +1,7 @@
 {...}: {
   # programs.sherlock.settings = null; # set this if settings should not be symlinked to nix store
   programs.sherlock = {
-    enable = true;
+    enable = false;
     systemd.enable = true;
     settings = {
       aliases = {vesktop = {name = "Discord";};};
