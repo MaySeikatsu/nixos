@@ -251,6 +251,9 @@ in {
     mistral-vibe
     # hellwal
     # gtk3
+    adw-gtk-theme #GTK Theming
+    nwg-look
+    qt6ct #QT Theming
     # gnome.adwaita-icon-theme
 
     krita
