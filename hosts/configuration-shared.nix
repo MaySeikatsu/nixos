@@ -251,9 +251,11 @@ in {
     mistral-vibe
     # hellwal
     # gtk3
-    adw-gtk-theme #GTK Theming
+    adw-gtk3
+    matcha-gtk-theme #GTK Theming
+    # matcha-gtk-theme #GTK Theming
     nwg-look
-    qt6ct #QT Theming
+    kdePackages.qt6ct #QT Theming
     # gnome.adwaita-icon-theme
 
     krita

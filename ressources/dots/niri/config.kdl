@@ -294,6 +294,7 @@ environment {
     // DISPLAY null //or :0
     CLUTTER_BACKEND "wayland"
     QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
     "ELM_DISPLAY" "wl"
     "GDK_BACKEND" "wayland,x11"
     "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"
