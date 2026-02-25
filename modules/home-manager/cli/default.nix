@@ -13,6 +13,7 @@
     ./nushell.nix
     ./starship.nix
     # ./kubernetes.nix
+    ./weathr.nix
     ./yazi.nix
     ./zellij.nix
     ./zsh.nix

@@ -209,6 +209,21 @@ in {
   #   XRT_COMPOSITOR_COMPUTE = "1";
   # };
 
+  # programs.uwsm.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      # pkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-kde
+      pkgs.gnome-keyring
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     # deskflow
     # lan-mouse
@@ -221,6 +236,7 @@ in {
     wallust # rust
     quickshell
     noctalia-shell
+    qjackctl
     # dms-shell # dank-material-shell
     inputs.system76-scheduler-niri.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -238,6 +254,7 @@ in {
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme
@@ -253,11 +270,11 @@ in {
     # gtk3
     adw-gtk3
     matcha-gtk-theme #GTK Theming
-    # matcha-gtk-theme #GTK Theming
-    nwg-look
+    nwg-look # GTK Themeset
     kdePackages.qt6ct #QT Theming
     # gnome.adwaita-icon-theme
 
+    voicevox
     krita
     godot_4
     blender
@@ -270,12 +287,12 @@ in {
     microsoft-edge
     # vivaldi
     # gimp
-    gimp-with-plugins # broke on last update - reanable and troubleshoot
-    # davinci-resolve
+    gimp-with-plugins
+    davinci-resolve
+    kdePackages.kdenlive
     poppler
     base16-schemes
-    # darktable #like lightroom
-    # tidal-hifi
+    darktable #like lightroom
 
     # For Dolphin without KDE Plasma
     kdePackages.dolphin

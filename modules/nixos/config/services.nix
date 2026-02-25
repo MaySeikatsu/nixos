@@ -18,6 +18,7 @@
         true; # without this the setting below would not apply - remove if battery life stays impacted negativly on BAT
       settings.cfsProfiles.enable =
         true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
+      # settings.processScheduler.pipewireBoost.enable = true;
     };
     power-profiles-daemon.enable = true;
 
@@ -27,7 +28,7 @@
     desktopManager = {
       plasma6.enable = true;
       cosmic.enable = false;
-      gnome.enable = false;
+      gnome.enable = true;
     };
 
     displayManager = {
@@ -59,8 +60,12 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
+      jack.enable = true;
+
+      # For Screensharing Support:
+      # media-session.enable = true; # Required for Screenshare (Discord, OBS, Teams) #out of date use wrieplumber
+      # x11.enable = true; # For XWayland Share/Apps
+      wireplumber.enable = true; # For Device Management
     };
     xserver = {
       # enable = true;

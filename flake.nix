@@ -27,6 +27,10 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spotatui = {
+      url = "github:mayseikatsu/spotatui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +64,7 @@
       url = "github:mjoyufull/fsel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    weathr.url = "github:Veirt/weathr";
     # millennium.url = "github:SteamClientHomebrew/Millennium?dir=packages/nix";
     # CURRENTLY UNUSED FLAKE IMPORTS
 

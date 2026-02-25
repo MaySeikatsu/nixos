@@ -81,6 +81,8 @@
     terraform-local
 
     terraform
+    tflint
+    jq
     terragrunt
     terraformer
     terraform-ls

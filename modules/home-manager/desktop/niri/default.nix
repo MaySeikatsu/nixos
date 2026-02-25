@@ -30,26 +30,21 @@
       ../../../../ressources/dots/niri/animations.kdl;
 
     packages = with pkgs; [
+      xdg-desktop-portal-wlr #for wayland screenshare
+      xwayland-satellite
+      qt6.qtwayland
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
       # gnome-keyring
-      xwayland-satellite
-      qt6.qtwayland
       # plasma-polkit-agent # check if needed
       # mako # notification agent
-      # seatd
-      # jaq
-      # brillo
-      # wl-clip-persist
-      # cliphist
-      # wl-clipboard
-      # gnome-control-center
-      # catppuccin-cursors.mochaGreen
     ];
     sessionVariables = {
-      #      QT_QPA_PLATFORMTHEME = "kvantum";
+      # QT_QPA_PLATFORMTHEME = "kvantum";
       # QT_STYLE_OVERRIDE = "kvantum";
       XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "niri";
+      XDG_CURRENT_DESKTOP = "niri";
     };
   };
 }
