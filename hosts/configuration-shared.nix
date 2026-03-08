@@ -288,11 +288,12 @@ in {
     # vivaldi
     # gimp
     gimp-with-plugins
-    davinci-resolve
-    kdePackages.kdenlive
     poppler
+    davinci-resolve
+    # kdePackages.kdenlive
     base16-schemes
     darktable #like lightroom
+    # rawtherapee
 
     # For Dolphin without KDE Plasma
     kdePackages.dolphin

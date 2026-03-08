@@ -22,6 +22,11 @@
   # };
 
   #Enable Hibernate
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = true;
+    AllowHibernation = true;
+    # allowExternalGpu = true;
+  };
   systemd.sleep.extraConfig = ''
     AllowSuspend = yes
     AllowHibernation = yes

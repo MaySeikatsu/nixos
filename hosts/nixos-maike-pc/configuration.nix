@@ -25,10 +25,11 @@
   };
 
   #Enable Hibernate
-  systemd.sleep.extraConfig = ''
-    AllowSuspend = yes
-    AllowHibernation = yes
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = true;
+    AllowHibernation = true;
+    # allowExternalGpu = true;
+  };
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
 

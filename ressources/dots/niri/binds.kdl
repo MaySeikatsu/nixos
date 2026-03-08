@@ -15,6 +15,7 @@ binds {
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "nautilus"; }
     Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
+    Mod+Shift+B { spawn "sh" "-c" "noctalia-shell ipc call bar toggle"; }
     Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
     Super+Q { close-window; }
 

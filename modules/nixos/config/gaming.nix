@@ -15,8 +15,8 @@
         enable = true; # allows to boot directly into the steamdeck / big picture mode
       };
       extraPackages = with pkgs; [
-        wineWowPackages.stable
-        wineWowPackages.waylandFull
+        wineWow64Packages.stable
+        wineWow64Packages.waylandFull
         winetricks
         protontricks
         # protonup-ng
