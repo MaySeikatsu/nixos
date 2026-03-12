@@ -27,10 +27,6 @@
     AllowHibernation = true;
     # allowExternalGpu = true;
   };
-  systemd.sleep.extraConfig = ''
-    AllowSuspend = yes
-    AllowHibernation = yes
-  '';
 
   networking.hostName = "nixos-legion"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
