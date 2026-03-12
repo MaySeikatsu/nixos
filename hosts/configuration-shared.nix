@@ -225,6 +225,9 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    tailscale
+    protonvpn-gui
+    proton-vpn-cli
     # deskflow
     # lan-mouse
     remmina # rdp client

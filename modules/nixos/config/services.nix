@@ -24,6 +24,12 @@
 
     upower.enable =
       config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
+
+    tailscale = {
+      enable = true;
+      extraDaemonFlags = ["--no-logs-no support"];
+    };
+
     # Enable the KDE Plasma Desktop Environment.
     desktopManager = {
       plasma6.enable = true;
