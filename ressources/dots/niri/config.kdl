@@ -186,8 +186,9 @@ window-rule {
     match app-id="Element" //    default-column-width { proportion 40; }
     match app-id="BeeperTexts" //    default-column-width { proportion 40; }
     match app-id="steam"
-    open-on-workspace "entertainment"
+    match title="spotify-tui"
 
+    open-on-workspace "entertainment"
 }
 // window-rule {
 //     match at-startup=true app-id="foot"
@@ -201,6 +202,7 @@ window-rule {
 window-rule {
   match at-startup=true app-id="tidal-hifi"
   match at-startup=true app-id="spotify"
+  // match at-startup=true title="spotify-tui"
   open-on-workspace "music"
   open-on-output "PNP(AOP) 25XV2Q F 11470AAAA4200"
 }

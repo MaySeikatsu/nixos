@@ -30,7 +30,7 @@ in {
     # ../modules/nixos/pkgs/audio_engineering.nix
     ../modules/home-manager/theming/spicetify.nix
   ];
-
+  systemd.services."virt-secret-init-encryption".enable = false; # fix for bug, remove at next flake release
   xdg.mime = {
     enable = true;
     addedAssociations = {
@@ -255,6 +255,7 @@ in {
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
+    winboat
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme

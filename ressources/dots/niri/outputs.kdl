@@ -25,7 +25,7 @@
 // PC Home
 output "Microstep MAG 274URFW 0x00000001" {
     variable-refresh-rate // on-demand=true
-    scale 1.200000
+    scale 1.250000
     transform "normal"
     position x=0 y=0
     mode "3840x2160@143.851000"

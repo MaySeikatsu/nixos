@@ -36,10 +36,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.home-manager.follows = "home-manager";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # niri = {
+    #   url = "github:sodiboo/niri-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # matugen = {
     #   url = "github:InioX/Matugen";
     #   # inputs.nixpkgs.follows = "nixpkgs";
@@ -149,7 +149,7 @@
     nixcord,
     stylix,
     textfox,
-    niri,
+    # niri,
     # qs-caelestia-shell,
     # qs-caelestia-cli,
     sysc-greet,
