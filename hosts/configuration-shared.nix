@@ -277,10 +277,11 @@ in {
     nwg-look # GTK Themeset
     kdePackages.qt6ct #QT Theming
     # gnome.adwaita-icon-theme
+    # nvtopPackages.full
 
     voicevox
     krita
-    godot_4
+    godot
     blender
     libresprite
     aseprite
@@ -297,7 +298,7 @@ in {
     # kdePackages.kdenlive
     base16-schemes
     darktable #like lightroom
-    # rawtherapee
+    rawtherapee
 
     # For Dolphin without KDE Plasma
     kdePackages.dolphin

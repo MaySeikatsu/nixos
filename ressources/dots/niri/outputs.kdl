@@ -67,6 +67,11 @@ output "Samsung Electric Company QCQ90S 0x01000E00" {
     position x=-2560 y=0
     mode "2560x1440@59.951"
     // mode "2560x1600@60.002000"
-
+}
+output "Philips Consumer Electronics Company PHILIPS FTV 0x01010101" {
+    scale 1.500000
+    transform "normal"
+    // position x=-1080 y=0
+    mode "1920x1080@60.000"
 }
 // END TV 

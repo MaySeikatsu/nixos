@@ -17,7 +17,7 @@
       };
       tabs = {
         horizontal.enable = false;
-        vertical.sidebery.margin = "1.0rem";
+        # vertical.sidebery.margin = "1.0rem";
       };
       displayWindowControls = false;
       displayNavButtons = true;
