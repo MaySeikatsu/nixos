@@ -5,7 +5,7 @@
 }: {
   # sddm-astronaut-theme
   services.displayManager.sddm = {
-    enable = false;
+    enable = true;
     theme = "sddm-astronaut-theme"; # Must match package name
     # settings = {
     #   General = {

@@ -90,7 +90,12 @@
   # Optimising responsiveness
   powerManagement.cpuFreqGovernor = "performance"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
   # Load AMDGPU drivers for xorg
+
   # services.xserver.videoDrivers = ["amdgpu"];
+  # Enable OpenGL / AMD Drivers for internal GPU - just a test
+  hardware.graphics = {
+    enable = true;
+  };
 
   # INSTALL NVIDIA DRIVERS
   # Load nvidia driver for Xorg and Wayland
@@ -123,7 +128,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # prime = {
     #CHOSE ONE!

@@ -67,7 +67,9 @@ binds {
     Super+8 { focus-workspace 8; }
     Super+9 { focus-workspace 9; }
     Alt+Tab { focus-workspace-previous; }
+    // Mod+Tab { previous-window; }
     Mod+Tab repeat=false { toggle-overview; }
+
 
     Mod+Ctrl+1 { move-column-to-workspace 1; }
     Mod+Ctrl+2 { move-column-to-workspace 2; }

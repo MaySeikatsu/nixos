@@ -99,8 +99,8 @@
       alejandra
       rust-analyzer
       rustfmt
-      nodePackages.typescript-language-server
-      nodePackages.typescript
+      # nodePackages.typescript-language-server
+      # nodePackages.typescript
       terraform-ls
       yaml-language-server
       # taplo

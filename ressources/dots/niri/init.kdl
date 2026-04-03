@@ -1,7 +1,11 @@
 // Add lines like this to spawn processes at startup.
 hotkey-overlay { skip-at-startup; }
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "plasma-polkit-agent"
+spawn-at-startup "xwayland-satellite"
+xwayland-satellite {
+    // off
+    path "xwayland-satellite"
+}
 // spawn-sh-at-startup "swww-daemon &"
 // spawn-sh-at-startup "swww img  ~/.current-wallpaper"
 // spawn-sh-at-startup "~/.config/nixos/scripts/swww/swww_wallpapersync.sh"
@@ -12,16 +16,15 @@ spawn-at-startup "plasma-polkit-agent"
 spawn-at-startup "ticktick"
 spawn-at-startup "obsidian"
 spawn-at-startup "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim .";
-spawn-at-startup "sh" "-c" "foot --title spotify-tui spotatui";
+// spawn-at-startup "sh" "-c" "foot --title spotify-tui spotatui";
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
 // spawn-sh-at-startup "sh" "-c" "system76-scheduler-niri"
 spawn-at-startup "system76-scheduler-niri"
 spawn-at-startup "sh" "-c" "systemctl --user start xwayland-satellite.service"
 spawn-at-startup "sh" "-c" "xdg-desktop-portal-wlr || notify-send 'xdg-desktop-portal-wlr failed to start :/'" // for screenshare
 spawn-at-startup "sh" "-c" "systemctl --user start xdg-desktop-portal-wlr.service" // for screenshare
-spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome" // mask gnome portal to not interfere with wlroots portal
-spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gtk" // mask gnome portal to not interfere with wlroots portal
-
+// spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome" // mask gnome portal to not interfere with wlroots portal
+// spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gtk" // mask gnome portal to not interfere with wlroots portal
 
 spawn-at-startup "sh" "-c" "noctalia-shell"
 // spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
@@ -34,4 +37,3 @@ spawn-at-startup "sh" "-c" "noctalia-shell"
 // spawn-at-startup "sh" "-c" "sleep 3 && syncthingtray --wait"
 // spawn-at-startup "sh" "-c" "id=0"
 // spawn-at-startup "nm-applet"
-

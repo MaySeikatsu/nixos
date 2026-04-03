@@ -1,19 +1,20 @@
-{...}: {
+{ config, pkgs,...}: {
   services = {
     # Tuigreet
     # greetd = {
-    #   enable = true;
+    #   enable = false;
     #   settings = {
     #       default_session = {
-    #           command= "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri";
+    #           command= "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri";
+    #     # command = "${pkgs.greetd.tuigreet}/bin/tuigreet --sessions ${config.services.xserver.displayManager.sessionData.desktops}/share/xsessions:${config.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
     #           user = "greeter";
     #         };
     #     };
     # };
-
+ 
     # Gysc-greet - needs flake installed
     sysc-greet = {
-      enable = true;
+      enable = false;
       compositor = "niri"; # or "hyprland" or "sway"
       settings = {
         theme = "TransIsHardJob";

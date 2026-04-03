@@ -49,9 +49,6 @@
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
     printing.enable = true; # Enable CUPS to print documents.
     flatpak.enable = true;
-    # tailscale.enable = true;
-    # Tell the firewall to implicitly trust packets routed over Tailscale:
-    # networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
     udev.packages = with pkgs; [vial via]; # Enabling qmk vial
 

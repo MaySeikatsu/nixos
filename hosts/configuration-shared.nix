@@ -25,6 +25,7 @@ in {
     ../modules/nixos/pkgs/hyprland.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
+    ../modules/nixos/config/networking.nix
     # ../modules/nixos/config/matugen.nix
     # ../modules/nixos/pkgs/terminal/rice.nix
     # ../modules/nixos/pkgs/audio_engineering.nix
@@ -86,6 +87,8 @@ in {
       #  thunderbird
     ];
   };
+
+  boot.kernelModules = [ "ntsync" ]; # Wine but kernel level / performance boost
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
   nix.settings.extra-platforms = ["aarch64-linux"];
@@ -192,8 +195,6 @@ in {
     };
   };
 
-  networking.networkmanager.enable = true; # Enable networking
-  networking.firewall.enable = true;
   # adjust to use a different kernel version
   boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
 
@@ -226,7 +227,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     tailscale
-    protonvpn-gui
+    proton-vpn
     proton-vpn-cli
     # deskflow
     # lan-mouse
@@ -258,7 +259,7 @@ in {
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
-    winboat
+    # winboat
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme
