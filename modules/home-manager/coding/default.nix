@@ -1,0 +1,6 @@
+{...}:{
+
+# LSP & Linting
+# IDEs
+# Vibe
+}

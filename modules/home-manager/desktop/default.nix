@@ -11,5 +11,6 @@
     # ./walker.nix
     ./sherlock-launcher.nix
     # ./ironbar.nix
+    # ./noctalia.nix
   ];
 }

@@ -96,6 +96,7 @@
   # Enable OpenGL / AMD Drivers for internal GPU - just a test
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
 
   # INSTALL NVIDIA DRIVERS

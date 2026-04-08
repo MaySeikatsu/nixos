@@ -22,14 +22,15 @@ in {
     ../modules/nixos/config/stylix.nix
     ../modules/nixos/config/boot.nix
     ../modules/nixos/config/sddm-astronaut-theme.nix
-    ../modules/nixos/pkgs/hyprland.nix
+    ../modules/nixos/config/networking.nix
+    ../modules/nixos/config/nix.nix
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
-    ../modules/nixos/config/networking.nix
+    ../modules/home-manager/theming/spicetify.nix
+    # ../modules/nixos/pkgs/hyprland.nix
     # ../modules/nixos/config/matugen.nix
     # ../modules/nixos/pkgs/terminal/rice.nix
     # ../modules/nixos/pkgs/audio_engineering.nix
-    ../modules/home-manager/theming/spicetify.nix
   ];
   systemd.services."virt-secret-init-encryption".enable = false; # fix for bug, remove at next flake release
   xdg.mime = {
@@ -54,17 +55,6 @@ in {
     removedAssociations = {};
   };
 
-  nix = {
-    package = pkgs.lixPackageSets.stable.lix;
-    settings.experimental-features = ["nix-command" "flakes"];
-  };
-
-  nixpkgs.config = {
-    allowUnfree = true; # Allow unfree packages
-    allowUnsupportedSystem = true; # Allow unsupported SystemPackages
-  };
-
-  # floorp.enable = true;
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
 
@@ -106,28 +96,12 @@ in {
   #
   # };
 
-  # nix.settings.download-buffer-size = 524288000; # 500MB
-  systemd.services.nix-daemon.serviceConfig.LimitNOFILE = 1048576;
-
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true; # Request password for sudo actions as user
     # autoUpgrade.enable = true;
     # autoUpgrade.allowReboot = true;
   };
-
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "weekly";
-  #   options = "--delete-older-than 15d";
-  # };
-
-  # Storage Optimisations between different nix stores:
-  nix.optimise = {
-    automatic = true;
-    dates = ["03:45"];
-  };
-  # nix.settings.auto-optimise-store = true; # This would execute the optimisations on rebuild, does slow them down significantly though
 
   # Shared Programs should be defined here
   programs = {
@@ -138,13 +112,6 @@ in {
       # add any libraries WallRizz needs here if needed
     ];
 
-    # Nixos Helper for cleanup and commands
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 14d --keep 7";
-      flake = "/home/maike/.config/nixos"; # might need adjustment to different hosts
-    };
     direnv = {
       enable = true;
       # silent = true;
@@ -154,15 +121,10 @@ in {
       # settings = {};
     };
 
-    # Enable Hyprland
-    hyprland.enable = true;
-    hyprland.withUWSM = true;
+    # zsh.enable = true; # Enable ZSH
+    # zsh.enableCompletion = false;
+    # # zsh.enableGlobalCompInit = false;
 
-    zsh.enable = true; # Enable ZSH
-    zsh.enableCompletion = false;
-    # zsh.enableGlobalCompInit = false;
-
-    firefox.enable = true; # Install firefox.
     kdeconnect.enable = true;
 
     # mtr.enable = true;
@@ -301,8 +263,6 @@ in {
     kicad # pcb and electronics design
     obsidian
     ticktick
-    microsoft-edge
-    # vivaldi
     # gimp
     gimp-with-plugins
     poppler
@@ -334,7 +294,6 @@ in {
     bluez
     bluez-tools
     pavucontrol # audio volume and device control
-    # firefoxpwa
     vial
     # via
     intiface-central
@@ -354,15 +313,6 @@ in {
     omnisharp-roslyn
     tree-sitter
   ];
-
-  # Increase system-wide file descriptor limit
-  boot.kernel.sysctl = {"fs.file-max" = 524288;};
-
-  # Increase limits for all users (including systemd services)
-  # security.pam.loginLimits = [
-  #   { domain = "*"; type = "soft"; item = "nofile"; value = "524288"; }
-  #   { domain = "*"; type = "hard"; item = "nofile"; value = "524288"; }
-  # ];
 
   environment.etc."/xdg/menus/applications.menu".text =
     builtins.readFile
