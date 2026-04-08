@@ -23,6 +23,7 @@
     #   efiSupport = true;
     # };
   };
+  boot.kernelPackages = pkgs.linuxPackages;
 
   #Enable Hibernate
   systemd.sleep.settings.Sleep = {

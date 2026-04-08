@@ -204,7 +204,7 @@ in {
   };
 
   # adjust to use a different kernel version
-  boot.kernelPackages = pkgs.linuxPackages; #turned off cause of issue with nvidia drivers
+  # boot.kernelPackages = pkgs.linuxPackages; #turned off cause of issue with nvidia drivers
 
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
