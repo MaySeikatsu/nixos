@@ -111,7 +111,7 @@ in {
 
   security = {
     rtkit.enable = true;
-    sudo.wheelNeedsPassword = false; # Request password for sudo actions as user
+    sudo.wheelNeedsPassword = true; # Request password for sudo actions as user
     # autoUpgrade.enable = true;
     # autoUpgrade.allowReboot = true;
   };
@@ -204,7 +204,7 @@ in {
   };
 
   # adjust to use a different kernel version
-  boot.kernelPackages = pkgs.linuxPackages_latest; #turned off cause of issue with nvidia drivers
+  boot.kernelPackages = pkgs.linuxPackages; #turned off cause of issue with nvidia drivers
 
   # Enable Bluetooth Driver for Multiple Tablets
   # services.xserver.digimend.enable = true;
@@ -277,8 +277,11 @@ in {
     hyperion-ng # not working yet
 
     pomodoro
-    swww
+    awww
+
+    opencode
     mistral-vibe
+    github-copilot-cli
     # hellwal
     # gtk3
     adw-gtk3
