@@ -41,6 +41,7 @@ output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
 }
 // END PC Home
 
+/// Laptop
 output "eDP-1" {
     variable-refresh-rate // on-demand=true > if wanted just for specific games or apps via windowrules
     // scale 1.000000
@@ -59,6 +60,18 @@ output "eDP-2" {
     mode "2560x1600@165.002000"
     // mode "2560x1600@60.002000"
 }
+output "Microstep MAG 274URFW 0x00000001" {
+    // variable-refresh-rate // on-demand=true
+    // scale 1.00
+    scale 1.25
+    transform "normal"
+    // position x=0 y=0
+    // mode "2560x1440@119.998"
+    mode "3840x2160@119.999"
+    focus-at-startup
+    // background-color "#003300" //just for testing unsure what its doing
+    // backdrop-color "#001100" //color between workspaces
+}
 // TV 
 output "Samsung Electric Company QCQ90S 0x01000E00" {
     variable-refresh-rate // on-demand=true
@@ -75,3 +88,4 @@ output "Philips Consumer Electronics Company PHILIPS FTV 0x01010101" {
     mode "1920x1080@60.000"
 }
 // END TV 
+/// END Laptop

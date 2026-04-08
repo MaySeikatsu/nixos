@@ -184,6 +184,14 @@ in {
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "~/.steam/root/compatibilitytools.d/";
+
+      ##davinci-resolve on wayland / niri
+      #ROC_ENABLE_PRE_VEGA=1;
+      #RUSTICL_ENABLE="amdgpu,amdgpu-pro,radv,radeon,radeonsi";
+      #DRI_PRIME=1;
+      #QT_QPA_PLATFORM="xcb";
+      #
+      ## LD_PRELOAD="/usr/lib/libgio-2.0.so /usr/lib/libgmodule-2.0.so /usr/lib/libglib-2.0.so";
     };
 
     variables = {

@@ -167,6 +167,63 @@
   ## ON THE GOO CONFIG:
 
   specialisation = {
+  #   always-on-nv = {
+  #     system.nixos.tag = ["always-nvidia"];
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   videoAcceleration = true;
+  #   dynamicBoost.enable = true;
+  #
+  #   # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+  #   # Enable this if you have graphical corruption issues or application crashes after waking
+  #   # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+  #   # of just the bare essentials.
+  #   powerManagement.enable = true; # not really needed but battery left time was shown higher even though it didn't change gpu behavior
+  #
+  #   # Fine-grained power management. Turns off GPU when not in use.
+  #   # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+  #   powerManagement.finegrained = true; # Important for battery life
+  #   # powerManagement.finegrained = false;
+  #
+  #   # Use the NVidia open source kernel module (not to be confused with the
+  #   # independent third-party "nouveau" open source driver).
+  #   # Support is limited to the Turing and later architectures. Full list of
+  #   # supported GPUs is at:
+  #   # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+  #   # Only available from driver 515.43.04+
+  #   open = true;
+  #
+  #   # Enable the Nvidia settings menu,
+  #   # accessible via `nvidia-settings`.
+  #   nvidiaSettings = true;
+  #
+  #   # Optionally, you may need to select the appropriate driver version for your specific GPU.
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #
+  #   # GPU Power Management with Optimus PRIME on Multi GPU Setups:
+  #   prime = {
+  #     #CHOSE ONE!
+  #     # 01. PRIME Sync and Offload Mode cannot be enabled at the same time
+  #     # keeps nvidia card active even when not in use, except if called for via cli to put it to sleep
+  #     # sync.enable = true;
+  #
+  #     # 02. Offload to Nvidia GPU must be done via cli manually!
+  #     offload = {
+  #       enable = true;
+  #       enableOffloadCmd = true;
+  #     };
+  #
+  #     # 03. Experimental - resverse Prime output sink - uses iGPU for output and dGPU for rendering
+  #     # reverseSync.enable = true;
+  #     # Enable if using an external GPU
+  #     # allowExternalGpu = false;
+  #
+  #     # Use the correct BusID here, can be found with lshw -c display and needs to be written into this format
+  #     amdgpuBusId = "PCI:35:0:0";
+  #     nvidiaBusId = "PCI:01:0:0";
+  #   };
+  # };
+    # };
     # on-the-go.configuration = {
     #   system.nixos.tags = [ "on-the-go" ];
     #   hardware.nvidia = {

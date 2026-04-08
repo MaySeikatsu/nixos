@@ -6,6 +6,8 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    easyeffects
+
     neovim
     wget
     git
