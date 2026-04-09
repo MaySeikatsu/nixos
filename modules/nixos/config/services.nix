@@ -3,15 +3,6 @@
   pkgs,
   ...
 }: {
-  programs = {
-    wayfire = {
-      enable = false;
-      # plugins = [
-      #   pkgs.wcm
-      # ];
-    };
-  };
-
   services = {
     system76-scheduler = {
       enable =
@@ -21,15 +12,11 @@
       # settings.processScheduler.pipewireBoost.enable = true;
     };
     power-profiles-daemon.enable = true;
-
     upower.enable =
       config.powerManagement.enable; # might not be needed its just for reporting to different desktop envs
 
-    tailscale = {
-      enable = true;
-      extraDaemonFlags = ["--no-logs-no support"];
-    };
-
+    # Added as config for USWM (comes with hyprland-uwsm but not in HM)
+    dbus.implementation = "broker";
     # Enable the KDE Plasma Desktop Environment.
     desktopManager = {
       plasma6.enable = true;
@@ -56,20 +43,6 @@
     # geoclue2.enable = true;
     # networkmanager.enable = true;
 
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-
-      # For Screensharing Support:
-      # media-session.enable = true; # Required for Screenshare (Discord, OBS, Teams) #out of date use wrieplumber
-      # x11.enable = true; # For XWayland Share/Apps
-      wireplumber.enable = true; # For Device Management
-    };
     xserver = {
       # enable = true;
       # Enable the GNOME Desktop Environment.

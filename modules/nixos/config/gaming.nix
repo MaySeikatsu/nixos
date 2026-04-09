@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  boot.kernelModules = [ "ntsync" ]; # Wine but kernel level / performance boost
+
   programs = {
     # xwayland needed for x11 / xserver support on niri for steam
     xwayland.enable = true;

@@ -10,50 +10,16 @@ in {
   imports = [
     # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
-    ../modules/nixos/config/fonts.nix
-    ../modules/nixos/config/services.nix
-    ../modules/nixos/config/gnome.nix
-    ../modules/nixos/config/gaming.nix
-    ../modules/nixos/config/greeter.nix
-    ../modules/nixos/config/localisation.nix
-    ../modules/nixos/config/qt.nix
-    ../modules/nixos/config/niri.nix
-    ../modules/nixos/config/kanata.nix
-    ../modules/nixos/config/stylix.nix
-    ../modules/nixos/config/boot.nix
-    ../modules/nixos/config/sddm-astronaut-theme.nix
-    ../modules/nixos/config/networking.nix
-    ../modules/nixos/config/nix.nix
+    ../modules/nixos/config
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
     ../modules/home-manager/theming/spicetify.nix
     # ../modules/nixos/pkgs/hyprland.nix
-    # ../modules/nixos/config/matugen.nix
     # ../modules/nixos/pkgs/terminal/rice.nix
     # ../modules/nixos/pkgs/audio_engineering.nix
   ];
+
   systemd.services."virt-secret-init-encryption".enable = false; # fix for bug, remove at next flake release
-  xdg.mime = {
-    enable = true;
-    addedAssociations = {
-      "image/jpeg" = "feh-2.desktop";
-      "image/png" = "feh-4.desktop;feh-3.desktop";
-      "x-scheme-handler/http" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
-      "x-scheme-handler/https" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
-      "x-scheme-handler/chrome" = "zen-twilight.desktop;userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;floorp.desktop";
-      "text/html" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/x-extension-htm" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/x-extension-html" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/x-extension-shtml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/xhtml+xml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/x-extension-xhtml" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-      "application/x-extension-xht" = "userapp-Zen-5GNJ22.desktop;userapp-Zen-KMVS52.desktop;zen-twilight.desktop;floorp.desktop";
-    };
-    defaultApplications = {
-      "inode/directory" = "nautilus.desktop";
-    };
-    removedAssociations = {};
-  };
 
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
@@ -78,7 +44,6 @@ in {
     ];
   };
 
-  boot.kernelModules = [ "ntsync" ]; # Wine but kernel level / performance boost
   #Crosscompile aarch64 on x86_64-linux for remote compiling on pi
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
   nix.settings.extra-platforms = ["aarch64-linux"];
@@ -210,7 +175,6 @@ in {
     wallust # rust
     quickshell
     noctalia-shell
-    qjackctl
     # dms-shell # dank-material-shell
     inputs.system76-scheduler-niri.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -237,13 +201,8 @@ in {
     ledfx
     openlinkhub
     hyperion-ng # not working yet
-
     pomodoro
     awww
-
-    opencode
-    mistral-vibe
-    github-copilot-cli
     # hellwal
     # gtk3
     adw-gtk3
@@ -255,7 +214,6 @@ in {
 
     voicevox
     krita
-    godot
     blender
     libresprite
     aseprite
@@ -283,8 +241,6 @@ in {
     nautilus
     material-symbols
     # libsForQt5.plasma-bigscreen
-    ollama
-    # lmstudio
 
     freerdp
     iptables
@@ -293,7 +249,6 @@ in {
     overskride
     bluez
     bluez-tools
-    pavucontrol # audio volume and device control
     vial
     # via
     intiface-central
@@ -311,7 +266,6 @@ in {
     teams-for-linux
     onlyoffice-desktopeditors
     omnisharp-roslyn
-    tree-sitter
   ];
 
   environment.etc."/xdg/menus/applications.menu".text =
