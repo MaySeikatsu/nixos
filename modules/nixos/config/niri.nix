@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{inputs, pkgs, ...}: {
   programs.niri = {
     enable = true;
     # useNautilus = true;
-    # package = pkgs.niri-unstable;
+    package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.default;
   };
 }
