@@ -31,11 +31,53 @@
           cargo
           openssl
           openssl.dev
+          gcc
         ];
         # Set up environment variables
         shellHook = ''
           export RUST_SRC_PATH="${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
           export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig";
+        '';
+      };
+      # gpui
+      gpui = pkgs.mkShell {
+        packages = with pkgs; [
+          rustc
+          rustfmt
+          clippy
+          cargo
+          openssl
+          openssl.dev
+          gcc
+
+          # X11/XCB dependencies for GPUI
+          xorg.libxcb
+          xorg.libX11
+          xorg.libXcursor
+          xorg.libXrandr
+          xorg.libXi
+          # xkbcommon
+          libxkbcommon
+          wayland
+
+          # Vulkan
+          vulkan-loader
+          vulkan-validation-layers # optional but helpful during dev    pkg-config
+        ];
+
+        shellHook = ''
+          export RUST_SRC_PATH="${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+          export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:${pkgs.xorg.libxcb.dev}/lib/pkgconfig:${pkgs.libxkbcommon.dev}/lib/pkgconfig";
+          export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
+            pkgs.xorg.libxcb
+            pkgs.xorg.libX11
+            pkgs.xorg.libXcursor
+            pkgs.xorg.libXrandr
+            pkgs.xorg.libXi
+            pkgs.libxkbcommon
+            pkgs.wayland
+            pkgs.vulkan-loader
+          ]}:$LD_LIBRARY_PATH";
         '';
       };
       # general hestia dev-env
