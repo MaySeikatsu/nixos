@@ -11,6 +11,23 @@ include "input.kdl"
 include "outputs.kdl"
 include "animations.kdl"
 
+blur {
+  //off
+  on
+  passes 3
+  offset 3
+  noise 0.02
+  saturation 1.5
+}
+
+layer-rule {
+  match layer="top"
+  match layer="overlay"
+  background-effect {
+    xray false
+  }
+}
+
 cursor {
     xcursor-theme "default"
     xcursor-size 24
@@ -51,6 +68,15 @@ gestures {
 window-rule {
     geometry-corner-radius 20
     clip-to-geometry true
+
+    // opacity 0.500000
+    //
+    // background-effect {
+    //   xray true
+    //   blur true
+    //   noise 0.05
+    //   saturation 3
+    // }
 }
 
 layer-rule {
@@ -157,7 +183,8 @@ window-rule {
   match title="fsel-launcher"
   open-floating true
   // baba-is-float true
-  opacity 0.960000
+  // opacity 0.960000
+  opacity 0.85
   // default-window-height {proportion 0.25}
   // default-column-width {proportion 0.25}
   focus-ring {
@@ -166,6 +193,9 @@ window-rule {
   }
   shadow {
     on
+  }
+  background-effect {
+    blur true
   }
 }
 
@@ -190,10 +220,22 @@ window-rule {
 
     open-on-workspace "entertainment"
 }
-// window-rule {
-//     match at-startup=true app-id="foot"
-//     open-on-workspace "dev"
-// }
+window-rule {
+    match at-startup=true app-id="foot"
+    // open-on-workspace "dev"
+    opacity 0.90
+    background-effect {
+      blur true
+    }
+    // blur {
+    //   //off
+    //   on
+    //   passes 3
+    //   offset 3
+    //   noise 0.02
+    //   saturation 1.5
+    // }
+}
 window-rule {
     match app-id="teams-for-linux"
     match app-id="microsoft-edge"

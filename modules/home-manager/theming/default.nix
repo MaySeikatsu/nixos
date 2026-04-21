@@ -4,7 +4,7 @@
     ./gtk.nix
     # ./hellwal.nix
     # ./nixcord.nix
-    ./textfox.nix
+    # ./textfox.nix
     ./stylix.nix
     # ./spicetify.nix
   ];
