@@ -140,7 +140,7 @@
     '';
     configFile.text = ''
       source ~/.zoxide.nu
-      cat ~/.cache/wallust/sequences
+      # cat ~/.cache/wallust/sequences
       { ||
           if (which direnv | is-empty) {
               return

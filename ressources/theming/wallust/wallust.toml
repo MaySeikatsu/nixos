@@ -94,8 +94,8 @@ neopywal.template = '/home/maike/.config/nixos/ressources/theming/wallust/templa
 # neopywal.target = '/home/maike/.cache/wallust/colors_neopywal.vim'
 neopywal.target = '/home/maike/.cache/wal/colors-wal.vim'
 
-foot.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_foot.ini'
-foot.target = '~/.cache/wallust/colors_foot.ini'
+# foot.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_foot.ini'
+# foot.target = '~/.cache/wallust/colors_foot.ini'
 
 ags.template = '/home/maike/.config/nixos/ressources/theming/wallust/templates/colors_ags.css'
 ags.target = '~/.config/ags/colors_ags.css'

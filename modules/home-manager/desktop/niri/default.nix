@@ -33,9 +33,9 @@
       qt6.qtwayland
       xwayland-satellite
       xdg-desktop-portal-wlr #for wayland screenshare
-      pipewire
-      wireplumber
-      xdg-desktop-portal
+      # pipewire
+      # wireplumber
+      # xdg-desktop-portal
       # xdg-desktop-portal-gtk
       # xdg-desktop-portal-gnome
       # gnome-keyring
@@ -49,5 +49,9 @@
       XDG_SESSION_DESKTOP = "niri";
       XDG_CURRENT_DESKTOP = "niri";
     };
+  };
+  xdg.portal = {
+    enable = true;
+    config.niri.default = ["wlr"];
   };
 }

@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   _base00 =
@@ -161,6 +162,16 @@ in {
     configPackages = [
       pkgs.xdg-desktop-portal-wlr
     ];
+    config = {
+      niri = {
+        default = lib.mkForce ["wlr"];
+        screenshare = ["wlr"];
+      };
+      default = {
+        default = ["wlr"];
+        screenshare = ["wlr"];
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [

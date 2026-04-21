@@ -1,10 +1,10 @@
-{pkgs,...}:{
+{pkgs, ...}: {
   imports = [
     ./zed-editor.nix
   ];
 
   home.packages = with pkgs; [
-  # Tools
+    # Tools
     tree-sitter
     wget
     git
@@ -16,16 +16,16 @@
     gitleaks # checking for accidantal leaks of credentials in git repos
     # tokei #rust - count code
     # curl
-    
-  # IDEs and Code Editors
+
+    # IDEs and Code Editors
     neovim
     jetbrains.rust-rover
     # zed-editor #enabled via ui/zed-editor
     # helix
     # code-cursor
     vscode
-    
-  # Lang, LSP & Linting
+
+    # Lang, LSP & Linting
     cargo
     # rustup
     rust-analyzer
@@ -40,7 +40,7 @@
     # nodejs
     # bun
     # deno
-    
+
     # Nix Formatter and LSP
     nil # nix lsp to replace of nixd
     alejandra # nix formatter
@@ -67,17 +67,19 @@
     # terraform-mcp-server
     # tfmigrate
 
-  # Vibe
+    # Vibe
     opencode
     mistral-vibe
     github-copilot-cli
     gemini-cli
+    codex
+    pi-coding-agent
     ollama
     # lmstudio
     # geminicommit
     # claude-code
 
-  # Gamedev
+    # Gamedev
     godot
   ];
 }
