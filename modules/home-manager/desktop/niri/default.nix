@@ -30,11 +30,14 @@
       ../../../../ressources/dots/niri/animations.kdl;
 
     packages = with pkgs; [
-      xdg-desktop-portal-wlr #for wayland screenshare
-      xwayland-satellite
       qt6.qtwayland
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
+      xwayland-satellite
+      xdg-desktop-portal-wlr #for wayland screenshare
+      pipewire
+      wireplumber
+      xdg-desktop-portal
+      # xdg-desktop-portal-gtk
+      # xdg-desktop-portal-gnome
       # gnome-keyring
       # plasma-polkit-agent # check if needed
       # mako # notification agent
