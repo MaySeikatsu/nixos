@@ -19,8 +19,8 @@
         # terminal = 0.50;
         # terminal = 0.7; # hyprland good
         # terminal = 0.85; # hyprland niri good
-        # terminal = 0.96; # niri
-        terminal = 1.0; # niri
+        terminal = 0.96; # niri
+        # terminal = 1.0; # niri
         desktop = 0.99;
         popups = 0.95;
       };
@@ -33,7 +33,8 @@
       };
       fonts = {
         sizes = {
-          terminal = 14; #was 11 on all
+          # terminal = 14; #was 11 on all
+          terminal = 12; #was 11 on all
           applications = 14;
           popups = 14;
         };

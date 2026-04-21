@@ -374,7 +374,9 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png"
 // hotkey-overlay { skip-at-startup; }
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    DISPLAY null //"" //or :0
+    // DISPLAY null //"" //or :0
+    // DISPLAY "" //"" //or :0
+    DISPLAY ":0" //"" //or :0
     CLUTTER_BACKEND "wayland"
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"

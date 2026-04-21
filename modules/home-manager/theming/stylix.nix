@@ -8,7 +8,7 @@
     alacritty.enable = true;
     kitty.enable = true;
     ghostty.enable = true;
-    # foot.enable = true;
+    foot.enable = true;
     # zellij.enable = true;
     # helix.enable = true;
     # lazygit.enable = true;
