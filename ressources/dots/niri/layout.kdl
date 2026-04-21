@@ -36,6 +36,7 @@ layout {
     // empty-workspace-above-first
     // default-column-display "tabbed"
     // background-color "#003300" //default workspace color
+    background-color "transparent" //default workspace color
 
     preset-column-widths {
         proportion 0.25
@@ -67,7 +68,7 @@ layout {
         proportion 1.0
     }
     focus-ring {
-        // off
+        off //can be turned on with the new zen window rule 
         width 3
         // active-color "#57457f"
         active-color "#ea9a97"
@@ -91,7 +92,7 @@ layout {
         // urgent-gradient from="#800" to="#a33" angle=45
     }
     shadow {
-        // on
+        on
         softness 30
         spread 5
         offset x=0 y=5

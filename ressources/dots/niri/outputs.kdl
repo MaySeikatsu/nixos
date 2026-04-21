@@ -23,21 +23,32 @@
 // }
 
 // PC Home
-output "Microstep MAG 274URFW 0x00000001" {
-    variable-refresh-rate // on-demand=true
-    scale 1.250000
-    transform "normal"
-    position x=0 y=0
-    mode "3840x2160@143.851000"
-    focus-at-startup
-    // background-color "#003300" //just for testing unsure what its doing
-    // backdrop-color "#001100" //color between workspaces
-}
+// output "Microstep MAG 274URFW 0x00000001" {
+//     variable-refresh-rate // on-demand=true
+//     scale 1.250000
+//     transform "normal"
+//     position x=0 y=0
+//     mode "3840x2160@143.851000"
+//     focus-at-startup
+//     // background-color "#003300" //just for testing unsure what its doing
+//     // backdrop-color "#001100" //color between workspaces
+// }
 output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
     scale 1.000000
     transform "90"
     position x=-1080 y=0
     mode "1920x1080@239.964000"
+}
+///AMD
+output "Microstep MAG 274URFW 0x00000001" {
+    variable-refresh-rate // on-demand=true
+    scale 1.00
+    transform "normal"
+    position x=0 y=0
+    mode "2560x1440@143.973"
+    focus-at-startup
+    // background-color "#003300" //just for testing unsure what its doing
+    // backdrop-color "#001100" //color between workspaces
 }
 // END PC Home
 

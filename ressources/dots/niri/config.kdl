@@ -180,11 +180,27 @@ workspace "main" //browser
 workspace "work"
 
 window-rule {
+  match is-active=true
+  opacity 0.93
+  background-effect {
+    blur true
+  }
+}
+window-rule {
+  match is-active=false
+  opacity 0.85
+  background-effect {
+    blur true
+  }
+}
+// window-rule {
+//   match is-active = false
+// }
+window-rule {
   match title="fsel-launcher"
   open-floating true
   // baba-is-float true
   // opacity 0.960000
-  opacity 0.85
   // default-window-height {proportion 0.25}
   // default-column-width {proportion 0.25}
   focus-ring {
@@ -194,9 +210,10 @@ window-rule {
   shadow {
     on
   }
-  background-effect {
-    blur true
-  }
+  // opacity 0.85
+  // background-effect {
+  //   blur true
+  // }
 }
 
 window-rule {
@@ -223,19 +240,42 @@ window-rule {
 window-rule {
     match at-startup=true app-id="foot"
     // open-on-workspace "dev"
-    opacity 0.90
-    background-effect {
-      blur true
-    }
-    // blur {
-    //   //off
-    //   on
-    //   passes 3
-    //   offset 3
-    //   noise 0.02
-    //   saturation 1.5
+}
+window-rule {
+    match app-id="foot"
+    // opacity 0.85
+    // background-effect {
+    //   blur true
+    // }
+    // opacity 0.90
+    // background-effect {
+    //   blur true
+    // }
+    // // blur {
+    // //   //off
+    // //   on
+    // //   passes 3
+    // //   offset 3
+    // //   noise 0.02
+    // //   saturation 1.5
+    // // }
+}
+window-rule {
+    match app-id="zen-twilight"
+    // opacity 0.85
+    // background-effect {
+    //   blur true
+    // }
+    draw-border-with-background false
+}
+window-rule {
+    match app-id="vesktop"
+    // opacity 0.85
+    // background-effect {
+    //   blur true
     // }
 }
+
 window-rule {
     match app-id="teams-for-linux"
     match app-id="microsoft-edge"
@@ -334,7 +374,7 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png"
 // hotkey-overlay { skip-at-startup; }
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    DISPLAY ""// null //or :0
+    DISPLAY null //"" //or :0
     CLUTTER_BACKEND "wayland"
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
