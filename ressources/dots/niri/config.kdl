@@ -181,14 +181,14 @@ workspace "work"
 
 window-rule {
   match is-active=true
-  opacity 0.93
+  opacity 0.96
   background-effect {
     blur true
   }
 }
 window-rule {
   match is-active=false
-  opacity 0.85
+  opacity 0.90
   background-effect {
     blur true
   }
@@ -210,7 +210,7 @@ window-rule {
   shadow {
     on
   }
-  // opacity 0.85
+  // opacity 0.75
   // background-effect {
   //   blur true
   // }
