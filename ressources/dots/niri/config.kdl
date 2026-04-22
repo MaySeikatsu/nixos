@@ -23,9 +23,12 @@ blur {
 layer-rule {
   match layer="top"
   match layer="overlay"
-  background-effect {
-    xray false
-  }
+  // background-effect {
+  //     xray true
+  //     blur true
+  //     noise 0.05
+  //     saturation 3
+  // }
 }
 
 cursor {
@@ -567,3 +570,5 @@ debug {
   //   proportion 0.666667
   //   proportion 1.000000
   // }
+
+include "style_focus.kdl"

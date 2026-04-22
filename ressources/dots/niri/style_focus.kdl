@@ -7,36 +7,55 @@
 // so to put another output directly adjacent to it on the right, set its x to 1920.
 // If the position is unset or results in an overlap, the output is instead placed
 // automatically.
+//
+animations {
+  off
+}
 
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+    // open-maximized true
+    // open-maximized-to-edges true
+    open-fullscreen true
+
+//     place-within-backdrop true
+}
+
+window-rule {
+  match is-active=true
+  opacity 1.0
+  background-effect {
+    blur true
+  }
+}
+window-rule {
+  match is-active=false
+  opacity 0.98
+  background-effect {
+    blur true
+  }
+}
+
 layout {
-    gaps 10
-    // gaps -10
+    gaps 0
     struts {
-        // left 15
-        // right 15
-        // top 15
-        // bottom 15
- 
-        left 10
-        right 10
-        top 10
-        bottom 10
+        left 0
+        right 0
+        top 0
+        bottom 0
     }
 
-    center-focused-column "never"
-    // center-focused-column "always"
-    // center-focused-column "on-overflow"
+    // center-focused-column "never"
+    center-focused-column "always"
     always-center-single-column
-    // empty-workspace-above-first
     // default-column-display "tabbed"
     // background-color "#003300" //default workspace color
     background-color "transparent" //default workspace color
 
     default-column-width { proportion 0.50; }
+    // default-column-width { proportion 0.55; }
     // default-column-width { proportion 0.80; }
     // default-column-width { proportion 0.90; }
     // default-column-width { proportion 1.0; }
@@ -62,8 +81,8 @@ layout {
         proportion 1.0
     }
     focus-ring {
-        off //can be turned on with the new zen window rule 
-        width 3
+        // off //can be turned on with the new zen window rule 
+        width 2
         // active-color "#57457f"
         active-color "#ea9a97"
         // inactive-color "#505050"
@@ -86,7 +105,7 @@ layout {
         // urgent-gradient from="#800" to="#a33" angle=45
     }
     shadow {
-        on
+        // on
         softness 30
         spread 5
         offset x=0 y=5
@@ -103,7 +122,7 @@ layout {
         length total-proportion=1.0
         position "right" //"top" // "left"
         gaps-between-tabs 2
-        corner-radius 8
+        corner-radius 0
         active-color "red"
         // active-color "#ea9a97"
         inactive-color "gray"

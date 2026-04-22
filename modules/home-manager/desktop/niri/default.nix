@@ -29,6 +29,9 @@
     file.".config/niri/animations.kdl".source =
       ../../../../ressources/dots/niri/animations.kdl;
 
+    file.".config/niri/style_focus.kdl".source =
+      ../../../../ressources/dots/niri/style_focus.kdl;
+
     packages = with pkgs; [
       qt6.qtwayland
       xwayland-satellite
