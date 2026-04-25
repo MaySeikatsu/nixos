@@ -77,7 +77,7 @@
     ollama
     # lmstudio
     # geminicommit
-    # claude-code
+    claude-code
 
     # Gamedev
     godot
