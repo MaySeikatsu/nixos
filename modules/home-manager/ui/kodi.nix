@@ -10,7 +10,7 @@
   #   addonSettings = {};
   # };
 
-  nixpkgs.config.kodi.enableAdvancedLauncher = true;
+  # nixpkgs.config.kodi.enableAdvancedLauncher = true; # conflicts with useGlobalPkgs; move to NixOS module if kodi is re-enabled
   # environment.systemPackages = [
   #   (pkgs.kodi.withPackages (kodiPkgs:
   #     with kodiPkgs; [

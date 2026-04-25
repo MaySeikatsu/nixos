@@ -3,7 +3,7 @@
   services = {
     tailscale = {
       enable = true;
-      extraDaemonFlags = ["--no-logs-no support"];
+      extraDaemonFlags = ["--no-logs-no-support"];
     };
   };
   networking = {

@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 let
   # system = "x86_64-linux";
-  spicePkgs = inputs.spicetify-nix.legacyPackages."x86_64-linux";
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   # Configured over normal module not home-manager

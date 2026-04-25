@@ -1,4 +1,4 @@
-{ pkgs, system, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   programs.nixcord = {
     enable = true;
     # vesktop = { enable = true; };
