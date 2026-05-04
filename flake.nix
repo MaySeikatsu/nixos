@@ -51,7 +51,7 @@
       url = "github:mjoyufull/fsel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    weathr.url = "github:Veirt/weathr";
+    weathr.url = "github:mayseikatsu/weathr";
   };
 
   outputs = {
@@ -92,7 +92,8 @@
         users.${username} = import homePath;
         useGlobalPkgs = true;
         useUserPackages = true;
-        backupFileExtension = "bck";
+        # backupFileExtension = "bck";
+        backupCommand = "mv \"$1\" \"$1.bck.$(date +%Y%m%d%H%M%S)\"";
         extraSpecialArgs = {inherit inputs;};
         sharedModules = [
           inputs.nixcord.homeModules.nixcord

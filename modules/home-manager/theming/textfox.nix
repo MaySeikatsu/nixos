@@ -1,7 +1,8 @@
-{...}: {
+{config, ...}: {
   # https://github.com/adriankarlen/textfox
   # imports = [ inputs.textfox.homeManagerModules.default ];
 
+  # programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
   textfox = {
     enable = true;
     profiles = ["default"];

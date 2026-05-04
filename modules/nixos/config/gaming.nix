@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  boot.kernelModules = [ "ntsync" ]; # Wine but kernel level / performance boost
+  boot.kernelModules = ["ntsync"]; # Wine but kernel level / performance boost
 
   programs = {
     # xwayland needed for x11 / xserver support on niri for steam
@@ -39,7 +39,7 @@
   environment.systemPackages = with pkgs; [
     ntfs3g # to run games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
     # bottles
-    lutris
+    # lutris
     heroic
     dolphin-emu
     # wacomtablet
