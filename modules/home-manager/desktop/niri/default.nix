@@ -35,11 +35,9 @@
     packages = with pkgs; [
       qt6.qtwayland
       xwayland-satellite
-      xdg-desktop-portal-wlr #for wayland screenshare
       # pipewire
       # wireplumber
       # xdg-desktop-portal
-      # xdg-desktop-portal-gtk
       # xdg-desktop-portal-gnome
       # gnome-keyring
       # plasma-polkit-agent # check if needed
@@ -55,6 +53,15 @@
   };
   xdg.portal = {
     enable = true;
-    config.niri.default = ["wlr"];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.niri = {
+      default                                   = [ "gtk" ];
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      "org.freedesktop.impl.portal.OpenURI"     = [ "gtk" ];
+      "org.freedesktop.impl.portal.AppChooser"  = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
+      "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
+      "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
+    };
   };
 }
