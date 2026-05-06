@@ -153,7 +153,7 @@ in {
     xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-wlr
-      # pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
       # pkgs.xdg-desktop-portal-gnome
       # pkgs.xdg-desktop-portal-hyprland
       # pkgs.xdg-desktop-portal-kde
@@ -161,15 +161,20 @@ in {
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
     ];
     config = {
       niri = {
-        default = lib.mkForce ["wlr"];
-        screenshare = ["wlr"];
+        default = lib.mkForce [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
+        "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
       };
       default = {
-        default = ["wlr"];
-        screenshare = ["wlr"];
+        default = [ "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
+        "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
+        "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
       };
     };
   };
