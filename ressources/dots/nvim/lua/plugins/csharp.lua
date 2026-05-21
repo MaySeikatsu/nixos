@@ -1,9 +1,4 @@
 return {
-
-  {
-    "mason-org/mason.nvim",
-    enabled = true,
-  },
   -- Correctly setup lspconfig for C# 🚀
   {
     "neovim/nvim-lspconfig",

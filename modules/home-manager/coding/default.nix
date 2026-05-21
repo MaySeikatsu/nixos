@@ -46,6 +46,59 @@
     alejandra # nix formatter
     statix # Nix Linter
 
+    # Go
+    gopls
+    gofumpt
+    golangci-lint
+
+    # Python
+    basedpyright
+    ruff
+
+    # C / C++
+    clang-tools # provides clangd, clang-format, clang-tidy
+
+    # C#
+    omnisharp-roslyn
+    csharpier
+
+    # TypeScript / JavaScript
+    typescript-language-server
+    vscode-langservers-extracted # jsonls, htmlls, cssls
+    prettierd
+    eslint
+
+    # Kotlin
+    kotlin-language-server
+    ktfmt
+    ktlint
+
+    # Config formats
+    yaml-language-server
+    taplo
+    marksman
+
+    # Lua (LSP + formatter)
+    lua-language-server
+    stylua
+
+    # Bash / Shell
+    bash-language-server
+    shfmt
+    shellcheck
+
+    # Docker
+    dockerfile-language-server-nodejs
+    docker-compose-language-service
+    hadolint
+
+    # .NET / F#
+    fsautocomplete
+
+    # SQL
+    sqls
+    sqlfluff
+
     # GCP and Cloud / DevOps
     google-cloud-sdk
     azure-cli

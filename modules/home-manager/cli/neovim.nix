@@ -28,7 +28,54 @@
       nil
       alejandra
 
-      # ...other tools
+      # Go
+      gopls
+      gofumpt
+      golangci-lint
+
+      # Python
+      basedpyright
+      ruff
+
+      # C / C++
+      clang-tools
+
+      # C#
+      omnisharp-roslyn
+      csharpier
+
+      # TypeScript / JavaScript
+      typescript-language-server
+      vscode-langservers-extracted
+      prettierd
+      eslint
+
+      # Kotlin
+      kotlin-language-server
+      ktfmt
+      ktlint
+
+      # Config formats
+      yaml-language-server
+      taplo
+      marksman
+
+      # Bash / Shell
+      bash-language-server
+      shfmt
+      shellcheck
+
+      # Docker
+      dockerfile-language-server-nodejs
+      docker-compose-language-service
+      hadolint
+
+      # .NET / F#
+      fsautocomplete
+
+      # SQL
+      sqls
+      sqlfluff
     ];
     extraLuaConfig = let
       plugins = with pkgs.vimPlugins; [

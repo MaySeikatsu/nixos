@@ -1,0 +1,30 @@
+return {
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        rust            = { "rustfmt" },
+        go              = { "gofumpt", "goimports" },
+        python          = { "ruff_format" },
+        cs              = { "csharpier" },
+        c               = { "clang_format" },
+        cpp             = { "clang_format" },
+        typescript      = { "prettierd" },
+        javascript      = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        json            = { "prettierd" },
+        yaml            = { "prettierd" },
+        toml            = { "taplo" },
+        markdown        = { "prettierd" },
+        sh              = { "shfmt" },
+        bash            = { "shfmt" },
+        kotlin          = { "ktlint" },
+        qml             = { "qmlformat" },
+        lua             = { "stylua" },
+        terraform       = { "terraform_fmt" },
+        hcl             = { "terraform_fmt" },
+      },
+    },
+  },
+}
