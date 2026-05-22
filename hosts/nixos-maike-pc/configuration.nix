@@ -18,6 +18,11 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    # loader.systemd-boot.configurationLimit = 5;
+    # Load nvidia modules early so niri/Wayland can initialize the display
+    # initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+    # Required for newer nvidia drivers (545+) to expose a KMS framebuffer for Wayland
+    kernelParams = ["nvidia_drm.fbdev=1"];
     # loader.grub = {
     #   enable = true;
     #   efiSupport = true;
@@ -96,7 +101,7 @@
   # Enable OpenGL / AMD Drivers for internal GPU - just a test
   hardware.graphics = {
     enable = true;
-    # enable32Bit = true;
+    enable32Bit = true; # needed for Steam and 32-bit games
   };
 
   # INSTALL NVIDIA DRIVERS
@@ -111,7 +116,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -130,7 +135,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
     # prime = {
     #CHOSE ONE!
@@ -169,17 +174,17 @@
     enable = true;
     lfs.enable = true;
   };
-  # STEAMVR kernel cap_sys_nice patch for amd gpus - not needed on this system
-  boot.kernelPatches = [
-    {
-      name = "amdgpu-ignore-ctx-privileges";
-      patch = pkgs.fetchpatch {
-        name = "cap_sys_nice_begone.patch";
-        url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-        hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
-      };
-    }
-  ];
+  # STEAMVR kernel cap_sys_nice patch - AMD-specific, not applicable for nvidia systems
+  # boot.kernelPatches = [
+  #   {
+  #     name = "amdgpu-ignore-ctx-privileges";
+  #     patch = pkgs.fetchpatch {
+  #       name = "cap_sys_nice_begone.patch";
+  #       url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+  #       hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
+  #     };
+  #   }
+  # ];
   # stylix.base16Scheme = "{pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   # stylix.image = /home/maike/Pictures/wallpaper/1013625.png;
   # services.displayManager.sddm = {
