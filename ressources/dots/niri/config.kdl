@@ -572,3 +572,17 @@ debug {
   // }
 
 // include "style_focus.kdl"
+
+// For custom desktop shell
+  window-rule {
+    match app-id="^shellseikatsu-console$"
+    open-floating true
+    default-floating-position x=8 y=8 relative-to="top-left"
+    // is-on-every-workspace true
+  }
+  // window-rule {
+  //   match app-id="^shellseikatsu-console$"
+  //   open-floating true
+  //   default-column-width  { fixed 2544; }
+  //   default-window-height { fixed 360; }
+  // }

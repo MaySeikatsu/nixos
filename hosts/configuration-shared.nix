@@ -188,7 +188,8 @@ in {
     remmina # rdp client
     waytrogen # rust based wallpaper changer
     mpv
-    # matugen # rust
+    yt-dlp
+    matugen # rust
     # mochi
     # mise
     wallust # rust
@@ -212,7 +213,7 @@ in {
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # winboat
+    winboat
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme
