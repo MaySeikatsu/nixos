@@ -190,6 +190,7 @@ in {
     mpv
     yt-dlp
     matugen # rust
+    libsForQt5.qt5ct
     # mochi
     # mise
     wallust # rust
@@ -232,7 +233,7 @@ in {
     # gnome.adwaita-icon-theme
     # nvtopPackages.full
 
-    voicevox
+    # voicevox
     krita
     blender
     libresprite
