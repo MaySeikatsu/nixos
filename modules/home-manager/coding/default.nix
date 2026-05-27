@@ -34,7 +34,10 @@
     rustc
     gcc
     openssl
+    pkg-config
+    nix-direnv
     rustls-libssl
+    cargo-watch
     go
     # dotnet-sdk_8
     # nodejs

@@ -129,6 +129,12 @@
           event: { edit: backspaceword }
         }
       ]
+
+    # Direnv Hook
+    $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {||
+        if (which direnv | is-empty) { return }
+        direnv export json | from json | default {} | load-env
+    })
     '';
 
     envFile.text = ''

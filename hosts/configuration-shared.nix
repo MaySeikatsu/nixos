@@ -82,8 +82,8 @@ in {
       enable = true;
       # silent = true;
       # loadInNixShell = false;
-      # nix-direenv.enable = true;
-      # enableFishIntegration = true;
+      nix-direnv.enable = true;
+      enableFishIntegration = true;
       # settings = {};
     };
 
@@ -196,6 +196,8 @@ in {
     wallust # rust
     quickshell
     noctalia-shell
+    openssl
+    pkg-config
     # dms-shell # dank-material-shell
     inputs.system76-scheduler-niri.packages.${pkgs.stdenv.hostPlatform.system}.default
     # inputs.qs-caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.default
