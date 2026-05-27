@@ -57,12 +57,22 @@
           xorg.libXrandr
           xorg.libXi
           # xkbcommon
+          # libxcb
           libxkbcommon
+
+          # Wayland
           wayland
 
           # Vulkan
           vulkan-loader
           vulkan-validation-layers # optional but helpful during dev    pkg-config
+          libGL
+
+          # Misc deps gpui pulls in
+          openssl
+          alsa-lib
+          freetype
+          fontconfig
         ];
 
         shellHook = ''
