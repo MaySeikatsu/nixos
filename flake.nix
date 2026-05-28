@@ -51,6 +51,10 @@
       url = "github:mjoyufull/fsel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # rproc = {
+    #   url = "github:mayseikatsu/rproc";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     weathr.url = "github:mayseikatsu/weathr";
   };
 
