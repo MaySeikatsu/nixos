@@ -190,6 +190,7 @@ in {
     mpv
     yt-dlp
     matugen # rust
+    mpvpaper
     libsForQt5.qt5ct
     # mochi
     # mise
@@ -214,6 +215,7 @@ in {
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
+    # inputs.rproc.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     winboat
