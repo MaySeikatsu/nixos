@@ -165,16 +165,16 @@ in {
     ];
     config = {
       niri = {
-        default = lib.mkForce [ "gtk" ];
-        "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
-        "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
-        "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
+        default = lib.mkForce ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
       default = {
-        default = [ "gtk" ];
-        "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
-        "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
-        "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
+        default = ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
     };
   };
@@ -219,6 +219,7 @@ in {
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     winboat
+    rapidraw
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme
