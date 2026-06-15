@@ -31,6 +31,8 @@
 
     file.".config/niri/style_focus.kdl".source =
       ../../../../ressources/dots/niri/style_focus.kdl;
+    file.".config/niri/style_gpuishell.kdl".source =
+      ../../../../ressources/dots/niri/style_gpuishell.kdl;
 
     packages = with pkgs; [
       qt6.qtwayland
@@ -53,15 +55,15 @@
   };
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
     config.niri = {
-      default                                   = [ "gtk" ];
-      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-      "org.freedesktop.impl.portal.OpenURI"     = [ "gtk" ];
-      "org.freedesktop.impl.portal.AppChooser"  = [ "gtk" ];
-      "org.freedesktop.impl.portal.ScreenCast"  = [ "wlr" ];
-      "org.freedesktop.impl.portal.Screenshot"  = [ "wlr" ];
-      "org.freedesktop.impl.portal.Secret"      = [ "gnome-keyring" ];
+      default = ["gtk"];
+      "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+      "org.freedesktop.impl.portal.OpenURI" = ["gtk"];
+      "org.freedesktop.impl.portal.AppChooser" = ["gtk"];
+      "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+      "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+      "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
     };
   };
 }

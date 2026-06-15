@@ -1,0 +1,144 @@
+
+// Position of the output in the global coordinate space.
+// This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+// The cursor can only move between directly adjacent outputs.
+// Output scale and rotation has to be taken into account for positioning:
+// outputs are sized in logical, or scaled, pixels.
+// For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+// so to put another output directly adjacent to it on the right, set its x to 1920.
+// If the position is unset or results in an overlap, the output is instead placed
+// automatically.
+//
+animations {
+  // off
+}
+
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+
+    // open-maximized true
+    // open-maximized-to-edges true
+    open-fullscreen true
+
+//     place-within-backdrop true
+}
+
+window-rule {
+  match is-active=true
+  opacity 1.0
+  background-effect {
+    blur true
+  }
+}
+window-rule {
+  match is-active=false
+  opacity 0.98
+  background-effect {
+    blur true
+  }
+}
+
+layout {
+    gaps 5
+    struts {
+        // left 5
+        // right 5
+        // top 5
+        // bottom 5
+        left 0
+        right 0
+        top 0
+        bottom 0
+    }
+
+    // center-focused-column "never"
+    center-focused-column "always"
+    always-center-single-column
+    // default-column-display "tabbed"
+    // background-color "#003300" //default workspace color
+    background-color "transparent" //default workspace color
+
+    default-column-width { proportion 0.50; }
+    // default-column-width { proportion 0.55; }
+    // default-column-width { proportion 0.80; }
+    // default-column-width { proportion 0.90; }
+    // default-column-width { proportion 1.0; }
+    // New windows decide their initial width themselves.
+    // default-column-width { }
+
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.75
+        // proportion 0.90
+        // fixed 1920
+        proportion 1.0
+    }
+
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        // fixed 1080
+        proportion 1.0
+    }
+    focus-ring {
+        // off //can be turned on with the new zen window rule 
+        width 2
+        // active-color "#57457f"
+        active-color "#ea9a97"
+        // inactive-color "#505050"
+        inactive-color "#57457f"
+        // urgent-color "#9b0000"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue" relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        urgent-gradient from="#800" to="#a33" angle=45
+    }
+    border {
+        off
+        width 3
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
+        urgent-color "#9b0000"
+        active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue" relative-to="workspace-view"
+        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view" in="srgb-linear"
+        // urgent-gradient from="#800" to="#a33" angle=45
+    }
+    shadow {
+        // on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        // draw-behind-window true
+        color "#00000070"
+        // inactive-color "#00000054"
+    }
+    tab-indicator {
+        // off
+        // hide-when-single-tab
+        place-within-column
+        gap 5
+        width 4
+        length total-proportion=1.0
+        position "right" //"top" // "left"
+        gaps-between-tabs 2
+        corner-radius 0
+        active-color "red"
+        // active-color "#ea9a97"
+        inactive-color "gray"
+        urgent-color "blue"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
+    }
+    insert-hint {
+        // off
+        color "#ffc87f80"
+        // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to=" "main"workspace-view"
+    }
+}

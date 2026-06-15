@@ -572,6 +572,7 @@ debug {
   // }
 
 // include "style_focus.kdl"
+// include "style_gpuishell.kdl"
 
 // For custom desktop shell
   window-rule {

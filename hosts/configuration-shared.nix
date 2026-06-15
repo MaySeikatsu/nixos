@@ -191,6 +191,7 @@ in {
     yt-dlp
     matugen # rust
     mpvpaper
+    socat
     libsForQt5.qt5ct
     # mochi
     # mise

@@ -261,9 +261,11 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
+// theme "default"
 // theme "dracula"
 // theme "tokyo-night-dark"
-theme "wallust-theme"
+// theme "wallust-theme"
+theme "matugen"
 // theme "rose-pine" // or "rose-pine-moon" or "rose-pine-dawn"
  
 // Choose the base input mode of zellij.
@@ -283,8 +285,8 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
-default_layout "default"
+default_layout "compact"
+// default_layout "default"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
