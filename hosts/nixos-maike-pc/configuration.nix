@@ -23,6 +23,11 @@
     # initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
     # Required for newer nvidia drivers (545+) to expose a KMS framebuffer for Wayland
     kernelParams = ["nvidia_drm.fbdev=1"];
+    # Tell the kernel where to look for a hibernation image so that
+    # `systemctl hibernate` can actually resume on the next boot.
+    # Same UUID as the swap partition in hardware-configuration.nix.
+    # Verify after rebuild with:  cat /proc/cmdline | grep -o 'resume=[^ ]*'
+    resumeDevice = "/dev/disk/by-uuid/b2fa32a1-4cc9-485e-a55f-ce0b954bd2e2";
     # loader.grub = {
     #   enable = true;
     #   efiSupport = true;
@@ -30,12 +35,36 @@
   };
   boot.kernelPackages = pkgs.linuxPackages;
 
-  #Enable Hibernate
+  # Enable suspend & hibernate, and use the "shutdown" hibernation mode.
+  # Why "shutdown"? The default ("platform") asks ACPI to enter S4 after
+  # writing the image, which on this nvidia desktop frequently hangs (same
+  # nvidia_drm Flip-event-timeout we see at poweroff). "shutdown" simply
+  # writes the image and powers off cleanly via the regular shutdown path,
+  # then the next boot detects the image and resumes (needs boot.resumeDevice,
+  # set above).
   systemd.sleep.settings.Sleep = {
     AllowSuspend = true;
     AllowHibernation = true;
+    AllowSuspendThenHibernate = true;
+    AllowHybridSleep = true;
+    HibernateMode = "shutdown";
     # allowExternalGpu = true;
   };
+
+  # Don't let a misbehaving unit hold the whole shutdown hostage for the
+  # systemd default of 90s. With nvidia-drm flip-event timeouts during
+  # shutdown/suspend, units can easily stall - cap them to 30s so that
+  # `systemctl poweroff` always completes in a bounded time.
+  # Affects both regular stop (SIGTERM grace) and the abort (SIGABRT grace)
+  # branches. Long-running stops we care about (docker, libvirtd) still
+  # finish well within 30s when there's nothing actively running in them.
+  # Note: only affects the SYSTEM manager. User units keep the default;
+  # add `systemd.user.extraConfig` here as well if you want the same cap.
+  systemd.settings.Manager = 
+    {
+      DefaultTimeoutStopSec = "30s";
+      DefaultTimeoutAbortSec = "30s";
+    };
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
 
