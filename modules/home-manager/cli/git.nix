@@ -62,8 +62,8 @@
     })
   ];
 
-  # Setup precommit hook to .git dir
-    home.activation.gitHookSymlink =
+  # Setup pre-commit hook to .git dir
+    home.acti vation.gitHookSymlink =
        config.lib.dag.entryAfter [ "writeBoundary" ] ''
          repo="${config.home.homeDirectory}/.config/nixos"
 
