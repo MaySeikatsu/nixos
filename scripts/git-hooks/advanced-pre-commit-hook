@@ -1,0 +1,45 @@
+  #!/usr/bin/env bash
+   # Lightweight gate: validates the nix flake and refuses plaintext sops files.
+   # Extend by appending more numbered sections.
+   set -euo pipefail
+
+   red()   { printf '\033[31m%s\033[0m\n' "$*" >&2; }
+   green() { printf '\033[32m%s\033[0m\n' "$*"; }
+
+   REPO="$(git rev-parse --show-toplevel)"
+   cd "$REPO"
+   fail=0
+
+   # ─── 1. nix evaluation ────────────────────────────────────────────────────
+   # Only run when nix files actually changed, so commits to docs/scripts are fast.
+   if git diff --cached --name-only --diff-filter=ACM \
+        | grep -qE '\.nix$|^flake\.lock$'; then
+     echo "→ evaluating flake (this catches sops key mismatches, syntax errors, etc)…"
+     for host in nixos-maike-pc nixos-legion; do
+       if ! nix eval --raw \
+            ".#nixosConfigurations.${host}.config.system.build.toplevel.drvPath" \
+            >/dev/null 2>/tmp/nix-eval-err; then
+         red "✗ nix eval failed for ${host}:"
+         tail -20 /tmp/nix-eval-err >&2
+         fail=1
+       fi
+     done
+   fi
+
+   # ─── 2. refuse plaintext sops files ───────────────────────────────────────
+   staged_secrets=$(git diff --cached --name-only --diff-filter=ACM \
+                     | grep -E '^secrets/.*\.(yaml|json|env)$' || true)
+   for f in $staged_secrets; do
+     if ! git show ":$f" | grep -q '^sops:'; then
+       red "✗ ${f} is not sops-encrypted (no 'sops:' metadata block)"
+       fail=1
+     fi
+   done
+
+   # ─── 3. (add more checks here, e.g. nixfmt, statix, deadnix, leak scan…) ──
+
+   if [ "$fail" -ne 0 ]; then
+     red "✗ pre-commit aborted (override: git commit --no-verify)"
+     exit 1
+   fi
+   green "✓ pre-commit ok"

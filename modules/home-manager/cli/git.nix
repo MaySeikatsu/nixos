@@ -61,4 +61,18 @@
       '';
     })
   ];
+
+  # Setup precommit hook to .git dir
+    home.activation.gitHookSymlink =
+       config.lib.dag.entryAfter [ "writeBoundary" ] ''
+         repo="${config.home.homeDirectory}/.config/nixos"
+
+         src="$repo/scripts/git-hooks/basic_pre-commit-hook"
+         dst="$repo/.git/hooks/pre-commit"
+
+         if [ -d "$repo/.git" ] && [ -f "$src" ]; then
+           run mkdir -p "$repo/.git/hooks"
+           run ln -sf "../../scripts/git-hooks/pre-commit" "$dst"
+         fi
+       '';
 }

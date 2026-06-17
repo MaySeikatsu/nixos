@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -e
+
+echo "Running pre-commit checks..."
+
+# Check that flake evaluates without errors
+echo "  Checking flake..."
+nix flake check --no-build 2>&1 || {
+  echo "ERROR: nix flake check failed"
+  exit 1
+}
+
+echo "Pre-commit checks passed."
