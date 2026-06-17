@@ -12,8 +12,11 @@
     ./git.nix
     ./nushell.nix
     ./starship.nix
+    ./sops.nix
+    ./ssh.nix
+    # ./git-options.nix
     # ./kubernetes.nix
-    ./weathr.nix
+    # ./weathr.nix
     ./yazi.nix
     ./zellij.nix
     ./zsh.nix

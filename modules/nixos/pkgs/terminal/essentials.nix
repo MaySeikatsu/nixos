@@ -55,9 +55,10 @@
     gopass-jsonapi
     # gopass-hibp # haveIbeenPwned?
     gnupg
+    age
+    sops
     # passphrase2pgp
     # tomb
-    gnupg
     # pinentry
     pinentry-curses
     proton-pass

@@ -3,6 +3,7 @@
   imports = [
     ./../home-shared.nix
   ];
+  # my.git.workDir = "/home/maike/Projects/";
 
   wayland.windowManager.hyprland.settings = {
     env = [
