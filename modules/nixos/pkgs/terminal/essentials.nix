@@ -55,11 +55,15 @@
     gopass-jsonapi
     # gopass-hibp # haveIbeenPwned?
     gnupg
-    age
-    sops
     # passphrase2pgp
     # tomb
     # pinentry
+    
+    # Sops encryypt
+    age
+    sops
+    ssh-to-age
+
     pinentry-curses
     proton-pass
   ];
