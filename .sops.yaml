@@ -1,0 +1,19 @@
+keys:
+  # Use: nix shell nixpkgs#ssh-to-age -c sh -c 'ssh-to-age < ~/.ssh/id_ed1111.pub'
+  # Use sops: nix shell nixpkgs#sops --command sops -e -i secrets/secrets.yaml
+  # sops secrets/secrets.yaml (opens decrypted, re-encrypts on save)
+  # age recipients derived from each machine's ssh host/user key via ssh-to-age.
+  # Replace the AAAA... with the actual age1... strings.
+  # - &username age1xxx (maybe add recovery for pc and laptop?)
+  - &pc age1rnwzmn7t9tnmaunw2ghyhvefv52j4sqdtyzr7meyamxq3vfdnefqkf8uwd
+  # - &legion age1zzz
+  - &recovery age1lq0gl0ap3r6m2kgwhpxyft6t05m3a7fqvf3y0yk553d9sqgjfprq2dy75s
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          # - *username
+          - *pc
+          # - *legion
+          - *recovery

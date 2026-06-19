@@ -2,3 +2,5 @@
 # [...]
 # flake.lock
 ./ressources/theming/wallust/colors-nix-active.nix
+secrets/*.plain.*
+secrets/*.dec.*

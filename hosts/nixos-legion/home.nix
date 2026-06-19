@@ -1,6 +1,7 @@
 { config, inputs, pkgs, ... }: {
   imports = [ ./../home-shared.nix ];
-
+   
+  # my.git.workDir = "/home/maike/Projects/";
   # Add if tlp = ac go 165hz else 60hz
   wayland.windowManager.hyprland.settings = {
     env = [

@@ -125,7 +125,7 @@
 
     # Vibe
     opencode
-    mistral-vibe
+    # mistral-vibe
     github-copilot-cli
     gemini-cli
     codex

@@ -57,8 +57,13 @@
     gnupg
     # passphrase2pgp
     # tomb
-    gnupg
     # pinentry
+    
+    # Sops encryypt
+    age
+    sops
+    ssh-to-age
+
     pinentry-curses
     proton-pass
   ];

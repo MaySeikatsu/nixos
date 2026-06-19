@@ -16,8 +16,14 @@
     };
 
     # Flake Inputs:
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-    nixcord.url = "github:kaylorben/nixcord";
+    zen-browser = {
+    url = "github:0xc000022070/zen-browser-flake";
+    # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixcord= {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     textfox = {
       url = "github:adriankarlen/textfox";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -51,11 +57,10 @@
       url = "github:mjoyufull/fsel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # rproc = {
-    #   url = "github:mayseikatsu/rproc";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    weathr.url = "github:mayseikatsu/weathr";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -70,6 +75,7 @@
     niri,
     sysc-greet,
     system76-scheduler-niri,
+    sops-nix,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -102,6 +108,7 @@
         sharedModules = [
           inputs.nixcord.homeModules.nixcord
           textfox.homeManagerModules.default
+          inputs.sops-nix.homeManagerModules.sops
         ];
       };
     };
