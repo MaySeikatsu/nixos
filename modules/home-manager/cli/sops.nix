@@ -22,6 +22,7 @@
      "git/work/email"     = { };
      "git/work/keyfile"   = { };
      "git/work/host_alias" = { };
+     "git/work/org"       = { };
 
      "git/paths/work_dir_pc"  = { };
      "git/paths/work_dir_legion" = { };
@@ -44,10 +45,11 @@
         name = ${config.sops.placeholder."git/work/name"}
         email = ${config.sops.placeholder."git/work/email"}
         signingkey = ${config.home.homeDirectory}/.ssh/${config.sops.placeholder."git/work/keyfile"}.pub
-      [core]
-        sshCommand = ssh -i ${config.home.homeDirectory}/.ssh/${config.sops.placeholder."git/work/keyfile"} -o IdentitiesOnly=yes
       [init]
         defaultBranch = master
+      [url "git@${config.sops.placeholder."git/work/host_alias"}:${config.sops.placeholder."git/work/org"}/"]
+        insteadOf = git@github.com:${config.sops.placeholder."git/work/org"}/
+        insteadOf = https://github.com/${config.sops.placeholder."git/work/org"}/
     '';
     # The router file: tells git WHEN to pull in git-work.inc
     templates."git-includes.inc".content = ''

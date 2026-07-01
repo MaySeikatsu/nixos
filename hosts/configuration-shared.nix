@@ -190,14 +190,16 @@ in {
     mpv
     yt-dlp
     matugen # rust
-    mpvpaper
-    socat
+    mpvpaper # for shell / video wallpaper
+    socat # for shell / mpvpaper timecode steering
+    wl-gammarelay-rs # for shell / lut like color filtering
     libsForQt5.qt5ct
     # mochi
     # mise
     wallust # rust
     quickshell
     noctalia-shell
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     openssl
     pkg-config
     # dms-shell # dank-material-shell
@@ -224,6 +226,7 @@ in {
     anki
     rose-pine-gtk-theme
     rose-pine-icon-theme
+    exiftool # Metadata readout for images and different files formats
     spotify
     ledfx
     openlinkhub
@@ -289,6 +292,7 @@ in {
     # gvfs # glib # same as above but no difference
     # feh
     evemu
+    cliamp
     # linuxKernel.packages.linux_zen.digimend
     protonmail-desktop
     #teams

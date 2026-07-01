@@ -10,7 +10,9 @@
     # ./neovim.nix
     ./fish.nix
     ./git.nix
+    ./github.nix
     ./nushell.nix
+    ./pre-commit.nix
     ./starship.nix
     ./sops.nix
     ./ssh.nix

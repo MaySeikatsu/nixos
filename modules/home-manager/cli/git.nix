@@ -35,6 +35,13 @@
       # In the work folder, override identity + signing key + default branch.
       { path = config.sops.templates."git-includes.inc".path; }
     ];
+
+    # opt-in alias: `git dlog`, `git dshow`, `git ddiff`
+    aliases = {
+      dlog = "-c diff.external=difft log --ext-diff";
+      dshow = "-c diff.external=difft show --ext-diff";
+      ddiff = "-c diff.external=difft diff";
+    };
   };
 
   # allowed_signers file so `git log --show-signature` works locally too.
@@ -46,7 +53,6 @@
     # work
     * ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDjpunpiDglMm0Fqd/wc3pxEG4bHA3ZFAEnYLBW/C/xq
   '';
-
   # A tiny script that prints the active identity $PWD.
   home.packages = [
     (pkgs.writeShellApplication {
@@ -60,6 +66,10 @@
         printf '%s <%s>\n  signing: %s\n' "$name" "$email" "$signer"
       '';
     })
+    pkgs.commitizen # interactive conventional commit prompt run with "cz commit"
+    pkgs.git-absorb # auto-generate fixup commits
+    pkgs.pre-commit # Every collaborator running pre-commit install gets the same hooks
+    pkgs.difftastic # Syntax-aware structural diff
   ];
 
   # Setup pre-commit hook to .git dir
@@ -75,4 +85,15 @@
            run ln -sf "../../scripts/git-hooks/basic_pre-commit-hook" "$dst"
          fi
        '';
+
+  # Pretty delta highlighting for git
+  programs.git.delta = {
+    enable = true;
+    options = {
+      navigate = true;
+      line-numbers = true;
+      side-by-side = true;
+      # syntax-theme = "rose-pine-moon";
+    };
+  };
 }
