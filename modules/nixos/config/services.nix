@@ -31,6 +31,7 @@
       defaultSession = "niri"; # "hyprland-uwsm"; # default option after logging in
       autoLogin.enable = false;
       autoLogin.user = "maike";
+      sessionPackages = [pkgs.kdePackages.plasma-bigscreen];
     };
 
     blueman.enable = true; # Enable Bluetooth (originally done for wacomtablet)
@@ -46,7 +47,6 @@
     xserver = {
       # enable = true;
       # Enable the GNOME Desktop Environment.
-      # desktopManager.plasma5.bigscreen.enable = true;
 
       # wacom.enable = true; # Enable Wacom Tablet
 

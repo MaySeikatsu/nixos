@@ -272,7 +272,7 @@ in {
     material-symbols
     cosmic-files
     superfile
-    # libsForQt5.plasma-bigscreen
+
 
     freerdp
     iptables

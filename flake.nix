@@ -65,6 +65,10 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    monado-rift-wayland = {
+      url = "github:MaySeikatsu/monado-rift-wayland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -80,6 +84,7 @@
     sysc-greet,
     system76-scheduler-niri,
     sops-nix,
+    monado-rift-wayland,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -113,6 +118,7 @@
           inputs.nixcord.homeModules.nixcord
           textfox.homeManagerModules.default
           inputs.sops-nix.homeManagerModules.sops
+          monado-rift-wayland.homeManagerModules.default
         ];
       };
     };
@@ -120,6 +126,10 @@
     commonDesktopModules = [
       inputs.spicetify-nix.nixosModules.default
       inputs.stylix.nixosModules.stylix
+      monado-rift-wayland.nixosModules.default{
+          # udev rules + monado-service/monado-cli in systemPackages
+          hardware.oculus-rift-cv1.enable = true;
+        }
       sysc-greet.nixosModules.default
       {nixpkgs.overlays = commonOverlays;}
       home-manager.nixosModules.home-manager

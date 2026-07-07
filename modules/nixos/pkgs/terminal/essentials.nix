@@ -42,6 +42,7 @@
     prismlauncher
 
     # Chat
+    xrizer
     # vesktop # vencord desktop client without overwriting the official discord binary
     element-desktop
     signal-desktop
