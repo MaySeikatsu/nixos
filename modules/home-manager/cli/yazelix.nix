@@ -2,8 +2,8 @@
 {...}:{
   programs.yazelix = {
     enable = true;
-    terminal = "foot";
-    manage_config = true;
+    # terminal = "foot";
+    # manage_config = true;
 
     # skip_welcome_screen = true;
     # screen_saver_enabled = false;
