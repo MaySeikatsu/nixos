@@ -16,6 +16,7 @@
     ./starship.nix
     ./sops.nix
     ./ssh.nix
+    ./yazelix.nix
     # ./git-options.nix
     # ./kubernetes.nix
     # ./weathr.nix

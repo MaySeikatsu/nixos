@@ -69,6 +69,10 @@
       url = "github:MaySeikatsu/monado-rift-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    yazelix-hm = {
+      url = "github:luccahuguet/yazelix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -85,6 +89,7 @@
     system76-scheduler-niri,
     sops-nix,
     monado-rift-wayland,
+    yazelix-hm,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -119,6 +124,7 @@
           textfox.homeManagerModules.default
           inputs.sops-nix.homeManagerModules.sops
           monado-rift-wayland.homeManagerModules.default
+          yazelix-hm.homeManagerModules.default
         ];
       };
     };

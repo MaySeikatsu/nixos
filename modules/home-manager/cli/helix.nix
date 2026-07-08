@@ -5,9 +5,12 @@
 }: {
   programs.helix = {
     enable = true;
+    package = pkgs.evil-helix;
+
     settings = {
       theme = "rose_pine_moon";
       editor = {
+        evil = true;
         # clipboard-provider = "";
         auto-format = true; # global default, can be overridden per language
         line-number = "relative";
