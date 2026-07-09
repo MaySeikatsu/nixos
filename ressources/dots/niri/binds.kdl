@@ -4,7 +4,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Super+Escape { spawn "hyprlock"; }
-    Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
+    // Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
+    Super+Escape { spawn "sh" "-c" "shellseikatsu ipc call session lock"; }
     // Super+A { spawn "sherlock"; }
     Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
     Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim ."; }
@@ -14,7 +15,10 @@ binds {
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "nautilus"; }
-    Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
+    // Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
+    Mod+R { spawn "sh" "-c" "shellseikatsu ipc call launcher toggle"; }
+    Mod+Z { spawn "sh" "-c" "shellseikatsu ipc call console toggle"; }
+    Mod+S {spawn "sh" "-c" "shellseikatsu ipc call sidebar toggle dashboard";}
     Mod+Shift+B { spawn "sh" "-c" "noctalia-shell ipc call bar toggle"; }
     Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
     Super+Q { close-window; }

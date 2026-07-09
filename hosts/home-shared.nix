@@ -22,6 +22,13 @@
     "flakes"
   ];
 
+  programs.shellseikatsu = {
+    enable = true;
+    # settings = {
+    #
+    # };
+    matugen.enable = true;
+  };
   home = {
     username = "maike";
     homeDirectory = "/home/maike";

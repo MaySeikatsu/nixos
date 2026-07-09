@@ -829,6 +829,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
+        "shellseikatsu": "shellseikatsu",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "spotatui": "spotatui",
