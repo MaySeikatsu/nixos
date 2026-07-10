@@ -4,7 +4,7 @@ let
   evilYazelixHelix = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
 in {
   programs.yazelix = {
-    enable = false;
+    enable = true;
     # terminal = "foot";
     manage_config = true;
 
