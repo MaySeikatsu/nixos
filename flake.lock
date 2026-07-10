@@ -829,7 +829,6 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
-        "shellseikatsu": "shellseikatsu",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "spotatui": "spotatui",
@@ -940,25 +939,6 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
-      }
-    },
-    "shellseikatsu": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "dirtyRev": "69c98a9fc9a3f633e403d700cfb880c83ee2609d-dirty",
-        "dirtyShortRev": "69c98a9-dirty",
-        "lastModified": 1783435565,
-        "narHash": "sha256-JtcHpEP+3II/G9iO5zv1/wnip28XKhpJ4AGf9RA4BcQ=",
-        "type": "git",
-        "url": "file:///home/maike/Documents/projects/quickshell/shellseikatsu/"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/maike/Documents/projects/quickshell/shellseikatsu/"
       }
     },
     "sops-nix": {

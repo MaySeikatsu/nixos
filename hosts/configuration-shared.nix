@@ -228,7 +228,7 @@ in {
     rose-pine-icon-theme
     exiftool # Metadata readout for images and different files formats
     spotify
-    ledfx
+    # ledfx
     openlinkhub
     hyperion-ng # not working yet
     pomodoro

@@ -73,10 +73,10 @@
       url = "github:luccahuguet/yazelix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    shellseikatsu = {
-      url = "git+file:///home/maike/Documents/projects/quickshell/shellseikatsu/";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # shellseikatsu = {
+    #   url = "git+file:///home/maike/Documents/projects/quickshell/shellseikatsu/";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
@@ -93,7 +93,7 @@
     system76-scheduler-niri,
     sops-nix,
     monado-rift-wayland,
-    shellseikatsu,
+    # shellseikatsu,
     yazelix-hm,
     ...
   } @ inputs: let
@@ -129,7 +129,7 @@
           textfox.homeManagerModules.default
           inputs.sops-nix.homeManagerModules.sops
           monado-rift-wayland.homeManagerModules.default
-          shellseikatsu.homeManagerModules.default
+          # shellseikatsu.homeManagerModules.default
           yazelix-hm.homeManagerModules.default
         ];
       };
