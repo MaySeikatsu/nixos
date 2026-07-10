@@ -73,6 +73,10 @@
       url = "github:luccahuguet/yazelix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    evil-yazelix-helix = {
+      url = "github:MaySeikatsu/evil-yazelix-helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # shellseikatsu = {
     #   url = "git+file:///home/maike/Documents/projects/quickshell/shellseikatsu/";
     #   inputs.nixpkgs.follows = "nixpkgs";

@@ -1,9 +1,17 @@
 # See for documentation: https://github.com/luccahuguet/yazelix/blob/main/home_manager/README.md
-{...}:{
+{pkgs, inputs, ...}:
+let
+  evilYazelixHelix = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
+in {
   programs.yazelix = {
-    enable = true;
+    enable = false;
     # terminal = "foot";
-    # manage_config = true;
+    manage_config = true;
+
+    helix_external = {
+      binary = "${evilYazelixHelix}/bin/hx";
+      runtime_path = "${evilYazelixHelix.runtimeDir}";
+    };
 
     # skip_welcome_screen = true;
     # screen_saver_enabled = false;
