@@ -6,7 +6,7 @@ keys:
   # Replace the AAAA... with the actual age1... strings.
   # - &username age1xxx (maybe add recovery for pc and laptop?)
   - &pc age1rnwzmn7t9tnmaunw2ghyhvefv52j4sqdtyzr7meyamxq3vfdnefqkf8uwd
-  # - &legion age1zzz
+  - &legion age1n9la2snv0etlf7efg2ku80n54re2vz2mcnhjgtwqh3yyhyf6qu8sfymdlh
   - &recovery age1lq0gl0ap3r6m2kgwhpxyft6t05m3a7fqvf3y0yk553d9sqgjfprq2dy75s
 
 creation_rules:
@@ -15,5 +15,5 @@ creation_rules:
       - age:
           # - *username
           - *pc
-          # - *legion
+          - *legion
           - *recovery
