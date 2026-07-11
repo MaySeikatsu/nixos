@@ -189,31 +189,31 @@
     # };
   };
 
-  # Enable VR with Monado / OpenXR and SteamVR
-  # services.monado = {
-  #   enable = true;
-  #   defaultRuntime = true; # Register as default OpenXR runtime
-  # };
-  # systemd.user.services.monado.environment = {
-  #   STEAMVR_LH_ENABLE = "1";
-  #   XRT_COMPOSITOR_COMPUTE = "1";
-  # };
-  # Enable git-lfs to use hand trackers in VR
+  # --- VR with Monado ---
+  # VR: Oculus Rift CV1 via monado-rift-wayland. udev rules + package come
+  # from the flake's nixosModule (see flake.nix); the OpenVR/xrizer + Steam
+  # wrapper side lives in home.nix. Games: docs/steamvr-and-proton.md in the
+  # driver repo.
+  services.monado = {
+    enable = true; # socket-activated: starts when a game connects
+    # must be the flake's Monado - the stock package's OpenHMD driver would
+    # claim the CV1's USB interfaces and break the native driver
+    package = config.hardware.oculus-rift-cv1.package;
+    defaultRuntime = true;
+  };
+  systemd.user.services.monado.environment = {
+    # NVIDIA + Wayland: force the Wayland direct-mode backend
+    XRT_COMPOSITOR_FORCE_WAYLAND_DIRECT = "1";
+    # floor = this far below the eyes when recentering while standing
+    # (hold right Touch Oculus button ~1s); set to your own eye height
+    RIFT_EYE_HEIGHT = "1.6";
+  };
+  # --- VR with Monado ---
+
   programs.git = {
     enable = true;
     lfs.enable = true;
   };
-  # STEAMVR kernel cap_sys_nice patch - AMD-specific, not applicable for nvidia systems
-  # boot.kernelPatches = [
-  #   {
-  #     name = "amdgpu-ignore-ctx-privileges";
-  #     patch = pkgs.fetchpatch {
-  #       name = "cap_sys_nice_begone.patch";
-  #       url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
-  #       hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
-  #     };
-  #   }
-  # ];
   # stylix.base16Scheme = "{pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   # stylix.image = /home/maike/Pictures/wallpaper/1013625.png;
   # services.displayManager.sddm = {

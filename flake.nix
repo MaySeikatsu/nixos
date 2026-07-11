@@ -72,6 +72,7 @@
     yazelix-hm = {
       url = "github:luccahuguet/yazelix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixgl.inputs.nixpkgs.follows = "nixpkgs";
     };
     evil-yazelix-helix = {
       url = "github:MaySeikatsu/evil-yazelix-helix";
@@ -118,6 +119,23 @@
           colmena
           ;
       })
+      # Upstream Vulkan-ValidationLayers now defaults CMake's UPDATE_DEPS to
+      # ON, which makes it try to `git clone` deps that Nix already provides
+      # via buildInputs; the sandbox has no network/git, so the build fails.
+      # Fix pending upstream: https://github.com/NixOS/nixpkgs/pull/540072
+      (final: prev: {
+        vulkan-validation-layers = prev.vulkan-validation-layers.overrideAttrs (old: {
+          cmakeFlags = (old.cmakeFlags or []) ++ ["-DUPDATE_DEPS=OFF"];
+        });
+      })
+      # commitizen's test suite expects Python <3.14's unquoted argparse
+      # "invalid choice" error format; Python 3.14 quotes each choice now,
+      # so one snapshot test fails. Not a real bug in the package itself.
+      (final: prev: {
+        commitizen = prev.commitizen.overridePythonAttrs (old: {
+          doCheck = false;
+        });
+      })
     ];
 
     mkHomeManagerConfig = homePath: {
@@ -142,10 +160,9 @@
     commonDesktopModules = [
       inputs.spicetify-nix.nixosModules.default
       inputs.stylix.nixosModules.stylix
-      monado-rift-wayland.nixosModules.default{
-          # udev rules + monado-service/monado-cli in systemPackages
-          hardware.oculus-rift-cv1.enable = true;
-        }
+      # Oculus Rift CV1: udev rules + patched Monado package
+      monado-rift-wayland.nixosModules.default
+      {hardware.oculus-rift-cv1.enable = true;}
       sysc-greet.nixosModules.default
       {nixpkgs.overlays = commonOverlays;}
       home-manager.nixosModules.home-manager

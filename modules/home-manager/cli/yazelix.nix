@@ -13,8 +13,8 @@ in {
       runtime_path = "${evilYazelixHelix.runtimeDir}";
     };
 
-    # skip_welcome_screen = true;
-    # screen_saver_enabled = false;
+    skip_welcome_screen = true;
+    # screen_saver_enabled = true;
     # show_macchina_on_welcome = false;
     # components = {
     #   cursors = false;
