@@ -140,12 +140,6 @@ in {
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Enable VR with Monado / OpenXR and SteamVR
-  # systemd.user.services.monado.environment = {
-  #   STEAMVR_LH_ENABLE = "1";
-  #   XRT_COMPOSITOR_COMPUTE = "1";
-  # };
-
   # programs.uwsm.enable = true;
   xdg.portal = {
     enable = true;

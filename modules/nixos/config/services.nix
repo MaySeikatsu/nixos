@@ -61,11 +61,5 @@
       enable = true;
       # startupProfile = "";
     };
-
-    # Enable VR with Monado / OpenXR and SteamVR
-    # monado = {
-    #   enable = true;
-    #   defaultRuntime = true; # Register as default OpenXR runtime
-    # };
   };
 }
