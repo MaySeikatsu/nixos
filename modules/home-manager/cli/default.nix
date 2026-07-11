@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./atuin.nix
     ./btop.nix
     ./bacon.nix
     ./cava.nix

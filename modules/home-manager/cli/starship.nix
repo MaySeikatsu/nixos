@@ -47,6 +47,11 @@ in{
         custom.git_identity_via_sops = {
            description = "Active git identity for $PWD";
            command = lib.getExe gitIdentity;
+           # Without this, starship runs `when` via its lightweight
+           # non-shell executor, which doesn't understand `||`, `>`, or
+           # `case` - the when condition below silently always failed and
+           # this module never once rendered, in any shell.
+           shell = "${pkgs.bash}/bin/bash";
            # Show only when we're somewhere git-relevant (in a repo OR in a
            # typical project parent dir). Suppresses badge in /tmp, /, etc.
            when = ''

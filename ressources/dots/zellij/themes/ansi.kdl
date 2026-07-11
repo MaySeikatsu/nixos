@@ -1,0 +1,19 @@
+// Theme built entirely from ANSI palette indexes (0-15).
+// The terminal resolves these at draw time, so zellij always matches the
+// terminal's palette (matugen/wallust re-theming applies live, even to
+// running sessions) - no regeneration or restart needed.
+themes {
+  ansi {
+    fg 15
+    bg 0
+    black 0
+    red 1
+    green 2
+    yellow 3
+    blue 4
+    magenta 5
+    cyan 6
+    white 15
+    orange 3 // ANSI has no orange slot; 3 (yellow) keeps it theme-tracking
+  }
+}

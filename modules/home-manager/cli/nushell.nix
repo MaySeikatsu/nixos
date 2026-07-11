@@ -4,9 +4,10 @@
     shellAliases = {
       n = "nvim";
       v = "nvim";
-      y = "yazi";
       zlja = "zellij attach";
       zlj = "zellij";
+      # session rename+pin is the `sn` script from zellij.nix (not an alias,
+      # so that renaming also pins the session against the reaper)
       pass = "gopass";
 
       # Git Aliases:
@@ -108,12 +109,39 @@
               }
           }
       }
-      def start_zellij [] {
-         if 'ZELLIJ' not-in ($env | columns) {
-           zellij
-         }
-       }
-       start_zellij
+      # Auto-start zellij: session named after the current directory;
+      # attaches if live, resurrects if dead, creates otherwise (zellij.nix).
+      if 'ZELLIJ' not-in ($env | columns) { zellij-autostart }
+
+      # Rename the zellij tab to the current dir (at prompt) or the running
+      # command (while it runs). `tn <name>` pins a manual name, `tn` unpins.
+      $env.config.hooks.pre_prompt = ($env.config.hooks.pre_prompt | append {||
+        if ('ZELLIJ' in ($env | columns)) and (($env.ZJ_TAB_NAME_LOCK? | default "") == "") {
+          let name = if $env.PWD == $env.HOME { "~" } else { $env.PWD | path basename }
+          zellij action rename-tab $name
+        }
+      })
+      $env.config.hooks.pre_execution = ($env.config.hooks.pre_execution | append {||
+        if ('ZELLIJ' in ($env | columns)) and (($env.ZJ_TAB_NAME_LOCK? | default "") == "") {
+          let cmd = (commandline | str trim | split row ' ' | get -o 0 | default "")
+          if $cmd != "" { zellij action rename-tab $cmd }
+        }
+      })
+      def --env tn [name?: string] {
+        if $name == null {
+          hide-env -i ZJ_TAB_NAME_LOCK
+        } else {
+          $env.ZJ_TAB_NAME_LOCK = "1"
+          zellij action rename-tab $name
+        }
+      }
+
+      # On cd into a dir with an existing zellij session, offer to switch
+      # to it (exit 3 = declined; remember the decline for this shell).
+      $env.config.hooks.env_change.PWD = ($env.config.hooks.env_change.PWD? | default [] | append {
+        condition: {|_, after| ('ZELLIJ' in ($env | columns)) and (not ($after in ($env.ZJ_CD_DECLINED? | default []))) }
+        code: "if (do { zellij-cd-attach } | complete | get exit_code) == 3 { $env.ZJ_CD_DECLINED = (($env.ZJ_CD_DECLINED? | default []) | append $env.PWD) }"
+      })
 
         # Example binding - this might need adjustment to Nushell's actual syntax:
         # bind alt-backspace = delete_word_backward
@@ -167,5 +195,6 @@
   # home.sessionVariables = { CARAPACE_BRIDGES = "fish"; };
   home.sessionVariables = {
     CARAPACE_BRIDGES = "fish,zsh,inshellisense";
+    CARAPACE_EXCLUDES = "git";
   };
 }

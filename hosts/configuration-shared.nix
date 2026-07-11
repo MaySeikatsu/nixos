@@ -25,7 +25,9 @@ in {
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
 
-  users.defaultUserShell = pkgs.nushell;
+  programs.fish.enable = true;
+
+  users.defaultUserShell = pkgs.fish;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.maike = {
     isNormalUser = true;
@@ -38,7 +40,7 @@ in {
       "docker"
     ];
     useDefaultShell = false;
-    shell = pkgs.nushell; # shell = pkgs.zsh;     # shell = pkgs.fish;
+    shell = pkgs.fish; # shell = pkgs.zsh;     # shell = pkgs.nushell;
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird

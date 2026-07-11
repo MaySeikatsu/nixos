@@ -125,6 +125,7 @@ keybinds clear-defaults=true {
         }
         bind "d" { Detach; }
         bind "o" { SwitchToMode "normal"; }
+        bind "r" { Run "zellij-rename-session" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -162,8 +163,10 @@ keybinds clear-defaults=true {
         bind "Alt t" { NewTab; SwitchToMode "locked"; }
         bind "Alt w" { CloseTab; SwitchToMode "locked"; }
         bind "Alt o" { MoveTab "right"; }
-        // bind "Alt t r" { MoveTab "right"; } add rename tab
-        // bind "Alt o r" { MoveTab "right"; } add rename session
+        // Plugin launchers (see plugins block below)
+        bind "Alt r" { LaunchOrFocusPlugin "room" { floating true; ignore_case true; }; }
+        bind "Alt g" { LaunchOrFocusPlugin "forgot" { floating true; }; }
+        bind "Alt s" { Run "zjp" { floating true; close_on_exit true; }; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -190,7 +193,7 @@ keybinds clear-defaults=true {
     shared_among "normal" "resize" "tab" "scroll" "prompt" "tmux" {
         bind "p" { SwitchToMode "pane"; }
     }
-    shared_except "locked" "resize" "pane" "tab" "entersearch" "renametab" "renamepane" {
+    shared_except "locked" "resize" "pane" "tab" "entersearch" "renametab" "renamepane" "session" {
         bind "r" { SwitchToMode "resize"; }
     }
     shared_among "scroll" "search" {
@@ -243,6 +246,34 @@ plugins {
     welcome-screen location="zellij:session-manager" {
         welcome_screen true
     }
+    // Community plugins - wasm files are placed by home-manager (zellij.nix)
+    room location="file:/home/maike/.config/zellij/plugins/room.wasm"
+    forgot location="file:/home/maike/.config/zellij/plugins/zellij_forgot.wasm"
+    switch location="file:/home/maike/.config/zellij/plugins/zellij-switch.wasm"
+    zjstatus location="file:/home/maike/.config/zellij/plugins/zjstatus.wasm" {
+        format_left   "{mode}#[fg=green,bold] {session} "
+        format_center "{tabs}"
+        format_right  "#[fg=blue]{datetime}"
+        format_space  ""
+
+        mode_locked   "#[fg=blue,bold] LOCKED "
+        mode_normal   "#[fg=yellow,bold] NORMAL "
+        mode_pane     "#[fg=yellow,bold] PANE "
+        mode_tab      "#[fg=yellow,bold] TAB "
+        mode_resize   "#[fg=yellow,bold] RESIZE "
+        mode_move     "#[fg=yellow,bold] MOVE "
+        mode_scroll   "#[fg=yellow,bold] SCROLL "
+        mode_search   "#[fg=yellow,bold] SEARCH "
+        mode_session  "#[fg=yellow,bold] SESSION "
+        mode_default_to_mode "normal"
+
+        tab_normal   "#[fg=default] {index} {name} "
+        tab_active   "#[fg=green,bold] {index} {name} "
+
+        datetime          "#[fg=default]{format} "
+        datetime_format   "%H:%M"
+        datetime_timezone "Europe/Berlin"
+    }
 }
 
 // Plugins to load in the background when a new session starts
@@ -261,12 +292,11 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-// theme "default"
-// theme "dracula"
-// theme "tokyo-night-dark"
+// "ansi" (themes/ansi.kdl) is built from ANSI palette indexes, so it always
+// follows the terminal's own (matugen) palette - live, without restarts.
+theme "ansi"
+// theme "matugen"
 // theme "wallust-theme"
-theme "matugen"
-// theme "rose-pine" // or "rose-pine-moon" or "rose-pine-dawn"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -285,8 +315,9 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-default_layout "compact"
-// default_layout "default"
+// "zjstatus" (layouts/zjstatus.kdl) = compact layout with the zjstatus bar
+default_layout "zjstatus"
+// default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
@@ -329,8 +360,11 @@ pane_frames false
 //   - detach (Default)
 //   - quit
 // 
-// on_force_close "detach"
-on_force_close "quit"
+// "detach": closing the terminal window keeps the session (and everything
+// running in it) alive in the background; the autostart wrapper reattaches
+// to it next time a terminal opens in the same directory. Quit deliberately
+// with Ctrl g -> Ctrl q, or `zellij ka` (kill-all-sessions).
+on_force_close "detach"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -371,18 +405,10 @@ on_force_close "quit"
 // Default: $EDITOR or $VISUAL
 // scrollback_editor "/usr/bin/vim"
  
-// A fixed name to always give the Zellij session.
-// Consider also setting `attach_to_session true,`
-// otherwise this will error if such a session exists.
-// Default: <RANDOM>
-// 
+// Session names are handled by the zellij-autostart wrapper (named after the
+// current directory), so session_name / attach_to_session stay unset here.
 // session_name "My singleton session"
- 
-// When `session_name` is provided, attaches to that session
-// if it is already running or creates it otherwise.
-// Default: false
-// 
-attach_to_session true
+// attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -392,18 +418,17 @@ attach_to_session true
 // auto_layout false
  
 // Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
-// Options:
-//   - true (default)
-//   - false
-// 
-// session_serialization false
+// NOTE: must be explicit - zellij 0.44 no longer serializes by default,
+// and the whole restore/resurrect workflow depends on it.
+session_serialization true
  
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
 //   - true
 //   - false (default)
-// 
-// serialize_pane_viewport false
+//
+// Restore the visible pane text too when resurrecting a dead session.
+serialize_pane_viewport true
  
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
