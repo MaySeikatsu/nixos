@@ -126,6 +126,7 @@ keybinds clear-defaults=true {
         bind "d" { Detach; }
         bind "o" { SwitchToMode "normal"; }
         bind "r" { Run "zellij-rename-session" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
+        bind "l" { Run "zjl" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -167,6 +168,16 @@ keybinds clear-defaults=true {
         bind "Alt r" { LaunchOrFocusPlugin "room" { floating true; ignore_case true; }; }
         bind "Alt g" { LaunchOrFocusPlugin "forgot" { floating true; }; }
         bind "Alt s" { Run "zjp" { floating true; close_on_exit true; }; }
+        // IDE layout new-tab shortcuts (each opens a fresh tab with layout)
+        bind "Alt Shift I" { NewTab { layout "ide"; }; }
+        bind "Alt Shift F" { NewTab { layout "ide-filetree"; }; }
+        bind "Alt Shift C" { NewTab { layout "ide-console"; }; }
+        bind "Alt Shift G" { NewTab { layout "ide-git"; }; }
+        bind "Alt Shift E" { NewTab { layout "ide-llm"; }; }
+        bind "Alt Shift Y" { NewTab { layout "ide-yazi"; }; }
+        // Fuzzy layout picker (fzf floating pane) + last-session jump
+        bind "Alt Shift L" { Run "zjl" { floating true; close_on_exit true; }; }
+        bind "Alt Shift S" { Run "zjp2" "last" { floating true; close_on_exit true; }; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }

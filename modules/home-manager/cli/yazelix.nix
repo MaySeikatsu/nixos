@@ -25,7 +25,8 @@ in {
       {
         id = "btop";
         command = [ "btop" ];
-        keybindings = [ "Alt Shift Y" ];
+        # Moved from Alt Shift Y (which now opens the ide-yazi layout).
+        keybindings = [ "Alt Shift B" ];
         keep_alive = true;
       }
       # {

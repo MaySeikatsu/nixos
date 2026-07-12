@@ -33,6 +33,15 @@
 
     settings = {
       theme = "rose_pine_moon";
+      # Zellij integration: works because :sh just talks to the surrounding
+      # zellij session's server. -f = floating pane, -c = close when app exits.
+      keys.normal.space = {
+        T = ":sh zellij action new-pane -f"; # Space+T floating console
+        L = ":sh zellij run -fc -- lazygit"; # Space+L floating lazygit
+        Y = ":sh zellij run -fc -- yazi"; # Space+Y floating yazi (Space+e/E = builtin explorer)
+        B = ":sh zellij run -c -d left -- broot"; # Space+B sidebar filetree
+        X = ":sh zellij plugin -f -- zellij:strider"; # Space+X floating strider tree
+      };
       editor = {
         evil = true;
         # clipboard-provider = "";

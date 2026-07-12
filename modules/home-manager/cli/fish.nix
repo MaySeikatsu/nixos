@@ -10,9 +10,9 @@
     interactiveShellInit = ''
       # Auto-start zellij: session named after the current directory;
       # attaches if live, resurrects if dead, creates otherwise (zellij.nix).
-      if not set -q ZELLIJ
-          zellij-autostart
-      end
+      # if not set -q ZELLIJ
+      #     zellij-autostart
+      # end
 
       # Rename the zellij tab to the current dir (at prompt) or the running
       # command (while it runs). `tn <name>` pins a manual name, `tn` unpins.
@@ -58,30 +58,7 @@
       command = "backward-kill-word";
     };
 
-    shellAliases = {
-      n = "nvim";
-      v = "nvim";
-      # `y` is intentionally not aliased to `yazi` here: yazi.nix's own
-      zlja = "zellij attach";
-      zlj = "zellij";
-      # session rename+pin is the `sn` script from zellij.nix (not an alias,
-      # so that renaming also pins the session against the reaper)
-      pass = "gopass";
-
-      # Git Aliases:
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gf = "git fetch";
-      gp = "git pull";
-      gP = "git push";
-      gb = "git branch";
-      gC = "git checkout";
-      gm = "git merge";
-      gr = "git rebase";
-      gl = "git log";
-
-      davinci-resolve = "nvidia-offload davinci-resolve";
-    };
+    # Aliases come from shell-aliases.nix (shared across zsh/fish/nushell).
+    # `y` is intentionally not aliased to `yazi`: yazi.nix provides its own.
   };
 }

@@ -203,13 +203,93 @@
       fi
     done
   '';
+
+  # Fuzzy layout picker: pick from ~/.config/zellij/layouts/*.kdl, open in a
+  # new tab. Bound to Alt Shift L, also reachable via Ctrl g o l.
+  zjl = pkgs.writeShellScriptBin "zjl" ''
+    dir="$HOME/.config/zellij/layouts"
+    sel=$(ls "$dir" 2>/dev/null | sed -n 's/\.kdl$//p' | fzf \
+      --prompt "layout > " \
+      --preview "cat \"$dir/{}.kdl\"" \
+      --preview-window=right,60%)
+    [ -n "$sel" ] || exit 0
+    exec zellij action new-tab --layout "$sel"
+  '';
+
+  # Reveal a file into the editor pane of an IDE-yazi (or similar) layout.
+  # Called from yazi's keymap (`o` -> shell 'zellij-reveal-file "$0"' --confirm).
+  # Behavior:
+  #   1) focus the pane named "editor" (falls back to next pane if unnamed)
+  #   2) auto-detect helix vs nvim vs shell by inspecting the pane's process
+  #   3) send the appropriate open command:
+  #        helix (`hx`) -> ESC :o <path> <CR>
+  #        nvim         -> ESC :e <path> <CR>
+  #        other (shell) -> "$EDITOR <path>" as a fallback
+  # zellij lacks a stable focus-pane-by-name action; we walk panes and match
+  # the tab's pane list from `zellij action query-tab-names` is not enough
+  # (it only lists tab names). We use directional focus as a fallback: from
+  # the tree pane (typical yazi position, top-left), one "focus-next-pane"
+  # cycles to the editor pane.
+  zellij-reveal-file = pkgs.writeShellScriptBin "zellij-reveal-file" ''
+    set -e
+    file="''${1:-}"
+    [ -n "$file" ] || { echo "usage: zellij-reveal-file <path>" >&2; exit 1; }
+    [ -n "$ZELLIJ" ] || { echo "not inside a zellij session" >&2; exit 1; }
+
+    # Move focus to the editor pane. `zellij action focus-next-pane` cycles
+    # through visible tiled panes in a deterministic order. In the ide-yazi
+    # layout, the yazi pane is the tree; next pane is the editor.
+    zellij action focus-next-pane >/dev/null 2>&1 || true
+
+    # Sniff the process running in the now-focused pane. `zellij action
+    # list-clients` doesn't give us that; instead we introspect via /proc.
+    # Approach: find the child process of the current pane's shell PID.
+    # We rely on ZELLIJ setting PANE_ID/PANE_TITLE isn't enough — use pgrep
+    # against known editor names as a best-effort.
+    detect_editor() {
+      # Prefer helix (evil-helix ships `hx`), then nvim, then $EDITOR.
+      if pgrep -x hx  >/dev/null 2>&1; then echo hx;   return; fi
+      if pgrep -x helix >/dev/null 2>&1; then echo hx; return; fi
+      if pgrep -x nvim >/dev/null 2>&1; then echo nvim; return; fi
+      if pgrep -x vim  >/dev/null 2>&1; then echo vim;  return; fi
+      echo shell
+    }
+    ed=$(detect_editor)
+
+    # Absolute path — editors resolve relative paths in their own cwd which
+    # may not match yazi's cwd.
+    case "$file" in
+      /*) abs="$file" ;;
+      *)  abs="$PWD/$file" ;;
+    esac
+
+    # Send keys. `zellij action write 27` = ESC. `write 13` = Enter.
+    case "$ed" in
+      hx)
+        zellij action write 27
+        zellij action write-chars ":open $abs"
+        zellij action write 13
+        ;;
+      nvim|vim)
+        zellij action write 27
+        zellij action write-chars ":edit $abs"
+        zellij action write 13
+        ;;
+      shell)
+        # Assume a running shell prompt; type an editor command.
+        editor="''${EDITOR:-hx}"
+        zellij action write-chars "$editor $abs"
+        zellij action write 13
+        ;;
+    esac
+  '';
 in {
   programs.zellij.enable = true;
   # Shell auto-start intentionally does NOT use the home-manager integrations
   # (they run a bare `zellij`, which creates a randomly-named session every
   # time). nushell.nix / fish.nix / zsh.nix call zellij-autostart instead.
 
-  home.packages = [zellij-autostart zjp zellij-rename-session zpin zunpin sn zellij-cd-attach zellij-reaper];
+  home.packages = [zellij-autostart zjp zjl zellij-reveal-file zellij-rename-session zpin zunpin sn zellij-cd-attach zellij-reaper];
 
   systemd.user.services.zellij-reaper = {
     Unit.Description = "Reap unpinned detached zellij sessions and stale saved sessions";
@@ -232,6 +312,12 @@ in {
       ".config/zellij/config.kdl".source = ../../../ressources/dots/zellij/config.kdl;
       ".config/zellij/themes/ansi.kdl".source = ../../../ressources/dots/zellij/themes/ansi.kdl;
       ".config/zellij/layouts/zjstatus.kdl".source = ../../../ressources/dots/zellij/layouts/zjstatus.kdl;
+      ".config/zellij/layouts/ide.kdl".source = ../../../ressources/dots/zellij/layouts/ide.kdl;
+      ".config/zellij/layouts/ide-git.kdl".source = ../../../ressources/dots/zellij/layouts/ide-git.kdl;
+      ".config/zellij/layouts/ide-llm.kdl".source = ../../../ressources/dots/zellij/layouts/ide-llm.kdl;
+      ".config/zellij/layouts/ide-filetree.kdl".source = ../../../ressources/dots/zellij/layouts/ide-filetree.kdl;
+      ".config/zellij/layouts/ide-console.kdl".source = ../../../ressources/dots/zellij/layouts/ide-console.kdl;
+      ".config/zellij/layouts/ide-yazi.kdl".source = ../../../ressources/dots/zellij/layouts/ide-yazi.kdl;
     }
     // lib.mapAttrs' (name: src: {
       name = ".config/zellij/plugins/${name}";

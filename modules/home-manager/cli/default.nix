@@ -3,6 +3,8 @@
     ./atuin.nix
     ./btop.nix
     ./bacon.nix
+    ./broot.nix
+    ./shell-aliases.nix
     ./cava.nix
     ./emacs.nix
     ./fzf.nix
@@ -23,6 +25,7 @@
     # ./weathr.nix
     ./yazi.nix
     ./zellij.nix
+    ./zjp.nix
     ./zsh.nix
     # ./tmux.nix
     ./zoxide.nix

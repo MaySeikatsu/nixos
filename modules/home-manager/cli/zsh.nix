@@ -27,7 +27,9 @@
     # (see atuin.nix) rather than zsh's own history-search machinery.
 
     history = {
-      size = 5000;
+      # cheap to keep large; atuin owns search, this feeds autosuggestions
+      size = 100000;
+      save = 100000;
       append = true;
       share = true;
       ignoreAllDups = true;
@@ -35,31 +37,7 @@
       path = "$HOME/.zsh_history";
     };
 
-    shellAliases = {
-      n = "nvim";
-      v = "nvim";
-      # `y`  
-      zlja = "zellij attach";
-      zlj = "zellij";
-      # session rename+pin is the `sn` script from zellij.nix (not an alias,
-      # so that renaming also pins the session against the reaper)
-      pass = "gopass";
-
-      # Git Aliases:
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gf = "git fetch";
-      gp = "git pull";
-      gP = "git push";
-      gb = "git branch";
-      gC = "git checkout";
-      gm = "git merge";
-      gr = "git rebase";
-      gl = "git log";
-
-      davinci-resolve = "nvidia-offload davinci-resolve";
-    };
+    # Aliases come from shell-aliases.nix (shared across zsh/fish/nushell).
 
     initContent = ''
       # Enable Ctrl+Backspace to delete words
@@ -78,7 +56,7 @@
 
       # Auto-start zellij: session named after the current directory;
       # attaches if live, resurrects if dead, creates otherwise (zellij.nix).
-      [[ -o interactive ]] && zellij-autostart
+      # [[ -o interactive ]] && zellij-autostart
 
       # Rename the zellij tab to the current dir (at prompt) or the running
       # command (while it runs). `tn <name>` pins a manual name, `tn` unpins.

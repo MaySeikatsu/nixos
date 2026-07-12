@@ -15,6 +15,9 @@
       imagemagick
       file
     ];
+    # `o` in yazi -> reveal hovered file into zellij editor pane
+    # (see ressources/dots/yazi/keymap.toml for details).
+    keymap = builtins.fromTOML (builtins.readFile ../../../ressources/dots/yazi/keymap.toml);
     # show_hidden = false;
     # theme = {
     #

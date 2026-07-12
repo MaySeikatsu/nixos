@@ -4,6 +4,7 @@
     tailscale = {
       enable = true;
       extraDaemonFlags = ["--no-logs-no-support"];
+      extraSetFlags = ["--ssh"];
     };
   };
   networking = {

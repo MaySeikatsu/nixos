@@ -1,0 +1,67 @@
+# zjp2 configuration example.
+#
+# Copy this file to `config.toml` in the same directory (~/.config/zjp/) and
+# edit as you like. zjp2 works without a config file (all-source picker with
+# defaults); this file is for adding [[session]] shortcuts, [[wildcard]] rules,
+# blacklists, and per-project preview/startup/layout hooks.
+
+# ---- Global -----------------------------------------------------------------
+
+# Order sources are listed in the picker. Unknown values are appended.
+sort_order = ["config", "zellij", "zoxide"]
+
+# Names to hide from the picker. `zjp2 list -b` shows only these.
+blacklist = ["scratch", "junk"]
+
+# 1 = basename only ("nixos"), 2 = "parent/child" ("dotfiles/nixos"), etc.
+dir_length = 1
+
+# Nerd-Font glyphs in the picker. Requires a Nerd Font in your terminal.
+icons = false
+
+# ---- Defaults applied when a session/wildcard doesn't override --------------
+
+[default_session]
+# Command run in a new pane the first time a session is created.
+# Empty = no startup command.
+startup_command = ""
+
+# Command used to render the preview pane when a specific one isn't set.
+# `{}` is substituted with the entry's path.
+preview_command = "eza --all --git --icons --color=always {}"
+
+# Zellij layout name (from ~/.config/zellij/layouts/<name>.kdl). Empty = default.
+layout = ""
+
+# ---- Explicit sessions ------------------------------------------------------
+# Match by `name` or `path`. Highest precedence.
+
+[[session]]
+name            = "nixos"
+path            = "~/.config/nixos"
+startup_command = "hx"
+preview_command = "bat --color=always {}/flake.nix"
+layout          = "ide-git"
+
+[[session]]
+name            = "downloads"
+path            = "~/Downloads"
+preview_command = "ls -la {}"
+
+# ---- Wildcard rules ---------------------------------------------------------
+# Match paths by glob. First match wins. `**` = recursive; `*` = one segment.
+# Applied to zoxide entries and to `zjp2 connect <path>` invocations.
+
+[[wildcard]]
+pattern         = "~/Documents/projects/rust/*"
+startup_command = "hx ."
+preview_command = "eza --tree --level=2 --color=always {}"
+layout          = "ide-git"
+
+[[wildcard]]
+pattern         = "~/Documents/cws/**"
+layout          = "ide"
+
+[[wildcard]]
+pattern         = "~/Projects/*"
+layout          = "ide"

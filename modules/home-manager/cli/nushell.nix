@@ -1,39 +1,12 @@
 {...}: {
   programs.nushell = {
     enable = true;
-    shellAliases = {
-      n = "nvim";
-      v = "nvim";
-      zlja = "zellij attach";
-      zlj = "zellij";
-      # session rename+pin is the `sn` script from zellij.nix (not an alias,
-      # so that renaming also pins the session against the reaper)
-      pass = "gopass";
-
-      # Git Aliases:
-      gs = "git status";
-      ga = "git add";
-      gc = "git commit";
-      gf = "git fetch";
-      gp = "git pull";
-      gP = "git push";
-      gb = "git branch";
-      gC = "git checkout";
-      gm = "git merge";
-      gr = "git rebase";
-      gl = "git log";
-
-      davinci-resolve = "nvidia-offload davinci-resolve";
-    };
+    # Aliases come from shell-aliases.nix (shared across zsh/fish/nushell).
 
     settings = {
       # edit_mode = "vi";
       show_banner = false;
-      completions = {
-        external.enable = true;
-        # external.completer = "fish";
-        # external.fallback = "fish"; #set fish as fallsback to nuhsell / carapace
-      };
+      # completions are configured once in extraConfig ($env.config below)
     };
     plugins = [
       # pkgs.nushellPlugins.skim
@@ -111,7 +84,7 @@
       }
       # Auto-start zellij: session named after the current directory;
       # attaches if live, resurrects if dead, creates otherwise (zellij.nix).
-      if 'ZELLIJ' not-in ($env | columns) { zellij-autostart }
+      # if 'ZELLIJ' not-in ($env | columns) { zellij-autostart }
 
       # Rename the zellij tab to the current dir (at prompt) or the running
       # command (while it runs). `tn <name>` pins a manual name, `tn` unpins.
@@ -175,13 +148,6 @@
     configFile.text = ''
       source ~/.zoxide.nu
       # cat ~/.cache/wallust/sequences
-      { ||
-          if (which direnv | is-empty) {
-              return
-          }
-
-          direnv export json | from json | default {} | load-env
-      }
     '';
     # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
     # configFile.source = ./.../config.nu;

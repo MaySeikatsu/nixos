@@ -1,0 +1,11 @@
+# Yazi keymap overrides (prepended to defaults so builtin binds still work).
+#
+# `o`: reveal the hovered file into the zellij editor pane via
+# `zellij-reveal-file` (see modules/home-manager/cli/zellij.nix).
+# Auto-detects helix vs nvim in the target pane. Only meaningful inside a
+# zellij layout that has a pane named "editor" (ide, ide-git, ide-llm,
+# ide-yazi, ide-filetree, ide-console).
+[[manager.prepend_keymap]]
+on   = "o"
+run  = 'shell "zellij-reveal-file \"$0\"" --confirm'
+desc = "Reveal in zellij editor pane"
