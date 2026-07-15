@@ -6,24 +6,24 @@
 }: let
   # zjp v2 - sesh feature-parity zellij session picker.
   # Nushell prototype, kept alive during the zjp2/noren bake-off.
-  zjp2Src = ../../../ressources/scripts/zjp2;
-
-  zjp2 = pkgs.writeShellScriptBin "zjp2" ''
-    export PATH=${lib.makeBinPath [
-      pkgs.nushell
-      pkgs.zellij
-      pkgs.zoxide
-      pkgs.fzf
-      pkgs.git
-      pkgs.coreutils
-      pkgs.gnused
-      pkgs.gawk
-      pkgs.gnugrep
-      pkgs.findutils
-    ]}:$PATH
-    exec nu ${zjp2Src}/main.nu "$@"
-  '';
-
+  # zjp2Src = ../../../ressources/scripts/zjp2;
+  #
+  # zjp2 = pkgs.writeShellScriptBin "zjp2" ''
+  #   export PATH=${lib.makeBinPath [
+  #     pkgs.nushell
+  #     pkgs.zellij
+  #     pkgs.zoxide
+  #     pkgs.fzf
+  #     pkgs.git
+  #     pkgs.coreutils
+  #     pkgs.gnused
+  #     pkgs.gawk
+  #     pkgs.gnugrep
+  #     pkgs.findutils
+  #   ]}:$PATH
+  #   exec nu ${zjp2Src}/main.nu "$@"
+  # '';
+  #
   # noren (暖簾) - the Rust session manager (formerly zjp3), consumed as a
   # flake input from the local checkout (see its CLAUDE.md / README).
   # After changing it: commit there, `nix flake update noren` here, rebuild.
