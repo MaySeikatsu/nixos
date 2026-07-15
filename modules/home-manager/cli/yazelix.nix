@@ -1,60 +1,22 @@
-# See for documentation: https://github.com/luccahuguet/yazelix/blob/main/home_manager/README.md
-{
-  pkgs,
-  inputs,
-  ...
-}: let
-  evilYazelixHelix = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
-in {
+# See for documentation: https://github.com/luccahuguet/yazelix/blob/main/docs/configuration.md
+#
+# Yazelix Nova (1.0.0-beta.1) rewrote the home-manager module: manage_config,
+# helix_external, custom_popups, and runtime_tool_sources are gone. Config is
+# now a sparse TOML passthrough (programs.yazelix.config.settings), and the
+# embedded Helix build is chosen via the yazelixHelix flake input instead
+# (see flake.nix: yazelix-hm.inputs.yazelixHelix.follows).
+{...}: {
   programs.yazelix = {
     enable = true;
-    # terminal = "foot";
-    manage_config = true;
 
-    helix_external = {
-      binary = "${evilYazelixHelix}/bin/hx";
-      runtime_path = "${evilYazelixHelix.runtimeDir}";
-    };
+    config.settings = {
+      welcome.enabled = false;
 
-    skip_welcome_screen = true;
-    # screen_saver_enabled = true;
-    # show_macchina_on_welcome = false;
-    # components = {
-    #   cursors = false;
-    #   screen = false;
-    # };
-
-    custom_popups = [
-      {
-        id = "btop";
-        command = ["btop"];
-        # Community plugins, moved to yazi tree default — old `ide-yazi.kdl`
-        # was deleted; use Alt Shift I / `zide` for the yazi-tree IDE layout.
-        keybindings = ["Alt Shift Y"];
+      popups.btop = {
+        command = "btop";
+        keybinding = "Alt Shift Y";
         keep_alive = true;
-      }
-      # {
-      #   id = "zenith";
-      #   command = [ "zenith" ];
-      #   keybindings = [ "Alt Shift I" ];
-      #   keep_alive = true;
-      # }
-    ];
-    # runtime_tool_sources = {
-    # Use "host" to use the binary already installed on the host instead the yazelix one
-    #   lazygit = "host";
-    #   zenith = "host";
-    #   helix = "host";
-    #   steel = "host";
-    #   yazi = "host";
-    #   ripgrep = "host";
-    #   fd = "host";
-    # Use if you want to disable the tools to safe space / since they're not being used
-    # macchina = "off";
-    # steel = "off";
-    # p7zip = "off";
-    # poppler = "off";
-    # resvg = "off";
-    # };
+      };
+    };
   };
 }

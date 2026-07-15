@@ -17,10 +17,10 @@
 
     # Flake Inputs:
     zen-browser = {
-    url = "github:0xc000022070/zen-browser-flake";
-    # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:0xc000022070/zen-browser-flake";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixcord= {
+    nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -72,18 +72,27 @@
     yazelix-hm = {
       url = "github:luccahuguet/yazelix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixgl.inputs.nixpkgs.follows = "nixpkgs";
+      inputs.yazelixHelix.follows = "evil-yazelix-helix"; # Swap yazelix's embedded Helix build for our own fork instead of the per-machine helix_external option, which the Nova rewrite removed.
     };
     evil-yazelix-helix = {
       url = "github:MaySeikatsu/evil-yazelix-helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    forest-hx = {url = "github:Ra77a3l3-jar/forest.hx"; flake = false;};
-    notify-hx = {url = "github:chuwy/notify.hx"; flake = false;};
-    glyph-hx = {url = "github:Ra77a3l3-jar/glyph.hx"; flake = false;};
     noren = {
       url = "github:MaySeikatsu/noren";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    forest-hx = {
+      url = "github:Ra77a3l3-jar/forest.hx";
+      flake = false;
+    };
+    notify-hx = {
+      url = "github:chuwy/notify.hx";
+      flake = false;
+    };
+    glyph-hx = {
+      url = "github:Ra77a3l3-jar/glyph.hx";
+      flake = false;
     };
   };
 
@@ -121,15 +130,6 @@
           nix-fast-build
           colmena
           ;
-      })
-      # Upstream Vulkan-ValidationLayers now defaults CMake's UPDATE_DEPS to
-      # ON, which makes it try to `git clone` deps that Nix already provides
-      # via buildInputs; the sandbox has no network/git, so the build fails.
-      # Fix pending upstream: https://github.com/NixOS/nixpkgs/pull/540072
-      (final: prev: {
-        vulkan-validation-layers = prev.vulkan-validation-layers.overrideAttrs (old: {
-          cmakeFlags = (old.cmakeFlags or []) ++ ["-DUPDATE_DEPS=OFF"];
-        });
       })
       # commitizen's test suite expects Python <3.14's unquoted argparse
       # "invalid choice" error format; Python 3.14 quotes each choice now,
