@@ -1,6 +1,9 @@
 # See for documentation: https://github.com/luccahuguet/yazelix/blob/main/home_manager/README.md
-{pkgs, inputs, ...}:
-let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   evilYazelixHelix = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
 in {
   programs.yazelix = {
@@ -24,9 +27,10 @@ in {
     custom_popups = [
       {
         id = "btop";
-        command = [ "btop" ];
-        # Moved from Alt Shift Y (which now opens the ide-yazi layout).
-        keybindings = [ "Alt Shift B" ];
+        command = ["btop"];
+        # Community plugins, moved to yazi tree default — old `ide-yazi.kdl`
+        # was deleted; use Alt Shift I / `zide` for the yazi-tree IDE layout.
+        keybindings = ["Alt Shift Y"];
         keep_alive = true;
       }
       # {
@@ -46,11 +50,11 @@ in {
     #   ripgrep = "host";
     #   fd = "host";
     # Use if you want to disable the tools to safe space / since they're not being used
-      # macchina = "off";
-      # steel = "off";
-      # p7zip = "off";
-      # poppler = "off";
-      # resvg = "off";
+    # macchina = "off";
+    # steel = "off";
+    # p7zip = "off";
+    # poppler = "off";
+    # resvg = "off";
     # };
   };
 }

@@ -87,6 +87,10 @@
     #   url = "git+file:///home/maike/Documents/projects/quickshell/shellseikatsu/";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    noren = {
+      url = "github:MaySeikatsu/noren";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -6,12 +6,11 @@
     v = "nvim";
     zlja = "zellij attach";
     zlj = "zellij";
-    zide = "zellij action new-tab --layout ide"; # tree + console tab
+    zide = "zellij action new-tab --layout ide"; # yazi tree + editor + console
     zideg = "zellij action new-tab --layout ide-git"; # + lazygit right
     zidel = "zellij action new-tab --layout ide-llm"; # + claude right
-    zidef = "zellij action new-tab --layout ide-filetree"; # tree only
-    zidec = "zellij action new-tab --layout ide-console"; # console only
-    zidey = "zellij action new-tab --layout ide-yazi"; # yazi tree + console
+    zidef = "zellij action new-tab --layout ide-filetree"; # yazi tree only, no console
+    zidec = "zellij action new-tab --layout ide-console"; # console only, no tree
     pass = "gopass";
 
     # Git

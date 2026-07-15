@@ -1,9 +1,10 @@
 // IDE layout + Claude Code sidebar right.
+// Tree pane runs yazi (reveal-in-editor via `o`); see ide.kdl for details.
 // New tab in current session: `zidel`
 layout {
     default_tab_template {
         pane split_direction="vertical" {
-            pane size="18%" name="tree" command="broot" {
+            pane size="18%" name="tree" command="yazi" {
                 close_on_exit true
             }
             pane split_direction="horizontal" {

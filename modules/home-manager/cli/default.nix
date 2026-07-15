@@ -25,7 +25,7 @@
     # ./weathr.nix
     ./yazi.nix
     ./zellij.nix
-    ./zjp.nix
+    ./noren.nix
     ./zsh.nix
     # ./tmux.nix
     ./zoxide.nix

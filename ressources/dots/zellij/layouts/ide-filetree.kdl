@@ -1,9 +1,9 @@
-// IDE layout - filetree only: broot tree sidebar (left) + editor. No console.
+// IDE layout - filetree only: yazi tree sidebar (left) + editor. No console.
 // New tab in current session: `zidef`
 layout {
     default_tab_template {
         pane split_direction="vertical" {
-            pane size="20%" name="tree" command="broot" {
+            pane size="22%" name="tree" command="yazi" {
                 close_on_exit true
             }
             pane focus=true name="editor"

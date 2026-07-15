@@ -127,6 +127,12 @@ keybinds clear-defaults=true {
         bind "o" { SwitchToMode "normal"; }
         bind "r" { Run "zellij-rename-session" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
         bind "l" { Run "zjl" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
+        // noren picker + pin ("k" because "p" is taken by plugin-manager).
+        bind "s" { Run "noren" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
+        bind "k" { Run "noren" "pin" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
+        // Discard: switch back to the previous session, then soft-kill this
+        // one (resurrectable) — "close tab" for sessions.
+        bind "x" { Run "noren" "discard" { floating true; close_on_exit true; }; SwitchToMode "locked"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -174,10 +180,26 @@ keybinds clear-defaults=true {
         bind "Alt Shift C" { NewTab { layout "ide-console"; }; }
         bind "Alt Shift G" { NewTab { layout "ide-git"; }; }
         bind "Alt Shift E" { NewTab { layout "ide-llm"; }; }
-        bind "Alt Shift Y" { NewTab { layout "ide-yazi"; }; }
-        // Fuzzy layout picker (fzf floating pane) + last-session jump
+        // Cycle through IDE layouts (new tab). See zellij-ide-cycle in zellij.nix.
+        bind "Alt Shift ]" { Run "zellij-ide-cycle" "next" { floating true; close_on_exit true; }; }
+        bind "Alt Shift [" { Run "zellij-ide-cycle" "prev" { floating true; close_on_exit true; }; }
+        // Fuzzy layout picker (fzf floating pane)
         bind "Alt Shift L" { Run "zjl" { floating true; close_on_exit true; }; }
-        bind "Alt Shift S" { Run "zjp2" "last" { floating true; close_on_exit true; }; }
+        // noren session picker (sesh-parity, Rust — flake input, see
+        // ~/Projects/rust/zellij-session-manager-zjp3). Replaces the
+        // old `Alt Shift S = last` binding — `noren last` jumps to the previous
+        // session. zjp2 stays installed (unbound) during the bake-off.
+        bind "Alt Shift S" { Run "noren" { floating true; close_on_exit true; }; }
+        // Session pin toggle + rename (both operate on the current session).
+        // Feedback appears in the zjstatus pin indicator (see config below).
+        bind "Alt Shift P" { Run "noren" "pin" { floating true; close_on_exit true; }; }
+        bind "Alt Shift R" { Run "zellij-rename-session" { floating true; close_on_exit true; }; }
+        // Discard current session: switch to the previous one, then soft-kill.
+        bind "Alt Shift W" { Run "noren" "discard" { floating true; close_on_exit true; }; }
+        // Alt-tab for sessions: toggle current <-> previous in this window
+        // (noren's last/previous rotation makes repeated presses bounce
+        // between the two).
+        bind "Alt Shift Tab" { Run "noren" "last" { floating true; close_on_exit true; }; }
     }
     shared_except "locked" "renametab" "renamepane" {
         bind "Ctrl g" { SwitchToMode "locked"; }
@@ -262,7 +284,7 @@ plugins {
     forgot location="file:/home/maike/.config/zellij/plugins/zellij_forgot.wasm"
     switch location="file:/home/maike/.config/zellij/plugins/zellij-switch.wasm"
     zjstatus location="file:/home/maike/.config/zellij/plugins/zjstatus.wasm" {
-        format_left   "{mode}#[fg=green,bold] {session} "
+        format_left   "{mode}#[fg=green,bold] {session} {command_pin} "
         format_center "{tabs}"
         format_right  "#[fg=blue]{datetime}"
         format_space  ""
@@ -284,6 +306,15 @@ plugins {
         datetime          "#[fg=default]{format} "
         datetime_format   "%H:%M"
         datetime_timezone "Europe/Berlin"
+
+        // Pin indicator: 📌 when the current session is pinned (i.e. its
+        // name is listed in ~/.local/state/zellij/pinned), a dim ○ otherwise.
+        // Updated every 3s via a shell command that reads ZELLIJ_SESSION_NAME
+        // from the plugin's env. Managed by `zpin`/`zunpin`/`sn`/`zjp2 pin`.
+        command_pin_command "zellij-pin-indicator"
+        command_pin_format "#[fg=yellow]{stdout}"
+        command_pin_interval "3"
+        command_pin_rendermode "static"
     }
 }
 

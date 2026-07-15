@@ -1,10 +1,12 @@
-// IDE layout: broot tree sidebar (left) + main pane + console (bottom).
+// IDE layout: yazi tree sidebar (left) + main pane + console (bottom).
+// Reveal-in-editor: press `o` inside yazi -> file opens in the editor pane
+// via the zellij-reveal-file script (see modules/home-manager/cli/zellij.nix).
 // New tab in current session: `zide` | whole session: zellij --layout ide
 // Variants: ide-git (lazygit right), ide-llm (claude right).
 layout {
     default_tab_template {
         pane split_direction="vertical" {
-            pane size="20%" name="tree" command="broot" {
+            pane size="22%" name="tree" command="yazi" {
                 close_on_exit true
             }
             pane split_direction="horizontal" {

@@ -847,6 +847,23 @@
       "original": {
         "owner": "chuwy",
         "repo": "notify.hx",
+    "noren": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783953253,
+        "narHash": "sha256-NuIVy6CxuY4Co69ugdwqSOlHezjNIdIDSCTIOvVT5bg=",
+        "owner": "MaySeikatsu",
+        "repo": "noren",
+        "rev": "1d356aa50edf2a8cc38ff30ac7cf6a73c438fd26",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MaySeikatsu",
+        "repo": "noren",
         "type": "github"
       }
     },
@@ -889,6 +906,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "noctalia": "noctalia",
         "notify-hx": "notify-hx",
+        "noren": "noren",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "spotatui": "spotatui",
