@@ -5,6 +5,7 @@
     ./niri/default.nix
 
     ./gnome.nix
+    ./wayvnc.nix
     ./qs-caelestia.nix
     ./rofi.nix
     ./wofi.nix

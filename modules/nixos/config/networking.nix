@@ -1,5 +1,4 @@
-{...}:{
-
+{...}: {
   services = {
     tailscale = {
       enable = true;
@@ -13,7 +12,11 @@
     firewall = {
       enable = true;
       # Tell the firewall to implicitly trust packets routed over Tailscale:
-      trustedInterfaces = [ "tailscale0" ];
+      # Note: wayvnc binds 0.0.0.0 but no port is opened here, so it is reachable
+      # only via loopback + tailscale0 (trusted above). To also allow non-tailscale
+      # devices on the LAN, add e.g. allowedTCPPorts = [ 5900 ] (exposes it on all
+      # interfaces) or scope per-interface with firewall.interfaces.<iface>.
+      trustedInterfaces = ["tailscale0"];
     };
   };
 }

@@ -64,13 +64,8 @@ in {
   #
   # };
 
-  programs. wayvnc = {
-      enable = true;
-      # port = 5900;
-      # openFirewall = true;
-    };
+  security.pam.services.wayvnc = {};
 
-  
   security = {
     rtkit.enable = true;
     sudo.wheelNeedsPassword = true; # Request password for sudo actions as user
@@ -275,7 +270,6 @@ in {
     material-symbols
     cosmic-files
     superfile
-
 
     freerdp
     iptables
