@@ -195,7 +195,7 @@ in {
     wallust # rust
     quickshell
     noctalia-shell
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     openssl
     pkg-config
     # dms-shell # dank-material-shell
