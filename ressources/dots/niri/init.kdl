@@ -28,7 +28,7 @@ spawn-at-startup "sh" "-c" "systemctl --user start xdg-desktop-portal-wlr.servic
 
 // spawn-at-startup "sh" "-c" "noctalia" # noctalia v5
 // spawn-at-startup "sh" "-c" "shellseikatsu"
-spawn-at-startup "sh" "-c" "noctalia-shell" noctalia v4
+spawn-at-startup "sh" "-c" "noctalia-shell" // noctalia v4
 // spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
 
 // spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"
