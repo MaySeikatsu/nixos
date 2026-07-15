@@ -19,6 +19,11 @@
       (keymap (global)
               (normal (space (e ":forest-open"))))
     '';
+
+    # Yazelix reads --config-dir ~/.config/yazelix/helix, not ~/.config/helix, so repeat the theme here.
+    "yazelix/helix/config.toml".text = ''
+      theme = "rose_pine_moon"
+    '';
   };
 
   programs.helix = {
