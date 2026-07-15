@@ -73,30 +73,13 @@
 
   # Structural preview of a session's saved layout (or any layout .kdl).
   # Parses just enough KDL to render a compact tab -> pane-split tree with
-  # each leaf pane's name / running command / focus marker. Used by zjp and
-  # zjp2 fzf previews so the picker shows workspace shape at a glance
-  # instead of raw KDL config text. Python stdlib only.
+  # each leaf pane's name / running command / focus marker. Used by the `zjl`
+  # layout picker's fzf preview to show workspace shape at a glance instead of
+  # raw KDL config text. Python stdlib only. (The extracted zjp/zjp2 flakes and
+  # noren render their own previews, so this copy is `zjl`-only now.)
   zellij-layout-preview = pkgs.writers.writePython3Bin "zellij-layout-preview" {
     flakeIgnore = ["E501" "W503" "E203" "E265"];
   } (builtins.readFile ../../../ressources/scripts/zellij-layout-preview/main.py);
-
-  # Fuzzy session picker with a preview of each session's saved layout
-  # (tabs, cwds, running commands). Outside zellij it attaches/resurrects;
-  # inside it switches the current client in place (no nesting) via the
-  # zellij-switch plugin. Bound to Alt s inside zellij.
-  zjp = pkgs.writeShellScriptBin "zjp" ''
-    sel=$(zellij list-sessions -n 2>/dev/null | fzf \
-      --preview "${zellij-layout-preview}/bin/zellij-layout-preview {1} 2>/dev/null || echo '(no saved layout)'" \
-      --preview-window=right,60%)
-    [ -n "$sel" ] || exit 0
-    name=$(printf '%s' "$sel" | awk '{print $1}')
-    [ -n "$name" ] || exit 0
-    if [ -n "$ZELLIJ" ]; then
-      exec zellij pipe --plugin "file:$HOME/.config/zellij/plugins/zellij-switch.wasm" -- "--session $name"
-    else
-      exec zellij attach --create "$name"
-    fi
-  '';
 
   # Interactive session rename, launched as a floating pane from the session
   # keybind mode (Ctrl g -> o -> r). Renaming pins the session (see reaper).
@@ -409,7 +392,7 @@ in {
   # (they run a bare `zellij`, which creates a randomly-named session every
   # time). nushell.nix / fish.nix / zsh.nix call zellij-autostart instead.
 
-  home.packages = [zellij-autostart zellij-layout-preview zjp zjl zellij-ide-cycle zellij-pin-indicator zellij-reveal-file zellij-rename-session zpin zunpin sn zellij-cd-attach zellij-reaper];
+  home.packages = [zellij-autostart zellij-layout-preview zjl zellij-ide-cycle zellij-pin-indicator zellij-reveal-file zellij-rename-session zpin zunpin sn zellij-cd-attach zellij-reaper];
 
   systemd.user.services.zellij-reaper = {
     Unit.Description = "Reap unpinned detached zellij sessions and stale saved sessions";

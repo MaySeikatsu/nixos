@@ -26,6 +26,7 @@
     ./yazi.nix
     ./zellij.nix
     ./noren.nix
+    # ./zjp.nix
     ./zsh.nix
     # ./tmux.nix
     ./zoxide.nix

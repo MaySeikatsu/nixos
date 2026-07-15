@@ -173,7 +173,10 @@ keybinds clear-defaults=true {
         // Plugin launchers (see plugins block below)
         bind "Alt r" { LaunchOrFocusPlugin "room" { floating true; ignore_case true; }; }
         bind "Alt g" { LaunchOrFocusPlugin "forgot" { floating true; }; }
-        bind "Alt s" { Run "zjp" { floating true; close_on_exit true; }; }
+        // `Alt s` opens the noren picker too (short muscle-memory alias for
+        // `Alt Shift S`). It used to run the legacy bash `zjp`, which was
+        // extracted to its own flake (~/Projects/nix/zjp) and unbound.
+        bind "Alt s" { Run "noren" { floating true; close_on_exit true; }; }
         // IDE layout new-tab shortcuts (each opens a fresh tab with layout)
         bind "Alt Shift I" { NewTab { layout "ide"; }; }
         bind "Alt Shift F" { NewTab { layout "ide-filetree"; }; }
@@ -185,10 +188,10 @@ keybinds clear-defaults=true {
         bind "Alt Shift [" { Run "zellij-ide-cycle" "prev" { floating true; close_on_exit true; }; }
         // Fuzzy layout picker (fzf floating pane)
         bind "Alt Shift L" { Run "zjl" { floating true; close_on_exit true; }; }
-        // noren session picker (sesh-parity, Rust — flake input, see
-        // ~/Projects/rust/zellij-session-manager-zjp3). Replaces the
-        // old `Alt Shift S = last` binding — `noren last` jumps to the previous
-        // session. zjp2 stays installed (unbound) during the bake-off.
+        // noren session picker (sesh-parity, Rust — flake input
+        // github:MaySeikatsu/noren). Replaces the old `Alt Shift S = last`
+        // binding — `noren last` jumps to the previous session. The legacy
+        // zjp/zjp2 pickers are installed (own flakes) but unbound.
         bind "Alt Shift S" { Run "noren" { floating true; close_on_exit true; }; }
         // Session pin toggle + rename (both operate on the current session).
         // Feedback appears in the zjstatus pin indicator (see config below).
@@ -310,7 +313,7 @@ plugins {
         // Pin indicator: 📌 when the current session is pinned (i.e. its
         // name is listed in ~/.local/state/zellij/pinned), a dim ○ otherwise.
         // Updated every 3s via a shell command that reads ZELLIJ_SESSION_NAME
-        // from the plugin's env. Managed by `zpin`/`zunpin`/`sn`/`zjp2 pin`.
+        // from the plugin's env. Managed by `zpin`/`zunpin`/`sn`/`noren pin`.
         command_pin_command "zellij-pin-indicator"
         command_pin_format "#[fg=yellow]{stdout}"
         command_pin_interval "3"

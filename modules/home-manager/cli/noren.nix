@@ -4,35 +4,15 @@
   inputs,
   ...
 }: let
-  # zjp v2 - sesh feature-parity zellij session picker.
-  # Nushell prototype, kept alive during the zjp2/noren bake-off.
-  # zjp2Src = ../../../ressources/scripts/zjp2;
-  #
-  # zjp2 = pkgs.writeShellScriptBin "zjp2" ''
-  #   export PATH=${lib.makeBinPath [
-  #     pkgs.nushell
-  #     pkgs.zellij
-  #     pkgs.zoxide
-  #     pkgs.fzf
-  #     pkgs.git
-  #     pkgs.coreutils
-  #     pkgs.gnused
-  #     pkgs.gawk
-  #     pkgs.gnugrep
-  #     pkgs.findutils
-  #   ]}:$PATH
-  #   exec nu ${zjp2Src}/main.nu "$@"
-  # '';
-  #
   # noren (暖簾) - the Rust session manager (formerly zjp3), consumed as a
-  # flake input from the local checkout (see its CLAUDE.md / README).
-  # After changing it: commit there, `nix flake update noren` here, rebuild.
+  # flake input from GitHub. After changing it: commit there,
+  # `nix flake update noren` here, rebuild. The legacy pickers it superseded
+  # (bash zjp, nushell zjp2) live in their own flakes now — see zjp.nix.
   # Bound to Alt Shift S / Alt Shift P / Alt Shift W and `Ctrl g o s|k|x`;
   # also used by zellij-autostart for per-project layout/startup resolution.
   noren = inputs.noren.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in {
   home.packages = [
-    # zjp2
     noren
   ];
 
@@ -44,7 +24,7 @@ in {
     ".config/noren/config.toml.example".source = "${inputs.noren}/config.toml.example";
   };
 
-  # Alt+Shift+S opens the picker straight from the shell prompt — this covers
+  # Alt+(Shift)+S opens the picker straight from the shell prompt — this covers
   # bare terminals/TTY/SSH; inside zellij the same chord is consumed by
   # zellij's own bind (locked mode passes it through, where these fire too,
   # and noren switches via the zellij-switch pipe, so both paths are safe).
