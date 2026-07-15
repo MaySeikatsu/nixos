@@ -1,11 +1,30 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
+  xdg.dataFile = {
+    "steel/cogs/forest".source = inputs.forest-hx;
+    "steel/cogs/notify".source = inputs.notify-hx;
+    "steel/cogs/glyph".source = inputs.glyph-hx;
+  };
+
+  xdg.configFile = {
+    "helix/init.scm".text = ''
+      (require "helix/keymaps.scm")
+      (require "forest/forest.scm")
+      (forest-configure! 'left #:ignore (list ".git" "target" "__pycache__"))
+      (forest-set-style! 'snacks)
+      (keymap (global)
+              (normal (space (e ":forest-open"))))
+    '';
+  };
+
   programs.helix = {
     enable = true;
-    package = pkgs.evil-helix;
+    # package = pkgs.evil-helix;
+    package = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
 
     settings = {
       theme = "rose_pine_moon";
@@ -14,6 +33,7 @@
         # clipboard-provider = "";
         auto-format = true; # global default, can be overridden per language
         line-number = "relative";
+        bufferline = "multiple";
         file-picker.hidden = false;
         # softwrap.enable = true;
         # lsp = {

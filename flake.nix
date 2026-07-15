@@ -78,6 +78,11 @@
       url = "github:MaySeikatsu/evil-yazelix-helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    forest-hx = {url = "github:Ra77a3l3-jar/forest.hx"; flake = false;};
+    notify-hx = {url = "github:chuwy/notify.hx"; flake = false;};
+    glyph-hx = {url = "github:Ra77a3l3-jar/glyph.hx"; flake = false;};
+
+
     # shellseikatsu = {
     #   url = "git+file:///home/maike/Documents/projects/quickshell/shellseikatsu/";
     #   inputs.nixpkgs.follows = "nixpkgs";
