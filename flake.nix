@@ -94,6 +94,10 @@
       url = "github:Ra77a3l3-jar/glyph.hx";
       flake = false;
     };
+    iris = {
+      url = "github:versenilvis/iris";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./hyprlock.nix
     ./swaylock.nix
@@ -8,6 +13,6 @@
     # ./swww.nix
 
     ./hyprpaper.nix
-    ./hyprpanel.nix
+    # ./hyprpanel.nix
   ];
 }

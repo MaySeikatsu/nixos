@@ -26,7 +26,7 @@
     hyprlock
     # swaylock
     hyprshot
-    hyprpanel
+    # hyprpanel
     rofi
     # waybar
     # waypaper # wallpaper frontend gui for hyprpaper and swww

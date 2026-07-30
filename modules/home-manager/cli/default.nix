@@ -14,6 +14,7 @@
     ./fish.nix
     ./git.nix
     ./github.nix
+    ./iris.nix
     ./nushell.nix
     ./pre-commit.nix
     ./starship.nix
