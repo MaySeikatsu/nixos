@@ -100,3 +100,10 @@ output "Philips Consumer Electronics Company PHILIPS FTV 0x01010101" {
 }
 // END TV 
 /// END Laptop
+// Start Glasses
+output "Nreal XREAL 1S Unknown" {
+    scale 1.25
+    transform "normal"
+    mode "1920x1200@119.999"
+}
+// End Glasses
