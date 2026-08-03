@@ -53,16 +53,22 @@
       XDG_CURRENT_DESKTOP = "niri";
     };
   };
+  # NOTE: this generates ~/.config/xdg-desktop-portal/niri-portals.conf, which
+  # takes precedence over the system-level /etc/xdg one. It must stay in sync
+  # with hosts/configuration-shared.nix or it silently shadows the fix there.
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    # extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome];
     config.niri = {
       default = ["gtk"];
       "org.freedesktop.impl.portal.FileChooser" = ["gtk"];
       "org.freedesktop.impl.portal.OpenURI" = ["gtk"];
       "org.freedesktop.impl.portal.AppChooser" = ["gtk"];
-      "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-      "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+      # "org.freedesktop.impl.portal.ScreenCast" = ["wlr"]; # froze on NVIDIA dmabuf
+      # "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+      "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+      "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
       "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
     };
   };

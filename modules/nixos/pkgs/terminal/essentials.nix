@@ -43,7 +43,7 @@
 
     # Chat
     xrizer
-    # vesktop # vencord desktop client without overwriting the official discord binary
+    vesktop # vencord desktop client without overwriting the official discord binary
     element-desktop
     signal-desktop
     beeper
@@ -59,7 +59,7 @@
     # passphrase2pgp
     # tomb
     # pinentry
-    
+
     # Sops encryypt
     age
     sops

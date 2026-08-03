@@ -20,6 +20,10 @@ in {
     # ../modules/nixos/pkgs/audio_engineering.nix
   ];
 
+  environment.variables = {
+    PATH = "$PATH:/home/maike/.cargo/bin";
+  };
+
   systemd.services."virt-secret-init-encryption".enable = false; # fix for bug, remove at next flake release
 
   # system.nixos-init.enable = true;
@@ -145,33 +149,44 @@ in {
   # services.xserver.libinput.enable = true;
 
   # programs.uwsm.enable = true;
+  # Screencast on niri goes through niri's native org.gnome.Mutter.ScreenCast
+  # D-Bus API, whose only frontend is xdg-desktop-portal-gnome.
+  # xdg-desktop-portal-wlr uses the legacy zwlr_screencopy path and negotiates
+  # NVIDIA block-linear tiled dmabufs (modifier 0x03...), which the NVIDIA
+  # re-import path never refreshes -> screenshare freezes on the first frame.
+  # Screenshots were unaffected because grim uses the shm path, not dmabuf.
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # wlr.enable = true; # replaced by gnome backend, see comment above
     xdgOpenUsePortal = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-wlr # freezes screencast on NVIDIA
       pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gnome
       # pkgs.xdg-desktop-portal-hyprland
       # pkgs.xdg-desktop-portal-kde
       pkgs.gnome-keyring
     ];
     configPackages = [
-      pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gnome
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
       niri = {
         default = lib.mkForce ["gtk"];
-        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        # "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        # "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
       default = {
         default = ["gtk"];
-        "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
-        "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        # "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
+        # "org.freedesktop.impl.portal.Screenshot" = ["wlr"];
+        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
     };
