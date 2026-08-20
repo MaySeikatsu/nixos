@@ -238,7 +238,8 @@ in {
     # winboat
     rapidraw
     anki
-    rose-pine-gtk-theme
+    # rose-pine-gtk-theme # removed from nixpkgs: depended on gtk-engine-murrine (GTK2, unmaintained).
+    # GTK theming still comes from stylix's rose-pine-moon base16 scheme, so nothing visible is lost.
     rose-pine-icon-theme
     exiftool # Metadata readout for images and different files formats
     spotify

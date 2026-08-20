@@ -71,8 +71,30 @@
     };
     yazelix-hm = {
       url = "github:luccahuguet/yazelix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.yazelixHelix.follows = "evil-yazelix-helix"; # Swap yazelix's embedded Helix build for our own fork instead of the per-machine helix_external option, which the Nova rewrite removed.
+      # NOTE: deliberately *not* following our nixpkgs.
+      # yazelix vendors yazi config files and hard-asserts the yazi version it
+      # was built against (flake.nix: `assert pkgs.yazi-unwrapped.version == "26.5.6"`).
+      # Our nixpkgs is already on yazi 26.8.15, so following it fails eval.
+      # An overlay can't fix this: the assert reads yazelix's own `pkgs`, not ours.
+      # Cost: a second nixpkgs instance for yazelix's stack, and yazelix's internal
+      # yazi stays 26.5.6 while the system yazi is 26.8.15.
+      # Pinned to yazelix's own locked nixpkgs (the one it asserts against);
+      # leaving the input unpinned just re-resolves nixos-unstable to HEAD, which
+      # is where the too-new yazi comes from in the first place.
+      # Re-add `inputs.nixpkgs.follows = "nixpkgs";` (and drop this pin) once upstream
+      # yazelix bumps the assertion to match nixpkgs' yazi -- check on every flake update.
+      inputs.nixpkgs.url = "github:NixOS/nixpkgs/567a49d1913ce81ac6e9582e3553dd90a955875f";
+      # TEMPORARILY DISABLED -- re-enable after updating the fork.
+      # Swap yazelix's embedded Helix build for our own fork instead of the
+      # per-machine helix_external option, which the Nova rewrite removed.
+      # Upstream yazelix now needs `packages.<system>.yazelix_helix_steel`, which
+      # our fork (last synced 2026-07-10) doesn't expose -> eval fails. Until the
+      # fork is updated we fall back to upstream Yazelix/nova-helix, which means
+      # *no evil-helix vim keybindings* in the yazelix Helix.
+      # To fix the fork: port `yazelix/steel/{bridge,bridge-actions}.scm` plus the
+      # `yazelix_helix_steel` runCommand output from Yazelix/nova-helix's flake.nix,
+      # then uncomment the line below.
+      # inputs.yazelixHelix.follows = "evil-yazelix-helix";
     };
     evil-yazelix-helix = {
       url = "github:MaySeikatsu/evil-yazelix-helix";
