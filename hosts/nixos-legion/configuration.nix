@@ -238,6 +238,17 @@
       system.nixos.tags = ["no-nvidia"];
       powerManagement.cpuFreqGovernor = "powersave"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
 
+      # Forces the amd-pstate-epp driver in active mode instead of leaving it
+      # to whatever the kernel defaults to for this CPU generation (Ryzen
+      # 6000/Rembrandt, Zen3+ - within amd-pstate's supported range, but
+      # "probably already active by default" isn't the same as guaranteed).
+      # Lets TLP's CPU_ENERGY_PERF_POLICY_ON_AC/BAT below actually do
+      # something - EPP hints are a no-op under the older acpi-cpufreq
+      # driver. Verify after rebuild: cat
+      # /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver should read
+      # "amd-pstate-epp".
+      boot.kernelParams = ["amd_pstate=active"];
+
       #  DISABLE NVIDIA
       boot.extraModprobeConfig = ''
         blacklist nouveau

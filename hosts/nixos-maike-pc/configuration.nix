@@ -255,6 +255,42 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  # CachyOS kernel as a boot-menu specialisation - boot into it to try it,
+  # switch back to the regular generation if NVIDIA/Monado misbehave.
+  # BORE (built into this kernel, no extra daemon needed) biases scheduling
+  # toward bursty/interactive tasks over long-running ones, e.g. keeping the
+  # focused window smooth while a nixos-rebuild or compile runs in the
+  # background - stacks fine with system76-scheduler (userspace nice/ioprio
+  # tuning, a different layer entirely).
+  specialisation.cachyos.configuration = {
+    # specialisations merge with the base config rather than replacing it,
+    # so the plain `boot.kernelPackages = pkgs.linuxPackages;` above and
+    # this one collide unless this one is forced.
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
+
+    # sched-ext: a separate mechanism from BORE above - swaps the *entire*
+    # scheduling policy at runtime via an eBPF program, no reboot needed to
+    # change scheduler (just restart the service). Needs the kernel built
+    # with CONFIG_SCHED_CLASS_EXT=y, which cachyos kernels carry. Only one
+    # scheduler runs at a time; while this service is up it takes over from
+    # BORE for tasks it manages.
+    #
+    # services.scx = {
+    #   enable = true;
+    #   scheduler = "scx_bpfland";
+    #     # scx_bpfland - interactive/desktop-latency focused: keeps the
+    #     #   focused window responsive under background load. Best fit for
+    #     #   the "smooth foreground during a rebuild" goal - try this first.
+    #     # scx_lavd    - latency-aware, also gaming/interactivity focused;
+    #     #   originated for handheld gaming (Steam Deck-like). Worth an A/B
+    #     #   against scx_bpfland if the first doesn't feel right.
+    #     # scx_rusty   - general-purpose multi-domain scheduler, solid
+    #     #   balanced fallback if neither of the above suits.
+    #     # scx_rustland - nixpkgs' own default; a simpler userspace-heavy
+    #     #   reference implementation, not tuned for this use case.
+    # };
+  };
+
   # For GSK_RENDERER issue with gtk and wayland
   # environment.variables = {
   #   GSK_RENDERER = "ngl";
