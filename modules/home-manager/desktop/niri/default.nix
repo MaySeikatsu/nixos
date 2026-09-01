@@ -9,6 +9,8 @@
     # ./binds.nix
     # ./rules.nix
     # ./output.nix
+    ./niri-session-restore.nix
+    ./niri-session-restore-picker.nix
   ];
 
   home = {

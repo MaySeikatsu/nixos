@@ -4,21 +4,21 @@
   inputs,
   ...
 }: {
-  xdg.dataFile = {
-    "steel/cogs/forest".source = inputs.forest-hx;
-    "steel/cogs/notify".source = inputs.notify-hx;
-    "steel/cogs/glyph".source = inputs.glyph-hx;
-  };
+  # xdg.dataFile = {
+  #   "steel/cogs/forest".source = inputs.forest-hx;
+  #   "steel/cogs/notify".source = inputs.notify-hx;
+  #   "steel/cogs/glyph".source = inputs.glyph-hx;
+  # };
 
   xdg.configFile = {
-    "helix/init.scm".text = ''
-      (require "helix/keymaps.scm")
-      (require "forest/forest.scm")
-      (forest-configure! 'left #:ignore (list ".git" "target" "__pycache__"))
-      (forest-set-style! 'snacks)
-      (keymap (global)
-              (normal (space (e ":forest-open"))))
-    '';
+    # "helix/init.scm".text = ''
+    #   (require "helix/keymaps.scm")
+    #   (require "forest/forest.scm")
+    #   (forest-configure! 'left #:ignore (list ".git" "target" "__pycache__"))
+    #   (forest-set-style! 'snacks)
+    #   (keymap (global)
+    #           (normal (space (e ":forest-open"))))
+    # '';
 
     # Yazelix reads --config-dir ~/.config/yazelix/helix, not ~/.config/helix, so repeat the theme here.
     "yazelix/helix/config.toml".text = ''
@@ -80,7 +80,7 @@
         };
         # softwrap.enable = true;
         # search = "";
-        rulers = [120];
+        # rulers = [120]; # draws line at 120 digit length to mark line length
         color-modes = true;
         true-color = true;
         cursor-shape = {

@@ -35,8 +35,10 @@
 // }
 output "PNP(AOP) 25XV2Q F 11470AAAA4200" {
     scale 1.000000
-    transform "90"
-    position x=-1080 y=0
+    // transform "90"
+    // position x=-1080 y=0
+    transform "normal"
+    position x=-1920 y=0
     mode "1920x1080@239.964000"
 }
 ///AMD

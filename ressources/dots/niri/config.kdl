@@ -219,6 +219,22 @@ window-rule {
   // }
 }
 
+// niri-session-restore-picker (see ../../../niri-session-restore-picker/
+// and modules/home-manager/desktop/niri/niri-session-restore-picker.nix),
+// bound to Mod+Shift+R in binds.kdl. Size is set via foot's own
+// --window-size-chars flag in the spawn command, not here -- niri has no
+// default-size knob for floating windows, only for tiled columns.
+window-rule {
+  match title="niri-session-restore-picker"
+  open-floating true
+  focus-ring {
+    off
+  }
+  shadow {
+    on
+  }
+}
+
 window-rule {
     // match at-startup=true app-id="obsidian"
     // match at-startup=true app-id="ticktick"

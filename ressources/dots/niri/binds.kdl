@@ -10,6 +10,7 @@ binds {
     Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
     Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim ."; }
     Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim -D ~/.config/nixos/ nvim ."; }
+    Mod+Shift+R { spawn "sh" "-c" "foot --window-size-chars=110x30 --title niri-session-restore-picker -e niri-session-restore-picker"; }
     Super+T { spawn "foot"; }
     Super+Shift+T { spawn "ghostty"; }
     Mod+Y { spawn "zen-twilight"; }

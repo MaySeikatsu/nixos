@@ -1,5 +1,15 @@
 // Add lines like this to spawn processes at startup.
 hotkey-overlay { skip-at-startup; }
+
+// Session restore is manual, via Mod+Shift+R (see
+// niri-session-restore-picker/ and modules/home-manager/desktop/niri/
+// niri-session-restore-picker.nix) rather than automatic here: niri fires
+// spawn-at-startup entries concurrently (not sequentially), so an
+// unconditional `niri-session-manage --load-last` here would race the
+// static app spawns below and risk duplicate windows whenever their saved
+// workspace doesn't match where they land on a plain startup.
+// spawn-at-startup "niri-session-manage" "--load-last"
+
 spawn-at-startup "plasma-polkit-agent"
 spawn-at-startup "xwayland-satellite"
 xwayland-satellite {
@@ -13,9 +23,9 @@ xwayland-satellite {
 // spawn-at-startup "vesktop"
 // spawn-at-startup "foot"
 // spawn-at-startup "zen-twilight"
-spawn-at-startup "ticktick"
-spawn-at-startup "obsidian"
-spawn-at-startup "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim .";
+// spawn-at-startup "ticktick"
+// spawn-at-startup "obsidian"
+// spawn-at-startup "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim .";
 // spawn-at-startup "sh" "-c" "foot --title spotify-tui spotatui";
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
 // spawn-sh-at-startup "sh" "-c" "system76-scheduler-niri"
