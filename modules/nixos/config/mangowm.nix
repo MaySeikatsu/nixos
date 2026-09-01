@@ -1,0 +1,3 @@
+{...}: {
+  programs.mango.enable = true;
+}

@@ -104,20 +104,26 @@
       url = "github:MaySeikatsu/noren";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    forest-hx = {
-      url = "github:Ra77a3l3-jar/forest.hx";
-      flake = false;
-    };
-    notify-hx = {
-      url = "github:chuwy/notify.hx";
-      flake = false;
-    };
-    glyph-hx = {
-      url = "github:Ra77a3l3-jar/glyph.hx";
-      flake = false;
-    };
+    # forest-hx = {
+    #   url = "github:Ra77a3l3-jar/forest.hx";
+    #   flake = false;
+    # };
+    # notify-hx = {
+    #   url = "github:chuwy/notify.hx";
+    #   flake = false;
+    # };
+    # glyph-hx = {
+    #   url = "github:Ra77a3l3-jar/glyph.hx";
+    #   flake = false;
+    # };
     iris = {
       url = "github:versenilvis/iris";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri-session-restore = {
+      # Local fork under active development; switch to
+      # "github:MaySeikatsu/niri-session-restore" once it's pushed there.
+      url = "path:/home/maike/Projects/forks/niri-session-restore";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

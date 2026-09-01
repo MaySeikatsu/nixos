@@ -6,7 +6,7 @@
     geary # email reader
     # gnome-characters
     gnome-music
-    gnome-photos
+    # gnome-photos
     gnome-terminal
     gnome-tour
     totem # video player

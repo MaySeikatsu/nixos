@@ -2,9 +2,11 @@
   imports = [
     ./audio.nix
     ./boot.nix
+    ./copyparty.nix
     ./kanata.nix
     ./localisation.nix
     ./niri.nix
+    ./mangowm.nix
     ./networking.nix
     ./nix.nix
     ./mime.nix

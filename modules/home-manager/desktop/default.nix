@@ -3,6 +3,7 @@
     ./hyprland/default.nix
     ./hyprland_utils/default.nix
     ./niri/default.nix
+    ./mangowm.nix
 
     ./gnome.nix
     ./wayvnc.nix
