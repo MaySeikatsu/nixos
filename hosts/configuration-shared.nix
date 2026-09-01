@@ -181,6 +181,16 @@ in {
         "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
         "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
       };
+      # programs.mango's own NixOS module (nixpkgs/nixos/modules/programs/wayland/mango.nix)
+      # sets config.mango with ScreenCast/Screenshot = wlr, which is exactly the
+      # combination that freezes screenshare on NVIDIA, see comment above. mkForce
+      # it to gnome instead, same fix as niri.
+      mango = {
+        default = lib.mkForce ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = lib.mkForce ["gnome"];
+        "org.freedesktop.impl.portal.Screenshot" = lib.mkForce ["gnome"];
+        "org.freedesktop.impl.portal.Secret" = lib.mkForce ["gnome-keyring"];
+      };
       default = {
         default = ["gtk"];
         # "org.freedesktop.impl.portal.ScreenCast" = ["wlr"];
@@ -194,11 +204,14 @@ in {
 
   environment.systemPackages = with pkgs; [
     tailscale
+    cloudflared
+    copyparty
     proton-vpn
     proton-vpn-cli
     # deskflow
     # lan-mouse
     remmina # rdp client
+    mangowc # Mango Window Manager
     waytrogen # rust based wallpaper changer
     mpv
     yt-dlp
@@ -232,7 +245,7 @@ in {
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     # inputs.rproc.packages.${pkgs.stdenv.hostPlatform.system}.default
-    inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.iris.packages.${pkgs.stdenv.hostPlatform.system}.default
     # winboat
