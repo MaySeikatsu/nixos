@@ -1,5 +1,15 @@
 {...}: {
   services = {
+    cloudflared = {
+      enable = true;
+
+      tunnels."2b9aee76-6085-4819-9792-68258ec239bc" = {
+        credentialsFile = "/var/lib/cloudflared/photo-share.json";
+        default = "http_status:404";
+        ingress."sailwithus.mayseikatsu.com" = "http://localhost:3923";
+      };
+    };
+
     tailscale = {
       enable = true;
       extraDaemonFlags = ["--no-logs-no-support"];
