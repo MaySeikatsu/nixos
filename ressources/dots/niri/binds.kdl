@@ -2,6 +2,9 @@ binds {
     Mod+Shift+M { spawn "~/.config/nixos/scripts/wall_cycle.sh"; }
     Mod+Shift+N { spawn "~/.config/nixos/scripts/wall_cycle_back.sh"; }
     Mod+Shift+Slash { show-hotkey-overlay; }
+    // Toggle blur/animations/opacity off and on - see config.kdl's
+    // effects-toggle.kdl include and scripts/niri_toggle_effects.sh.
+    Mod+Shift+V { spawn "~/.config/nixos/scripts/niri_toggle_effects.sh"; }
 
     // Super+Escape { spawn "hyprlock"; }
     // Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }

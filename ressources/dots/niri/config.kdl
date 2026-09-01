@@ -597,6 +597,12 @@ debug {
     default-floating-position x=8 y=8 relative-to="top-left"
     // is-on-every-workspace true
   }
+
+// Toggled by Mod+Shift+V / scripts/niri_toggle_effects.sh. Not managed by
+// home-manager, so it's writable at runtime; must stay last so its
+// window-rule opacity override wins niri's "last matching rule wins" merge
+// over the is-active/is-inactive opacity rules above.
+include optional=true "effects-toggle.kdl"
   // window-rule {
   //   match app-id="^shellseikatsu-console$"
   //   open-floating true

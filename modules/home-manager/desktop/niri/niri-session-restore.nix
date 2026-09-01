@@ -8,13 +8,25 @@
 # What this module does:
 #   - installs `niri-session-manage` and lets Home Manager render
 #     ~/.config/niri-session/niri-session.conf from `settings` below;
+#   - creates the session directory on activation (niri-session-manage does
+#     NOT mkdir -p it itself -- `--save` fails with a misleading "IPC I/O
+#     error: No such file or directory" if it's missing, since the fork
+#     reuses the same io::Error variant for both socket and file errors);
 #   - periodically snapshots the current session (systemd user timer);
 #   - snapshots once more right before suspend/hibernate;
-#   - actual restore-on-startup is wired separately, in
-#     ressources/dots/niri/init.kdl (`spawn-at-startup "niri-session-manage"
-#     "--load-last"`), since this fork's upstream module intentionally
-#     leaves restore manual.
-{inputs, ...}: {
+#   - actual restore is manual, via the niri-session-restore-picker
+#     keybind (Mod+Shift+R, see ../../../../niri-session-restore-picker/
+#     and ./niri-session-restore-picker.nix) rather than autostart.
+{
+  config,
+  lib,
+  inputs,
+  ...
+}: let
+  # Kept as a real absolute path (not "~/...") so it can double as the
+  # home.activation mkdir target below, not just the TOML value.
+  sessionDir = "${config.home.homeDirectory}/.local/state/niri-session/sessions";
+in {
   imports = [
     inputs.niri-session-restore.homeModules.niri-session
   ];
@@ -27,10 +39,10 @@
     # it in place instead).
     settings = {
       # [session] -- where snapshots live and what --load-last reads.
-      # session = {
-      #   default_session_dir = "~/.local/state/niri-session/sessions";
-      #   graceful_shutdown_name = "last"; # -> .../sessions/last (or "last.json")
-      # };
+      session = {
+        default_session_dir = sessionDir;
+        graceful_shutdown_name = "last"; # -> .../sessions/last (or "last.json")
+      };
 
       # [load] -- timings/behavior for --load and --load-last. All optional;
       # defaults shown as comments (see docs/en/CONFIG.md for the full table).
@@ -77,4 +89,8 @@
     # sleep hook), e.g. for verbose debugging.
     # extraSaveArgs = ["--debug"];
   };
+
+  home.activation.niriSessionDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run mkdir -p "${sessionDir}"
+  '';
 }

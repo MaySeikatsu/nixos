@@ -1,6 +1,14 @@
 {
   description = "Nixos config flake";
 
+  # Trusts chaotic-nyx's binary cache so cachyos kernel builds (see the
+  # `chaotic` input below) are fetched pre-built instead of compiled locally.
+  # `nixos-rebuild --flake` prompts to accept this on first use.
+  nixConfig = {
+    extra-substituters = ["https://chaotic-nyx.cachix.org/"];
+    extra-trusted-public-keys = ["chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="];
+  };
+
   inputs = {
     # Nixpkgs source and home-manager
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -126,6 +134,15 @@
       url = "path:/home/maike/Projects/forks/niri-session-restore";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    chaotic = {
+      # CachyOS kernel packages (linuxPackages_cachyos*) for NixOS.
+      # Deliberately NOT following our nixpkgs: chaotic-nyx pins to the
+      # nixpkgs revision its cachyos kernel builds were actually built
+      # against, which is what makes the chaotic-nyx.cachix.org binary
+      # cache hit. Following our nixpkgs would make Nix rebuild the kernel
+      # from source instead of fetching the prebuilt one.
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
   };
 
   outputs = {
@@ -144,6 +161,7 @@
     monado-rift-wayland,
     # shellseikatsu,
     yazelix-hm,
+    chaotic,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -195,6 +213,10 @@
     commonDesktopModules = [
       inputs.spicetify-nix.nixosModules.default
       inputs.stylix.nixosModules.stylix
+      # Exposes pkgs.linuxPackages_cachyos* + trusts the chaotic-nyx cache;
+      # doesn't change the running kernel by itself (see the cachyos
+      # specialisation in hosts/nixos-maike-pc/configuration.nix).
+      chaotic.nixosModules.default
       # Oculus Rift CV1: udev rules + patched Monado package
       monado-rift-wayland.nixosModules.default
       {hardware.oculus-rift-cv1.enable = true;}
