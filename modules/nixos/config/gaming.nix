@@ -38,10 +38,14 @@
 
   environment.systemPackages = with pkgs; [
     ntfs3g # to run games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
-    # bottles
-    # lutris
+    bottles
+    lutris
     heroic
     dolphin-emu
+    mame
+    retroarch
+    pegasus-frontend
+    widelands
     # wacomtablet
     # roccat-tools
   ];
