@@ -24,6 +24,16 @@
       gnome.enable = true;
     };
 
+    # kwin_wayland's atomic DRM commit path repeatedly fails against the
+    # NVIDIA proprietary driver here (GTX 1060, driver 580.x) -
+    # "kwin_wayland_drm: Atomic modeset commit failed! Invalid argument"
+    # spams the journal on every boot, and is why Plasma / Plasma Bigscreen
+    # sessions fail to come up while niri/mango (not kwin-based) work fine.
+    # KWIN_DRM_NO_AMS forces kwin back to the legacy (non-atomic) DRM API.
+    # Scoped to the kwin_wayland unit only, so niri is unaffected. Plasma
+    # Bigscreen goes through the same plasma-workspace session machinery
+    # (plasma-dbus-run-session-if-needed), so it picks this up too.
+
     displayManager = {
       # sddm.enable = true; #now maaged by sddm-xxx file
       sddm.wayland.enable = true;
@@ -62,4 +72,8 @@
       # startupProfile = "";
     };
   };
+
+  # See comment above desktopManager.plasma6 - works around kwin_wayland
+  # atomic DRM commit failures on the NVIDIA proprietary driver.
+  systemd.user.services."plasma-kwin_wayland".environment.KWIN_DRM_NO_AMS = "1";
 }
