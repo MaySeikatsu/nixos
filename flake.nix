@@ -129,9 +129,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-session-restore = {
-      # Local fork under active development; switch to
-      # "github:MaySeikatsu/niri-session-restore" once it's pushed there.
-      url = "path:/home/maike/Projects/forks/niri-session-restore";
+      url = "github:MaySeikatsu/niri-session-restore"; # "path:/home/maike/Projects/forks/niri-session-restore";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
