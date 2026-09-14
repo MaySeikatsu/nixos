@@ -8,7 +8,7 @@
   };
 
   systemd.services.copyparty = {
-    enable = true;
+    enable = false;
     description = "copyparty photo share - sailwithus";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];

@@ -1,7 +1,7 @@
 {...}: {
   services = {
     cloudflared = {
-      enable = true;
+      enable = false;
 
       tunnels."2b9aee76-6085-4819-9792-68258ec239bc" = {
         credentialsFile = "/var/lib/cloudflared/photo-share.json";
