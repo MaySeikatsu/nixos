@@ -49,10 +49,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.home-manager.follows = "home-manager"; # stylix does not expose this input
     };
-    niri = {
-      url = "github:niri-wm/niri";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # niri = {
+    #   url = "github:niri-wm/niri";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     sysc-greet = {
       url = "github:Nomadcxx/sysc-greet";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -152,7 +152,7 @@
     nixcord,
     stylix,
     textfox,
-    niri,
+    # niri,
     sysc-greet,
     system76-scheduler-niri,
     sops-nix,
