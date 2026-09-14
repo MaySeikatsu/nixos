@@ -2,19 +2,38 @@
 
 A small interactive picker that sits in front of
 [niri-session-restore](https://github.com/MaySeikatsu/niri-session-restore)'s
-`niri-session-manage --load`. Instead of blindly restoring the entire last
-session on every niri startup, it:
+`niri-session-manage --save`/`--load`. Instead of blindly restoring the
+entire last session on every niri startup, opening it (Mod+Shift+R) offers
+three actions:
 
-1. lists saved session files (newest first, with a window count) and lets you
-   pick one via [fzf](https://github.com/junegunn/fzf);
-2. lists that file's workspaces (output, name, and which apps are on it) and
-   lets you multi-select which ones to actually restore;
-3. filters the session JSON down to just those workspaces and hands it to
-   `niri-session-manage --load`.
+- **Restore a saved session** — pick a saved session file (autosaves and
+  named presets alike, newest first, with a window count and a live layout
+  preview showing which windows are on which monitor/workspace), then
+  multi-select which of its workspaces to actually restore. The session JSON
+  is filtered down to just those workspaces and handed to
+  `niri-session-manage --load`.
+- **Backup current session as a new preset** — snapshot what's open right
+  now under a name you choose (`niri-session-manage --save <name>.json`), so
+  it shows up in the restore list alongside the autosaves next time.
+- **Rename a saved session** — rename any saved file/preset in place (with a
+  warning if you pick one of the two auto-managed names, `session.json` /
+  `last`, since those get regenerated on their own).
+
+Presets are just named files living in the same session directory the
+autosaves already use — there's no separate storage, so anything you back up
+shows up in the same restore list, tagged `[preset]` vs `[auto]`.
+
+The layout preview (fzf's `--preview` pane) draws each workspace's tiled
+windows as stacked boxes — columns left-to-right, windows within a column
+stacked top-to-bottom, the focused window double-bordered — plus a trailing
+note for floating windows. Same idea as the pane-box previews our zellij
+picker ([noren](https://github.com/MaySeikatsu/noren)) draws for sessions,
+adapted to niri's output/workspace/column model.
 
 Everything is a single POSIX-ish bash script (`niri-session-restore-picker.sh`)
-with no state of its own — it just reads whatever `niri-session-manage --save`
-already wrote.
+with no state of its own — it just reads and writes whatever
+`niri-session-manage --save`/`--load` already understand. No new runtime
+dependency for any of this — see [Dependencies](#dependencies).
 
 ## Why this exists
 
@@ -55,7 +74,21 @@ put the result on `PATH`. In the parent nixos config this is wired up as:
 
 ## Status
 
-First pass, not yet battle-tested against a real multi-workspace session. If
-this earns its keep, it's self-contained enough to split into its own repo —
-nothing in this directory reaches outside of itself except the
-`niri-session-manage` binary on `PATH` at runtime.
+Core logic (file listing, layout preview rendering, backup/rename/restore
+control flow) exercised against a real multi-monitor/multi-workspace session
+file and with `niri-session-manage`/`fzf`/`notify-send` stubbed out — not yet
+run end-to-end against a live niri compositor. If this earns its keep, it's
+self-contained enough to split into its own repo — nothing in this directory
+reaches outside of itself except the `niri-session-manage` binary on `PATH`
+at runtime.
+
+## Roadmap
+
+An "exact layout" restore mode — close windows that aren't in the saved
+snapshot instead of only adding the saved ones on top, so restoring a preset
+reproduces it exactly — is deliberately not implemented here yet (it's
+destructive by nature and belongs behind an explicit opt-in). Sketched out in
+the niri-session-restore fork's own
+[ROADMAP.md](https://github.com/MaySeikatsu/niri-session-restore/blob/main/ROADMAP.md#exact-layout-restore-mode),
+since it needs a flag on `--load` itself before this picker can expose it as
+a toggle.

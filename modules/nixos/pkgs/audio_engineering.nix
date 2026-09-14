@@ -5,7 +5,7 @@
     # tenacity
     # yabridge
     ardour
-    # audacity
+    audacity
     # bitwig-studio
     # neosynthesia
     neothesia

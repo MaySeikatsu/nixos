@@ -33,7 +33,8 @@ done
 #Sync RGB Color to Wallpaper
 # ~/.config/nixos/scripts/openrbg.sh
 # caelestia wallpaper -f ~/.current-wallpaper #enable on hyprland
-noctalia-shell ipc call wallpaper set ~/.current-wallpaper, eDP-1
+# noctalia-shell ipc call wallpaper set ~/.current-wallpaper, eDP-1  # noctalia v4
+noctalia msg wallpaper-set eDP-1 ~/.current-wallpaper  # noctalia v5 (connector first, then path)
 # caelestia  shell wallpaper set ~/.current-wallpaper
 # hyprpanel restart
 #

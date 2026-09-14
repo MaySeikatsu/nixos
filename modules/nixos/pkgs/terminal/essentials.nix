@@ -67,5 +67,9 @@
 
     pinentry-curses
     proton-pass
+
+    audacity
+    nodejs_22 # Installed for pi
+    python3 # Installed for noctalia
   ];
 }
