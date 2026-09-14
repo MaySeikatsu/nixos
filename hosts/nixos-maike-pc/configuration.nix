@@ -268,6 +268,35 @@
     # this one collide unless this one is forced.
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
 
+    # chaotic-nyx's nvidia-x11 build (pulled in via the cachyos kernel's
+    # nvidiaPackages) ships nvidia-sleep.sh with its unpatched upstream
+    # `#!/bin/bash` shebang - NixOS has no /bin/bash, so
+    # nvidia-suspend/resume/hibernate.service fail with ENOENT and suspend,
+    # hibernate and suspend-then-hibernate never actually happen (silently -
+    # `Dependency failed for Sleep`, no visible error to the user). nixpkgs'
+    # own nvidia build (used on the non-cachyos kernel) patches this
+    # correctly.
+    #
+    # Fix by invoking the script with an explicit bash interpreter instead
+    # of relying on its shebang. Deliberately NOT `hardware.nvidia.package
+    # .overrideAttrs`: that broke the *kernel module* nixpkgs wires into
+    # `boot.extraModulePackages` (its passthru `.mod` attribute silently
+    # fell back to being built against the base kernel's version instead
+    # of cachyos's, tripping the "inconsistent kernel versions" build
+    # failure) - overriding just these three units' ExecStart avoids
+    # touching the package/kernel-module wiring at all.
+    systemd.services = let
+      bashExecStart = state: {
+        serviceConfig.ExecStart = lib.mkForce ''
+          ${lib.getExe pkgs.bash} ${config.hardware.nvidia.package}/bin/nvidia-sleep.sh '${state}'
+        '';
+      };
+    in {
+      nvidia-suspend = bashExecStart "suspend";
+      nvidia-hibernate = bashExecStart "hibernate";
+      nvidia-resume = bashExecStart "resume";
+    };
+
     # sched-ext: a separate mechanism from BORE above - swaps the *entire*
     # scheduling policy at runtime via an eBPF program, no reboot needed to
     # change scheduler (just restart the service). Needs the kernel built
