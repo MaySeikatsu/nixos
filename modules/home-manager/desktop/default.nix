@@ -11,7 +11,7 @@
     ./rofi.nix
     ./wofi.nix
     ./mime.nix
-    # ./noctalia.nix
+    ./noctalia.nix
     # ./walker.nix
     ./sherlock-launcher.nix
     # ./ironbar.nix

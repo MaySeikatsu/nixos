@@ -36,9 +36,12 @@ spawn-at-startup "sh" "-c" "systemctl --user start xdg-desktop-portal-wlr.servic
 // spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gnome" // mask gnome portal to not interfere with wlroots portal
 // spawn-at-startup "sh" "-c" "systemctl --user mask xdg-desktop-portal-gtk" // mask gnome portal to not interfere with wlroots portal
 
-// spawn-at-startup "sh" "-c" "noctalia" # noctalia v5
+// noctalia: v5 (pkgs.noctalia, `noctalia`) is the default; v4 (pkgs.noctalia-shell,
+// `noctalia-shell`) stays installed as a fallback. Config for v5 lives in
+// modules/home-manager/desktop/noctalia.nix. Never run both at once.
+// spawn-at-startup "sh" "-c" "noctalia-shell" // noctalia v4
+spawn-at-startup "noctalia" // noctalia v5
 // spawn-at-startup "sh" "-c" "shellseikatsu"
-spawn-at-startup "sh" "-c" "noctalia-shell" // noctalia v4
 // spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
 
 // spawn-at-startup "sh" "-c" "wl-clip-persist --clipboard regular"

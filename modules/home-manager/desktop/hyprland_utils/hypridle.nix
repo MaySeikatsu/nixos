@@ -4,7 +4,8 @@
     settings = {
       general = {
         # lock_cmd = "pidof hyprlock || hyprlock";
-        lock_cmd = "noctalia-shell ipc call lockScreen lock";
+        # lock_cmd = "noctalia-shell ipc call lockScreen lock"; # noctalia v4
+        lock_cmd = "noctalia msg session lock"; # noctalia v5
         before_sleep_cmd = "loginctl lock-session";
         # after_sleep_cmd = "hyprctl dispatch dpms on";
       };

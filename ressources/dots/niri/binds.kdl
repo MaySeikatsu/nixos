@@ -7,7 +7,8 @@ binds {
     Mod+Shift+V { spawn "~/.config/nixos/scripts/niri_toggle_effects.sh"; }
 
     // Super+Escape { spawn "hyprlock"; }
-    // Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; }
+    // Super+Escape { spawn "sh" "-c" "noctalia-shell ipc call lockScreen lock"; } // noctalia v4
+    // Super+Escape { spawn "sh" "-c" "noctalia msg session lock"; } // noctalia v5
     Super+Escape { spawn "sh" "-c" "shellseikatsu ipc call session lock"; }
     // Super+A { spawn "sherlock"; }
     Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
@@ -19,12 +20,19 @@ binds {
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "nautilus"; }
-    // Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; }
+    // Mod+R { spawn "sh" "-c" "noctalia-shell ipc call launcher toggle"; } // noctalia v4
+    // Mod+R { spawn "sh" "-c" "noctalia msg panel-toggle launcher"; } // noctalia v5
     Mod+R { spawn "sh" "-c" "shellseikatsu ipc call launcher toggle"; }
     Mod+Z { spawn "sh" "-c" "shellseikatsu ipc call console toggle"; }
     Mod+S {spawn "sh" "-c" "shellseikatsu ipc call sidebar toggle dashboard";}
-    Mod+Shift+B { spawn "sh" "-c" "noctalia-shell ipc call bar toggle"; }
-    Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; }
+    // noctalia v4 -> v5: `noctalia-shell ipc call ...` became `noctalia msg ...`
+    // Mod+Shift+B { spawn "sh" "-c" "noctalia-shell ipc call bar toggle"; } // noctalia v4
+    // Mod+P { spawn "sh" "-c" "noctalia-shell ipc call launcher clipboard"; } // noctalia v4
+    Mod+Shift+B { spawn "sh" "-c" "noctalia msg bar-toggle"; } // noctalia v5
+    Mod+P { spawn "sh" "-c" "noctalia msg panel-toggle clipboard"; } // noctalia v5
+    // v5 extras: control-center sections and the shell's own screenshot flow
+    Mod+Shift+P { spawn "sh" "-c" "noctalia msg panel-toggle control-center"; } // noctalia v5
+    Mod+Ctrl+P { spawn "sh" "-c" "noctalia msg panel-toggle session"; } // noctalia v5
     Super+Q { close-window; }
 
     // Ctrl+Alt+C { spawn "sh" "-c" "pidof wl-color-picker || wl-color-picker"; }

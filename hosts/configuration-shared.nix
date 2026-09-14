@@ -225,6 +225,7 @@ in {
     wallust # rust
     quickshell
     noctalia-shell
+    noctalia
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     openssl
     pkg-config
@@ -245,7 +246,7 @@ in {
     # inputs.winapps.packages.${pkgs.stdenv.hostPlatform.system}.winapps-launcher
     # inputs.millennium.packages.${pkgs.stdenv.hostPlatform.system}.millennium
     # inputs.rproc.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.iris.packages.${pkgs.stdenv.hostPlatform.system}.default
     # winboat
