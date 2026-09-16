@@ -284,6 +284,7 @@ in {
     gimp-with-plugins
     poppler
     davinci-resolve
+    # concat
     # kdePackages.kdenlive
     base16-schemes
     darktable #like lightroom

@@ -1,0 +1,109 @@
+#+title: Doom Emacs cheat sheet
+#+startup: showall
+# Opened with SPC h SPC. Read-only; edit in ~/.config/nixos/ressources/dots/doom/cheatsheet.org
+
+* Discover
+| SPC (wait)     | which-key shows every prefix         |
+| SPC h k        | what does this key do                |
+| SPC h f / v    | describe function / variable         |
+| K              | docs for symbol at point             |
+| SPC : / M-x    | command palette                      |
+| SPC h d m      | doom module docs                     |
+| SPC h r r      | reload config (config.el edits)      |
+| SPC q r        | restart emacs (after doom sync)      |
+| SPC h SPC      | this sheet                           |
+
+* Files / projects
+| SPC .          | find file here                        |
+| SPC SPC        | find file in project                  |
+| SPC p p        | switch project                        |
+| SPC f r        | recent files                          |
+| SPC f d        | dirvish (dired) here                  |
+| -              | dired parent dir (vinegar/oil)        |
+| SPC e / SPC o p| toggle treemacs                       |
+| SPC o P        | reveal current file in treemacs       |
+| SPC o d        | dirvish side pane                     |
+| SPC f R        | rename file                           |
+| SPC f y        | copy path                             |
+
+* Search
+| SPC /  SPC s p | ripgrep project                       |
+| SPC s s        | search in buffer                      |
+| SPC s i        | symbols/imenu                         |
+| SPC s r        | search+replace in project (embark)    |
+| C-c C-e        | in grep results: edit in place (wgrep)|
+| gd gr gD gI    | def / refs / type / impl             |
+| SPC c j / J    | workspace symbols / project symbols   |
+
+* Buffers / windows / workspaces
+| SPC ,  SPC b b | switch buffer (workspace / all)       |
+| SPC b k  SPC b d| kill buffer                          |
+| SPC w v / s    | vsplit / split                        |
+| SPC w w / h j k l| jump windows                        |
+| SPC w d        | close window                          |
+| SPC w m m      | maximize (toggle)                     |
+| SPC TAB n      | new workspace                         |
+| SPC TAB 1-9    | switch workspace                      |
+| SPC TAB d      | delete workspace                      |
+| SPC t z        | zen mode                              |
+
+* Code (lsp)
+| SPC c a        | code action                           |
+| SPC c r        | rename                                |
+| SPC c f        | format buffer                         |
+| SPC c d / D    | jump def / refs                       |
+| SPC c x        | diagnostics list                      |
+| ]e [e          | next / prev error                     |
+| SPC c i        | find implementations                  |
+| SPC c t        | find type definition                  |
+| SPC c l        | lsp menu                              |
+| SPC c e        | eval buffer/region                    |
+| SPC o t        | vterm popup (project root)            |
+| SPC o T        | vterm buffer                          |
+| gcc / gc       | comment                               |
+| za zm zr       | fold toggle / close all / open all    |
+| gzz / gzA      | multiple cursors here / all matches   |
+| SPC d          | debugger (dap)                        |
+
+* Git (magit)
+| SPC g g        | status                                |
+| s / u          | stage / unstage                       |
+| S / U          | stage all / unstage all               |
+| c c            | commit  (C-c C-c finish, C-c C-k abort)|
+| P p / F p      | push / pull                           |
+| l l            | log                                   |
+| b b / b c      | checkout / create branch              |
+| TAB            | expand hunk                           |
+| SPC g /        | magit dispatch (everything)           |
+| ]c [c          | next/prev hunk in buffer              |
+| SPC g r        | revert hunk                           |
+| SPC g t        | git timemachine                       |
+
+* Org / notes
+| SPC n a        | agenda                                |
+| SPC n n        | capture (t todo, n note, w ticket, j journal)|
+| SPC n i / w    | inbox.org / work.org                  |
+| SPC n j j      | journal today                         |
+| SPC o c        | calendar                              |
+| t              | cycle TODO in agenda/heading          |
+| SPC m d s / d  | schedule / deadline                   |
+| SPC m t        | set TODO state                        |
+| SPC m e        | export                                |
+| TAB / S-TAB    | fold heading / all                    |
+| C-c C-c        | run src block / toggle checkbox       |
+| SPC n o j      | obsidian: jump to note                |
+| SPC n o s      | obsidian: search                      |
+| SPC n o c      | obsidian: new note                    |
+| SPC n o l      | obsidian: insert link                 |
+
+* Apps
+| SPC o e        | RSS (elfeed)                          |
+| SPC o k        | kubernetes                            |
+| SPC o D        | docker                                |
+| SPC o w        | copy password (gopass)                |
+| SPC l l        | gptel chat                            |
+| SPC l s        | gptel send (in chat: send)            |
+| SPC l r        | gptel rewrite region                  |
+| SPC l c        | Claude Code toggle                    |
+| SPC l p        | Copilot toggle                        |
+| TAB            | accept copilot suggestion             |
