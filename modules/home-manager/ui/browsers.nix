@@ -1,6 +1,7 @@
 {pkgs,inputs,...}:{
 
   home.packages = with pkgs; [
+    # (pkgs.callPackage ../../../packages/terminal-browser.nix {}) # Disabled: Foot lacks Kitty graphics protocol support.
     microsoft-edge
     # vivaldi
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
