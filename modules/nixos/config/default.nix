@@ -11,6 +11,7 @@
     ./nix.nix
     ./mime.nix
     ./gnome.nix
+    ./ios-devices.nix
     ./gaming.nix
     ./greeter.nix
     ./fonts.nix
