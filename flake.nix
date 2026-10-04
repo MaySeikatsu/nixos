@@ -1,13 +1,12 @@
 {
   description = "Nixos config flake";
 
-  # Trusts chaotic-nyx's binary cache so cachyos kernel builds (see the
-  # `chaotic` input below) are fetched pre-built instead of compiled locally.
-  # `nixos-rebuild --flake` prompts to accept this on first use.
-  nixConfig = {
-    extra-substituters = ["https://chaotic-nyx.cachix.org/"];
-    extra-trusted-public-keys = ["chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="];
-  };
+  # No flake-level nixConfig for chaotic-nyx's binary cache: its NixOS module
+  # (commonDesktopModules below) adds and trusts nyx-cache.chaotic.cx
+  # system-wide, so cachyos kernels are fetched pre-built anyway. The
+  # nixConfig variant only produced "ignoring untrusted flake configuration"
+  # warnings on every evaluation. (On a fresh install, pass
+  # --option extra-substituters https://nyx-cache.chaotic.cx/ once.)
 
   inputs = {
     # Nixpkgs source and home-manager
@@ -186,6 +185,41 @@
         commitizen = prev.commitizen.overridePythonAttrs (old: {
           doCheck = false;
         });
+      })
+      # cuda_compat is a Jetson-only redistributable: the CUDA 12.x manifests
+      # ship a linux-aarch64 archive only, so on x86_64 its `src` is empty and
+      # the build dies in unpackPhase with "variable $src or $srcs should point
+      # to the source". It still gets pulled in because cuda_cudart propagates
+      # it whenever `cuda_compat.meta.available` is true, and our
+      # `allowUnsupportedSystem = true` (modules/nixos/config/nix.nix) makes
+      # that true despite `meta.platforms = ["aarch64-linux"]`.
+      # Setting the package to null is the escape hatch cuda_cudart.nix
+      # documents. Drop this once nixpkgs gates it on platform support.
+      (final: prev: {
+        cudaPackages = prev.cudaPackages.overrideScope (_: _: {
+          cuda_compat = null;
+        });
+      })
+      # pyworld (VOICEVOX engine dependency) reads its own version through
+      # pkg_resources, which setuptools has removed: the import check fails
+      # and VOICEVOX can't build. importlib.metadata is the stdlib
+      # replacement. Drop once nixpkgs' pyworld no longer needs it.
+      (final: prev: {
+        pythonPackagesExtensions =
+          prev.pythonPackagesExtensions
+          ++ [
+            (pyFinal: pyPrev: {
+              pyworld = pyPrev.pyworld.overridePythonAttrs (old: {
+                postPatch =
+                  (old.postPatch or "")
+                  + ''
+                    substituteInPlace pyworld/__init__.py \
+                      --replace-fail "import pkg_resources" "import importlib.metadata" \
+                      --replace-fail "pkg_resources.get_distribution('pyworld').version" "importlib.metadata.version('pyworld')"
+                  '';
+              });
+            })
+          ];
       })
     ];
 

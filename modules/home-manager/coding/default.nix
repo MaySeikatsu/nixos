@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+# toggle: my.coding.enable (modules/nixos/profiles.nix)
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}: {
   imports = [
     ./zed-editor.nix
+    ./ai-agents.nix
   ];
 
-  home.packages = with pkgs; [
+  home.packages = lib.mkIf osConfig.my.coding.enable (with pkgs; [
     # Tools
     tree-sitter
     wget
@@ -91,7 +98,7 @@
     shellcheck
 
     # Docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
     hadolint
 
@@ -127,15 +134,15 @@
     opencode
     # mistral-vibe
     github-copilot-cli
-    gemini-cli
+    # gemini-cli # replaced upstream by Antigravity CLI; nixpkgs flags it for removal
     codex
     pi-coding-agent
-    ollama
+    # ollama: system-wide with GPU tuning in modules/nixos/ai/ollama.nix
     # lmstudio
     # geminicommit
-    claude-code
+    # claude-code: programs.claude-code in ai-agents.nix (with MCP servers + skills)
 
     # Gamedev
     godot
-  ];
+  ]);
 }

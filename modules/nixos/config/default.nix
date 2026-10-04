@@ -3,6 +3,11 @@
     ./audio.nix
     ./boot.nix
     ./copyparty.nix
+    ./davinci-resolve.nix
+    ./gpu-acceleration.nix
+    ./graphics.nix
+    ./photo-editing.nix
+    ./vtubing.nix
     ./kanata.nix
     ./localisation.nix
     ./niri.nix

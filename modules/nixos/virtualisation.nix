@@ -1,7 +1,9 @@
-{...}: {
+{config, ...}: let
+  on = config.my.virtualisation.enable; # toggle: modules/nixos/profiles.nix
+in {
   # Enable VMware virtualisation straight out of nixos
   # virtualisation.vmware.host.enable = true; #needs to be added manually to nix store
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = on;
 
   users = {
     groups = {
@@ -19,10 +21,10 @@
   };
 
   virtualisation = {
-    docker.enable = true;
-    podman.enable = true;
-    libvirtd.enable = true;
-    spiceUSBRedirection.enable = true;
+    docker.enable = on;
+    podman.enable = on;
+    libvirtd.enable = on;
+    spiceUSBRedirection.enable = on;
     vmVariant = {
       # following configuration is added only when building VM with build-vm
       virtualisation = {

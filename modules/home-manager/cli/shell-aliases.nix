@@ -25,8 +25,6 @@
     gm = "git merge";
     gr = "git rebase";
     gl = "git log";
-
-    davinci-resolve = "nvidia-offload davinci-resolve";
   };
 
   programs.nushell.shellAliases = config.home.shellAliases;

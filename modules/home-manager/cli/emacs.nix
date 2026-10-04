@@ -66,7 +66,7 @@ in {
     cmake # vterm / doom doctor
     libtool
     gcc
-    (hunspellWithDicts [hunspellDicts.en_US hunspellDicts.de_DE]) # :checkers spell
+    (hunspell.withDicts (d: [d.en_US d.de_DE])) # :checkers spell
     (aspellWithDicts (d: [d.en d.de])) # doom doctor / fallback
     libxml2 # xmllint (:lang data)
     grim # org-download-clipboard screenshots (wayland)
@@ -88,7 +88,7 @@ in {
     # ── LSP servers / linters / formatters per language ─────────────────
     # nix
     nil
-    nixfmt-rfc-style
+    nixfmt
     statix
     deadnix
     # terraform / hcl

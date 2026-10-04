@@ -47,13 +47,8 @@
     # inputs.legionrgb
   ];
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    # backupFileExtension = "bak";
-    users = {
-      "maike" = import ./home.nix;
-    };
-  };
+  # home-manager (users.maike = ./home.nix, extraSpecialArgs) is wired up in
+  # flake.nix's mkHomeManagerConfig; defining it here too evaluated home.nix twice.
 
   fileSystems."/mnt/archlinux" = {
     device = "/dev/disk/by-uuid/60fefd51-a584-45fe-9b84-0288cf747160";
@@ -165,6 +160,10 @@
   #   ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
   # '';
   # boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+
+  # RTX 3070 Laptop (Ampere). Drives the CUDA build targets and PyTorch
+  # wheels of the local AI stack, see modules/nixos/ai/default.nix.
+  my.ai.cudaCapability = "8.6";
 
   ## ON THE GOO CONFIG:
 

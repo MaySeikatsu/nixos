@@ -16,7 +16,7 @@
       signByDefault = true;
       key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
     };
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;
@@ -27,6 +27,13 @@
 
       "gpg \"ssh\"".allowedSignersFile =
         "${config.xdg.configHome}/git/allowed_signers";
+
+      # opt-in alias: `git dlog`, `git dshow`, `git ddiff`
+      alias = {
+        dlog = "-c diff.external=difft log --ext-diff";
+        dshow = "-c diff.external=difft show --ext-diff";
+        ddiff = "-c diff.external=difft diff";
+      };
     };
 
     includes = [
@@ -35,13 +42,6 @@
       # In the work folder, override identity + signing key + default branch.
       { path = config.sops.templates."git-includes.inc".path; }
     ];
-
-    # opt-in alias: `git dlog`, `git dshow`, `git ddiff`
-    aliases = {
-      dlog = "-c diff.external=difft log --ext-diff";
-      dshow = "-c diff.external=difft show --ext-diff";
-      ddiff = "-c diff.external=difft diff";
-    };
   };
 
   # allowed_signers file so `git log --show-signature` works locally too.
@@ -87,8 +87,9 @@
        '';
 
   # Pretty delta highlighting for git
-  programs.git.delta = {
+  programs.delta = {
     enable = true;
+    enableGitIntegration = true;
     options = {
       navigate = true;
       line-numbers = true;

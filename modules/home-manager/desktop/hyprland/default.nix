@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   wayland.windowManager.hyprland.enable = true;
+  # HM switched the default to Lua configs for stateVersion >= 26.05; all
+  # settings here are written for hyprlang
+  wayland.windowManager.hyprland.configType = "hyprlang";
   # home.sessionVariables.NIXOS_OZONE_WL = "1";
   imports = [
     ./animations.nix

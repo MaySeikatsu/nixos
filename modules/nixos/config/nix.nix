@@ -3,6 +3,18 @@
   nix = {
     package = pkgs.lixPackageSets.stable.lix;
     settings.experimental-features = ["nix-command" "flakes"]; # Enable flake support
+
+    # Local builds (CUDA packages, Blender, kernels) used to run up to
+    # 12 jobs x all cores at once: heavy C++ (OpenUSD, Blender) needs 1-2.5 GB
+    # per compiler, so the PC ran out of RAM and thrashed swap, which is slower
+    # than building with fewer jobs. 2 jobs x 4 cores caps it at 8 compilers.
+    # Downloads from the cache are unaffected (separate max-substitution-jobs).
+    settings.max-jobs = 2;
+    settings.cores = 4;
+    # Builds only get CPU/disk time nothing else wants: the desktop stays
+    # responsive during a rebuild, which simply takes longer while you work.
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
   };
 
   nixpkgs.config = {

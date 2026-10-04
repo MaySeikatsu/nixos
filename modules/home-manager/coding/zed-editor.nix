@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.zed-editor = {
-    enable = true;
+    enable = osConfig.my.coding.enable; # toggle: modules/nixos/profiles.nix
 
     # ACP bridge so the agent panel can drive Claude Code.
     # The nixpkgs wrapper pins CLAUDE_CODE_EXECUTABLE to the nix `claude`

@@ -10,10 +10,13 @@
 in {
   imports = [
     # Include the results of the hardware scan.
-    inputs.home-manager.nixosModules.default
+    # home-manager's NixOS module comes from flake.nix (commonDesktopModules)
     ../modules/nixos/config
     ../modules/nixos/pkgs/terminal/essentials.nix
     ../modules/nixos/virtualisation.nix
+    ../modules/nixos/ai # set my.ai.cudaCapability per host
+    ../modules/nixos/profiles.nix # my.<feature>.enable toggles
+    ../modules/nixos/pkgs/audio_engineering.nix # my.audioProduction (off by default)
     ../modules/home-manager/theming/spicetify.nix
     # ../modules/nixos/pkgs/hyprland.nix
     # ../modules/nixos/pkgs/terminal/rice.nix
@@ -29,6 +32,8 @@ in {
   # system.nixos-init.enable = true;
   # services.journald.extraConfig = "SystemMaxUse=1G";
 
+  # Feature toggles (my.ai, my.gaming, my.graphics, ...) default to on;
+  # switch them off per host. Overview: modules/nixos/profiles.nix
   programs.fish.enable = true;
 
   users.defaultUserShell = pkgs.fish;
@@ -250,7 +255,7 @@ in {
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.iris.packages.${pkgs.stdenv.hostPlatform.system}.default
     # winboat
-    rapidraw
+    # rapidraw, darktable, rawtherapee, gimp: modules/nixos/config/photo-editing.nix (my.photoEditing)
     anki
     # rose-pine-gtk-theme # removed from nixpkgs: depended on gtk-engine-murrine (GTK2, unmaintained).
     # GTK theming still comes from stylix's rose-pine-moon base16 scheme, so nothing visible is lost.
@@ -271,24 +276,16 @@ in {
     # gnome.adwaita-icon-theme
     # nvtopPackages.full
 
-    # voicevox
-    krita
-    blender
-    libresprite
-    aseprite
-    goxel
+    # voicevox # modules/nixos/ai/tts.nix
+    # krita, blender, libresprite, aseprite, goxel: modules/nixos/config/graphics.nix (my.graphics)
     kicad # pcb and electronics design
     obsidian
     ticktick
-    # gimp
-    gimp-with-plugins
     poppler
-    davinci-resolve
+    # davinci-resolve # modules/nixos/config/davinci-resolve.nix (GPU wrapper)
     # concat
     # kdePackages.kdenlive
     base16-schemes
-    darktable #like lightroom
-    rawtherapee
 
     # For Dolphin without KDE Plasma
     kdePackages.dolphin
@@ -313,7 +310,7 @@ in {
     vial
     # via
     intiface-central
-    protontricks
+    # protontricks: modules/nixos/config/gaming.nix (my.gaming)
     # spicetify-cli
     # pinentry
     gnupg

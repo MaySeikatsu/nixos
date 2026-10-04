@@ -2,5 +2,7 @@
 {
   programs.fzf = {
     enable = true; #after enabling via hm it's possible for stylix to change theme
+    # Atuin owns Ctrl-R (history search); fzf keeps Ctrl-T / Alt-C
+    historyWidget.command = "";
   };
 }

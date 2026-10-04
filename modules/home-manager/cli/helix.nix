@@ -29,7 +29,7 @@
   programs.helix = {
     enable = true;
     # package = pkgs.evil-helix;
-    package = inputs.evil-yazelix-helix.packages.${pkgs.system}.default;
+    package = inputs.evil-yazelix-helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     settings = {
       theme = "rose_pine_moon";

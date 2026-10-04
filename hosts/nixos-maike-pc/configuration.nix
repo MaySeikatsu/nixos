@@ -18,6 +18,9 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    # RAM test in the boot menu: run it after changing RAM settings (XMP) in
+    # the BIOS. A full pass with 32 GB takes ~30-60 min; any error = unstable.
+    loader.systemd-boot.memtest86.enable = true;
     # loader.systemd-boot.configurationLimit = 5;
     # Load nvidia modules early so niri/Wayland can initialize the display
     # initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
@@ -60,8 +63,7 @@
   # finish well within 30s when there's nothing actively running in them.
   # Note: only affects the SYSTEM manager. User units keep the default;
   # add `systemd.user.extraConfig` here as well if you want the same cap.
-  systemd.settings.Manager = 
-    {
+  systemd.settings.Manager = {
       DefaultTimeoutStopSec = "30s";
       DefaultTimeoutAbortSec = "30s";
     };
@@ -114,13 +116,8 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    # backupFileExtension = "bak";
-    users = {
-      "maike" = import ./home.nix;
-    };
-  };
+  # home-manager (users.maike = ./home.nix, extraSpecialArgs) is wired up in
+  # flake.nix's mkHomeManagerConfig; defining it here too evaluated home.nix twice.
 
   # Optimising responsiveness
   powerManagement.cpuFreqGovernor = "performance"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
@@ -189,6 +186,56 @@
     # };
   };
 
+  # --- GPU / memory tuning (GTX 1060 6GB, Ryzen 5 2600, 32 GB) ---
+  # Power limit 120 W -> 140 W. The card regularly hits its software power
+  # cap under load (nvidia-smi -q -d PERFORMANCE: "SW Power Capping"), so it
+  # sustains higher boost clocks: expect roughly +3-8% in GPU-bound loads
+  # (Stable Diffusion, LLMs, Cycles, games), at ~20 W more heat and fan
+  # noise. 140 W is the VBIOS maximum the driver accepts; going beyond needs
+  # a VBIOS flash, which isn't worth the risk on this card. Revert with
+  # `sudo nvidia-smi -pl 120` or by removing this unit.
+  systemd.services.nvidia-power-limit = {
+    description = "Raise the GTX 1060 power limit to 140 W";
+    # limits reset on resume from suspend/hibernate, so reapply then too
+    wantedBy = ["multi-user.target" "post-resume.target"];
+    after = ["post-resume.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${config.hardware.nvidia.package.bin}/bin/nvidia-smi --power-limit=140";
+    };
+  };
+
+  # Page Attribute Table for the driver's memory mappings instead of MTRRs:
+  # slightly cheaper CPU<->GPU transfers. Off by default only for very old
+  # CPUs/kernels.
+  boot.extraModprobeConfig = ''
+    options nvidia NVreg_UsePageAttributeTable=1
+  '';
+
+  environment.sessionVariables = {
+    # Bigger OpenGL/Vulkan shader cache (default ~1 GB, then pruned): fewer
+    # shader-compile stutters in games after updates/cache evictions.
+    __GL_SHADER_DISK_CACHE_SIZE = "10737418240"; # 10 GB
+    __GL_SHADER_DISK_CACHE_SKIP_CLEANUP = "1";
+  };
+
+  # Compressed swap in RAM, used before the NVMe swap partition (which stays
+  # for hibernation). With ~19 GB swapped out while running a desktop, AI
+  # models and Steam, pages coming back from zram (~µs) instead of disk keep
+  # things responsive. Costs a little CPU for zstd. The sysctls are the usual
+  # zram tuning: prefer swapping anon pages to zram over dropping file cache,
+  # and don't read ahead (pointless for RAM-backed swap).
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.page-cluster" = 0;
+  };
+  # --- GPU / memory tuning ---
+
   # --- VR with Monado ---
   # VR: Oculus Rift CV1 via monado-rift-wayland. udev rules + package come
   # from the flake's nixosModule (see flake.nix); the OpenVR/xrizer + Steam
@@ -241,7 +288,12 @@
     # would be pkgs.packagename without the with pkgs;
   ];
 
+  # GTX 1060 (Pascal). Drives the CUDA build targets and PyTorch wheels of
+  # the local AI stack, see modules/nixos/ai/default.nix.
+  my.ai.cudaCapability = "6.1";
+
   # Open ports in the firewall.
+  networking.firewall.interfaces."enp37s0".allowedTCPPorts = [7878];
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
