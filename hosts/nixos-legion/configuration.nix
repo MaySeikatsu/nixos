@@ -236,7 +236,9 @@
     # };
     no-nvidia.configuration = {
       system.nixos.tags = ["no-nvidia"];
-      powerManagement.cpuFreqGovernor = "powersave"; # default was schedutil which automatically sets the value: https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt
+      # No static powerManagement.cpuFreqGovernor here: TLP below sets
+      # CPU_SCALING_GOVERNOR_ON_AC/BAT dynamically per power source, which
+      # would otherwise fight a statically-forced governor at boot.
 
       # Forces the amd-pstate-epp driver in active mode instead of leaving it
       # to whatever the kernel defaults to for this CPU generation (Ryzen
@@ -255,16 +257,6 @@
         options nouveau modeset=0
       '';
 
-      services.udev.extraRules = ''
-        # Remove NVIDIA USB xHCI Host Controller devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA USB Type-C UCSI devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA Audio devices, if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA VGA/3D controller devices
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
-      '';
       boot.blacklistedKernelModules = [
         "nouveau"
         "nvidia"
@@ -335,8 +327,51 @@
 
           NMI_WATCHDOG = 0;
           RESTORE_DEVICE_STATE_ON_STARTUP = 1;
+
+          # ASPM lets idle PCIe links (NVMe, wifi) drop into deeper power
+          # states between transfers. Matters more here specifically because
+          # the nvidia dGPU's link sits unbound/idle in this specialisation.
+          PCIE_ASPM_ON_AC = "default";
+          PCIE_ASPM_ON_BAT = "powersupersave";
         };
       };
+
+      # Ryzen power-limit (TDP) control, independent of amd-pstate/EPP above:
+      # EPP shapes how eagerly the CPU ramps within its power budget, this
+      # changes the budget (ceiling) itself. Needs the msr kernel module for
+      # raw MSR access.
+      boot.kernelModules = ["msr"];
+      environment.systemPackages = [pkgs.ryzenadj];
+
+      systemd.services.ryzenadj-power = {
+        description = "Apply AMD Ryzen power limits based on AC/battery state";
+        serviceConfig.Type = "oneshot";
+        wantedBy = ["multi-user.target"];
+        script = ''
+          if grep -q 1 /sys/class/power_supply/A*/online 2>/dev/null; then
+            # Stock-ish ceiling on AC (6800H default cTDP ~45W, boost to ~54W)
+            ${lib.getExe pkgs.ryzenadj} --stapm-limit=45000 --fast-limit=54000 --slow-limit=45000
+          else
+            # Conservative battery profile: sustained well below stock, short
+            # bursts still allowed for responsiveness. Re-tune after checking
+            # `ryzenadj -i` for thermal headroom and real runtime impact.
+            ${lib.getExe pkgs.ryzenadj} --stapm-limit=15000 --fast-limit=20000 --slow-limit=15000
+          fi
+        '';
+      };
+
+      services.udev.extraRules = ''
+        # Remove NVIDIA USB xHCI Host Controller devices, if present
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
+        # Remove NVIDIA USB Type-C UCSI devices, if present
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
+        # Remove NVIDIA Audio devices, if present
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
+        # Remove NVIDIA VGA/3D controller devices
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
+        # Re-apply Ryzen power limits whenever AC is plugged/unplugged
+        SUBSYSTEM=="power_supply", RUN+="${pkgs.systemd}/bin/systemctl start ryzenadj-power.service"
+      '';
     };
   };
 
