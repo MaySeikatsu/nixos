@@ -70,6 +70,23 @@ in {
       description = "Where generated images/videos end up (one subfolder per tool).";
     };
 
+    onDemand = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = ''
+          Start ComfyUI, A1111 and Applio automatically on the first
+          connection to their port and stop them again after idleMinutes
+          without connections (socket activation).
+        '';
+      };
+      idleMinutes = lib.mkOption {
+        type = lib.types.ints.positive;
+        default = 10;
+        description = "Minutes without any open connection before an on-demand web UI is stopped.";
+      };
+    };
+
     cudaCapability = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;

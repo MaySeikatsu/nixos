@@ -136,16 +136,62 @@ in {
   # A systemd *user* unit for a launcher. Not started automatically: these
   # web UIs keep a CUDA context (and on the laptop the dGPU awake) for as
   # long as they run. Start with `systemctl --user start <name>`.
-  mkUserService = {
+  # Port the app itself listens on. With on-demand start (my.ai.onDemand)
+  # systemd owns the public port and the app moves 10000 ports up.
+  backendPort = port:
+    if cfg.onDemand.enable
+    then port + 10000
+    else port;
+
+  # systemd.user units for a web UI. With my.ai.onDemand.enable: a socket on
+  # the public port starts the app on first connection (a browser, Odysseus,
+  # Open WebUI ...), systemd-socket-proxyd forwards to it, and after
+  # idleMinutes without any open connection the proxy exits and the app is
+  # stopped with it, freeing RAM/VRAM. The first request waits until the app
+  # answers (seconds, or minutes on the very first install). A manual
+  # `systemctl --user start <name>` behaves the same (stops when idle).
+  mkWebService = {
+    name,
     description,
     launcher,
-  }: {
-    inherit description;
-    unitConfig.ConditionUser = cfg.user;
-    serviceConfig = {
-      ExecStart = "${launcher}/bin/${launcher.name}";
-      # first start installs several GB of wheels
-      TimeoutStartSec = "infinity";
+    port,
+  }: let
+    backend = toString (port + 10000);
+    unit = {
+      inherit description;
+      unitConfig.ConditionUser = cfg.user;
+      serviceConfig = {
+        ExecStart = "${launcher}/bin/${launcher.name}";
+        # first start installs several GB of wheels
+        TimeoutStartSec = "infinity";
+      };
     };
-  };
+  in
+    if !cfg.onDemand.enable
+    then {services.${name} = unit;}
+    else {
+      sockets."${name}-proxy" = {
+        description = "${description} (start on demand)";
+        wantedBy = ["sockets.target"];
+        listenStreams = ["127.0.0.1:${toString port}"];
+        unitConfig.ConditionUser = cfg.user;
+      };
+      services."${name}-proxy" = {
+        description = "${description} (on-demand proxy)";
+        requires = ["${name}.service"];
+        after = ["${name}.service"];
+        unitConfig.ConditionUser = cfg.user;
+        serviceConfig.ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=${toString cfg.onDemand.idleMinutes}min 127.0.0.1:${backend}";
+      };
+      services.${name} = lib.recursiveUpdate unit {
+        # stopped together with the proxy once it exits idle (PartOf only
+        # follows explicit stops); a manual start also brings up the proxy
+        bindsTo = ["${name}-proxy.service"];
+        # "started" only once the app answers, so the proxy never forwards
+        # into a not-yet-listening port
+        serviceConfig.ExecStartPost = toString (pkgs.writeShellScript "${name}-wait-ready" ''
+          until ${lib.getExe pkgs.curl} -s -o /dev/null http://127.0.0.1:${backend}/; do sleep 2; done
+        '');
+      };
+    };
 }

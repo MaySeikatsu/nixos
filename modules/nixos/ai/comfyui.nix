@@ -53,7 +53,7 @@
   args =
     [
       "--listen=${cfg.listen}"
-      "--port=${toString cfg.port}"
+      "--port=${toString (aiLib.backendPort cfg.port)}"
       "--enable-manager" # ComfyUI-Manager: install nodes/models from the UI
       "--preview-method=auto"
       "--extra-model-paths-config=${extraModelPaths}"
@@ -139,9 +139,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [launcher];
-    systemd.user.services.comfyui = aiLib.mkUserService {
+    systemd.user = aiLib.mkWebService {
+      name = "comfyui";
       description = "ComfyUI";
       inherit launcher;
+      inherit (cfg) port;
     };
   };
 }

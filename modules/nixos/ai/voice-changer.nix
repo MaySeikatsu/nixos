@@ -50,7 +50,7 @@
       fi
 
       cd "$src"
-      exec "$venv/bin/python" app.py --server-name 127.0.0.1 --port ${toString cfg.port} "$@"
+      exec "$venv/bin/python" app.py --server-name 127.0.0.1 --port ${toString (aiLib.backendPort cfg.port)} "$@"
     '';
   };
 in {
@@ -65,9 +65,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [launcher];
-    systemd.user.services.applio = aiLib.mkUserService {
+    systemd.user = aiLib.mkWebService {
+      name = "applio";
       description = "Applio RVC voice conversion";
       inherit launcher;
+      inherit (cfg) port;
     };
   };
 }

@@ -29,7 +29,7 @@
 
   args =
     [
-      "--port=${toString cfg.port}"
+      "--port=${toString (aiLib.backendPort cfg.port)}"
       # medvram only kicks in for SDXL, which doesn't fit 6-8 GB otherwise;
       # SD1.5 keeps running at full speed
       "--medvram-sdxl"
@@ -98,9 +98,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [launcher];
-    systemd.user.services.automatic1111 = aiLib.mkUserService {
+    systemd.user = aiLib.mkWebService {
+      name = "automatic1111";
       description = "AUTOMATIC1111 stable-diffusion-webui";
       inherit launcher;
+      inherit (cfg) port;
     };
   };
 }
