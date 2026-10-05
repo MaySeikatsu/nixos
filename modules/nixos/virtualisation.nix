@@ -1,6 +1,15 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   on = config.my.virtualisation.enable; # toggle: modules/nixos/profiles.nix
 in {
+  # NVIDIA GPU inside containers (CDI): `docker run --device=nvidia.com/gpu=all`
+  # / `podman run --device nvidia.com/gpu=all`. Used by Odysseus.
+  hardware.nvidia-container-toolkit.enable =
+    on && lib.elem "nvidia" config.services.xserver.videoDrivers;
+
   # Enable VMware virtualisation straight out of nixos
   # virtualisation.vmware.host.enable = true; #needs to be added manually to nix store
   programs.virt-manager.enable = on;

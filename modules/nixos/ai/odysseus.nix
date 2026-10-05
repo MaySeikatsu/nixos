@@ -13,6 +13,13 @@
 # The app uses host networking to reach Ollama, which listens on 127.0.0.1
 # only; the helpers publish their ports on 127.0.0.1. Everything stays local.
 #
+# LLMs run in the host Ollama (on the GPU), never inside the container. The
+# container itself also gets the NVIDIA GPU, for the Cookbook features that
+# run in-process (diffusers, SAM masks, rembg, Real-ESRGAN, whisper); their
+# Python packages are installed declaratively (pythonPackages below).
+# Image generation through ComfyUI (127.0.0.1:8188) / A1111 (:7860) starts
+# those on demand (my.ai.onDemand), so they don't need to run beforehand.
+#
 # Update: bump the image tags/digest below (tags: ghcr.io/odysseus-dev/odysseus).
 {
   config,
@@ -23,6 +30,16 @@
   ai = config.my.ai;
   cfg = ai.odysseus;
   dir = "${ai.dataDir}/odysseus";
+  gpu = config.hardware.nvidia-container-toolkit.enable;
+
+  # Optional Python packages, installed by `odysseus-python-deps` (below) the
+  # way the Cookbook's Install buttons do it: `pip install --user` into
+  # /app/.local, which is persisted in the data dir.
+  pipSpec = builtins.toJSON {
+    torch = ai.torchIndexUrl;
+    inherit (cfg) pythonPackages;
+  };
+  pipStamp = "${dir}/data/local/.nixos-python-deps";
 in {
   options.my.ai.odysseus = {
     enable = lib.mkEnableOption "Odysseus AI workspace" // {default = ai.enable;};
@@ -38,6 +55,27 @@ in {
         Start the stack at boot (needed for reminders, scheduled agent tasks
         and email polling). Costs ~1-1.5 GB RAM while running; otherwise start
         it with `sudo systemctl start docker-odysseus`.
+      '';
+    };
+    pythonPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      # Cookbook -> Dependencies (Linux/NVIDIA entries) + upstream's
+      # requirements-optional.txt. kokoro TTS is left out: no Python 3.14
+      # support yet (the image runs 3.14). Each string is one pip call.
+      default = [
+        "diffusers[torch] accelerate scipy python-multipart transformers pillow" # local image gen/editing, SAM masks
+        "rembg[gpu]" # background removal
+        "realesrgan" # denoise + upscale (basicsr/gfpgan ship in the image)
+        "playwright" # browser automation for web tools
+        "faster-whisper" # speech to text
+        "ddgs" # DuckDuckGo search fallback
+        "PyMuPDF" # PDF reading
+        "markitdown[docx,pptx,xlsx,xls]==0.1.6" # Office documents -> text
+      ];
+      description = ''
+        pip requirement groups installed into the container's persisted user
+        site. torch + torchvision come first, from my.ai.torchIndexUrl (CUDA
+        build matching the GPU; PyPI's torch has no Pascal kernels).
       '';
     };
   };
@@ -92,7 +130,10 @@ in {
           );
           PGID = toString config.users.groups.users.gid;
         };
-        extraOptions = ["--network=host"];
+        extraOptions =
+          ["--network=host"]
+          # local diffusers, SAM, rembg, Real-ESRGAN, whisper run on the GPU
+          ++ lib.optional gpu "--device=nvidia.com/gpu=all";
       };
 
       odysseus-chromadb = {
@@ -111,6 +152,44 @@ in {
         volumes = ["${dir}/ntfy:/var/cache/ntfy"];
         environment.NTFY_BASE_URL = "http://localhost:8091";
       };
+    };
+
+    # Runs whenever the container starts, but only calls pip when the package
+    # list or torch index changed (stamp file). First run downloads several
+    # GB (torch + CUDA libraries) and takes a while; Odysseus works meanwhile
+    # and is restarted once at the end so it picks the packages up.
+    # Progress: journalctl -fu odysseus-python-deps
+    systemd.services.odysseus-python-deps = lib.mkIf (cfg.pythonPackages != []) {
+      description = "Install Odysseus' optional Python packages";
+      wantedBy = ["docker-odysseus.service"];
+      after = ["docker-odysseus.service"];
+      path = [config.virtualisation.docker.package];
+      serviceConfig = {
+        Type = "oneshot";
+        TimeoutStartSec = "2h";
+      };
+      script = ''
+        spec=${lib.escapeShellArg pipSpec}
+        if [ "$(cat ${pipStamp} 2>/dev/null)" = "$spec" ]; then exit 0; fi
+        for _ in $(seq 60); do
+          docker exec odysseus true 2>/dev/null && break
+          sleep 2
+        done
+        install() {
+          docker exec -u odysseus -e HOME=/app odysseus \
+            python3 -m pip install --user --no-cache-dir --disable-pip-version-check "$@"
+        }
+        install --index-url ${lib.escapeShellArg ai.torchIndexUrl} torch torchvision
+        failed=0
+        ${lib.concatMapStrings (group: ''
+            install ${lib.escapeShellArgs (lib.splitString " " group)} \
+              || { echo "pip failed: ${lib.escapeShellArg group}" >&2; failed=1; }
+          '')
+          cfg.pythonPackages}
+        if [ "$failed" = 1 ]; then exit 1; fi
+        printf '%s' "$spec" > ${pipStamp}
+        systemctl --no-block restart docker-odysseus.service
+      '';
     };
 
     # bind-mount sources must exist before docker starts the containers
