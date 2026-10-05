@@ -17,8 +17,12 @@
 # container itself also gets the NVIDIA GPU, for the Cookbook features that
 # run in-process (diffusers, SAM masks, rembg, Real-ESRGAN, whisper); their
 # Python packages are installed declaratively (pythonPackages below).
-# Image generation through ComfyUI (127.0.0.1:8188) / A1111 (:7860) starts
-# those on demand (my.ai.onDemand), so they don't need to run beforehand.
+#
+# Image generation: Odysseus only speaks the OpenAI images API
+# (/v1/images/generations), which ComfyUI and A1111 don't offer, so they
+# can't be its generator (A1111 only serves as an img2img fallback for
+# edits). Local generation = Cookbook -> Image -> serve a Diffusers model:
+# runs scripts/diffusion_server.py in the container on the GPU, port 8100.
 #
 # Update: bump the image tags/digest below (tags: ghcr.io/odysseus-dev/odysseus).
 {
@@ -108,7 +112,9 @@ in {
           # the standalone SearXNG service (modules/nixos/config/searxng.nix)
           SEARXNG_INSTANCE = lib.optionalString config.my.searxng.enable "http://127.0.0.1:8080";
           CHROMADB_HOST = "127.0.0.1";
-          CHROMADB_PORT = "8100";
+          # not 8100: with host networking that is where the Cookbook serves
+          # diffusers image models by default
+          CHROMADB_PORT = "8110";
           DATABASE_URL = "sqlite:///./data/app.db";
           AUTH_ENABLED = "true";
           LOCALHOST_BYPASS = "false";
@@ -139,7 +145,7 @@ in {
       odysseus-chromadb = {
         image = "docker.io/chromadb/chroma:1.5.9";
         inherit (cfg) autoStart;
-        ports = ["127.0.0.1:8100:8000"];
+        ports = ["127.0.0.1:8110:8000"];
         volumes = ["${dir}/chromadb:/chroma/chroma"];
         environment.ANONYMIZED_TELEMETRY = "FALSE";
       };
