@@ -53,6 +53,11 @@ in {
       Vital, Helm, Neothesia. modules/nixos/pkgs/audio_engineering.nix
     '';
 
+    inputAssist.enable = toggle true ''
+      AI typing help in every text field via Fcitx5: XType inline
+      autocomplete (local model via Ollama). modules/nixos/config/input-assist.nix
+    '';
+
     searxng.enable = toggle true ''
       SearXNG private meta search on http://127.0.0.1:8080 (also the web
       search for Odysseus and Open WebUI). modules/nixos/config/searxng.nix

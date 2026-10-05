@@ -6,6 +6,7 @@
     ./davinci-resolve.nix
     ./gpu-acceleration.nix
     ./graphics.nix
+    ./input-assist.nix
     ./photo-editing.nix
     ./searxng.nix
     ./vtubing.nix
