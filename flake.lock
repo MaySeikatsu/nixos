@@ -157,6 +157,27 @@
         "type": "github"
       }
     },
+    "fcitx5-vinput": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "sherpa-onnx": "sherpa-onnx"
+      },
+      "locked": {
+        "lastModified": 1790419496,
+        "narHash": "sha256-fwTAI1Ee1l2oRDsazG0lEsUw90auc5y842caSNTq3kk=",
+        "owner": "xifan2333",
+        "repo": "fcitx5-vinput",
+        "rev": "cd59da9d82f0cb4c9a9f789ff044c956174a8b0d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xifan2333",
+        "repo": "fcitx5-vinput",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -1261,6 +1282,7 @@
       "inputs": {
         "chaotic": "chaotic",
         "evil-yazelix-helix": "evil-yazelix-helix",
+        "fcitx5-vinput": "fcitx5-vinput",
         "fsel": "fsel",
         "home-manager": "home-manager_2",
         "iris": "iris",
@@ -1491,6 +1513,27 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sherpa-onnx": {
+      "inputs": {
+        "nixpkgs": [
+          "fcitx5-vinput",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785564218,
+        "narHash": "sha256-B1/qLagKXemMgyrmd7RqPEgz2polrZMUkeBT1dv3hso=",
+        "owner": "xifan2333",
+        "repo": "sherpa-onnx-flake",
+        "rev": "a8ef134239c923420becfa6870538dcc8e9c8eb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xifan2333",
+        "repo": "sherpa-onnx-flake",
         "type": "github"
       }
     },

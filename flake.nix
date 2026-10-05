@@ -107,6 +107,13 @@
       url = "github:MaySeikatsu/evil-yazelix-helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fcitx5-vinput = {
+      # voice input for fcitx5 (modules/nixos/config/input-assist.nix).
+      # Follows our nixpkgs, so it builds locally once instead of trusting
+      # the project's own cachix cache.
+      url = "github:xifan2333/fcitx5-vinput";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noren = {
       url = "github:MaySeikatsu/noren";
       inputs.nixpkgs.follows = "nixpkgs";

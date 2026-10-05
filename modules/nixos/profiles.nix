@@ -55,7 +55,8 @@ in {
 
     inputAssist.enable = toggle true ''
       AI typing help in every text field via Fcitx5: XType inline
-      autocomplete (local model via Ollama). modules/nixos/config/input-assist.nix
+      autocomplete (local model via Ollama) and fcitx5-vinput voice input.
+      modules/nixos/config/input-assist.nix
     '';
 
     searxng.enable = toggle true ''
