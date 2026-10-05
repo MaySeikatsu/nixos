@@ -7,13 +7,13 @@
 #
 # Upstream ships it as a docker-compose stack and never merged its Nix PRs,
 # so this mirrors the upstream compose (main branch, image 1.0.3) as
-# declarative containers: the app, ChromaDB (vector store), SearXNG (web
-# search) and ntfy (push notifications). The app uses host networking to
-# reach Ollama, which listens on 127.0.0.1 only; the helpers publish their
-# ports on 127.0.0.1. Everything stays local.
+# declarative containers: the app, ChromaDB (vector store) and ntfy (push
+# notifications). Web search uses the standalone SearXNG service
+# (modules/nixos/config/searxng.nix) instead of upstream's SearXNG container.
+# The app uses host networking to reach Ollama, which listens on 127.0.0.1
+# only; the helpers publish their ports on 127.0.0.1. Everything stays local.
 #
-# Update: bump the image tags/digest below (tags: ghcr.io/odysseus-dev/odysseus)
-# and the SearXNG config rev to the matching upstream commit.
+# Update: bump the image tags/digest below (tags: ghcr.io/odysseus-dev/odysseus).
 {
   config,
   lib,
@@ -23,35 +23,6 @@
   ai = config.my.ai;
   cfg = ai.odysseus;
   dir = "${ai.dataDir}/odysseus";
-
-  upstreamRev = "934d23c"; # main, matches image 1.0.3
-  # Upstream's template only enables JSON output on top of SearXNG's
-  # defaults. Of those default web engines only Bing answered reliably here
-  # (2026-10: Google returns nothing, Brave rate-limits, DuckDuckGo/Startpage
-  # /Qwant/Yahoo serve captchas) - and Bing is off by default. So enable it.
-  searxngTemplate = pkgs.writeText "searxng-settings.yml" ''
-    use_default_settings: true
-
-    server:
-      secret_key: "__SEARXNG_SECRET__"
-
-    search:
-      formats:
-        - html
-        - json
-
-    engines:
-      - name: bing
-        disabled: false
-      - name: bing news
-        disabled: false
-      - name: mojeek
-        disabled: false
-  '';
-  searxngMigrate = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/odysseus-dev/odysseus/${upstreamRev}/scripts/migrate_searxng_settings.py";
-    sha256 = "09y9sd97cagqb546dhqzc3daa42fh4zpqhknl7yaqwfl1yaxj4f2";
-  };
 in {
   options.my.ai.odysseus = {
     enable = lib.mkEnableOption "Odysseus AI workspace" // {default = ai.enable;};
@@ -85,7 +56,7 @@ in {
       odysseus = {
         image = "ghcr.io/odysseus-dev/odysseus:1.0.3@sha256:4aa6e607d2108bd7b5f37ee1a0841dc56e6bbac36e9ccd5e1705aff7ea36fb04";
         inherit (cfg) autoStart;
-        dependsOn = ["odysseus-chromadb" "odysseus-searxng"];
+        dependsOn = ["odysseus-chromadb"];
         volumes = [
           "${dir}/data:/app/data"
           "${dir}/logs:/app/logs"
@@ -96,7 +67,8 @@ in {
         environment = {
           OLLAMA_BASE_URL = "http://127.0.0.1:11434";
           LLM_HOST = "localhost";
-          SEARXNG_INSTANCE = "http://127.0.0.1:8080";
+          # the standalone SearXNG service (modules/nixos/config/searxng.nix)
+          SEARXNG_INSTANCE = lib.optionalString config.my.searxng.enable "http://127.0.0.1:8080";
           CHROMADB_HOST = "127.0.0.1";
           CHROMADB_PORT = "8100";
           DATABASE_URL = "sqlite:///./data/app.db";
@@ -131,44 +103,6 @@ in {
         environment.ANONYMIZED_TELEMETRY = "FALSE";
       };
 
-      odysseus-searxng = {
-        # pinned by upstream: newer tags crashed on boot (odysseus issue #1414)
-        image = "docker.io/searxng/searxng:2026.5.31-7159b8aed";
-        inherit (cfg) autoStart;
-        ports = ["127.0.0.1:8080:8080"];
-        volumes = [
-          "${dir}/searxng:/etc/searxng"
-          "${searxngTemplate}:/tmp/searxng-settings.yml.template:ro"
-          "${searxngMigrate}:/tmp/migrate-searxng-settings.py:ro"
-        ];
-        environment.SEARXNG_BASE_URL = "http://localhost:8080/";
-        # same first-boot settings generation as upstream's compose file
-        entrypoint = "/bin/sh";
-        cmd = [
-          "-c"
-          ''
-            set -eu
-            # (re)generate when missing or when the template changed; keep the secret
-            want="$(sha256sum /tmp/searxng-settings.yml.template | cut -d' ' -f1)"
-            if [ ! -s /etc/searxng/settings.yml ] || [ "$(cat /etc/searxng/.template-sha 2>/dev/null)" != "$want" ]; then
-              secret="$(sed -n 's/^ *secret_key: *"\{0,1\}\([^"]*\)"\{0,1\}$/\1/p' /etc/searxng/settings.yml 2>/dev/null | grep -v __SEARXNG_SECRET__ || true)"
-              [ -n "$secret" ] || secret="$(python -c 'import secrets; print(secrets.token_urlsafe(48))')"
-              sed "s|__SEARXNG_SECRET__|$secret|g" /tmp/searxng-settings.yml.template > /etc/searxng/settings.yml
-              echo "$want" > /etc/searxng/.template-sha
-            fi
-            /usr/local/searxng/.venv/bin/python /tmp/migrate-searxng-settings.py /etc/searxng/settings.yml || true
-            exec /usr/local/searxng/entrypoint.sh
-          ''
-        ];
-        extraOptions = [
-          "--cap-drop=ALL"
-          "--cap-add=CHOWN"
-          "--cap-add=SETGID"
-          "--cap-add=SETUID"
-          "--cap-add=DAC_OVERRIDE"
-        ];
-      };
-
       odysseus-ntfy = {
         image = "docker.io/binwiederhier/ntfy:v2.28.0";
         inherit (cfg) autoStart;
@@ -185,7 +119,6 @@ in {
       "${dir}/data"
       "${dir}/logs"
       "${dir}/chromadb"
-      "${dir}/searxng"
       "${dir}/ntfy"
     ] (_: {d.user = ai.user;});
   };

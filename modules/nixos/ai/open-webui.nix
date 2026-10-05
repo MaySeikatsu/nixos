@@ -28,18 +28,27 @@ in {
       enable = true;
       host = "127.0.0.1";
       inherit (cfg) port;
-      environment = {
-        OLLAMA_BASE_URL = "http://127.0.0.1:11434";
-        ENABLE_OPENAI_API = "False"; # enable in settings if you add a cloud key
-        # image generation through the local ComfyUI
-        ENABLE_IMAGE_GENERATION = "True";
-        IMAGE_GENERATION_ENGINE = "comfyui";
-        COMFYUI_BASE_URL = "http://127.0.0.1:${toString ai.comfyui.port}";
-        # no phoning home
-        ANONYMIZED_TELEMETRY = "False";
-        DO_NOT_TRACK = "True";
-        SCARF_NO_ANALYTICS = "True";
-      };
+      environment =
+        {
+          OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+          ENABLE_OPENAI_API = "False"; # enable in settings if you add a cloud key
+          # image generation through the local ComfyUI
+          ENABLE_IMAGE_GENERATION = "True";
+          IMAGE_GENERATION_ENGINE = "comfyui";
+          COMFYUI_BASE_URL = "http://127.0.0.1:${toString ai.comfyui.port}";
+        }
+        // lib.optionalAttrs config.my.searxng.enable {
+          # web search through the local SearXNG (toggle per chat with the + menu)
+          ENABLE_WEB_SEARCH = "True";
+          WEB_SEARCH_ENGINE = "searxng";
+          SEARXNG_QUERY_URL = "http://127.0.0.1:8080/search?q=<query>";
+        }
+        // {
+          # no phoning home
+          ANONYMIZED_TELEMETRY = "False";
+          DO_NOT_TRACK = "True";
+          SCARF_NO_ANALYTICS = "True";
+        };
     };
   };
 }

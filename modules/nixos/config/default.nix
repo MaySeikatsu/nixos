@@ -7,6 +7,7 @@
     ./gpu-acceleration.nix
     ./graphics.nix
     ./photo-editing.nix
+    ./searxng.nix
     ./vtubing.nix
     ./kanata.nix
     ./localisation.nix
