@@ -58,9 +58,31 @@ in {
       unitConfig.ConditionUser = ai.user;
       serviceConfig = {
         ExecStart = "${lib.getExe cfg.package} serve";
+        # Ollama probes the GPU once at startup with a 30 s watchdog. Under
+        # heavy load (e.g. a big local build) the probe can time out and the
+        # server then silently stays CPU-only until restarted (seen
+        # 2026-10-04: 1.5 tok/s instead of GPU speed). This check fails the
+        # start in that case, so Restart= retries the GPU detection.
+        ExecStartPost = lib.mkIf (lib.elem "nvidia" config.services.xserver.videoDrivers) (toString (pkgs.writeShellScript "ollama-gpu-check" ''
+          # no NVIDIA GPU usable (e.g. the laptop's no-nvidia boot entry): fine
+          ${config.hardware.nvidia.package.bin}/bin/nvidia-smi -L >/dev/null 2>&1 || exit 0
+          for _ in $(seq 90); do
+            line=$(${pkgs.systemd}/bin/journalctl --user -u ollama _PID="$MAINPID" -o cat \
+              | ${pkgs.gnugrep}/bin/grep 'msg="inference compute"' | ${pkgs.coreutils}/bin/tail -n1)
+            if [ -n "$line" ]; then
+              case "$line" in
+                *library=cpu*) echo "ollama started without GPU, retrying" >&2; exit 1 ;;
+                *) exit 0 ;;
+              esac
+            fi
+            sleep 1
+          done
+        ''));
         Restart = "on-failure";
         RestartSec = 5;
       };
+      unitConfig.StartLimitIntervalSec = 300;
+      unitConfig.StartLimitBurst = 5;
     };
   };
 }
