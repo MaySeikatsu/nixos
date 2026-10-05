@@ -10,6 +10,16 @@
       settings.cfsProfiles.enable =
         true; # enables custom system scheduler which should improve performance and battery life - automatically switches when on dc or bat
       # settings.processScheduler.pipewireBoost.enable = true;
+      # The stock rules give everything in /system.slice nice 12. That
+      # includes the display manager, and the whole desktop session inherits
+      # its priority from it: compositor, terminals, apps all ran at nice 12
+      # (found 2026-10-05). Leave the login managers alone so sessions start
+      # at normal priority; takes effect at the next login.
+      exceptions = [
+        "sddm"
+        "sddm-helper"
+        "greetd"
+      ];
     };
     power-profiles-daemon.enable = true;
     upower.enable =
