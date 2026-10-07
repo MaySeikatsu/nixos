@@ -112,13 +112,14 @@
               _    _    _              _              _    _    _    _               _    _    _     _    _
               )
 
-              ;; ---mouse layer (hold right ctrl, like the silakka54)---
+              ;; ---mouse layer (hold right ctrl, like silakka54 layer 3)---
+              ;; esc/tab/caps = speed (fast/medium/slow), left: esdf + wheel, right: okl; + wheel
               (deflayer mouse
-              _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
-              _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _     _    _    _    _
-              _    _    _    _    _    _    _    _    _   mlft @mu  mrgt  _    _     _    _    _     _    _    _    _
-              _    _    _    _    _    _    _    _    _   @ml  @md  @mr   _                          _    _    _
-              _    _    _    _    _    _    _    _    _    _    _    _                    _          _    _    _    _
+              @ac2 _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+              _    _    _    mmid _    _    _    _    XX   mmid _    _    _    _     _    _    _     _    _    _    _
+              @ac1 @wu  mrgt @mu  mlft _    _    _    mlft @mu  mrgt @wu   _    _     _    _    _     _    _    _    _
+              @ac0 @wd  @ml  @md  @mr  _    _    _    @ml  @md  @mr  @wd   _                          _    _    _
+              _    _    @wl  @wr  _    _    _    _    _    _    @wl  @wr                  _          _    _    _    _
               _    _    _              _              _    _    _    _               _    _    _     _    _
               )
 
@@ -177,6 +178,14 @@
               md (movemouse-accel-down 4 1000 1 5)
               ml (movemouse-accel-left 4 1000 1 5)
               mr (movemouse-accel-right 4 1000 1 5)
+              wu (mwheel-up 50 120)
+              wd (mwheel-down 50 120)
+              wl (mwheel-left 50 120)
+              wr (mwheel-right 50 120)
+              ;; like qmk KC_ACL0-2 while held
+              ac0 (movemouse-speed 25)
+              ac1 (movemouse-speed 50)
+              ac2 (movemouse-speed 200)
 
               chj (chord jkl-chords j)
               chk (chord jkl-chords k)
