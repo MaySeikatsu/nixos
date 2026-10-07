@@ -12,10 +12,10 @@ in {
   # niri runs a real systemd session (graphical-session.target is active with
   # WAYLAND_DISPLAY exported), so autoStart launches it reliably.
   #
-  #   address 0.0.0.0 -> bound on all interfaces, BUT the firewall opens no port
-  #                      (see modules/nixos/config/networking.nix), so in practice
-  #                      it is reachable only via loopback + tailscale0 (trusted).
-  #                      Nothing is exposed to the LAN or internet.
+  #   address 127.0.0.1 -> loopback only; the tailnet reaches it through
+  #                      `tailscale serve --tcp=5900` (my.tailscaleServe in
+  #                      modules/nixos/config/networking.nix). Nothing is
+  #                      exposed to the LAN or internet, firewall or not.
   #   enable_pam      -> authenticate with your system login (user `maike` +
   #                      password). Needs security.pam.services.wayvnc, which lives
   #                      in hosts/configuration-shared.nix (PAM is system-scoped).
@@ -32,7 +32,7 @@ in {
     enable = true;
     autoStart = true;
     settings = {
-      address = "0.0.0.0";
+      address = "127.0.0.1";
       port = 5900;
       enable_auth = true;
       enable_pam = true;

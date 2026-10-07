@@ -29,7 +29,19 @@
   programs.helix = {
     enable = true;
     # package = pkgs.evil-helix;
-    package = inputs.evil-yazelix-helix.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    # Grammars are compiled as C17: glibc 2.44 turns bsearch & co. into C23
+    # _Generic macros, which breaks grammars that define their own (e.g.
+    # tree-sitter-perl's bsearch.c). Drop once the fork's grammars build.
+    package = inputs.evil-yazelix-helix.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      grammarOverlays = [
+        (final: prev:
+          lib.mapAttrs (_: g:
+            if lib.isDerivation g
+            then g.overrideAttrs (old: {FLAGS = old.FLAGS ++ ["-std=gnu17"];})
+            else g)
+          prev)
+      ];
+    };
 
     settings = {
       theme = "rose_pine_moon";

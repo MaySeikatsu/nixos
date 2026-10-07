@@ -207,26 +207,29 @@
           cuda_compat = null;
         });
       })
-      # pyworld (VOICEVOX engine dependency) reads its own version through
-      # pkg_resources, which setuptools has removed: the import check fails
-      # and VOICEVOX can't build. importlib.metadata is the stdlib
-      # replacement. Drop once nixpkgs' pyworld no longer needs it.
+      # goxel builds with -Werror, and GCC 16 / glibc's C23 const-preserving
+      # strrchr add new warnings (discarded-qualifiers in vendored quickjs,
+      # unused-but-set-variable in palette.c) that fail the build. Turn off
+      # its werror option rather than chasing each warning. Drop once
+      # nixpkgs' goxel builds again.
       (final: prev: {
-        pythonPackagesExtensions =
-          prev.pythonPackagesExtensions
-          ++ [
-            (pyFinal: pyPrev: {
-              pyworld = pyPrev.pyworld.overridePythonAttrs (old: {
-                postPatch =
-                  (old.postPatch or "")
-                  + ''
-                    substituteInPlace pyworld/__init__.py \
-                      --replace-fail "import pkg_resources" "import importlib.metadata" \
-                      --replace-fail "pkg_resources.get_distribution('pyworld').version" "importlib.metadata.version('pyworld')"
-                  '';
-              });
-            })
-          ];
+        goxel = prev.goxel.overrideAttrs (old: {
+          postPatch =
+            (old.postPatch or "")
+            + ''
+              substituteInPlace Makefile --replace-fail "mode=release" "mode=release werror=0"
+            '';
+        });
+      })
+      # zrythm's preFixup prefixes XDG_DATA_DIRS with "$XDG_ICON_DIRS:", but
+      # XDG_ICON_DIRS is empty at build time, so the value starts with ":".
+      # makeWrapper now rejects empty PATH-like segments (they mean "current
+      # directory"), failing the build. Drop the empty part. Drop once
+      # nixpkgs' zrythm builds again.
+      (final: prev: {
+        zrythm = prev.zrythm.overrideAttrs (old: {
+          preFixup = builtins.replaceStrings [''"$XDG_ICON_DIRS:''] [''"''] old.preFixup;
+        });
       })
     ];
 
