@@ -4,6 +4,8 @@
 # Anthropic keys can be added in its settings.
 #
 #   http://127.0.0.1:7000   first admin password: `sudo docker logs odysseus`
+#   tailnet: https://<host>.<tailnetDomain>:7443 or http://<host>:7000
+#            (tailscale serve, see my.tailscaleServe)
 #
 # Upstream ships it as a docker-compose stack and never merged its Nix PRs,
 # so this mirrors the upstream compose (main branch, image 1.0.3) as
@@ -92,6 +94,12 @@ in {
       }
     ];
 
+    # tailnet access (the app itself listens on 127.0.0.1 only)
+    my.tailscaleServe = [
+      "--https=7443 http://127.0.0.1:7000"
+      "--http=7000 http://127.0.0.1:7000"
+    ];
+
     virtualisation.oci-containers.backend = "docker";
 
     virtualisation.oci-containers.containers = {
@@ -99,6 +107,9 @@ in {
         image = "ghcr.io/odysseus-dev/odysseus:1.0.3@sha256:4aa6e607d2108bd7b5f37ee1a0841dc56e6bbac36e9ccd5e1705aff7ea36fb04";
         inherit (cfg) autoStart;
         dependsOn = ["odysseus-chromadb"];
+        # upstream binds 0.0.0.0; with host networking that is every host
+        # interface. Loopback only; the tailnet goes through tailscale serve.
+        cmd = ["uvicorn" "app:app" "--host" "127.0.0.1" "--port" "7000"];
         volumes = [
           "${dir}/data:/app/data"
           "${dir}/logs:/app/logs"
@@ -117,6 +128,8 @@ in {
           CHROMADB_PORT = "8110";
           DATABASE_URL = "sqlite:///./data/app.db";
           AUTH_ENABLED = "true";
+          # must stay false: tailnet requests arrive via tailscale serve,
+          # i.e. from 127.0.0.1
           LOCALHOST_BYPASS = "false";
           # browser origins allowed to talk to the API: local, plus the tailnet
           # (direct http on :7000, and https via `tailscale serve` on :7443)

@@ -609,3 +609,9 @@ include optional=true "effects-toggle.kdl"
   //   default-column-width  { fixed 2544; }
   //   default-window-height { fixed 360; }
   // }
+window-rule {
+    match app-id="steam_app_nxstudio"
+    // open-fullscreen true
+    open-maximized true
+    // is-on-every-workspace true
+  }
