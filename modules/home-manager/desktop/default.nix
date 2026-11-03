@@ -12,6 +12,7 @@
     ./wofi.nix
     ./mime.nix
     ./noctalia.nix
+    ./kurashi.nix
     # ./walker.nix
     ./sherlock-launcher.nix
     # ./ironbar.nix

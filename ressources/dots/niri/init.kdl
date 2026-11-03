@@ -10,7 +10,8 @@ hotkey-overlay { skip-at-startup; }
 // workspace doesn't match where they land on a plain startup.
 // spawn-at-startup "niri-session-manage" "--load-last"
 
-spawn-at-startup "plasma-polkit-agent"
+// kurashi-shell is the polkit agent (its frontend); only one agent can register per session.
+// spawn-at-startup "plasma-polkit-agent"
 spawn-at-startup "xwayland-satellite"
 xwayland-satellite {
     // off
@@ -40,7 +41,7 @@ spawn-at-startup "sh" "-c" "systemctl --user start xdg-desktop-portal-wlr.servic
 // `noctalia-shell`) stays installed as a fallback. Config for v5 lives in
 // modules/home-manager/desktop/noctalia.nix. Never run both at once.
 // spawn-at-startup "sh" "-c" "noctalia-shell" // noctalia v4
-spawn-at-startup "noctalia" // noctalia v5
+// spawn-at-startup "noctalia" // noctalia v5 -- off: kurashi-shell runs as a user service (kurashi.nix)
 // spawn-at-startup "sh" "-c" "shellseikatsu"
 // spawn-at-startup "sh" "-c" "quickshell" "-p" "./.config/quickshell/ii/"
 

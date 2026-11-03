@@ -260,6 +260,8 @@ in {
     # rose-pine-gtk-theme # removed from nixpkgs: depended on gtk-engine-murrine (GTK2, unmaintained).
     # GTK theming still comes from stylix's rose-pine-moon base16 scheme, so nothing visible is lost.
     rose-pine-icon-theme
+    rose-pine-cursor # the pointer (theming/gtk.nix)
+    kdePackages.qtstyleplugin-kvantum # Kvantum, the Qt style of the Nix default (theming/qt.nix)
     exiftool # Metadata readout for images and different files formats
     spotify
     # ledfx

@@ -4,6 +4,8 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 include "binds.kdl"
+// kurashi-shell shortcuts (modules/home-manager/desktop/kurashi.nix); after binds.kdl so they win.
+include "kurashi-binds.kdl"
 include "layout.kdl"
 // include "colors.kdl"
 include "init.kdl"
@@ -32,11 +34,14 @@ layer-rule {
 }
 
 cursor {
-    xcursor-theme "default"
+    xcursor-theme "BreezeX-RosePine-Linux"
     xcursor-size 24
     // hide-when-typing
     // hide-after-inactive-ms 1000 
 }
+// kurashi's pointer while the theming switch is on (theming/kurashi.nix). kurashid writes this file; empty otherwise.
+include optional=true "kurashi-cursor.kdl"
+
 // OVERVIEW SETTINGS
 overview {
   // zoom 0.65
@@ -615,3 +620,8 @@ window-rule {
     open-maximized true
     // is-on-every-workspace true
   }
+
+// kurashi's niri look (focus ring, border, shadow, corner radius, six animations) while the theming switch is on
+// (theming/kurashi.nix). kurashid writes this file; it is last, so its values win over the ones above.
+include optional=true "kurashi.kdl"
+

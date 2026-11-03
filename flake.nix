@@ -118,6 +118,12 @@
       url = "github:MaySeikatsu/noren";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kurashi-shell = {
+      # The remote's main. The lock pins the commit the remote has; after pushing local work, run
+      # `nix flake lock --update-input kurashi-shell` to move the lock to the pushed main.
+      url = "github:MaySeikatsu/kurashi-shell/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # forest-hx = {
     #   url = "github:Ra77a3l3-jar/forest.hx";
     #   flake = false;
@@ -238,7 +244,7 @@
         users.${username} = import homePath;
         useGlobalPkgs = true;
         useUserPackages = true;
-        # backupFileExtension = "bck";
+        backupFileExtension = "bck";
         backupCommand = "mv \"$1\" \"$1.bck.$(date +%Y%m%d%H%M%S)\"";
         extraSpecialArgs = {inherit inputs;};
         sharedModules = [
@@ -248,6 +254,8 @@
           monado-rift-wayland.homeManagerModules.default
           # shellseikatsu.homeManagerModules.default
           yazelix-hm.homeManagerModules.default
+          # programs.kurashi (modules/home-manager/desktop/kurashi.nix)
+          inputs.kurashi-shell.homeManagerModules.default
         ];
       };
     };
@@ -263,6 +271,9 @@
       monado-rift-wayland.nixosModules.default
       {hardware.oculus-rift-cv1.enable = true;}
       sysc-greet.nixosModules.default
+      # programs.kurashi: package, PAM service of the lock screen, UPower
+      inputs.kurashi-shell.nixosModules.default
+      {programs.kurashi.enable = true;}
       {nixpkgs.overlays = commonOverlays;}
       home-manager.nixosModules.home-manager
     ];

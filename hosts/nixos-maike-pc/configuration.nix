@@ -292,6 +292,13 @@
   # the local AI stack, see modules/nixos/ai/default.nix.
   my.ai.cudaCapability = "6.1";
 
+  # Dynamic theming: kurashi styles the apps and the theming bridge renders the rest (modules/home-manager/theming/kurashi.nix).
+  my.kurashi-theming.enable = true;
+
+  # Pointer light and spotlight over windows: niri from its main branch (kurashi's niri-main input, built from source).
+  # Takes effect at the next niri session; the 849c576 build is already in the store, so the rebuild does not compile it.
+  my.kurashi-pointerLight.enable = true;
+
   # Open ports in the firewall.
   networking.firewall.interfaces."enp37s0".allowedTCPPorts = [7878];
   # networking.firewall.allowedTCPPorts = [ ... ];

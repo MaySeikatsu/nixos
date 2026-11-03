@@ -2,8 +2,12 @@
   pkgs,
   lib,
   inputs,
+  osConfig,
   ...
-}: {
+}: let
+  # The theme follows the theming switch (theming/kurashi.nix): the bridge's file while it is on, rose_pine_moon while off.
+  kurashiOn = lib.attrByPath ["my" "kurashi-theming" "enable"] false osConfig;
+in {
   # xdg.dataFile = {
   #   "steel/cogs/forest".source = inputs.forest-hx;
   #   "steel/cogs/notify".source = inputs.notify-hx;
@@ -22,7 +26,11 @@
 
     # Yazelix reads --config-dir ~/.config/yazelix/helix, not ~/.config/helix, so repeat the theme here.
     "yazelix/helix/config.toml".text = ''
-      theme = "rose_pine_moon"
+      theme = "${
+        if kurashiOn
+        then "kurashi"
+        else "rose_pine_moon"
+      }"
     '';
   };
 
@@ -44,7 +52,10 @@
     };
 
     settings = {
-      theme = "rose_pine_moon";
+      theme =
+        if kurashiOn
+        then "kurashi"
+        else "rose_pine_moon";
       # Zellij integration: works because :sh just talks to the surrounding
       # zellij session's server. -f = floating pane, -c = close when app exits.
       keys = {

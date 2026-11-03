@@ -67,5 +67,21 @@ in {
     virtualisation.enable = toggle true ''
       Docker, Podman, libvirt/virt-manager. modules/nixos/virtualisation.nix
     '';
+
+    # Off: every app keeps its Nix default (rose-pine-moon where it has one). On: kurashi styles the apps it can and the
+    # theming bridge the rest, from kurashi's theme. The shell runs either way. This host turns it on
+    # (hosts/nixos-maike-pc/configuration.nix).
+    kurashi-theming.enable = toggle false ''
+      kurashi styles niri, foot, ghostty, GTK, Qt and GNOME apps, and the theming bridge renders helix, neovim and fzf,
+      from kurashi's theme; off = the Nix default. modules/home-manager/theming/kurashi.nix
+    '';
+
+    # Full-screen pointer light and spotlight need niri's main branch: kurashi's niri-main input (849c576), built from
+    # source in place of nixpkgs' niri. A long build, and it moves the niri tools around it to niri main as well.
+    # Off: the pointer light covers the shell's own surfaces only. modules/nixos/config/niri.nix
+    kurashi-pointerLight.enable = toggle false ''
+      niri from its main branch, built from source, for kurashi's full-screen pointer light (programs.kurashi.pointerLight).
+      modules/nixos/config/niri.nix
+    '';
   };
 }

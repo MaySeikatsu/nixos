@@ -1,8 +1,14 @@
 {
   inputs,
+  lib,
+  osConfig,
   pkgs,
   ...
-}: {
+}: let
+  # kurashi writes the two kurashi.kdl files below while the theming is on (theming/kurashi.nix). While it is off they are
+  # empty links: niri keeps its own layout and cursor, and kurashi's cursor writer sees a link and leaves it alone.
+  kurashiOn = lib.attrByPath ["my" "kurashi-theming" "enable"] false osConfig;
+in {
   imports = [
     # inputs.niri.homeModules.niri
     # ./settings.nix
@@ -35,6 +41,15 @@
       ../../../../ressources/dots/niri/style_focus.kdl;
     file.".config/niri/style_gpuishell.kdl".source =
       ../../../../ressources/dots/niri/style_gpuishell.kdl;
+
+    file.".config/niri/kurashi.kdl" = lib.mkIf (!kurashiOn) {
+      text = "";
+      force = true;
+    };
+    file.".config/niri/kurashi-cursor.kdl" = lib.mkIf (!kurashiOn) {
+      text = "";
+      force = true;
+    };
 
     packages = with pkgs; [
       qt6.qtwayland

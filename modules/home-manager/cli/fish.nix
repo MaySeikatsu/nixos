@@ -51,6 +51,13 @@
               set -ga ZJ_CD_DECLINED $PWD
           end
       end
+
+      # fzf colours from the theming bridge (modules/home-manager/theming/kurashi.nix): the Nix palette while the theming
+      # is off, kurashi's while it is on. Nothing is set until the bridge has written the file.
+      if test -f ~/.config/kurashi/fzf.fish
+          source ~/.config/kurashi/fzf.fish
+          set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS $KURASHI_FZF_COLORS"
+      end
     '';
 
     # fish's ctrl-h preset is backward-delete-char (single character);
