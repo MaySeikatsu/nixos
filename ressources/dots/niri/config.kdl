@@ -332,11 +332,13 @@ window-rule {
 //     geometry-corner-radius 2
 //     clip-to-geometry true
 // }
-// Put swaybg inside the overview backdrop. might not work with swww
-// layer-rule {
-//     match namespace="^wallpaper$"
-//     place-within-backdrop true
-// }
+// Wallpaper inside the overview backdrop, so the overview shows it behind the workspaces.
+// Namespaces: awww (shellseikatsu), noctalia (its blurred backdrop surface, so the
+// sharp noctalia-wallpaper stays on the workspaces), caelestia.
+layer-rule {
+    match namespace=r#"^(awww-daemon|noctalia-backdrop(-.*)?|caelestia-background)$"#
+    place-within-backdrop true
+}
 //SCREENCASTING BLACKOUT
 // Block out password managers from screencasts.
 window-rule {
@@ -639,6 +641,22 @@ window-rule {
     open-maximized true
     // is-on-every-workspace true
   }
+
+//Experiement, remove after test - das plus kein Blur
+// window-rule {
+//   match is-active=true
+//   opacity 1.0
+//   background-effect {
+//     blur true
+//   }
+// }
+// window-rule {
+//   match is-active=false
+//   opacity 0.30
+//   background-effect {
+//     blur true
+//   }
+// }
 
 // kurashi's niri look (focus ring, border, shadow, corner radius, six animations) while the theming switch is on
 // (theming/kurashi.nix). kurashid writes this file; it is last, so its values win over the ones above.
