@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   jq = "${pkgs.jq}/bin/jq";
 
   # Steam-gamescope-like behaviour for apps that open a normal niri window:
@@ -135,7 +139,17 @@ in {
     # NVENC (GPU encoding): the default build has no CUDA and no driver runpath, and the
     # capSysAdmin wrapper strips LD_LIBRARY_PATH, so libcuda/libnvidia-encode never load
     # and Sunshine silently falls back to CPU encoding (libx264). Builds locally.
-    package = pkgs.sunshine.override {cudaSupport = true;};
+    # nixpkgs sets C++23 only without CUDA, and kmsgrab.cpp's debug log uses std::ranges::to, which the CUDA
+    # stdenv's libstdc++ does not have, so the CUDA build fails. The C++23 flag matches the non-CUDA build;
+    # the debug line is dropped.
+    package = (pkgs.sunshine.override {cudaSupport = true;}).overrideAttrs (old: {
+      cmakeFlags = old.cmakeFlags ++ [(lib.cmakeFeature "CMAKE_CXX_STANDARD" "23")];
+      postPatch =
+        (old.postPatch or "")
+        + ''
+          sed -i '/Final KMS display_names return list/d' src/platform/linux/kmsgrab.cpp
+        '';
+    });
     autoStart = true;
     openFirewall = true;
     capSysAdmin = true;
