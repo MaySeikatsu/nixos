@@ -71,9 +71,9 @@
   # Note: only affects the SYSTEM manager. User units keep the default;
   # add `systemd.user.extraConfig` here as well if you want the same cap.
   systemd.settings.Manager = {
-      DefaultTimeoutStopSec = "30s";
-      DefaultTimeoutAbortSec = "30s";
-    };
+    DefaultTimeoutStopSec = "30s";
+    DefaultTimeoutAbortSec = "30s";
+  };
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
 
@@ -277,10 +277,9 @@
   #   theme = "sddm-astronaut-theme";
   # };
 
-  # Enabling qmk vial
+  # Enabling qmk vial (via dropped: its 92-viia rule made every hidraw node 0666)
   services.udev.packages = with pkgs; [
     vial
-    via
   ];
   # Install FireFoxPWA Addon
   # programs.firefox = {
