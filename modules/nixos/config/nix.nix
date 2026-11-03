@@ -20,6 +20,13 @@
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
+    # fabric (python 3.14) is marked broken in the nixpkgs of the 2026-11 update; azure-cli
+    # (modules/home-manager/coding/default.nix) still needs it. Warn instead of failing the eval.
+    problems.handlers.fabric.broken = "warn";
+    # gtk2 (gtk+ 2.24) is broken upstream; lutris (wine tooling) still pulls it in.
+    problems.handlers."gtk+".broken = "warn";
+    # posthog (python telemetry lib) is broken in this nixpkgs; open-webui and chromadb still need it.
+    problems.handlers.posthog.broken = "warn";
 # Call packages from a stable nix release in pkgs with stable.packageName
     # packageOverrides = pkgs: {
     #   stable = import <nixos-25.11>{
