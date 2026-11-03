@@ -266,6 +266,8 @@ in {
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.iris.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # kurashi-shell: installed by programs.kurashi (flake.nix commonDesktopModules)
     # winboat
     # rapidraw, darktable, rawtherapee, gimp: modules/nixos/config/photo-editing.nix (my.photoEditing)
     anki
