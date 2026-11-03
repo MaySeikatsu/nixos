@@ -8,6 +8,7 @@
     ./graphics.nix
     ./input-assist.nix
     ./photo-editing.nix
+    ./craft-apps.nix
     ./searxng.nix
     ./vtubing.nix
     ./kanata.nix

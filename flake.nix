@@ -124,6 +124,31 @@
       url = "github:MaySeikatsu/kurashi-shell/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # storytold *Craft apps from my forks, built from source by
+    # packages/craft-app.nix. OFF: the release binaries are used instead.
+    # Uncomment these + the "forks" list in modules/nixos/config/craft-apps.nix
+    # to switch, then `nix flake lock`.
+    # filmcraft = {
+    #   url = "github:MaySeikatsu/filmcraft";
+    #   flake = false;
+    # };
+    # photocraft = {
+    #   url = "github:MaySeikatsu/photocraft";
+    #   flake = false;
+    # };
+    # lightcraft = {
+    #   url = "github:MaySeikatsu/lightcraft";
+    #   flake = false;
+    # };
+    # effectcraft = {
+    #   url = "github:MaySeikatsu/effectcraft";
+    #   flake = false;
+    # };
+    # # CJK fonts the Craft apps embed at build time (CRAFT_FONTS_DIR)
+    # craft-fonts = {
+    #   url = "github:storytold/craft-fonts";
+    #   flake = false;
+    # };
     # forest-hx = {
     #   url = "github:Ra77a3l3-jar/forest.hx";
     #   flake = false;

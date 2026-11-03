@@ -32,6 +32,11 @@ in {
       GIMP. modules/nixos/config/photo-editing.nix
     '';
 
+    craftApps.enable = toggle true ''
+      FilmCraft, PhotoCraft, LightCraft, EffectCraft, built from my forks.
+      modules/nixos/config/craft-apps.nix
+    '';
+
     videoEditing.enable = toggle true ''
       DaVinci Resolve (GPU wrapper), resolve-transcode and the
       ~/Videos/Resolve-Ingest watch folder. modules/nixos/config/davinci-resolve.nix
