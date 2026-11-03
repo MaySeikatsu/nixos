@@ -241,7 +241,6 @@ in {
     # mise
     wallust # rust
     quickshell
-    noctalia-shell
     noctalia
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     openssl
