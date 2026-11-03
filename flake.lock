@@ -159,11 +159,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1783688822,
-        "narHash": "sha256-Mz9aCucJahQwGzZTPvCGxqsmLpGIitPCVxAiMoU4bM0=",
+        "lastModified": 1793740437,
+        "narHash": "sha256-IrktZ5lRDdwOySpWc7ic+OX6o5ESPrHek4GLtIMDziQ=",
         "owner": "MaySeikatsu",
         "repo": "evil-yazelix-helix",
-        "rev": "1fb1b6394cd03ce6e2fbcf6795fb133983aecafc",
+        "rev": "b92d5757137cb9cfbd0da90cb55aa3c7fc727017",
         "type": "github"
       },
       "original": {
