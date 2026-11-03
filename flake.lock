@@ -790,11 +790,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793718388,
-        "narHash": "sha256-udPjjPVHQM0HdVTBdWwoEzI1ZWBOd01u0u/vKJvBzxQ=",
+        "lastModified": 1793740810,
+        "narHash": "sha256-rlNMWFpaH3vZV7pJpKP8Z+8XN8r4TX40r3f0wuenfFY=",
         "owner": "MaySeikatsu",
         "repo": "kurashi-shell",
-        "rev": "8a684c16d5ac735413e023984576621f66da1228",
+        "rev": "8907407207f77b39fa6f8624b5b779bb6a4d47f8",
         "type": "github"
       },
       "original": {
