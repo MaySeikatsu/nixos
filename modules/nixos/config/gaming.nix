@@ -57,6 +57,12 @@
   };
 
 in {
+  # nested gamescope (steam-gamescope above); capSysNice lets it raise its own priority
+  programs.gamescope = lib.mkIf on {
+    enable = true;
+    capSysNice = true;
+  };
+
   boot.kernelModules = lib.mkIf on ["ntsync"]; # Wine but kernel level / performance boost
 
   programs = {
@@ -90,7 +96,7 @@ in {
   };
 
   hardware.opentabletdriver = {
-    enable = true;
+    enable = false; # off: the kernel wacom driver runs the CTH-480 (this module blacklists it)
     daemon.enable = true; #does't start automatically for some reason
   };
 
@@ -99,16 +105,18 @@ in {
       ntfs3g # to run games on ntfs drives with linux - drive needs to be mounted with ntfs-3g too, to make it work
     ]
     ++ lib.optionals on [
-    bottles
-    lutris
-    heroic
-    dolphin-emu
-    mame
-    retroarch
-    pegasus-frontend
-    widelands
-    protontricks # was in configuration-shared.nix
-    # wacomtablet
-    # roccat-tools
-  ];
+      steam-gamescope
+      steam-gamescope-desktop
+      bottles
+      lutris
+      heroic
+      dolphin-emu
+      mame
+      retroarch
+      pegasus
+      widelands
+      protontricks # was in configuration-shared.nix
+      # wacomtablet
+      # roccat-tools
+    ];
 }

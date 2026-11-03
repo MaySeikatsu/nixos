@@ -170,6 +170,21 @@ window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
+// Steam focus fix WITHOUT gamescope (currently using `steam-gamescope`, see gaming.nix).
+// X11/Proton games carry no xdg-activation token, so niri doesn't focus them when
+// Steam spawns them. Uncomment to force it. Harmless alongside gamescope: games inside
+// gamescope are invisible to niri. Native Linux games use their own app-id
+// (check `niri msg windows`) and need adding to the first rule.
+// window-rule {
+//     match app-id=r#"^steam_app_"#
+//     open-focused true
+//     open-fullscreen true
+// }
+// window-rule {
+//     match app-id="steam" title="^Steam Big Picture Mode$"
+//     open-focused true
+//     open-fullscreen true
+// }
 // set-dynamic-cast-window
 // set-dynamic-cast-monitor
 // clear-dynamic-cast-target
@@ -417,7 +432,11 @@ debug {
     restrict-primary-scanout-to-matching-format
     // render-drm-device "/dev/dri/renderD129" // to use a different gpu for rendering niri
     wait-for-frame-completion-before-queueing
-//     disable-resize-throttling    
+    // NVIDIA (GTX 1060): scanning out nested gamescope's buffers directly when it's
+    // fullscreen shows garbage (fixed itself the moment a screenshot forced composition).
+    // Costs one composite pass for fullscreen windows; comment out to test new drivers.
+    disable-direct-scanout
+//     disable-resize-throttling
 //     disable-transactions // renders just resized window and others on window set
 // skip-cursor-only-updates-during-vrr
 //     deactivate-unfocused-windows
