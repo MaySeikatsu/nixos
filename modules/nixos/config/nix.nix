@@ -17,6 +17,23 @@
     daemonIOSchedClass = "idle";
   };
 
+  # fabric 3.2.3 pins invoke<3.0, but this nixpkgs ships invoke 3.0.3, and azure-cli
+  # (modules/home-manager/coding/default.nix) needs fabric. Relax that one pin.
+  nixpkgs.overlays = [
+    (final: prev: {
+      pythonPackagesExtensions =
+        (prev.pythonPackagesExtensions or []) ++ [
+          (pyFinal: pyPrev: {
+            # Its test suite fails against invoke 3 (ConnectionCall signature, remote runner mocks), so it is skipped.
+            fabric = pyPrev.fabric.overridePythonAttrs (old: {
+              pythonRelaxDeps = (old.pythonRelaxDeps or []) ++ ["invoke"];
+              doCheck = false;
+            });
+          })
+        ];
+    })
+  ];
+
   nixpkgs.config = {
     allowUnfree = true; # Allow unfree packages
     allowUnsupportedSystem = true; # Allow unsupported SystemPackages
