@@ -25,6 +25,7 @@
     ./fonts.nix
     ./quickshell.nix
     ./sddm-astronaut-theme.nix
+    ./sunshine_moonlight.nix
     ./services.nix
     ./stylix.nix
     ./qt.nix

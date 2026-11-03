@@ -54,6 +54,13 @@
     # allowExternalGpu = true;
   };
 
+  # Wake-on-LAN (magic packet), e.g. Moonlight's "Send Wake-On-LAN request" for Sunshine.
+  # LAN only (broadcast, doesn't cross Tailscale); pair Moonlight over the LAN so it learns
+  # this NIC's MAC. Waking from off/hibernate (hibernate = poweroff here, see above) also
+  # needs "Wake Up Event By PCI-E/PCI" enabled and ErP disabled in the BIOS.
+  # Verify after rebuild + reboot: sudo ethtool enp37s0 | grep Wake-on   (want: g)
+  # networking.interfaces.enp37s0.wakeOnLan.enable = true;
+
   # Don't let a misbehaving unit hold the whole shutdown hostage for the
   # systemd default of 90s. With nvidia-drm flip-event timeouts during
   # shutdown/suspend, units can easily stall - cap them to 30s so that
