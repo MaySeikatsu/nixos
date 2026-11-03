@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   inputs,
@@ -32,6 +33,7 @@ in {
         else "rose_pine_moon"
       }"
     '';
+    "yazelix/helix/languages.toml".source = config.xdg.configFile."helix/languages.toml".source;
   };
 
   programs.helix = {
@@ -117,6 +119,14 @@ in {
         # };
       };
     };
+    # Helix >= 25.07 defaults nix to nixfmt (on PATH via emacs.nix); use alejandra.
+    languages.language = [
+      {
+        name = "nix";
+        formatter.command = "alejandra";
+        auto-format = true;
+      }
+    ];
     extraPackages = with pkgs; [
       nil
       alejandra
