@@ -38,7 +38,7 @@
       ipafont
       kochi-substitute
       source-code-pro
-      ttf_bitstream_vera
+      ttf-bitstream-vera
 
       #enabled for end-4-dots
       # rubik

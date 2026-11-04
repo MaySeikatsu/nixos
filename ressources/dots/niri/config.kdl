@@ -4,6 +4,8 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 include "binds.kdl"
+// kurashi-shell shortcuts (modules/home-manager/desktop/kurashi.nix); after binds.kdl so they win.
+include "kurashi-binds.kdl"
 include "layout.kdl"
 // include "colors.kdl"
 include "init.kdl"
@@ -32,11 +34,14 @@ layer-rule {
 }
 
 cursor {
-    xcursor-theme "default"
+    xcursor-theme "BreezeX-RosePine-Linux"
     xcursor-size 24
     // hide-when-typing
     // hide-after-inactive-ms 1000 
 }
+// kurashi's pointer while the theming switch is on (theming/kurashi.nix). kurashid writes this file; empty otherwise.
+include optional=true "kurashi-cursor.kdl"
+
 // OVERVIEW SETTINGS
 overview {
   // zoom 0.65
@@ -165,6 +170,21 @@ window-rule {
     match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
+// Steam focus fix WITHOUT gamescope (currently using `steam-gamescope`, see gaming.nix).
+// X11/Proton games carry no xdg-activation token, so niri doesn't focus them when
+// Steam spawns them. Uncomment to force it. Harmless alongside gamescope: games inside
+// gamescope are invisible to niri. Native Linux games use their own app-id
+// (check `niri msg windows`) and need adding to the first rule.
+// window-rule {
+//     match app-id=r#"^steam_app_"#
+//     open-focused true
+//     open-fullscreen true
+// }
+// window-rule {
+//     match app-id="steam" title="^Steam Big Picture Mode$"
+//     open-focused true
+//     open-fullscreen true
+// }
 // set-dynamic-cast-window
 // set-dynamic-cast-monitor
 // clear-dynamic-cast-target
@@ -312,11 +332,13 @@ window-rule {
 //     geometry-corner-radius 2
 //     clip-to-geometry true
 // }
-// Put swaybg inside the overview backdrop. might not work with swww
-// layer-rule {
-//     match namespace="^wallpaper$"
-//     place-within-backdrop true
-// }
+// Wallpaper inside the overview backdrop, so the overview shows it behind the workspaces.
+// Namespaces: awww (shellseikatsu), noctalia (its blurred backdrop surface, so the
+// sharp noctalia-wallpaper stays on the workspaces), caelestia.
+layer-rule {
+    match namespace=r#"^(awww-daemon|noctalia-backdrop(-.*)?|caelestia-background)$"#
+    place-within-backdrop true
+}
 //SCREENCASTING BLACKOUT
 // Block out password managers from screencasts.
 window-rule {
@@ -412,7 +434,11 @@ debug {
     restrict-primary-scanout-to-matching-format
     // render-drm-device "/dev/dri/renderD129" // to use a different gpu for rendering niri
     wait-for-frame-completion-before-queueing
-//     disable-resize-throttling    
+    // NVIDIA (GTX 1060): scanning out nested gamescope's buffers directly when it's
+    // fullscreen shows garbage (fixed itself the moment a screenshot forced composition).
+    // Costs one composite pass for fullscreen windows; comment out to test new drivers.
+    disable-direct-scanout
+//     disable-resize-throttling
 //     disable-transactions // renders just resized window and others on window set
 // skip-cursor-only-updates-during-vrr
 //     deactivate-unfocused-windows
@@ -615,3 +641,24 @@ window-rule {
     open-maximized true
     // is-on-every-workspace true
   }
+
+//Experiement, remove after test - das plus kein Blur
+// window-rule {
+//   match is-active=true
+//   opacity 1.0
+//   background-effect {
+//     blur true
+//   }
+// }
+// window-rule {
+//   match is-active=false
+//   opacity 0.30
+//   background-effect {
+//     blur true
+//   }
+// }
+
+// kurashi's niri look (focus ring, border, shadow, corner radius, six animations) while the theming switch is on
+// (theming/kurashi.nix). kurashid writes this file; it is last, so its values win over the ones above.
+include optional=true "kurashi.kdl"
+

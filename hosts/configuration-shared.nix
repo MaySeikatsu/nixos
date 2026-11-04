@@ -121,6 +121,17 @@ in {
     # pulseaudio.enable = false;
   };
 
+  # S.M.A.R.T. health checks for every disk (autodetected: NVMe and SATA).
+  # Schedule follows smartmontools' recommendation: short self-test daily at
+  # 02:00, long self-test Sunday at 04:00. Results and failures go to the
+  # journal (`journalctl -u smartd`). The box is powered off at night
+  # (hibernate = shutdown), so a test missed while off simply runs on the
+  # next night it is on. Check with: sudo smartctl -a /dev/nvme0n1
+  services.smartd = {
+    enable = true;
+    defaults.autodetected = "-a -o on -S on -s (S/../.././02|L/../../7/04)";
+  };
+
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = 1;
@@ -213,6 +224,7 @@ in {
     copyparty
     proton-vpn
     proton-vpn-cli
+    smartmontools # smartctl for manual disk checks (services.smartd above)
     # deskflow
     # lan-mouse
     remmina # rdp client
@@ -229,7 +241,6 @@ in {
     # mise
     wallust # rust
     quickshell
-    noctalia-shell
     noctalia
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     openssl
@@ -254,12 +265,16 @@ in {
     inputs.fsel.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.spotatui.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.iris.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.helium-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # kurashi-shell: installed by programs.kurashi (flake.nix commonDesktopModules)
     # winboat
     # rapidraw, darktable, rawtherapee, gimp: modules/nixos/config/photo-editing.nix (my.photoEditing)
     anki
     # rose-pine-gtk-theme # removed from nixpkgs: depended on gtk-engine-murrine (GTK2, unmaintained).
     # GTK theming still comes from stylix's rose-pine-moon base16 scheme, so nothing visible is lost.
     rose-pine-icon-theme
+    rose-pine-cursor # the pointer (theming/gtk.nix)
+    kdePackages.qtstyleplugin-kvantum # Kvantum, the Qt style of the Nix default (theming/qt.nix)
     exiftool # Metadata readout for images and different files formats
     spotify
     # ledfx

@@ -58,7 +58,7 @@
     printing.enable = true; # Enable CUPS to print documents.
     flatpak.enable = true;
 
-    udev.packages = with pkgs; [vial via]; # Enabling qmk vial
+    udev.packages = with pkgs; [vial]; # Enabling qmk vial (via dropped: its 92-viia rule made every hidraw node 0666)
 
     #Enabled for end-4-dots flake:
     # geoclue2.enable = true;

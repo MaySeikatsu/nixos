@@ -54,6 +54,13 @@
     # allowExternalGpu = true;
   };
 
+  # Wake-on-LAN (magic packet), e.g. Moonlight's "Send Wake-On-LAN request" for Sunshine.
+  # LAN only (broadcast, doesn't cross Tailscale); pair Moonlight over the LAN so it learns
+  # this NIC's MAC. Waking from off/hibernate (hibernate = poweroff here, see above) also
+  # needs "Wake Up Event By PCI-E/PCI" enabled and ErP disabled in the BIOS.
+  # Verify after rebuild + reboot: sudo ethtool enp37s0 | grep Wake-on   (want: g)
+  # networking.interfaces.enp37s0.wakeOnLan.enable = true;
+
   # Don't let a misbehaving unit hold the whole shutdown hostage for the
   # systemd default of 90s. With nvidia-drm flip-event timeouts during
   # shutdown/suspend, units can easily stall - cap them to 30s so that
@@ -64,9 +71,9 @@
   # Note: only affects the SYSTEM manager. User units keep the default;
   # add `systemd.user.extraConfig` here as well if you want the same cap.
   systemd.settings.Manager = {
-      DefaultTimeoutStopSec = "30s";
-      DefaultTimeoutAbortSec = "30s";
-    };
+    DefaultTimeoutStopSec = "30s";
+    DefaultTimeoutAbortSec = "30s";
+  };
 
   networking.hostName = "nixos-maike-pc"; # Define your hostname.
 
@@ -270,10 +277,9 @@
   #   theme = "sddm-astronaut-theme";
   # };
 
-  # Enabling qmk vial
+  # Enabling qmk vial (via dropped: its 92-viia rule made every hidraw node 0666)
   services.udev.packages = with pkgs; [
     vial
-    via
   ];
   # Install FireFoxPWA Addon
   # programs.firefox = {
@@ -291,6 +297,13 @@
   # GTX 1060 (Pascal). Drives the CUDA build targets and PyTorch wheels of
   # the local AI stack, see modules/nixos/ai/default.nix.
   my.ai.cudaCapability = "6.1";
+
+  # Dynamic theming: kurashi styles the apps and the theming bridge renders the rest (modules/home-manager/theming/kurashi.nix).
+  my.kurashi-theming.enable = true;
+
+  # Pointer light and spotlight over windows: niri from its main branch (kurashi's niri-main input, built from source).
+  # Takes effect at the next niri session; the 849c576 build is already in the store, so the rebuild does not compile it.
+  my.kurashi-pointerLight.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.interfaces."enp37s0".allowedTCPPorts = [7878];

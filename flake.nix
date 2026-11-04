@@ -27,6 +27,10 @@
       url = "github:0xc000022070/zen-browser-flake";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium-browser = {
+      url = "github:AlvaroParker/helium-nix";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -118,6 +122,37 @@
       url = "github:MaySeikatsu/noren";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kurashi-shell = {
+      # The remote's main. The lock pins the commit the remote has; after pushing local work, run
+      # `nix flake lock --update-input kurashi-shell` to move the lock to the pushed main.
+      url = "github:MaySeikatsu/kurashi-shell/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # storytold *Craft apps from my forks, built from source by
+    # packages/craft-app.nix. OFF: the release binaries are used instead.
+    # Uncomment these + the "forks" list in modules/nixos/config/craft-apps.nix
+    # to switch, then `nix flake lock`.
+    # filmcraft = {
+    #   url = "github:MaySeikatsu/filmcraft";
+    #   flake = false;
+    # };
+    # photocraft = {
+    #   url = "github:MaySeikatsu/photocraft";
+    #   flake = false;
+    # };
+    # lightcraft = {
+    #   url = "github:MaySeikatsu/lightcraft";
+    #   flake = false;
+    # };
+    # effectcraft = {
+    #   url = "github:MaySeikatsu/effectcraft";
+    #   flake = false;
+    # };
+    # # CJK fonts the Craft apps embed at build time (CRAFT_FONTS_DIR)
+    # craft-fonts = {
+    #   url = "github:storytold/craft-fonts";
+    #   flake = false;
+    # };
     # forest-hx = {
     #   url = "github:Ra77a3l3-jar/forest.hx";
     #   flake = false;
@@ -238,7 +273,7 @@
         users.${username} = import homePath;
         useGlobalPkgs = true;
         useUserPackages = true;
-        # backupFileExtension = "bck";
+        backupFileExtension = "bck";
         backupCommand = "mv \"$1\" \"$1.bck.$(date +%Y%m%d%H%M%S)\"";
         extraSpecialArgs = {inherit inputs;};
         sharedModules = [
@@ -248,6 +283,8 @@
           monado-rift-wayland.homeManagerModules.default
           # shellseikatsu.homeManagerModules.default
           yazelix-hm.homeManagerModules.default
+          # programs.kurashi (modules/home-manager/desktop/kurashi.nix)
+          inputs.kurashi-shell.homeManagerModules.default
         ];
       };
     };
@@ -263,6 +300,9 @@
       monado-rift-wayland.nixosModules.default
       {hardware.oculus-rift-cv1.enable = true;}
       sysc-greet.nixosModules.default
+      # programs.kurashi: package, PAM service of the lock screen, UPower
+      inputs.kurashi-shell.nixosModules.default
+      {programs.kurashi.enable = true;}
       {nixpkgs.overlays = commonOverlays;}
       home-manager.nixosModules.home-manager
     ];

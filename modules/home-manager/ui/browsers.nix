@@ -19,6 +19,10 @@
         "media.ffmpeg.vaapi.enabled" = pref true;
         "media.hardware-video-decoding.force-enabled" = pref true; # NVIDIA is blocklisted by default
         "widget.dmabuf.force-enabled" = pref true;
+        # Zen's shipped defaults set the bookmarks toolbar to "never" (overriding
+        # Firefox's "newtab"), so it never shows in the top bar. "always" keeps it
+        # visible; changeable in about:config like the settings above.
+        "browser.toolbars.bookmarks.visibility" = pref "always";
       }
       // lib.optionalAttrs nvidiaOnly {
         # Pascal's NVDEC has no AV1: with AV1 off YouTube serves VP9, which

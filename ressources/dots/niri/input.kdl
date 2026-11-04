@@ -94,6 +94,7 @@ input {
     // off
     map-to-output "DP-2"
     // left-handed
+    calibration-matrix 1.0 0.0 0.0 0.0 1.1111 -0.0556 // 16:9 across the full width, centred on 90% of the height (152x95 mm tablet)
     // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0 // interesting for osu
   }
   touch {

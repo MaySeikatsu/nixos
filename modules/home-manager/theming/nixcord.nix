@@ -1,10 +1,14 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.nixcord = {
     enable = true;
     # vesktop = { enable = true; };
     discord = {
       enable = true;
-      package = pkgs.discord;
+      package = pkgs.vesktop;
       vencord = {
         enable = true;
         unstable = true;
@@ -13,7 +17,8 @@
     # quickCss = "some CSS";  # quickCSS file
     config = {
       useQuickCss = true; # use out quickCSS
-      themeLinks = [ # or use an online theme
+      themeLinks = [
+        # or use an online theme
         "https://refact0r.github.io/system24/theme/system24.theme.css"
       ];
 

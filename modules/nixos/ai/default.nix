@@ -136,5 +136,13 @@ in {
     nixpkgs.config = lib.mkIf cfg.legacyGpu {
       cudaCapabilities = [cfg.cudaCapability];
     };
+    # The nixpkgs of the 2026-11 update defaults cudaPackages to CUDA 13.4, which dropped capability 6.1 and
+    # fails the eval. Pin the CUDA 12.6 set (the one the torch index above matches), keeping flake.nix's
+    # cuda_compat override.
+    nixpkgs.overlays = lib.mkIf cfg.legacyGpu [
+      (final: prev: {
+        cudaPackages = final.cudaPackages_12_6.overrideScope (_: _: {cuda_compat = null;});
+      })
+    ];
   };
 }

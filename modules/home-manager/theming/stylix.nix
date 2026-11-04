@@ -1,4 +1,11 @@
-{...}: {
+{
+  lib,
+  osConfig,
+  ...
+}: let
+  # While kurashi styles these apps (theming/kurashi.nix), stylix leaves their colours alone.
+  kurashiOn = lib.attrByPath ["my" "kurashi-theming" "enable"] false osConfig;
+in {
   # needs to be enabled as a homemanager module to work (look at imported files in this folder)
 
   # stylix.image = ../../../ressources/wallpapers/1309758.jpg;
@@ -7,8 +14,8 @@
     wezterm.enable = true;
     alacritty.enable = true;
     kitty.enable = true;
-    ghostty.enable = true;
-    foot.enable = true;
+    ghostty.enable = !kurashiOn;
+    foot.enable = !kurashiOn;
     # zellij.enable = true;
     # helix.enable = true;
     # lazygit.enable = true;
@@ -28,7 +35,7 @@
     # nixcord.enable = true;
     # vencord.enable = true;
     # vesktop.enable = true;
-    fzf.enable = true;
+    fzf.enable = !kurashiOn;
     # gnome.enable = true;
     # hyprland.enable = true;
     # hyprland.hyprpaper.enable = true;

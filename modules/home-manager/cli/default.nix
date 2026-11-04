@@ -20,7 +20,7 @@
     ./starship.nix
     ./sops.nix
     ./ssh.nix
-    ./yazelix.nix
+    # ./yazelix.nix # off: yazelix's embedded helix pulls the cylc grammar, which no longer fetches
     # ./git-options.nix
     # ./kubernetes.nix
     # ./weathr.nix

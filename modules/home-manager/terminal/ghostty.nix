@@ -4,6 +4,8 @@
       enable = true;
       settings = {
         font-size = 11;
+        # Set here, not only by stylix, so the font stays when the theming switch hands the colours to kurashi.
+        font-family = "JetBrains Mono Nerd Font";
         window-decoration = false;
         confirm-close-surface = false;
         font-feature = ["-liga" "-dlig" "-calt"];

@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  # The default-session unit in ~/.config/systemd/user runs ~/.nix-profile/bin/tmux. yazelix supplied that
+  # binary until its module was commented out (cli/default.nix), so the package comes from here now.
+  home.packages = [pkgs.tmux];
+
   programs.tmux = {
     enable = false;
     #shortcut = " ";
