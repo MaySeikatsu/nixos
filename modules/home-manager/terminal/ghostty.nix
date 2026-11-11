@@ -1,4 +1,10 @@
-{...}: {
+{
+  lib,
+  osConfig,
+  ...
+}: let
+  kurashiOn = lib.attrByPath ["my" "kurashi-theming" "enable"] false osConfig;
+in {
   programs = {
     ghostty = {
       enable = true;
@@ -11,7 +17,9 @@
         font-feature = ["-liga" "-dlig" "-calt"];
         # theme = "Adventure";
         # theme = "rose-pine-moon";
-        custom-shader = [
+        # Only while kurashi does not style ghostty. Its theme file names its own shader and sets custom-shader-animation = false.
+        # ghostty keeps the theme's custom-shader entry and runs these after it, so they would filter kurashi's material.
+        custom-shader = lib.mkIf (!kurashiOn) [
           "~/.config/nixos/ressources/dots/ghostty/shaders/in-game-crt-cursor.glsl"
           # "~/.config/nixos/ressources/dots/ghostty/shaders/glow-rgbsplit-twitchy.glsl"
           # "~/.config/nixos/ressources/dots/ghostty/shaders/retro-terminal.glsl"

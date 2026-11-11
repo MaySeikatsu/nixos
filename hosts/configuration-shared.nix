@@ -276,7 +276,7 @@ in {
     rose-pine-cursor # the pointer (theming/gtk.nix)
     kdePackages.qtstyleplugin-kvantum # Kvantum, the Qt style of the Nix default (theming/qt.nix)
     exiftool # Metadata readout for images and different files formats
-    spotify
+    # spotify: modules/home-manager/theming/spicetify.nix (the launcher that applies the kurashi theme)
     # ledfx
     openlinkhub
     hyperion-ng # not working yet

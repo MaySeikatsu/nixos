@@ -241,8 +241,8 @@ window-rule {
 
 // niri-session-restore-picker (see ../../../niri-session-restore-picker/
 // and modules/home-manager/desktop/niri/niri-session-restore-picker.nix),
-// bound to Mod+Shift+R in binds.kdl. Size is set via foot's own
-// --window-size-chars flag in the spawn command, not here -- niri has no
+// bound to Mod+Shift+R in binds.kdl. Size is set via the terminal's own
+// flags (ghostty --window-width/--window-height, formerly foot --window-size-chars) in the spawn command, not here -- niri has no
 // default-size knob for floating windows, only for tiled columns.
 window-rule {
   match title="niri-session-restore-picker"
@@ -277,11 +277,13 @@ window-rule {
     open-on-workspace "entertainment"
 }
 window-rule {
-    match at-startup=true app-id="foot"
+    // match at-startup=true app-id="foot"
+    match at-startup=true app-id="com.mitchellh.ghostty"
     // open-on-workspace "dev"
 }
 window-rule {
-    match app-id="foot"
+    // match app-id="foot"
+    match app-id="com.mitchellh.ghostty"
     // opacity 0.85
     // background-effect {
     //   blur true

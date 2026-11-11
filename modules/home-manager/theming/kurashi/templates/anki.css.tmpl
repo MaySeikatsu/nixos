@@ -1,0 +1,68 @@
+/* Owned by the kurashi theming bridge (modules/home-manager/theming/kurashi.nix). ReColor's colour variables for Anki's dark
+   mode, from kurashi's tokens. The kurashi Anki add-on (modules/home-manager/theming/kurashi/anki/) injects this file after
+   ReColor's own styles. ReColor keeps its config (the rose-pine values), and this file wins only in dark mode while kurashi
+   is on. Light mode is not touched. */
+body.night_mode {
+  --canvas: {{color.surface}} !important;
+  --canvas-code: {{color.surface}} !important;
+  --canvas-elevated: {{color.surface_container_low}} !important;
+  --canvas-glass: {{color.surface_container}}66 !important;
+  --canvas-inset: {{color.surface}} !important;
+  --canvas-overlay: {{color.surface_container}} !important;
+  --bs-body-bg: {{color.surface}} !important;
+
+  --fg: {{color.on_surface}} !important;
+  --fg-disabled: {{color.outline}} !important;
+  --fg-faint: {{color.on_surface_variant}} !important;
+  --fg-link: {{color.accent}} !important;
+  --fg-subtle: {{color.on_surface_variant}} !important;
+  --bs-body-color: {{color.on_surface}} !important;
+
+  --border: {{color.surface_container_highest}} !important;
+  --border-focus: {{color.accent}} !important;
+  --border-strong: {{color.surface_container_highest}} !important;
+  --border-subtle: {{color.surface_container_high}} !important;
+
+  --button-bg: {{color.surface}} !important;
+  --button-disabled: {{color.outline}}80 !important;
+  --button-gradient-start: {{color.surface_container_low}} !important;
+  --button-gradient-end: {{color.surface_container_low}} !important;
+  --button-hover-border: {{color.surface_container_highest}} !important;
+  --button-primary-bg: {{color.success}} !important;
+  --button-primary-disabled: {{color.outline}} !important;
+  --button-primary-gradient-start: {{color.secondary}} !important;
+  --button-primary-gradient-end: {{color.success}} !important;
+
+  --accent-card: {{color.secondary}} !important;
+  --accent-danger: {{color.error}} !important;
+  --accent-note: {{color.success}} !important;
+
+  --flag-1: {{color.error}} !important;
+  --flag-2: {{color.tertiary}} !important;
+  --flag-3: {{color.secondary}} !important;
+  --flag-4: {{color.success}} !important;
+  --flag-5: {{color.accent}} !important;
+  --flag-6: {{color.warning}} !important;
+  --flag-7: {{color.outline}} !important;
+
+  --highlight-bg: {{color.surface_container_high}} !important;
+  --highlight-fg: {{color.on_surface}} !important;
+  --selected-bg: {{color.surface_container_high}}80 !important;
+  --selected-fg: {{color.on_surface}} !important;
+
+  --scrollbar-bg: {{color.surface_container_low}} !important;
+  --scrollbar-bg-active: {{color.surface_container_highest}} !important;
+  --scrollbar-bg-hover: {{color.surface_container_high}} !important;
+
+  --shadow: {{color.surface}} !important;
+  --shadow-focus: {{color.accent}} !important;
+  --shadow-inset: {{color.surface}} !important;
+  --shadow-subtle: {{color.surface_container_high}} !important;
+
+  --state-buried: {{color.warning}} !important;
+  --state-learn: {{color.tertiary}} !important;
+  --state-marked: {{color.warning}} !important;
+  --state-new: {{color.success}} !important;
+  --state-review: {{color.secondary}} !important;
+  --state-suspended: {{color.outline}} !important;
+}

@@ -11,12 +11,19 @@ binds {
     // Super+Escape { spawn "sh" "-c" "noctalia msg session lock"; } // noctalia v5
     Super+Escape { spawn "sh" "-c" "shellseikatsu ipc call session lock"; }
     // Super+A { spawn "sherlock"; }
-    Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
-    Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim ."; }
-    Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim -D ~/.config/nixos/ nvim ."; }
-    Mod+Shift+R { spawn "sh" "-c" "foot --window-size-chars=110x30 --title niri-session-restore-picker -e niri-session-restore-picker"; }
-    Super+T { spawn "foot"; }
-    Super+Shift+T { spawn "ghostty"; }
+    // Mod+A { spawn "sh" "-c" "foot --title fsel-launcher fsel -d"; }
+    // Mod+O { spawn "sh" "-c" "foot --title obsidian-nvim -D ~/Documents/obsidian/ nvim ."; }
+    // Mod+N { spawn "sh" "-c" "foot --title nixos-config-nvim -D ~/.config/nixos/ nvim ."; }
+    // Mod+Shift+R { spawn "sh" "-c" "foot --window-size-chars=110x30 --title niri-session-restore-picker -e niri-session-restore-picker"; }
+    // Super+T { spawn "foot"; }
+    // ghostty: -e must come last (everything after it is the command); --title is fixed, so the title window-rules keep matching.
+    Mod+A { spawn "sh" "-c" "ghostty --title=fsel-launcher -e fsel -d"; }
+    Mod+O { spawn "sh" "-c" "ghostty --title=obsidian-nvim --working-directory=$HOME/Documents/obsidian/ -e nvim ."; }
+    Mod+N { spawn "sh" "-c" "ghostty --title=nixos-config-nvim --working-directory=$HOME/.config/nixos/ -e nvim ."; }
+    Mod+Shift+R { spawn "sh" "-c" "ghostty --window-width=110 --window-height=30 --title=niri-session-restore-picker -e niri-session-restore-picker"; }
+    Super+T { spawn "ghostty"; }
+    // Super+Shift+T { spawn "ghostty"; }
+    Super+Shift+T { spawn "foot"; } // fallback terminal
     Mod+Y { spawn "zen-twilight"; }
     Mod+B { spawn "microsoft-edge"; }
     Mod+E { spawn "nautilus"; }

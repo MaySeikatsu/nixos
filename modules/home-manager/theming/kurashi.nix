@@ -42,6 +42,12 @@
       template = ./kurashi/templates/fzf.fish.tmpl;
       out = ".config/kurashi/fzf.fish";
     }
+    # ReColor's variables for Anki's dark mode. The add-on in ./kurashi/anki/ loads it on top of ReColor's rose-pine config.
+    {
+      name = "anki";
+      template = ./kurashi/templates/anki.css.tmpl;
+      out = ".config/kurashi/apps/anki.css";
+    }
   ];
 
   registry = pkgs.writeText "kurashi-theme-registry.json" (builtins.toJSON {
@@ -81,6 +87,14 @@ in {
         force = true;
       };
     }
+    # The Anki add-on that loads kurashi's Anki stylesheet, next to ReColor (~/.local/share/Anki2/addons21/688199788). Only while
+    # the switch is on; the stylesheet itself is an owned file above.
+    (lib.mkIf on {
+      ".local/share/Anki2/addons21/kurashi/__init__.py" = {
+        source = ./kurashi/anki/__init__.py;
+        force = true;
+      };
+    })
     # KDE's scheme folder gets kurashi's file: a link out of the store, since kurashid rewrites the file (see the KDE block
     # below). Off: no link.
     (lib.mkIf on {
